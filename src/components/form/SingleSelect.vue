@@ -1,7 +1,7 @@
 <template>
-  <select v-bind:value="value">
-    <option v-for="option in options" v-bind:value="option.value || option">
-      {{ option.label || option }} {{ value }}
+  <select v-bind:value="value" v-on:change="updateValue">
+    <option v-for="option in options" v-bind:value="option.value || option.label || option">
+      {{ option.label || option.value || option }}
     </option>
   </select>
 </template>
@@ -15,13 +15,13 @@ export default {
       required: true
     },
     value: {
-      type: String,
-      required: true
+      type: [String, Object],
+      required: false
     }
   },
   methods: {
-    updateValue(value) {
-      this.$emit('selection', value);
+    updateValue(event) {
+      this.$emit('selection', event.target.value);
     }
   }
 };

@@ -1,6 +1,6 @@
 <template>
   <ul class="vendor-list">
-    <li v-for="vendor in vendors">
+    <li v-for="vendor in vendors" :key="vendor.id">
       <span class="name">{{ vendor.name }}</span>
       <span class="city">{{ vendor.city }}</span>
       <span class="state">{{ vendor.state }}</span>
@@ -14,18 +14,15 @@
 </template>
 
 <script>
+import { mapState, mapGetters } from 'vuex';
+
 export default {
   name: 'vendor-list',
-  data() {
-    return {
-
-    };
-  },
-  props: {
-    vendors: {
-      type: Array,
-      required: true
-    }
+  computed: {
+    ...mapGetters({
+      filter: 'vendorFilter',
+      vendors: 'sortedVendors'
+    })
   },
   methods: {
     productTypes(vendor) {

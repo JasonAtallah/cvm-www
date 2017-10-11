@@ -1,62 +1,35 @@
 <template>
-  <ul class="vendor-filter">
-    <li>
-      <div class="title">Sort By</div>
-      <single-select :options="sortOptions" v-model="sortValue"></single-select>
-    </li>
-  </ul>
+<ul class="vendor-filter">
+  <li>
+    <div class="title">Sort By</div>
+    <single-select :options="filter.sortOptions" :value="filter.sort" v-on:selection="updateSort"></single-select>
+  </li>
+  <li>
+    <div class="title">Product</div>
+    <single-select :options="productTypes" :value="filter.productType" v-on:selection="updateProductType"></single-select>
+  </li>
+</ul>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 import SingleSelect from '@/components/form/SingleSelect';
 
 export default {
   name: 'vendor-filter',
-  data() {
-    return {
-      sortOptions: [
-        'Recent First',
-        'Recent Last'
-      ]
-    };
-  },
-  props: {
-    filter: {
-      type: Object,
-      required: true
-    }
-  },
   computed: {
-    sortValue() {
-      return this.filter.sort;
-    }
+    ...mapGetters({
+      filter: 'vendorFilter',
+      productTypes: 'productTypes'
+    })
   },
   methods: {
-    productTypes(vendor) {
-      return [...vendor.products.reduce((types, product) => {
-        types.add(product.type);
-        return types;
-      }, new Set())];
+    updateSort(value) {
+      this.$store.commit('setVendorSort', value);
     },
-    getFieldVal(fieldName) {
-      switch (fieldName) {
-        case 'Sort':
-          return {
-            options: [
-              {
-                value: 1,
-                label: '1'
-              }
-            ],
-            selected: null
-          };
-
-        default:
-          return {
-            options: [],
-            selected: null
-          };
-      }
+    updateProductType(value) {
+      this.$store.commit('setProductFilter', value);
     }
   },
   components: {

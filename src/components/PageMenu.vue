@@ -2,7 +2,7 @@
   <div class="page-menu">
     <img class="logo" :src="logoUrl" />
     <div v-for="(item,index) in pageMenu" class="pageMenuItem">
-      <a v-bind:class="{ selected: item.selected }" v-bind:href="item.href">{{ item.name }}</a>
+      <router-link :to="item.href" :class="{ selected: item.selected }">{{ item.name }}</router-link>
     </div>
   </div>
 </template>
@@ -16,15 +16,15 @@ export default {
       pageItems: [
         {
           name: 'Vendors',
-          href: '/#/'
+          href: '/'
         },
         {
           name: 'Calendar',
-          href: '/#/calendar'
+          href: '/calendar'
         },
         {
           name: 'Onboarding',
-          href: '/#/onboarding'
+          href: '/onboarding'
         }
       ]
     };
