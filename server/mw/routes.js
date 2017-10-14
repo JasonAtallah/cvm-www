@@ -2,15 +2,15 @@ const express = require('express');
 const config = require('../../config');
 
 module.exports = function(app) {
-  const router = express.Router();
+  if (process.env.NODE_ENV === 'production') {
+    app.get('/', function(req, res, next) {
+      res.sendFile(config.index);
+    });
+  } else {
+    require('./devServer')(app);
+  }
 
   app.use(config.staticPath, express.static(config.staticDir));
-
-  router.get('/', function(req, res, next) {
-    res.sendFile(config.index);
-  });
-
-  app.use('/', router);
 
   app.use(function(req, res, next) {
     const err = new Error('Not Found');

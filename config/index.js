@@ -29,6 +29,7 @@ const config = module.exports = {
       case "production":
       case "testing":
         _.extend(config, {
+          autoOpenBrowser: false,
           port: process.env.PORT,
           productionSourceMap: true,
           productionGzip: false,
