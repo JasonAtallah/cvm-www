@@ -34,6 +34,14 @@ const state = {
       return selectedOptions[0];
     }
   },
+  vendorActions: [
+    {
+      label: 'Approve'
+    },
+    {
+      label: 'Reject'
+    }
+  ],
   pendingAction: null,
   pendingActionData: null,
   pendingActionError: null
@@ -42,6 +50,7 @@ const state = {
 const getters = {
   vendors: state => state.vendors,
   vendorFilter: state => state.vendorFilter,
+  vendorActions: state => state.vendorActions,
   sortedVendors: (state) => {
     let vendors = [...state.vendors];
     if (state.vendorFilter.productType) {
