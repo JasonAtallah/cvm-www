@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "body-parser": "^1.18.2",
+    "connect-ensure-login": "^0.1.1",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
     "dotenv": "^4.0.0",
@@ -39,7 +40,6 @@
     "babel-preset-stage-2": "^6.22.0",
     "babel-register": "^6.22.0",
     "bootstrap": "^4.0.0-beta",
-    "bootstrap-vue": "^1.0.0-beta.9",
     "chai": "^4.1.2",
     "chalk": "^2.0.1",
     "chromedriver": "^2.27.2",
@@ -63,6 +63,7 @@
     "html-webpack-plugin": "^2.30.1",
     "http-proxy-middleware": "^0.17.3",
     "inject-loader": "^3.0.0",
+    "jquery": "^3.2.1",
     "karma": "^1.4.1",
     "karma-coverage": "^1.1.1",
     "karma-mocha": "^1.3.0",

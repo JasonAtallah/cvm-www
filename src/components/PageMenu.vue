@@ -4,6 +4,9 @@
     <div v-for="(item,index) in pageMenu" class="pageMenuItem">
       <router-link :to="item.href" :class="{ selected: item.selected }">{{ item.name }}</router-link>
     </div>
+    <div class="pageMenuItem">
+      <a href="/login">Login</a>
+    </div>
   </div>
 </template>
 

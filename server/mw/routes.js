@@ -1,9 +1,11 @@
 const express = require('express');
 const config = require('../../config');
+const ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn();
 
 module.exports = function(app) {
+
   if (process.env.NODE_ENV === 'production') {
-    app.get('/', function(req, res, next) {
+    app.get('/', ensureLoggedIn, function(req, res, next) {
       res.sendFile(config.index);
     });
   } else {
