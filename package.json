@@ -5,9 +5,7 @@
   "author": "Ariel Jakobovits <arieljake@gmail.com>",
   "private": true,
   "scripts": {
-    "dev": "node build/dev-server.js",
-    "prod": "node build/prod-server.js",
-    "start": "npm run dev",
+    "start": "node server/index.js",
     "build": "node build/build.js",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "e2e": "node test/e2e/runner.js",
@@ -30,6 +28,7 @@
     "vuex": "^2.4.1"
   },
   "devDependencies": {
+    "auth0-js": "^8.10.1",
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
     "babel-eslint": "^7.1.1",

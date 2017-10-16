@@ -16,7 +16,8 @@ module.exports = {
   ],
   globals: {
     '$': true,
-    'jQuery': true
+    'jQuery': true,
+    'auth0': true
   },
   // check if imports actually resolve
   'settings': {

@@ -1,20 +1,38 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import * as actions from './actions';
-import * as mutations from './mutations';
-import * as getters from './getters';
 import vendors from './vendors';
+import session from './session';
 
 Vue.use(Vuex);
 
-const debug = process.env.NODE_ENV !== 'production';
+const state = {
+  initP: null
+};
+
+const actions = {
+
+  init({ dispatch }) {
+    return dispatch('loadSession')
+      .then(() => {
+        return dispatch('getProfile');
+      });
+  }
+};
+
+const mutations = {
+
+  setInitP(state, promise) {
+    state.initP = promise;
+  }
+
+};
 
 export default new Vuex.Store({
+  state,
   mutations,
   actions,
-  getters,
   modules: {
+    session,
     vendors
-  },
-  strict: debug
+  }
 });

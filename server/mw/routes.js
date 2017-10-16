@@ -1,8 +1,23 @@
 const express = require('express');
-const config = require('../../config');
 const ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn();
+const config = require('../../config');
 
 module.exports = function(app) {
+
+  app.get('/session', function(req, res) {
+    res.send({
+      auth: {
+        accessToken: req.user.auth.accessToken,
+        idToken: req.user.auth.idToken,
+        expiresIn: req.user.auth.expiresIn,
+        domain: config.mgmtApi.domain,
+        clientId: config.mgmtApi.clientId,
+        redirectUri: config.mgmtApi.callbackUrl,
+        audience: config.mgmtApi.audience,
+        scope: config.mgmtApi.scope
+      }
+    })
+  });
 
   if (process.env.NODE_ENV === 'production') {
     app.get('/', ensureLoggedIn, function(req, res, next) {

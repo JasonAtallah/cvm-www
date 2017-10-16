@@ -12,12 +12,21 @@ const config = module.exports = {
       assetsSubDirectory: 'static',
       assetsPublicPath: '/',
       auth0: {
+        audience: 'cannabis-vendor-mgmt-api',
         callbackUrl: process.env.AUTH0_CALLBACK_URL,
         clientId: process.env.AUTH0_CLIENT_ID,
         clientSecret: process.env.AUTH0_CLIENT_SECRET,
         domain: process.env.AUTH0_DOMAIN
       },
-      index: path.resolve(__dirname, '../dist/index.html')
+      index: path.resolve(__dirname, '../dist/index.html'),
+      mgmtApi: {
+        audience: process.env.MGMT_API_AUDIENCE,
+        callbackUrl: 'http://localhost:8080/callback',
+        clientId: process.env.MGMT_API_CLIENT_ID,
+        domain: process.env.MGMT_API_DOMAIN,
+        scope: 'openid profile vendors'
+      },
+      port: process.env.PORT
     });
 
     _.extend(config, {
@@ -30,7 +39,6 @@ const config = module.exports = {
       case "testing":
         _.extend(config, {
           autoOpenBrowser: false,
-          port: process.env.PORT,
           productionSourceMap: true,
           productionGzip: false,
           productionGzipExtensions: ['js', 'css'],
@@ -41,7 +49,6 @@ const config = module.exports = {
 
       default:
         _.extend(config, {
-          port: process.env.PORT,
           autoOpenBrowser: true,
           proxyTable: {},
           cssSourceMap: false

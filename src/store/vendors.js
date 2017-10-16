@@ -71,28 +71,14 @@ const getters = {
 
 const actions = {
 
-  loadVendors({ commit, state }) {
-    vendorApi.getVendors(
-      (vendors) => {
-        commit('setVendors', vendors);
-      }
-    );
-  },
-
-  rejectVendor({ commit, state }, vendor) {
-    commit('rejectVendorRequest');
-    vendorApi.rejectVendor(
-      vendor,
-      () => commit('rejectVendorSuccess', { vendor }),
-      (err) => {
-        commit('rejectVendorFailure', { err });
-      }
-    );
+  loadVendors({ rootState, commit }) {
+    vendorApi.getVendors(rootState.session.auth, (err, vendors) => {
+      commit('setVendors', vendors);
+    });
   }
 
 };
 
-// mutations
 const mutations = {
 
   setVendorSort(state, value) {

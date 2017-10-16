@@ -15,5 +15,5 @@ const vm = new Vue({
   template: '<App/>',
   components: {
     App
-  },
+  }
 });

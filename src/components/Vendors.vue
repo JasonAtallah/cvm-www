@@ -21,7 +21,10 @@ export default {
     VendorFilter
   },
   beforeMount() {
-    this.$store.dispatch('loadVendors');
+    this.$store.dispatch('init')
+      .then(() => {
+        this.$store.dispatch('loadVendors');
+      });
   }
 };
 </script>
