@@ -28,6 +28,9 @@ export default {
       return this.$store.getters.vendorActions;
     },
     productTypes() {
+      if (!Array.isArray(this.vendor.products)) {
+        return [];
+      }
       return [...this.vendor.products.reduce((types, product) => {
         types.add(product.type);
         return types;
