@@ -7,6 +7,9 @@ const state = {
     expiresAt: null,
     webAuth: null
   },
+  mgmtApi: {
+    host: null
+  },
   profile: {
     loaded: false,
     firstName: null,
@@ -70,6 +73,7 @@ const mutations = {
       scope: session.auth.scope,
       leeway: 60
     });
+    Object.assign(state.mgmtApi, session.mgmtApi);
   },
 
   setProfile(state, profile) {

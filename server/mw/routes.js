@@ -15,6 +15,9 @@ module.exports = function(app) {
         redirectUri: config.mgmtApi.callbackUrl,
         audience: config.mgmtApi.audience,
         scope: config.mgmtApi.scope
+      },
+      mgmtApi: {
+        rootUrl: config.mgmtApi.rootUrl
       }
     })
   });

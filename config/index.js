@@ -18,12 +18,17 @@ const config = module.exports = {
         clientSecret: process.env.AUTH0_CLIENT_SECRET,
         domain: process.env.AUTH0_DOMAIN
       },
+      cors: {
+        whitelist: [config.host]
+      },
+      host: process.env.APP_HOST,
       index: path.resolve(__dirname, '../dist/index.html'),
       mgmtApi: {
         audience: process.env.MGMT_API_AUDIENCE,
         callbackUrl: 'http://localhost:8080/callback',
         clientId: process.env.MGMT_API_CLIENT_ID,
         domain: process.env.MGMT_API_DOMAIN,
+        rootUrl: process.env.MGMT_API_ROOT_URL,
         scope: 'openid profile vendors'
       },
       port: process.env.PORT
@@ -39,10 +44,10 @@ const config = module.exports = {
       case "testing":
         _.extend(config, {
           autoOpenBrowser: false,
+          bundleAnalyzerReport: false,
           productionSourceMap: true,
           productionGzip: false,
-          productionGzipExtensions: ['js', 'css'],
-          bundleAnalyzerReport: false
+          productionGzipExtensions: ['js', 'css']
         });
 
         break;
@@ -50,8 +55,8 @@ const config = module.exports = {
       default:
         _.extend(config, {
           autoOpenBrowser: true,
-          proxyTable: {},
-          cssSourceMap: false
+          cssSourceMap: false,
+          proxyTable: {}
         });
     }
   }

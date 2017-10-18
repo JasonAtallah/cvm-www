@@ -72,7 +72,7 @@ const getters = {
 const actions = {
 
   loadVendors({ rootState, commit }) {
-    vendorApi.getVendors(rootState.session.auth, (err, vendors) => {
+    vendorApi.getVendors(rootState.session, (err, vendors) => {
       commit('setVendors', vendors);
     });
   }

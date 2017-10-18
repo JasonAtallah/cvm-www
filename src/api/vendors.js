@@ -1,12 +1,11 @@
-
 export default {
 
-  getVendors(auth, cb) {
-    const url = 'http://localhost:8081/api/vendors';
+  getVendors(session, cb) {
+    const url = `${session.mgmtApi.rootUrl}/vendors`;
     $.ajax(url, {
       method: 'GET',
       headers: {
-        Authorization: `Bearer ${auth.accessToken}`
+        Authorization: `Bearer ${session.auth.accessToken}`
       },
       error: (xhr, status, err) => {
 
