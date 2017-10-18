@@ -18,6 +18,13 @@ const config = module.exports = {
         clientSecret: process.env.AUTH0_CLIENT_SECRET,
         domain: process.env.AUTH0_DOMAIN
       },
+      build: {
+        bundleAnalyzerReport: true,
+        index: path.resolve(__dirname, '../dist/index.html'),
+        productionSourceMap: true,
+        productionGzip: false,
+        productionGzipExtensions: ['js', 'css']
+      },
       cors: {
         whitelist: [config.host]
       },
@@ -49,7 +56,6 @@ const config = module.exports = {
           productionGzip: false,
           productionGzipExtensions: ['js', 'css']
         });
-
         break;
 
       default:
