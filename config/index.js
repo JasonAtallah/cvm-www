@@ -19,7 +19,7 @@ const config = module.exports = {
         domain: process.env.AUTH0_DOMAIN
       },
       build: {
-        bundleAnalyzerReport: true,
+        bundleAnalyzerReport: false,
         index: path.resolve(__dirname, '../dist/index.html'),
         productionSourceMap: true,
         productionGzip: false,
