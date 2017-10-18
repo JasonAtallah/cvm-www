@@ -54,8 +54,11 @@ const getters = {
   sortedVendors: (state) => {
     let vendors = [...state.vendors];
     if (state.vendorFilter.productType) {
-      vendors = vendors.filter((v) => {
-        return v.products.map(p => p.type).indexOf(state.vendorFilter.productType) >= 0;
+      vendors = vendors.filter((vendor) => {
+        if (!vendor.products) {
+          return false;
+        }
+        return vendor.products.map(p => p.type).indexOf(state.vendorFilter.productType) >= 0;
       });
     }
     vendors.sort(state.vendorFilter.selectedSort.sortFn);
@@ -63,7 +66,9 @@ const getters = {
   },
   productTypes: (state) => {
     return [...state.vendors.reduce((types, vendor) => {
-      vendor.products.forEach(p => types.add(p.type));
+      if (Array.isArray(vendor.products)) {
+        vendor.products.forEach(p => types.add(p.type));
+      }
       return types;
     }, new Set())];
   }
