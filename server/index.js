@@ -9,6 +9,7 @@ const flash = require('connect-flash');
 const passport = require('passport');
 const path = require('path');
 const session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
 
 const config = require('../config');
 const routes = require('./mw/routes');
@@ -18,6 +19,10 @@ dotenv.load();
 config.load();
 
 const app = express();
+const sessionStore = new MongoDBStore({
+  uri: config.mongo.uri,
+  collection: config.mongo.sessionsColl
+});
 
 app.use(cors({
   optionsSuccessStatus: 200,
@@ -36,13 +41,18 @@ app.use(cors({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(
-  session({
-    secret: 'shhhhhhhhh',
-    resave: true,
-    saveUninitialized: true
-  })
-);
+app.use(session({
+  cookie: {
+    // secure: true,
+    //sameSite: 'strict',
+    // httpOnly: true
+  },
+  name: 'cvm-www.sid',
+  resave: true,
+  saveUninitialized: true,
+  secret: 'shhhhhhhhh',
+  store: sessionStore
+}));
 app.use(flash());
 
 auth(app);

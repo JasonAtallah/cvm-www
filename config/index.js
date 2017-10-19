@@ -38,6 +38,10 @@ const config = module.exports = {
         rootUrl: process.env.MGMT_API_ROOT_URL,
         scope: 'openid profile vendors'
       },
+      mongo: {
+        uri: process.env.MONGODB_URI,
+        sessionsColl: process.env.MONGODB_SESSIONS_COLL
+      },
       port: process.env.PORT
     });
 
