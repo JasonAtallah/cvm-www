@@ -44,7 +44,7 @@ app.use(cookieParser());
 app.use(session({
   cookie: {
     // secure: true,
-    //sameSite: 'strict',
+    // sameSite: 'strict',
     // httpOnly: true
   },
   name: 'cvm-www.sid',

@@ -27,10 +27,10 @@ module.exports = {
   },
   plugins: [
     new webpack.ProvidePlugin({
-      $: 'jquery',
-      jquery: 'jquery',
-      'window.jQuery': 'jquery',
-      jQuery: 'jquery'
+      // $: 'jquery',
+      // jquery: 'jquery',
+      // 'window.jQuery': 'jquery',
+      // jQuery: 'jquery'
     }),
     new webpack.ProvidePlugin({
       auth0: 'auth0-js'

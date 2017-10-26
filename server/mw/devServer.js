@@ -7,7 +7,6 @@ const path = require('path');
 const express = require('express');
 const webpack = require('webpack');
 const proxyMiddleware = require('http-proxy-middleware');
-const ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn();
 
 const config = require('../../config')
 const webpackConfig = require('../../build/webpack.dev.conf');
@@ -29,7 +28,7 @@ module.exports = function(app) {
 
   app.use(hotMiddleware)
   app.use(require('connect-history-api-fallback')())
-  app.use(ensureLoggedIn, devMiddleware)
+  app.use(devMiddleware)
 
   devMiddleware.waitUntilValid(() => {
     if (autoOpenBrowser && process.env.NODE_ENV !== 'testing') {

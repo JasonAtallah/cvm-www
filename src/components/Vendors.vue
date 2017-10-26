@@ -23,7 +23,7 @@ export default {
   beforeMount() {
     this.$store.dispatch('init')
       .then(() => {
-        this.$store.dispatch('loadVendors');
+        this.$store.dispatch('buyer/loadVendors');
       });
   }
 };

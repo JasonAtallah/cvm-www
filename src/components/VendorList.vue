@@ -13,7 +13,7 @@ import VendorListItem from '@/components/VendorListItem';
 export default {
   name: 'vendor-list',
   computed: {
-    ...mapGetters({
+    ...mapGetters('buyer', {
       vendors: 'sortedVendors'
     })
   },

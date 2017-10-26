@@ -19,7 +19,7 @@ import SingleSelect from '@/components/form/SingleSelect';
 export default {
   name: 'vendor-filter',
   computed: {
-    ...mapGetters({
+    ...mapGetters('buyer', {
       filter: 'vendorFilter',
       productTypes: 'productTypes'
     })

@@ -28,6 +28,9 @@ const config = module.exports = {
       cors: {
         whitelist: [config.host]
       },
+      dev: {
+        autoOpenBrowser: false
+      },
       host: process.env.APP_HOST,
       index: path.resolve(__dirname, '../dist/index.html'),
       mgmtApi: {

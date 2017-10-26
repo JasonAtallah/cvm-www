@@ -1,29 +1,29 @@
 const express = require('express');
 const ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn();
 const config = require('../../config');
+const Api = require('./api');
 
 module.exports = function(app) {
 
+  const api = new Api(config.mgmtApi.rootUrl, config.host);
+
+  app.use(ensureLoggedIn);
+
   app.get('/session', function(req, res) {
     res.send({
-      auth: {
-        accessToken: req.user.auth.accessToken,
-        idToken: req.user.auth.idToken,
-        expiresIn: req.user.auth.expiresIn,
-        domain: config.mgmtApi.domain,
-        clientId: config.mgmtApi.clientId,
-        redirectUri: config.mgmtApi.callbackUrl,
-        audience: config.mgmtApi.audience,
-        scope: config.mgmtApi.scope
-      },
-      mgmtApi: {
-        rootUrl: config.mgmtApi.rootUrl
+      profile: {
+        givenName: req.user.given_name,
+        familyName: req.user.family_name,
+        imageUrl: req.user.picture
       }
     })
   });
 
+  app.get('/vendors', api.get('/vendors'));
+  app.get('/events', api.get('/events'));
+
   if (process.env.NODE_ENV === 'production') {
-    app.get('/', ensureLoggedIn, function(req, res, next) {
+    app.get('/', function(req, res, next) {
       res.sendFile(config.index);
     });
   } else {
@@ -33,7 +33,7 @@ module.exports = function(app) {
   app.use(config.staticPath, express.static(config.staticDir));
 
   app.use(function(req, res, next) {
-    const err = new Error('Not Found');
+    const err = new Error(`Not Found ${req.originalUrl}`);
     err.status = 404;
     next(err);
   });

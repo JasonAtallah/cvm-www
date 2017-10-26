@@ -17,11 +17,11 @@ export default {
   props: {
     label: {
       type: String,
-      required: true
+      required: false
     },
     options: {
       type: Array,
-      required: true
+      required: false
     }
   },
   methods: {
