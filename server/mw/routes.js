@@ -1,7 +1,7 @@
 const express = require('express');
 const ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn();
 const config = require('../../config');
-const Api = require('./api');
+const Api = require('./Api');
 
 module.exports = function(app) {
 
