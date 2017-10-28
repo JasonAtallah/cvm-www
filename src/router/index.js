@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Vendors from '@/components/Vendors';
-import Calendar from '@/components/Calendar';
+import CalendarPage from '@/components/CalendarPage';
 import Onboarding from '@/components/Onboarding';
 
 Vue.use(Router);
@@ -16,8 +16,8 @@ export default new Router(
       },
       {
         path: '/calendar',
-        name: 'Calendar',
-        component: Calendar
+        name: 'CalendarPage',
+        component: CalendarPage
       },
       {
         path: '/onboarding',

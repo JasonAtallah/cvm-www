@@ -17,7 +17,8 @@ module.exports = {
   globals: {
     '$': true,
     'jQuery': true,
-    'auth0': true
+    'auth0': true,
+    'moment': true
   },
   // check if imports actually resolve
   'settings': {
@@ -45,6 +46,8 @@ module.exports = {
     'comma-dangle': 0,
     'no-shadow': 0,
     'no-param-reassign': ["error", { "props": false }],
-    'no-unused-vars': 0
+    'no-unused-vars': 0,
+    'no-bitwise': 0,
+    'no-plusplus': 0
   }
 }

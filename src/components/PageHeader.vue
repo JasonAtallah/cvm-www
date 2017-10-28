@@ -1,5 +1,5 @@
 <template>
-  <div class="page-menu">
+  <div class="page-header">
     <h1>{{ pageName }}</h1>
   </div>
 </template>

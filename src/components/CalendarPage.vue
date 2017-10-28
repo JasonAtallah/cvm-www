@@ -8,10 +8,10 @@
             <div id="calendar" class="monthly"></div>
           </div>
         </div>
-
-        <div class="row" v-for="event in events" :key="event.id">
-          {{ event.title }}
-        </div>
+        <calendar
+          :events="events"
+          eventDateField="startDate"
+          @clickEvent="onClickEvent" />
       </div>
     </div>
   </page>
@@ -20,37 +20,33 @@
 
 <script>
 import Page from '@/components/Page';
+import Calendar from '@/components/ui/Calendar/Calendar';
 import { mapGetters } from 'vuex';
 
 export default {
-  name: 'Calendar',
+  name: 'CalendarPage',
   data() {
     return {
-      name: 'Calendar'
+      name: 'Calendar',
+      days: null
     };
   },
   components: {
-    Page
+    Page,
+    Calendar
   },
   computed: {
     ...mapGetters('buyer', {
       events: 'events'
     })
   },
-  watch: {
-    events: () => {
+  methods: {
+    onClickEvent(event) {
 
     }
   },
   beforeMount() {
     this.$store.dispatch('buyer/loadEvents');
-  },
-  // eslint-disable-next-line
-  mounted: function() {
-    $('#mycalendar').monthly({
-      mode: 'event',
-      dataType: 'json'
-    });
   }
 };
 </script>
