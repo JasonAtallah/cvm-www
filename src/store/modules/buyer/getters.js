@@ -6,6 +6,8 @@ export const vendorFilter = state => state.vendorFilter;
 export const vendorActions = state => state.vendorActions;
 export const sortedVendors = (state) => {
   let vendors = [...state.vendors];
+  // eslint-disable-next-line
+  console.dir(state.vendorFilter.productType);
   if (state.vendorFilter.productType) {
     vendors = vendors.filter((vendor) => {
       if (!vendor.products) {

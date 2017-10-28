@@ -26,10 +26,10 @@ export default {
   },
   methods: {
     updateSort(value) {
-      this.$store.commit('setVendorSort', value);
+      this.$store.commit('buyer/setVendorSort', value);
     },
     updateProductType(value) {
-      this.$store.commit('setProductFilter', value);
+      this.$store.commit('buyer/setProductFilter', value);
     }
   },
   components: {
