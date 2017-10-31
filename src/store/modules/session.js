@@ -12,6 +12,7 @@ const state = {
 const getters = {
   auth: state => state.auth,
   isAuthenticated: (state) => {
+    if (!state.auth) return false;
     const expiresAt = JSON.parse(state.auth.expiresAt);
     return new Date().getTime() < expiresAt;
   }

@@ -1,21 +1,19 @@
 <template>
-<div class="page">
-  <page :pageName="name">
-    <div slot="content">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-7">
-            <div id="calendar" class="monthly"></div>
-          </div>
+<page :pageName="name">
+  <div slot="content">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-7">
+          <div id="calendar" class="monthly"></div>
         </div>
-        <calendar
-          :events="events"
-          eventDateField="startDate"
-          @clickEvent="onClickEvent" />
       </div>
+      <calendar
+        :events="events"
+        eventDateField="startDate"
+        @clickEvent="onClickEvent" />
     </div>
-  </page>
-</div>
+  </div>
+</page>
 </template>
 
 <script>

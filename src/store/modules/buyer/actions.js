@@ -13,3 +13,20 @@ export const loadEvents = ({ rootState, commit }) => {
       commit('setEvents', events);
     });
 };
+
+export const takeVendorAction = ({ commit }, { vendor, action }) => {
+  switch (action.label) {
+    case 'Approve':
+      // eslint-disable-next-line
+      console.log('approve vendor');
+      break;
+
+    case 'Reject':
+      // eslint-disable-next-line
+      console.log('reject vendor');
+      break;
+
+    default:
+
+  }
+};

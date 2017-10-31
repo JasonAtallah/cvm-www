@@ -2,7 +2,7 @@
   <div class="page">
     <page-menu :pageName="pageName" />
     <page-header :pageName="pageName" />
-    <div class="content">
+    <div class="page-content">
       <slot name="content"></slot>
     </div>
   </div>
@@ -33,7 +33,7 @@ export default {
 </script>
 
 <style scoped>
-.content {
+.page-content {
   position: absolute;
   top: 120px;
   bottom: 0;
@@ -41,5 +41,13 @@ export default {
   right: 0;
   background-color: #efefef;
   border-top: 1px solid #ddd;
+}
+
+.page-content > div {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
 }
 </style>

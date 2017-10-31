@@ -4,7 +4,7 @@
       {{ label }}
     </button>
     <div class="dropdown-menu">
-      <a class="dropdown-item" v-for="option in options" v-on:click.prevent="takeAction(option)">
+      <a class="dropdown-item" v-for="option in options" @click.prevent="onItemClick(option)">
         {{ option.label }}
       </a>
     </div>
@@ -25,8 +25,8 @@ export default {
     }
   },
   methods: {
-    takeAction(item) {
-      this.$emit('selection', item);
+    onItemClick(option) {
+      this.$emit('selection', option);
     }
   }
 };

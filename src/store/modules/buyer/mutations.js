@@ -14,3 +14,7 @@ export const setVendors = (state, vendors) => {
 export const setEvents = (state, events) => {
   state.events = events;
 };
+
+export const setSelVendor = (state, vendor) => {
+  state.selVendor = vendor;
+};

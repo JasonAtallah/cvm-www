@@ -1,13 +1,11 @@
 
 
-export const events = state => state.events;
 export const vendors = state => state.vendors;
 export const vendorFilter = state => state.vendorFilter;
 export const vendorActions = state => state.vendorActions;
+export const selVendor = state => state.selVendor;
 export const sortedVendors = (state) => {
   let vendors = [...state.vendors];
-  // eslint-disable-next-line
-  console.dir(state.vendorFilter.productType);
   if (state.vendorFilter.productType) {
     vendors = vendors.filter((vendor) => {
       if (!vendor.products) {
@@ -28,3 +26,6 @@ export const productTypes = (state) => {
     return types;
   }, new Set())];
 };
+
+
+export const events = state => state.events;

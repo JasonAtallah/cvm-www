@@ -1,7 +1,5 @@
 <template>
-  <div class="page">
-    <page :pageName="name" />
-  </div>
+<page :pageName="name" />
 </template>
 
 <script>

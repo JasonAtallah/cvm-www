@@ -1,5 +1,25 @@
+
+<style scoped>
+.vendor-list-filter {
+  list-style: none;
+  height: 3rem;
+}
+
+.vendor-list-filter li {
+  list-style: none;
+  display: inline-block;
+  min-width: 10rem;
+  margin-right: 20px;
+  text-align: left;
+}
+
+.vendor-list-ilter li .title {
+  display: inline-block;
+}
+</style>
+
 <template>
-<ul class="vendor-filter">
+<ul class="vendor-list-filter">
   <li>
     <div class="title">Sort By</div>
     <single-select :options="filter.sortOptions" :value="filter.sort" v-on:selection="updateSort"></single-select>
@@ -17,7 +37,7 @@ import { mapGetters } from 'vuex';
 import SingleSelect from '@/components/form/SingleSelect';
 
 export default {
-  name: 'vendor-filter',
+  name: 'vendor-list-filter',
   computed: {
     ...mapGetters('buyer', {
       filter: 'vendorFilter',
@@ -37,22 +57,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.vendor-filter {
-  list-style: none;
-  height: 3rem;
-}
-
-.vendor-filter li {
-  list-style: none;
-  display: inline-block;
-  min-width: 10rem;
-  margin-right: 20px;
-  text-align: left;
-}
-
-.vendor-filter li .title {
-  display: inline-block;
-}
-</style>
