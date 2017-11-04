@@ -1,4 +1,4 @@
-<style scoped>
+<style lang="scss" scoped>
 .vendor-list-item .name {
   font-weight: bold;
 }
@@ -13,7 +13,7 @@
 }
 
 .vendor-list-item ul.product-chips li {
-  background-color: #ccf;
+  background-color: $chip-color;
   display: inline;
   padding: 2px 5px;
   border-radius: 5px;

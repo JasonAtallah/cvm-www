@@ -14,6 +14,14 @@ export const loadEvents = ({ rootState, commit }) => {
     });
 };
 
+export const getGCalendarList = ({ rootState, commit }) => {
+  buyerApi.getGCalendarList()
+    .then((list) => {
+      // eslint-disable-next-line
+      console.dir(list);
+    });
+};
+
 export const takeVendorAction = ({ commit }, { vendor, action }) => {
   switch (action.label) {
     case 'Approve':

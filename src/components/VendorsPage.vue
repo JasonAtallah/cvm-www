@@ -34,7 +34,7 @@ export default {
     })
   },
   beforeMount() {
-    this.$store.dispatch('init')
+    this.$store.dispatch('session/init')
       .then(() => {
         this.$store.dispatch('buyer/loadVendors');
       });

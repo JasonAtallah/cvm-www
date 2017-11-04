@@ -3,6 +3,9 @@
 .vendor-list-filter {
   list-style: none;
   height: 3rem;
+  text-align: left;
+  margin: 0;
+  padding: 0;
 }
 
 .vendor-list-filter li {
@@ -13,8 +16,9 @@
   text-align: left;
 }
 
-.vendor-list-ilter li .title {
-  display: inline-block;
+.vendor-list-filter li .title {
+  display: block;
+  font-size: .9rem;
 }
 </style>
 

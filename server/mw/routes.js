@@ -21,6 +21,7 @@ module.exports = function(app) {
 
   app.get('/vendors', api.get('/vendors'));
   app.get('/events', api.get('/events'));
+  app.get('/gcalendarlist', api.get('/gcalendarlist'));
 
   if (process.env.NODE_ENV === 'production') {
     app.get('/', function(req, res, next) {

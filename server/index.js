@@ -24,20 +24,6 @@ const sessionStore = new MongoDBStore({
   collection: config.mongo.sessionsColl
 });
 
-app.use(cors({
-  optionsSuccessStatus: 200,
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  preflightContinue: false,
-  credentials: true,
-  maxAge: 3600,
-  origin: function(origin, callback) {
-    if (config.cors.whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  }
-}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());

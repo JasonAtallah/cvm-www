@@ -1,3 +1,17 @@
+<style scoped>
+ul.vendor-list {
+  padding: 0;
+  margin-top: 2rem;
+  text-align: left;
+}
+
+ul.vendor-list li {
+  display: block;
+  list-style: none;
+  height: 3rem;
+}
+</style>
+
 <template>
   <ul class="vendor-list">
     <li v-for="vendor in vendors" :key="vendor.id">
@@ -13,8 +27,8 @@ import VendorListItem from '@/components/VendorListItem';
 export default {
   name: 'vendor-list',
   computed: {
-    ...mapGetters('buyer', {
-      vendors: 'sortedVendors'
+    ...mapGetters({
+      vendors: 'buyer/sortedVendors'
     })
   },
   components: {
@@ -22,15 +36,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-ul.vendor-list {
-
-}
-
-ul.vendor-list li {
-  display: block;
-  list-style: none;
-  height: 3rem;
-}
-</style>

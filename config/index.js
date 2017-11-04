@@ -12,11 +12,12 @@ const config = module.exports = {
       assetsSubDirectory: 'static',
       assetsPublicPath: '/',
       auth0: {
-        audience: 'cannabis-vendor-mgmt-api',
+        audience: process.env.AUTH0_AUDIENCE,
         callbackUrl: process.env.AUTH0_CALLBACK_URL,
         clientId: process.env.AUTH0_CLIENT_ID,
         clientSecret: process.env.AUTH0_CLIENT_SECRET,
-        domain: process.env.AUTH0_DOMAIN
+        domain: process.env.AUTH0_DOMAIN,
+        scope: process.env.AUTH0_SCOPE
       },
       build: {
         bundleAnalyzerReport: false,
@@ -25,21 +26,13 @@ const config = module.exports = {
         productionGzip: false,
         productionGzipExtensions: ['js', 'css']
       },
-      cors: {
-        whitelist: [config.host]
-      },
       dev: {
         autoOpenBrowser: false
       },
       host: process.env.APP_HOST,
       index: path.resolve(__dirname, '../dist/index.html'),
       mgmtApi: {
-        audience: process.env.MGMT_API_AUDIENCE,
-        callbackUrl: 'http://localhost:8080/callback',
-        clientId: process.env.MGMT_API_CLIENT_ID,
-        domain: process.env.MGMT_API_DOMAIN,
-        rootUrl: process.env.MGMT_API_ROOT_URL,
-        scope: 'openid profile vendors'
+        rootUrl: process.env.MGMT_API_ROOT_URL
       },
       mongo: {
         uri: process.env.MONGODB_URI,

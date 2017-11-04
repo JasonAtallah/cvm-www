@@ -26,6 +26,10 @@ export default {
 
         return events;
       });
+  },
+
+  getGCalendarList() {
+    return this.typicalRequest('/gcalendarlist');
   }
 
 };

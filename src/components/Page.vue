@@ -1,11 +1,28 @@
+<style scoped>
+.page {
+  position: relative;
+}
+
+.page .content, .page .header {
+  position: relative;
+  padding-left: 3rem;
+}
+
+</style>
+
+
 <template>
-  <div class="page">
-    <page-menu :pageName="pageName" />
-    <page-header :pageName="pageName" />
-    <div class="page-content">
-      <slot name="content"></slot>
-    </div>
+<div class="page">
+  <div class="menu">
+    <page-menu class="page-menu" :pageName="pageName" />
   </div>
+  <div class="header">
+    <page-header :pageName="pageName" />
+  </div>
+  <div class="content">
+    <slot name="content"></slot>
+  </div>
+</div>
 </template>
 
 <script>
@@ -31,23 +48,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.page-content {
-  position: absolute;
-  top: 120px;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: #efefef;
-  border-top: 1px solid #ddd;
-}
-
-.page-content > div {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-}
-</style>

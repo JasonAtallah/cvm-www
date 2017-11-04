@@ -47,7 +47,7 @@ module.exports = function(app) {
       redirectUri: config.auth0.callbackUrl,
       responseType: 'code',
       audience: config.auth0.audience,
-      scope: config.mgmtApi.scope
+      scope: config.auth0.scope
     }),
     function(req, res) {
       res.redirect("/");
@@ -71,7 +71,7 @@ module.exports = function(app) {
     var error = req.flash("error");
     var error_description = req.flash("error_description");
     req.logout();
-    res.render('failure', {
+    res.send({
       error: error[0],
       error_description: error_description[0],
     });

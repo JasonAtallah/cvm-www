@@ -48,6 +48,6 @@ module.exports = {
     'no-param-reassign': ["error", { "props": false }],
     'no-unused-vars': 0,
     'no-bitwise': 0,
-    'no-plusplus': 0
+    'no-plusplus': 0,
   }
 }
