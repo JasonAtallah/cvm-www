@@ -72,7 +72,9 @@ export default {
       if (this.selectedCalendar) {
         this.$store.dispatch('setGCalendar', _.find(this.calendars, { id: this.selectedCalendar }));
       } else if (this.calendarName && this.calendarName.trim()) {
-        this.$store.dispatch('setGCalendar', this.calendarName);
+        this.$store.dispatch('setGCalendar', {
+          name: this.calendarName
+        });
       }
     }
   },
