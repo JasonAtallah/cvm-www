@@ -18,7 +18,8 @@ module.exports = {
     '$': true,
     'jQuery': true,
     'auth0': true,
-    'moment': true
+    'moment': true,
+    '_': true
   },
   // check if imports actually resolve
   'settings': {
