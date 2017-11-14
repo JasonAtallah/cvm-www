@@ -9,6 +9,7 @@ module.exports = function (app) {
   app.use(ensureLoggedIn);
 
   app.get('/data/buyer', api.get('/buyer'));
+  app.put('/data/buyer/gCalendar', api.put('/buyer/gcalendar'));
   app.get('/data/calendars', api.get('/calendars'));
   app.get('/data/events', api.get('/events'));
   app.get('/data/session', function (req, res) {
@@ -21,8 +22,12 @@ module.exports = function (app) {
     });
   });
   app.get('/data/vendors', api.get('/vendors'));
-
-  app.put('/data/buyer/gCalendar', api.put('/buyer/gcalendar'));
+  app.put('/data/vendors/:vendorId/approve', api.put(function (req) {
+    return `/vendors/${req.params.vendorId}/approve`;
+  }));
+  app.put('/data/vendors/:vendorId/reject', api.put(function (req) {
+    return `/vendors/${req.params.vendorId}/reject`;
+  }));
 
   if (process.env.NODE_ENV === 'production') {
     app.get('/', function (req, res, next) {

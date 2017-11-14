@@ -37,3 +37,7 @@ export const setVendors = (state, vendors) => {
 export const setVendorSort = (state, value) => {
   state.vendorFilter.sort = value;
 };
+
+export const updateVendor = (state, params) => {
+  Object.assign(params.vendor, params.values);
+};

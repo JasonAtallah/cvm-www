@@ -15,7 +15,7 @@ ul.vendor-list li {
 <template>
   <ul class="vendor-list">
     <li v-for="vendor in vendors" :key="vendor.id">
-      <vendor-list-item :vendor="vendor"></vendor-list-item>
+      <VendorListItem :vendor="vendor" />
     </li>
   </ul>
 </template>
@@ -25,14 +25,13 @@ import { mapGetters } from 'vuex';
 import VendorListItem from './VendorListItem';
 
 export default {
-  name: 'vendor-list',
+  components: {
+    VendorListItem
+  },
   computed: {
     ...mapGetters({
       vendors: 'sortedVendors'
     })
-  },
-  components: {
-    VendorListItem
   }
 };
 </script>

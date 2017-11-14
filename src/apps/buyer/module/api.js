@@ -3,7 +3,7 @@ export default {
     return (xhr, status, err) => {
       reject(err);
       debugger;
-      window.location.pathname = '/login';
+    // window.location.pathname = '/login'
     };
   },
 
@@ -42,6 +42,10 @@ export default {
     });
   },
 
+  approveVendor(vendor) {
+    return this.put(`vendors/${vendor._id}/approve`);
+  },
+
   getCalendars() {
     return this.get('calendars');
   },
@@ -69,6 +73,10 @@ export default {
 
   loadSession() {
     return this.get('session');
+  },
+
+  rejectVendor(vendor) {
+    return this.put(`vendors/${vendor._id}/reject`);
   },
 
   setGCalendar(calendar) {

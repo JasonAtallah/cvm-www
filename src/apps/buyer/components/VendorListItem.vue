@@ -43,7 +43,9 @@
 import DropdownButton from './form/DropdownButton';
 
 export default {
-  name: 'vendor-list-item',
+  components: {
+    DropdownButton
+  },
   props: {
     vendor: {
       type: Object,
@@ -63,9 +65,6 @@ export default {
         return types;
       }, new Set())];
     }
-  },
-  components: {
-    DropdownButton
   },
   methods: {
     onActionSelect(action) {

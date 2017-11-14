@@ -7,7 +7,7 @@ module.exports = {
     sourceType: 'module'
   },
   env: {
-    browser: true,
+    browser: true
   },
   extends: 'airbnb-base',
   // required to lint *.vue files
@@ -46,9 +46,10 @@ module.exports = {
     'arrow-body-style': 0,
     'comma-dangle': 0,
     'no-shadow': 0,
-    'no-param-reassign': ["error", { "props": false }],
+    'no-param-reassign': ['error', { 'props': false }],
     'no-unused-vars': 0,
     'no-bitwise': 0,
     'no-plusplus': 0,
+    'no-underscore-dangle': 0
   }
-}
+};

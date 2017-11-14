@@ -12,6 +12,10 @@ module.exports =
       let host = this.host;
 
       return function (req, res) {
+        if (typeof path === 'function') {
+          path = path(req);
+        }
+
         var options = {
           method: 'GET',
           url: `${url}${path}`,
@@ -37,6 +41,10 @@ module.exports =
       let host = this.host;
 
       return function (req, res) {
+        if (typeof path === 'function') {
+          path = path(req);
+        }
+
         var options = {
           method: 'POST',
           url: `${url}${path}`,
@@ -64,6 +72,10 @@ module.exports =
       let host = this.host;
 
       return function (req, res) {
+        if (typeof path === 'function') {
+          path = path(req);
+        }
+
         var options = {
           method: 'PUT',
           url: `${url}${path}`,

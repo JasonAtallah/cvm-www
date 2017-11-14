@@ -14,7 +14,7 @@ export const productTypes = (state) => {
   }, new Set())];
 };
 export const statuses = (state) => {
-  return ['All', 'Accepted', 'Rejected'];
+  return ['New', 'Approved', 'Rejected'];
 };
 
 export const selVendor = state => state.selVendor;
@@ -30,10 +30,14 @@ export const sortedVendors = (state) => {
     });
   }
 
-  if (state.vendorFilter.status && state.vendorFilter.status !== 'All') {
+  if (state.vendorFilter.status) {
     const status = state.vendorFilter.status.toLowerCase();
     vendors = vendors.filter((vendor) => {
-      return vendor.status !== null && vendor.status.toLowerCase() === status;
+      if (status === 'new') {
+        return vendor.status === null;
+      }
+
+      return vendor.status && vendor.status.toLowerCase() === status;
     });
   }
 
