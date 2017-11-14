@@ -18,6 +18,10 @@ export const setProductFilter = (state, value) => {
   state.vendorFilter.productType = value;
 };
 
+export const setStatusFilter = (state, value) => {
+  state.vendorFilter.status = value;
+};
+
 export const setSelVendor = (state, vendor) => {
   state.selVendor = vendor;
 };

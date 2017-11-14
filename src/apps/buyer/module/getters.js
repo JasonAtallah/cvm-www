@@ -13,10 +13,14 @@ export const productTypes = (state) => {
     return types;
   }, new Set())];
 };
+export const statuses = (state) => {
+  return ['All', 'Accepted', 'Rejected'];
+};
 
 export const selVendor = state => state.selVendor;
 export const sortedVendors = (state) => {
   let vendors = [...state.vendors];
+
   if (state.vendorFilter.productType) {
     vendors = vendors.filter((vendor) => {
       if (!vendor.products) {
@@ -25,7 +29,16 @@ export const sortedVendors = (state) => {
       return vendor.products.map(p => p.type).indexOf(state.vendorFilter.productType) >= 0;
     });
   }
+
+  if (state.vendorFilter.status && state.vendorFilter.status !== 'All') {
+    const status = state.vendorFilter.status.toLowerCase();
+    vendors = vendors.filter((vendor) => {
+      return vendor.status !== null && vendor.status.toLowerCase() === status;
+    });
+  }
+
   vendors.sort(state.vendorFilter.selectedSort.sortFn);
+
   return vendors;
 };
 

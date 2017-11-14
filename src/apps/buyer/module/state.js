@@ -14,6 +14,7 @@ export default {
   vendors: [],
   vendorFilter: {
     productType: null,
+    status: null,
     sort: vendorSorts[0].label,
     sortOptions: vendorSorts,
     get selectedSort() {

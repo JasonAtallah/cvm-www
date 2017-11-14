@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -15,7 +15,7 @@ const config = require('../config');
 const routes = require('./mw/routes');
 const auth = require('./mw/auth');
 
-dotenv.load();
+dotenv.config();
 config.load();
 
 const app = express();
@@ -44,6 +44,6 @@ app.use(flash());
 auth(app);
 routes(app);
 
-var server = app.listen(config.port, function() {
+var server = app.listen(config.port, function () {
   console.log(`App is running on port ${config.port}`);
 });

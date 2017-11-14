@@ -30,7 +30,11 @@
     <single-select :options="filter.sortOptions" :value="filter.sort" v-on:selection="updateSort"></single-select>
   </li>
   <li>
-    <div class="title">Product</div>
+    <div class="title">Filter by Status</div>
+    <single-select :options="statuses" :value="filter.status" v-on:selection="updateStatus"></single-select>
+  </li>
+  <li>
+    <div class="title">Filter by Product</div>
     <single-select :options="productTypes" :value="filter.productType" v-on:selection="updateProductType"></single-select>
   </li>
 </ul>
@@ -46,7 +50,8 @@ export default {
   computed: {
     ...mapGetters({
       filter: 'vendorFilter',
-      productTypes: 'productTypes'
+      productTypes: 'productTypes',
+      statuses: 'statuses'
     })
   },
   methods: {
@@ -55,6 +60,9 @@ export default {
     },
     updateProductType(value) {
       this.$store.commit('setProductFilter', value);
+    },
+    updateStatus(value) {
+      this.$store.commit('setStatusFilter', value);
     }
   },
   components: {
