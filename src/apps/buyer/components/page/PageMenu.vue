@@ -66,10 +66,10 @@ export default {
           name: 'Calendar',
           href: '/calendar'
         },
-        {
-          name: 'Onboarding',
-          href: '/onboarding'
-        }
+        // {
+        //   name: 'Onboarding',
+        //   href: '/onboarding'
+        // }
       ]
     };
   },
