@@ -6,7 +6,7 @@
 </style>
 
 <template>
-<page pageName="Vendors">
+<page :pageName="name">
   <div slot="header-buttons">
     <button class="btn btn-primary" @click="addVendor">Add Vendor</button>
   </div>
@@ -37,6 +37,11 @@ export default {
     VendorList,
     VendorListFilter,
     VendorListDetail
+  },
+  data() {
+    return {
+      name: 'Vendors'
+    };
   },
   computed: {
     ...mapGetters({
