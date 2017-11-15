@@ -21,7 +21,7 @@ config.load();
 const app = express();
 const sessionStore = new MongoDBStore({
   uri: config.mongo.uri,
-  collection: config.mongo.sessionsColl
+  collection: 'sessions'
 });
 
 app.use(bodyParser.json());

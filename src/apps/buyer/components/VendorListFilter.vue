@@ -43,7 +43,7 @@
 <script>
 import { mapGetters } from 'vuex';
 
-import SingleSelect from './form/SingleSelect';
+import SingleSelect from '@/components/form/SingleSelect';
 
 export default {
   name: 'vendor-list-filter',

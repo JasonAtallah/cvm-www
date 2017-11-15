@@ -11,7 +11,7 @@ function resolve (dir) {
 
 module.exports = {
   entry: {
-    app: './src/start.js'
+    app: config.entryFilePath
   },
   output: {
     path: config.assetsRoot,

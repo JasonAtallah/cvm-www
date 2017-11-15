@@ -1,4 +1,4 @@
-import vendorSorts from './metadata/vendorSorts';
+import vendorSorts from '../config/vendorSorts';
 
 export default {
   addCalendarEventModalIsVisible: false,
@@ -7,6 +7,20 @@ export default {
   calendars: [],
   events: [],
   gcalendar: null,
+  pageMenuItems: [
+    {
+      name: 'Vendors',
+      href: '/'
+    },
+    {
+      name: 'Calendar',
+      href: '/calendar'
+    },
+  // {
+  //   name: 'Onboarding',
+  //   href: '/onboarding'
+  // }
+  ],
   profile: {
     givenName: null,
     familyName: null,
