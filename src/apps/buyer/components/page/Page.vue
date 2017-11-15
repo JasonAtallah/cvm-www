@@ -8,6 +8,22 @@
   padding-left: 3rem;
 }
 
+.header {
+  text-align: left;
+}
+
+.page-header {
+  width: 50%;
+  display: inline-block;
+  text-align: left;
+}
+
+.buttons {
+  width: 40%;
+  display: inline-block;
+  text-align: right;
+}
+
 </style>
 
 
@@ -18,6 +34,9 @@
   </div>
   <div class="header">
     <page-header :pageName="pageName" />
+    <div class="buttons">
+      <slot name="header-buttons"></slot>
+    </div>
   </div>
   <div class="content">
     <slot name="content"></slot>
