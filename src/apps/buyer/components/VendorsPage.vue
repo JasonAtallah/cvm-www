@@ -35,6 +35,11 @@ export default {
     VendorListFilter,
     VendorListDetail
   },
+  data() {
+    return {
+      name: 'Vendors'
+    };
+  },
   computed: {
     ...mapGetters({
       selVendor: 'selVendor'
