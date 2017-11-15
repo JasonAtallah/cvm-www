@@ -1,5 +1,8 @@
 <template>
 <page :pageName="name">
+  <div slot="header-buttons">
+    <button class="btn btn-primary" @click="addCalendarEvent">Add Event</button>
+  </div>
   <div slot="content">
     <div class="container">
       <div class="row">
@@ -12,6 +15,7 @@
         eventDateField="startDate"
         @clickEvent="onClickEvent" />
     </div>
+    <AddCalendarEventModal />
   </div>
 </page>
 </template>
@@ -20,6 +24,7 @@
 import { mapGetters } from 'vuex';
 import Page from './page/Page';
 import Calendar from './ui/Calendar/Calendar';
+import AddCalendarEventModal from './AddCalendarEventModal';
 
 export default {
   name: 'CalendarPage',
@@ -30,8 +35,9 @@ export default {
     };
   },
   components: {
-    Page,
-    Calendar
+    AddCalendarEventModal,
+    Calendar,
+    Page
   },
   computed: {
     ...mapGetters('buyer', {
@@ -39,6 +45,9 @@ export default {
     })
   },
   methods: {
+    addCalendarEvent() {
+      this.$store.commit('startAddCalendarEvent');
+    },
     onClickEvent(event) {
 
     }

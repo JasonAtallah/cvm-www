@@ -1,5 +1,13 @@
 import api from './api';
 
+export const createCalendarEvent = ({ dispatch, commit }, values) => {
+  return api.createCalendarEvent(values)
+    .then((calendarEvent) => {
+      commit('addCalendarEventToList', calendarEvent);
+      commit('cancelAddCalendarEvent');
+    });
+};
+
 export const createVendor = ({ dispatch, commit }, values) => {
   return api.createVendor(values)
     .then((vendor) => {

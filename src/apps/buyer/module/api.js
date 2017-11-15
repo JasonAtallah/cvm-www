@@ -46,6 +46,10 @@ export default {
     return this.put(`vendors/${vendor._id}/approve`);
   },
 
+  createCalendarEvent(values) {
+    return this.post('calendars', values);
+  },
+
   createVendor(values) {
     return this.post('vendors', values);
   },
