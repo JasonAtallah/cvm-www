@@ -1,3 +1,11 @@
+export const addVendorToList = (state, vendor) => {
+  state.vendors.push(vendor);
+};
+
+export const cancelAddVendor = (state) => {
+  state.addVendorModalIsVisible = false;
+};
+
 export const setBuyer = (state, buyer) => {
   state.buyer = buyer;
 };
@@ -36,6 +44,10 @@ export const setVendors = (state, vendors) => {
 
 export const setVendorSort = (state, value) => {
   state.vendorFilter.sort = value;
+};
+
+export const startAddVendor = (state) => {
+  state.addVendorModalIsVisible = true;
 };
 
 export const updateVendor = (state, params) => {

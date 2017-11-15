@@ -22,6 +22,7 @@ module.exports = function (app) {
     });
   });
   app.get('/data/vendors', api.get('/vendors'));
+  app.post('/data/vendors', api.post('/vendors'));
   app.put('/data/vendors/:vendorId/approve', api.put(function (req) {
     return `/vendors/${req.params.vendorId}/approve`;
   }));

@@ -1,6 +1,7 @@
 import vendorSorts from './metadata/vendorSorts';
 
 export default {
+  addVendorModalIsVisible: false,
   buyer: null,
   calendars: [],
   events: [],

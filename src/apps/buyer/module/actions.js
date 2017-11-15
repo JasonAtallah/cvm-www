@@ -1,5 +1,13 @@
 import api from './api';
 
+export const createVendor = ({ dispatch, commit }, values) => {
+  return api.createVendor(values)
+    .then((vendor) => {
+      commit('addVendorToList', vendor);
+      commit('cancelAddVendor');
+    });
+};
+
 export const init = ({ dispatch }) => {
   return Promise.all([
     dispatch('loadSession'),
