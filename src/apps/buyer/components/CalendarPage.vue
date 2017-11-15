@@ -40,6 +40,11 @@ export default {
       days: null
     };
   },
+  components: {
+    AddCalendarEventModal,
+    BasePage,
+    Calendar
+  },
   computed: {
     ...mapGetters({
       events: 'events'
