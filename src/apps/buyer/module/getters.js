@@ -5,6 +5,7 @@ export const events = state => state.events;
 export const needSetCalendar = (state, getters, rootState, rootGetters) => {
   return state.buyer && !state.buyer.gcalendar;
 };
+export const pageMenuItems = state => state.pageMenuItems;
 export const profile = state => state.profile;
 export const productTypes = (state) => {
   return [...state.vendors.reduce((types, vendor) => {

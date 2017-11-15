@@ -1,5 +1,9 @@
+
+<style scoped>
+</style>
+
 <template>
-<page :pageName="name">
+<BasePage pageName="Calendar">
   <div slot="content">
     <div class="container">
       <div class="row">
@@ -7,48 +11,36 @@
           <div id="calendar" class="monthly"></div>
         </div>
       </div>
-      <calendar
+      <Calendar
         :events="events"
-        eventDateField="startDate"
-        @clickEvent="onClickEvent" />
+        eventDateField="startDate" />
     </div>
   </div>
-</page>
+</BasePage>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
-import Page from './page/Page';
-import Calendar from './ui/Calendar/Calendar';
+import Calendar from '@/components/ui/Calendar/Calendar';
+import BasePage from './BasePage';
 
 export default {
-  name: 'CalendarPage',
+  components: {
+    BasePage,
+    Calendar
+  },
   data() {
     return {
-      name: 'Calendar',
       days: null
     };
   },
-  components: {
-    Page,
-    Calendar
-  },
   computed: {
-    ...mapGetters('buyer', {
+    ...mapGetters({
       events: 'events'
     })
-  },
-  methods: {
-    onClickEvent(event) {
-
-    }
   },
   beforeMount() {
     this.$store.dispatch('loadEvents');
   }
 };
 </script>
-
-<style scoped>
-
-</style>

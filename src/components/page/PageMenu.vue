@@ -44,7 +44,7 @@
     <router-link :to="item.href" :class="{ selected: item.selected }">{{ item.name }}</router-link>
   </div>
   <div class="user">
-    {{ profile.givenName }}
+    <slot name="menu-right"></slot>
   </div>
 </div>
 </template>
@@ -53,38 +53,28 @@
 import { mapGetters } from 'vuex';
 
 export default {
-  name: 'page-menu',
-  data() {
-    return {
-      logoUrl: '/static/logo.png',
-      pageItems: [
-        {
-          name: 'Vendors',
-          href: '/'
-        },
-        {
-          name: 'Calendar',
-          href: '/calendar'
-        },
-        // {
-        //   name: 'Onboarding',
-        //   href: '/onboarding'
-        // }
-      ]
-    };
-  },
   props: {
+    menuItems: {
+      type: Array,
+      required: false
+    },
     pageName: {
       type: String,
       required: true
     }
   },
+  data() {
+    return {
+      logoUrl: '/static/logo.png'
+    };
+  },
   computed: {
-    ...mapGetters({
-      profile: 'profile'
-    }),
     pageMenu() {
-      return this.pageItems.map((p) => {
+      if (!this.menuItems || this.menuItems.length === 0) {
+        return [];
+      }
+
+      return this.menuItems.map((p) => {
         const selected = this.pageName === p.name;
         return Object.assign({}, p, {
           selected

@@ -43,46 +43,5 @@ export default {
 
   approveVendor(vendor) {
     return this._put(`vendors/${vendor._id}/approve`);
-  },
-
-  createVendor(values) {
-    return this._post('vendors', values);
-  },
-
-  getCalendars() {
-    return this._get('calendars');
-  },
-
-  getEvents() {
-    return this._get('events')
-      .then((events) => {
-        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
-        events.forEach((event) => {
-          event.startDate = moment(event.startDate).tz(tz).toDate();
-        });
-
-        return events;
-      });
-  },
-
-  getVendors() {
-    return this._get('vendors');
-  },
-
-  loadBuyer() {
-    return this._get('buyer');
-  },
-
-  loadSession() {
-    return this._get('session');
-  },
-
-  rejectVendor(vendor) {
-    return this._put(`vendors/${vendor._id}/reject`);
-  },
-
-  setGCalendar(calendar) {
-    return this._put('buyer/gcalendar', calendar);
   }
 };

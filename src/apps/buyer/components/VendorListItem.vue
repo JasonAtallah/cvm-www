@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import DropdownButton from './form/DropdownButton';
+import DropdownButton from '@/components/form/DropdownButton';
 
 export default {
   components: {

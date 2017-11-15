@@ -1,19 +1,16 @@
-'use strict'
+'use strict';
 
-const path = require('path')
+const path = require('path');
 const _ = require('lodash');
 
 const config = module.exports = {
-
-  load: function() {
-
+  load: function () {
     _.extend(config, {
       assetsRoot: path.resolve(__dirname, '../dist'),
       assetsSubDirectory: 'static',
       assetsPublicPath: '/',
       auth0: {
         audience: process.env.AUTH0_AUDIENCE,
-        callbackUrl: process.env.AUTH0_CALLBACK_URL,
         clientId: process.env.AUTH0_CLIENT_ID,
         clientSecret: process.env.AUTH0_CLIENT_SECRET,
         domain: process.env.AUTH0_DOMAIN,
@@ -29,14 +26,14 @@ const config = module.exports = {
       dev: {
         autoOpenBrowser: false
       },
+      entryFilePath: `./src/start-${process.env.JS_APP_NAME}`,
       host: process.env.APP_HOST,
       index: path.resolve(__dirname, '../dist/index.html'),
       mgmtApi: {
         rootUrl: process.env.MGMT_API_ROOT_URL
       },
       mongo: {
-        uri: process.env.MONGODB_URI,
-        sessionsColl: process.env.MONGODB_SESSIONS_COLL
+        uri: process.env.MONGODB_URI
       },
       port: process.env.PORT
     });
@@ -47,8 +44,8 @@ const config = module.exports = {
     });
 
     switch (process.env.NODE_ENV) {
-      case "production":
-      case "testing":
+      case 'production':
+      case 'testing':
         _.extend(config, {
           autoOpenBrowser: false,
           bundleAnalyzerReport: false,
@@ -66,4 +63,4 @@ const config = module.exports = {
         });
     }
   }
-}
+};

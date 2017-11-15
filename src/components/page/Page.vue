@@ -30,7 +30,11 @@
 <template>
 <div class="page">
   <div class="menu">
-    <page-menu class="page-menu" :pageName="pageName" />
+    <PageMenu class="page-menu" :pageName="pageName" :menuItems="menuItems">
+      <div slot="menu-right">
+        <slot name="menu-right"></slot>
+      </div>
+    </PageMenu>
   </div>
   <div class="header">
     <page-header :pageName="pageName" />
@@ -49,13 +53,11 @@ import PageMenu from './PageMenu';
 import PageHeader from './PageHeader';
 
 export default {
-  name: 'page',
-  data() {
-    return {
-
-    };
-  },
   props: {
+    menuItems: {
+      type: Array,
+      required: false
+    },
     pageName: {
       type: String,
       required: true
