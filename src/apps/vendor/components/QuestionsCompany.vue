@@ -90,7 +90,6 @@ export default {
           partofcollective: null
         }
       },
-      dropDownOptions: ['No', 'Yes']
     };
   },
   methods: {

@@ -10,7 +10,7 @@
         <QuestionsCompany :questions="questionsFor('Company')" />
       </div>
       <div slot="page2">
-        <QuestionsContact />
+        <QuestionsContact :questions="questionsFor('Contact')"/>
       </div>
       <div slot="page3">
         <QuestionsFlowers />
