@@ -1,7 +1,7 @@
 export default {
   handleRequest(reject) {
     return (xhr, status, err) => {
-      console.error(err.message);
+      console.error(err.message); //eslint-disable-line
       reject(err);
     };
   },
@@ -43,6 +43,10 @@ export default {
 
   approveVendor(vendor) {
     return this._put(`vendors/${vendor._id}/approve`);
+  },
+
+  createCalendarEvent(values) {
+    return this._post('events', values);
   },
 
   createVendor(values) {

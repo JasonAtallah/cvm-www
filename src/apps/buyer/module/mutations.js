@@ -1,5 +1,13 @@
+export const addCalendarEventToList = (state, calendarEvent) => {
+  state.events.push(calendarEvent);
+};
+
 export const addVendorToList = (state, vendor) => {
   state.vendors.push(vendor);
+};
+
+export const cancelAddCalendarEvent = (state) => {
+  state.addCalendarEventModalIsVisible = false;
 };
 
 export const cancelAddVendor = (state) => {
@@ -44,6 +52,10 @@ export const setVendors = (state, vendors) => {
 
 export const setVendorSort = (state, value) => {
   state.vendorFilter.sort = value;
+};
+
+export const startAddCalendarEvent = (state) => {
+  state.addCalendarEventModalIsVisible = true;
 };
 
 export const startAddVendor = (state) => {

@@ -4,6 +4,12 @@
 
 <template>
 <BasePage pageName="Calendar">
+<<<<<<< HEAD
+  <div slot="header-buttons">
+    <button class="btn btn-primary" @click="addCalendarEvent">Add Event</button>
+  </div>
+=======
+>>>>>>> origin
   <div slot="content">
     <div class="container">
       <div class="row">
@@ -15,6 +21,7 @@
         :events="events"
         eventDateField="startDate" />
     </div>
+    <AddCalendarEventModal />
   </div>
 </BasePage>
 </template>
@@ -23,9 +30,11 @@
 import { mapGetters } from 'vuex';
 import Calendar from '@/components/ui/Calendar/Calendar';
 import BasePage from './BasePage';
+import AddCalendarEventModal from './AddCalendarEventModal';
 
 export default {
   components: {
+    AddCalendarEventModal,
     BasePage,
     Calendar
   },
@@ -38,6 +47,11 @@ export default {
     ...mapGetters({
       events: 'events'
     })
+  },
+  methods: {
+    addCalendarEvent() {
+      this.$store.commit('startAddCalendarEvent');
+    }
   },
   beforeMount() {
     this.$store.dispatch('loadEvents');
