@@ -59,7 +59,8 @@ export default {
 
   getEvents() {
     return this._get('events')
-      .then((events) => {
+      .then((result) => {
+        const events = result.items;
         const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
         events.forEach((event) => {

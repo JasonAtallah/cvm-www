@@ -41,7 +41,7 @@
         </div>
 
         <div v-for="(event,i) in eventsForDay(day)" :key="getKeyForEvent(event, i)">
-          <a href="#" @click.prevent="onClickEvent(event)">{{ event.title }}</a>
+          <a href="#" @click.prevent="onClickEvent(event)">{{ event.summary }}</a>
         </div>
 
         <div class="monthly-indicator-wrap"></div>

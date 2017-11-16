@@ -4,12 +4,9 @@
 
 <template>
 <BasePage pageName="Calendar">
-<<<<<<< HEAD
   <div slot="header-buttons">
     <button class="btn btn-primary" @click="addCalendarEvent">Add Event</button>
   </div>
-=======
->>>>>>> origin
   <div slot="content">
     <div class="container">
       <div class="row">
