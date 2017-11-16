@@ -7,7 +7,7 @@
   <div slot="content">
     <Wizard :enabledPages="enabledPages" @complete="complete">
       <div slot="page1">
-        <QuestionsCompany />
+        <QuestionsCompany :questions="questionsFor('Company')" />
       </div>
       <div slot="page2">
         <QuestionsContact />
@@ -52,7 +52,17 @@ export default {
         pages: [
           {
             name: 'Company',
-            enabled: true
+            enabled: true,
+            questions: [
+              {
+                name: 'Name',
+                enabled: true
+              },
+              {
+                name: 'Website',
+                enabled: true
+              }
+            ]
           },
           {
             name: 'Contact',
@@ -82,6 +92,12 @@ export default {
     }
   },
   methods: {
+    getPage(pageName) {
+      return _.find(this.questionnaire.pages, { name: pageName });
+    },
+    questionsFor(pageName) {
+      return this.getPage(pageName).questions;
+    },
     complete() {
 
     }
