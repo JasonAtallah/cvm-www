@@ -46,46 +46,14 @@ export default {
     QuestionsEdibles,
     QuestionsConcentrates
   },
-  data() {
-    return {
-      questionnaire: {
-        pages: [
-          {
-            name: 'Company',
-            enabled: true,
-            questions: [
-              {
-                name: 'Name',
-                enabled: true
-              },
-              {
-                name: 'Website',
-                enabled: true
-              }
-            ]
-          },
-          {
-            name: 'Contact',
-            enabled: true
-          },
-          {
-            name: 'Flowers',
-            enabled: true
-          },
-          {
-            name: 'Edibles',
-            enabled: false
-          },
-          {
-            name: 'Concentrates',
-            enabled: true
-          }
-        ]
-      }
-    };
-  },
   computed: {
+    ...mapGetters({
+      questionnaire: 'questionnaire'
+    }),
     enabledPages() {
+      if (!this.questionnaire) {
+        return [false, false, false, false, false];
+      }
       return this.questionnaire.pages.map((page) => {
         return page.enabled;
       });
@@ -101,6 +69,9 @@ export default {
     complete() {
 
     }
+  },
+  beforeMount() {
+    this.$store.dispatch('loadQuestionnaire');
   }
 };
 </script>

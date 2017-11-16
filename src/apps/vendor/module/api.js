@@ -41,7 +41,7 @@ export default {
     });
   },
 
-  approveVendor(vendor) {
-    return this._put(`vendors/${vendor._id}/approve`);
+  loadQuestionnaire() {
+    return this._get('questionnaire');
   }
 };

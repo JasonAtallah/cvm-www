@@ -1,6 +1,10 @@
 import api from './api';
 
-export const createVendor = ({ dispatch, commit }, values) => {
+export const loadQuestionnaire = ({ dispatch, commit }) => {
+  return api.loadQuestionnaire()
+    .then((questionnaire) => {
+      commit('questionnaire', questionnaire);
+    });
 };
 
 export const init = ({ dispatch }) => {
