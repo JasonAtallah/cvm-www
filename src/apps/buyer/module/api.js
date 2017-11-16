@@ -46,7 +46,7 @@ export default {
   },
 
   createCalendarEvent(values) {
-    return this.post('calendars', values);
+    return this._post('events', values);
   },
 
   createVendor(values) {

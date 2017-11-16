@@ -11,8 +11,8 @@ module.exports = function (app) {
   app.get('/data/buyer', api.get('/buyer'));
   app.put('/data/buyer/gCalendar', api.put('/buyer/gcalendar'));
   app.get('/data/calendars', api.get('/calendars'));
-  app.post('/data/calendars', api.post('/calendars'));
   app.get('/data/events', api.get('/events'));
+  app.post('/data/events', api.post('/events'));
   app.get('/data/session', function (req, res) {
     res.send({
       profile: {

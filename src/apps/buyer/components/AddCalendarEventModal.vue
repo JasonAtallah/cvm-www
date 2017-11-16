@@ -32,6 +32,11 @@
               v-model="calendarEvent.time">
           </div>
           <div class="form-group">
+            <label for="exampleFormControlSelect1">Duration (mins):</label>
+            <input type="number" class="form-control" id="duration" 
+              v-model="calendarEvent.duration">
+          </div>
+          <div class="form-group">
             <label for="exampleFormControlSelect1">Location:</label>
             <input type="text" class="form-control" id="location"
               v-model="calendarEvent.location">
@@ -59,6 +64,7 @@ export default {
         name: null,
         date: null,
         time: null,
+        duration: 30,
         location: null
       }
     };
@@ -81,13 +87,11 @@ export default {
     validate(calendarEvent) {
       return new Promise((resolve, reject) => {
         if (!calendarEvent.name.trim() || !calendarEvent.date.trim()) {
-          reject();
+          return reject();
         }
-        resolve();
+        return resolve();
       });
     }
-  },
-  beforeMount() {
   }
 };
 </script>

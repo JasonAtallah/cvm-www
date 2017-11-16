@@ -25,8 +25,8 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import BasePage from './BasePage';
 import Calendar from '@/components/ui/Calendar/Calendar';
+import BasePage from './BasePage';
 import AddCalendarEventModal from './AddCalendarEventModal';
 
 export default {
@@ -39,11 +39,6 @@ export default {
     return {
       days: null
     };
-  },
-  components: {
-    AddCalendarEventModal,
-    BasePage,
-    Calendar
   },
   computed: {
     ...mapGetters({
