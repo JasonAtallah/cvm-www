@@ -5,15 +5,21 @@
 <template>
 <BasePage pageName="Questionnaire">
   <div slot="content">
-    <Wizard pageNums="[1,3]" @complete="complete">
+    <Wizard :enabledPages="enabledPages" @complete="complete">
       <div slot="page1">
-        <QuestionsCompany v-if="showQuestions('Company')" />
+        <QuestionsCompany />
       </div>
       <div slot="page2">
-        <QuestionsContact v-if="showQuestions('Contact')" />
+        <QuestionsContact />
       </div>
       <div slot="page3">
-        <QuestionsFlowers v-if="showQuestions('Flowers')" />
+        <QuestionsFlowers />
+      </div>
+      <div slot="page4">
+        <QuestionsEdibles />
+      </div>
+      <div slot="page5">
+        <QuestionsConcentrates />
       </div>
     </Wizard>
   </div>
@@ -27,8 +33,19 @@ import BasePage from './BasePage';
 import QuestionsCompany from './QuestionsCompany';
 import QuestionsContact from './QuestionsContact';
 import QuestionsFlowers from './QuestionsFlowers';
+import QuestionsEdibles from './QuestionsEdibles';
+import QuestionsConcentrates from './QuestionsConcentrates';
 
 export default {
+  components: {
+    BasePage,
+    Wizard,
+    QuestionsCompany,
+    QuestionsContact,
+    QuestionsFlowers,
+    QuestionsEdibles,
+    QuestionsConcentrates
+  },
   data() {
     return {
       questionnaire: {
@@ -44,26 +61,27 @@ export default {
           {
             name: 'Flowers',
             enabled: true
+          },
+          {
+            name: 'Edibles',
+            enabled: false
+          },
+          {
+            name: 'Concentrates',
+            enabled: true
           }
         ]
       }
     };
   },
-  components: {
-    BasePage,
-    Wizard,
-    QuestionsCompany,
-    QuestionsContact,
-    QuestionsFlowers
-  },
   computed: {
-
+    enabledPages() {
+      return this.questionnaire.pages.map((page) => {
+        return page.enabled;
+      });
+    }
   },
   methods: {
-    showQuestions(pageName) {
-      const page = _.find(this.questionnaire.pages, { name: pageName });
-      return page && page.enabled;
-    },
     complete() {
 
     }

@@ -3,7 +3,7 @@
 </style>
 
 <template>
-<div slot="page2">
+<div>
   Company
 </div>
 </template>

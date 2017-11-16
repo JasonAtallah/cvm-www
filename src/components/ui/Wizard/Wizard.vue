@@ -7,6 +7,7 @@
     <slot name="page2" v-if="showPage(2)"></slot>
     <slot name="page3" v-if="showPage(3)"></slot>
     <slot name="page4" v-if="showPage(4)"></slot>
+    <slot name="page5" v-if="showPage(5)"></slot>
   </div>
   <div class="wizard">
     <button class="back" @click="goBack" v-bind:disabled="isBackDisabled">Back</button>
@@ -19,19 +20,18 @@
 export default {
   data() {
     return {
-      maxPage: 4,
+      maxPage: 5,
       curPage: 1
     };
   },
-  props: ['pageNums'],
+  props: ['enabledPages'],
   computed: {
     isBackDisabled() {
       return this.curPage === 1;
     },
     isNextDisabled() {
-      return this.curPage === this.maxPage || !_.some(this.pageNums, (pageNum) => {
-        return pageNum > this.curPage;
-      });
+      if (this.curPage === this.maxPage) return true;
+      return !_.some(this.enabledPages.slice(this.curPage), pageEnabled => pageEnabled);
     }
   },
   methods: {
@@ -41,7 +41,7 @@ export default {
     goBack() {
       while (this.curPage > 1) {
         this.curPage -= 1;
-        if (this.pageNums.indexOf(this.curPage) >= 0) {
+        if (this.enabledPages[this.curPage - 1] === true) {
           break;
         }
       }
@@ -49,7 +49,7 @@ export default {
     goNext() {
       while (this.curPage < this.maxPage) {
         this.curPage += 1;
-        if (this.pageNums.indexOf(this.curPage) >= 0) {
+        if (this.enabledPages[this.curPage - 1] === true) {
           break;
         }
       }
