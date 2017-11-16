@@ -1,0 +1,16 @@
+{
+  "pages": [
+    {
+      "name": "Company",
+      "enabled": true
+    },
+    {
+      "name": "Contact",
+      "enabled": true
+    },
+    {
+      "name": "Flowers",
+      "enabled": true
+    }
+  ]
+}
