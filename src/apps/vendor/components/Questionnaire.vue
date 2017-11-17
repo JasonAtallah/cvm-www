@@ -13,7 +13,7 @@
         <QuestionsContact :questions="questionsFor('Contact')"/>
       </div>
       <div slot="page3">
-        <QuestionsFlowers />
+        <QuestionsFlowers :questions="questionsFor('Flowers')"/>
       </div>
       <div slot="page4">
         <QuestionsEdibles />

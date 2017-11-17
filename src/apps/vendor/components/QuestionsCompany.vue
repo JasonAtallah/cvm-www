@@ -12,7 +12,7 @@
     <div class="modal-content">
 
       <div class="modal-header">
-        <h5 class="modal-title">Company Information</h5>
+        <h2 class="modal-title">Company Information</h2>
       </div>
 
       <div class="modal-body">
