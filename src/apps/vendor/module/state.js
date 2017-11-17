@@ -1,3 +1,12 @@
 export default {
-  questionnaire: null
+  questionnaire: null,
+  response: {
+    flowers: {
+      strains: [
+        {
+          name: 'Paris OG'
+        }
+      ]
+    }
+  }
 };

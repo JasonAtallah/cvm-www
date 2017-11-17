@@ -5,7 +5,7 @@
 <template>
 <BasePage pageName="Questionnaire">
   <div slot="content">
-    <Wizard :enabledPages="enabledPages" @complete="complete">
+    <Wizard v-if="questionnaire" :enabledPages="enabledPages" @complete="complete">
       <div slot="page1">
         <QuestionsCompany :questions="questionsFor('Company')" />
       </div>
@@ -51,9 +51,6 @@ export default {
       questionnaire: 'questionnaire'
     }),
     enabledPages() {
-      if (!this.questionnaire) {
-        return [false, false, false, false, false];
-      }
       return this.questionnaire.pages.map((page) => {
         return page.enabled;
       });
