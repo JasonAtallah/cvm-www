@@ -22,6 +22,6 @@ html, body {
 
 <script>
 export default {
-  
+
 };
 </script>

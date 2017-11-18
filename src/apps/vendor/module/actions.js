@@ -6,3 +6,10 @@ export const loadQuestionnaire = ({ dispatch, commit }) => {
       commit('questionnaire', questionnaire);
     });
 };
+
+export const loadQuestionnaire1 = ({ dispatch, commit }) => {
+  return api.getQuestionnaire()
+    .then((questionnaire) => {
+      commit('questionnaire', questionnaire);
+    });
+};
