@@ -1,4 +1,4 @@
-import * as http from './http';
+import * as http from '@/lib/http';
 
 export default {
   approveVendor(vendor) {

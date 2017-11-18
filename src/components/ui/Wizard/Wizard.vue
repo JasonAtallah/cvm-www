@@ -20,14 +20,21 @@
 export default {
   data() {
     return {
-      maxPage: 5,
       curPage: 1
     };
   },
   props: ['enabledPages'],
   computed: {
+    maxPage() {
+      let curPage = 1;
+      while (this.$slots[`page${curPage}`] !== undefined) {
+        curPage++;
+      }
+      return curPage;
+    },
     isBackDisabled() {
-      return this.curPage === 1;
+      if (this.curPage === 1) return true;
+      return !_.some(this.enabledPages.slice(0, this.curPage - 1), pageEnabled => pageEnabled);
     },
     isNextDisabled() {
       if (this.curPage === this.maxPage) return true;
@@ -35,24 +42,45 @@ export default {
     }
   },
   methods: {
+    isPageEnabled(pageNum) {
+      return this.enabledPages[pageNum - 1] === true;
+    },
     showPage(pageNum) {
-      return this.curPage === pageNum;
+      return this.curPage === pageNum && this.isPageEnabled(pageNum);
     },
     goBack() {
-      while (this.curPage > 1) {
-        this.curPage -= 1;
-        if (this.enabledPages[this.curPage - 1] === true) {
+      let curPage = this.curPage;
+      while (curPage > 1) {
+        curPage -= 1;
+        if (this.isPageEnabled(curPage)) {
+          this.curPage = curPage;
           break;
         }
       }
     },
     goNext() {
-      while (this.curPage < this.maxPage) {
-        this.curPage += 1;
-        if (this.enabledPages[this.curPage - 1] === true) {
+      let curPage = this.curPage;
+      while (curPage < this.maxPage) {
+        curPage += 1;
+        if (this.isPageEnabled(curPage)) {
+          this.curPage = curPage;
           break;
         }
       }
+    },
+    resetPage() {
+      this.curPage = 0;
+      this.goNext();
+    }
+  },
+  watch: {
+    enabledPages(val) {
+      this.resetPage();
+    }
+  },
+  mounted() {
+    if (this.enabledPages) {
+      this.resetPage();
     }
   }
 };

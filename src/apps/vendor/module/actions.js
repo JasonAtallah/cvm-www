@@ -7,5 +7,9 @@ export const loadQuestionnaire = ({ dispatch, commit }) => {
     });
 };
 
-export const init = ({ dispatch }) => {
+export const init = ({ dispatch, commit }) => {
+  api.getQuestionnaire()
+    .then((questionnaire) => {
+      commit('questionnaire', questionnaire);
+    });
 };
