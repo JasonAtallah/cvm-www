@@ -1,19 +1,8 @@
-const express = require('express');
-const ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn();
+const proxy = require('http-proxy-middleware');
 const config = require('../../config');
-const Api = require('./_api');
 
 module.exports = function (app) {
-  const api = new Api(config.mgmtApi.rootUrl, config.host);
-
-  app.use(ensureLoggedIn);
-
-  app.get('/data/buyer', api.get('/buyer'));
-  app.put('/data/buyer/gCalendar', api.put('/buyer/gcalendar'));
-  app.get('/data/calendars', api.get('/calendars'));
-  app.get('/data/events', api.get('/events'));
-  app.post('/data/events', api.post('/events'));
-  app.get('/data/session', function (req, res) {
+  app.get('/session', function (req, res) {
     res.send({
       profile: {
         givenName: req.user.name.givenName,
@@ -22,13 +11,29 @@ module.exports = function (app) {
       }
     });
   });
-  app.get('/data/vendors', api.get('/vendors'));
-  app.post('/data/vendors', api.post('/vendors'));
-  app.put('/data/vendors/:vendorId/approve', api.put(function (req) {
-    return `/vendors/${req.params.vendorId}/approve`;
-  }));
-  app.put('/data/vendors/:vendorId/reject', api.put(function (req) {
-    return `/vendors/${req.params.vendorId}/reject`;
+
+  app.use('/data', proxy({
+    logLevel: 'debug',
+    target: config.mgmtApi.host,
+    changeOrigin: true,
+    pathRewrite: {
+      '^/data': '/api'
+    },
+    onProxyReq(proxyReq, req, res) {
+      proxyReq.setHeader('Authorization', `Bearer ${req.user.auth.accessToken}`);
+      proxyReq.setHeader('Origin', config.host);
+      proxyReq.setHeader('Connection', 'keep-alive');
+
+      if (req.body) {
+        const bodyData = JSON.stringify(req.body);
+        proxyReq.setHeader('Content-Type', 'application/json');
+        proxyReq.setHeader('Content-Length', Buffer.byteLength(bodyData));
+        proxyReq.write(bodyData);
+      }
+    },
+    onError(err, req, res) {
+      res.status(500).send(err.toString());
+    }
   }));
 
   if (process.env.NODE_ENV === 'production') {
@@ -36,10 +41,8 @@ module.exports = function (app) {
       res.sendFile(config.index);
     });
   } else {
-    require('./devServer')(app);
+    require('../lib/devServer')(app);
   }
-
-  app.use(config.staticPath, express.static(config.staticDir));
 
   app.use(function (req, res, next) {
     const err = new Error(`Not Found ${req.originalUrl}`);
@@ -47,13 +50,7 @@ module.exports = function (app) {
     next(err);
   });
 
-  app.use(function (req, res, next) {
-    if (req && req.query && req.query.error) {
-      req.flash('error', req.query.error);
-    }
-    if (req && req.query && req.query.error_description) {
-      req.flash('error_description', req.query.error_description);
-    }
-    next();
+  app.use(function (err, req, res, next) {
+    res.status(500).send(err.message);
   });
 };

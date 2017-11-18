@@ -68,12 +68,10 @@ module.exports = function (app) {
   );
 
   app.get('/failure', function (req, res) {
-    var error = req.flash('error');
-    var error_description = req.flash('error_description');
     req.logout();
-    res.send({
-      error: error[0],
-      error_description: error_description[0]
+    res.status(400).send({
+      error: req.query.error || 'failed to log in ',
+      details: req.query.error_description || ''
     });
   });
 };

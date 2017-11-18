@@ -49,6 +49,11 @@ export default {
     addVendor() {
       this.$store.commit('startAddVendor');
     }
+  },
+  beforeRouteEnter(to, from, next) {
+    next((component) => {
+      component.$store.dispatch('loadVendors');
+    });
   }
 };
 </script>

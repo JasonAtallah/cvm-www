@@ -19,8 +19,7 @@ export const createVendor = ({ dispatch, commit }, values) => {
 export const init = ({ dispatch }) => {
   return Promise.all([
     dispatch('loadSession'),
-    dispatch('loadBuyer'),
-    dispatch('loadVendors')
+    dispatch('loadBuyer')
   ]);
 };
 
@@ -49,6 +48,11 @@ export const loadEvents = ({ rootState, commit }) => {
   return api.getEvents()
     .then((events) => {
       commit('setEvents', events);
+    })
+    .catch((err) => {
+      if (err.status === 404) {
+        commit('setGCalendar', null);
+      }
     });
 };
 

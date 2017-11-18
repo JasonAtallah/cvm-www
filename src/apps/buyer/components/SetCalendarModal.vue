@@ -78,8 +78,12 @@ export default {
       }
     }
   },
-  beforeMount() {
-    this.$store.dispatch('loadCalendars');
+  watch: {
+    isVisible(newVal) {
+      if (newVal && !this.calendars) {
+        this.$store.dispatch('loadCalendars');
+      }
+    }
   }
 };
 </script>

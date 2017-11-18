@@ -50,8 +50,10 @@ export default {
       this.$store.commit('startAddCalendarEvent');
     }
   },
-  beforeMount() {
-    this.$store.dispatch('loadEvents');
+  beforeRouteEnter(to, from, next) {
+    next((component) => {
+      component.$store.dispatch('loadEvents');
+    });
   }
 };
 </script>

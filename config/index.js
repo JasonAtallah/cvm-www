@@ -23,14 +23,11 @@ const config = module.exports = {
         productionGzip: false,
         productionGzipExtensions: ['js', 'css']
       },
-      dev: {
-        autoOpenBrowser: false
-      },
       entryFilePath: `./src/start-${process.env.JS_APP_NAME}`,
       host: process.env.APP_HOST,
       index: path.resolve(__dirname, '../dist/index.html'),
       mgmtApi: {
-        rootUrl: process.env.MGMT_API_ROOT_URL
+        host: process.env.MGMT_API_HOST
       },
       mongo: {
         uri: process.env.MONGODB_URI
@@ -57,7 +54,7 @@ const config = module.exports = {
 
       default:
         _.extend(config, {
-          autoOpenBrowser: true,
+          autoOpenBrowser: false,
           cssSourceMap: false,
           proxyTable: {}
         });

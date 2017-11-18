@@ -80,8 +80,6 @@ export default {
         resolve();
       });
     }
-  },
-  beforeMount() {
   }
 };
 </script>

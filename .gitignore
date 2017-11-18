@@ -18,3 +18,4 @@ dist
 /config/dev.env.js
 /.env
 /dist
+/package-lock.json

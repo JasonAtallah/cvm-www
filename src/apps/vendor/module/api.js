@@ -1,7 +1,7 @@
 export default {
   handleRequest(reject) {
     return (xhr, status, err) => {
-      console.error(err.message);
+      console.error(err.message); // eslint-disable-line
       reject(err);
     };
   },
