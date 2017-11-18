@@ -22,8 +22,6 @@ html, body {
 
 <script>
 export default {
-  beforeMount() {
-    this.$store.dispatch('init');
-  }
+  
 };
 </script>

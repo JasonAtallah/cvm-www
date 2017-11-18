@@ -7,19 +7,19 @@
   <div slot="content">
     <Wizard v-if="questionnaire" :enabledPages="enabledPages" @complete="complete">
       <div slot="page1">
-        <QuestionsCompany :questions="questionsFor('Company')" />
+        <QuestionsCompany :questions="questionsFor('Company')" :response="response.company" />
       </div>
       <div slot="page2">
-        <QuestionsContact :questions="questionsFor('Contact')"/>
+        <QuestionsContact :questions="questionsFor('Company')" :response="response.contact" />
       </div>
       <div slot="page3">
-        <QuestionsFlowers :questions="questionsFor('Flowers')"/>
+        <QuestionsFlowers :questions="questionsFor('Flowers')" :response="response.flowers" />
       </div>
       <div slot="page4">
-        <QuestionsEdibles />
+        <QuestionsEdibles :questions="questionsFor('Edibles')" :response="response.edibles" />
       </div>
       <div slot="page5">
-        <QuestionsConcentrates />
+        <QuestionsConcentrates :questions="questionsFor('Concentrates')" :response="response.concentrates" />
       </div>
     </Wizard>
   </div>
@@ -48,7 +48,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      questionnaire: 'questionnaire'
+      questionnaire: 'questionnaire',
+      response: 'response'
     }),
     enabledPages() {
       return this.questionnaire.pages.map((page) => {
