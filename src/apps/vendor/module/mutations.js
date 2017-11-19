@@ -1,6 +1,10 @@
 import { prepEmptyResponse } from './fns';
 
-export const addStrain = (state, strain) => {
+export const newStrain = (state, strain) => {
+  if (!state.response.flowers.strains) {
+    state.response.flowers.strains = [];
+  }
+
   state.response.flowers.strains.push(strain);
 };
 

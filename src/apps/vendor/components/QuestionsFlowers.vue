@@ -1,14 +1,12 @@
 <style scoped>
-.flowers-questions {
-  margin-left: 0px;
-}
 .modal-dialog {
   text-align: left;
   display: block;
   max-width: 1024px;
 }
-#flower-strains {
+ul#strains {
   list-style: none;
+  padding: 0;
 }
 </style>
 
@@ -24,21 +22,24 @@
       <div class="modal-body">
         <form>
           <div class="row">
+            <div class="col-sm-3">
+              <h4>Strains</h4>
+            </div>
+          </div>
 
-            <div class="container col-lg-5">
-              <h3>Strains:</h3>
-              <ul id="flower-strains">
+          <div class="row">
+            <div class="container col-sm-3">
+              <ul id="strains">
                 <li v-for="strain in strains">
-                  <a @click="selectStrain(strain)">{{ strain.name }}</a>
-                </li>
-                <li>
-                  <button class="btn btn-primary" @click="addStrain">Add</button>
+                  <a href="#" @click.prevent="selectStrain(strain)">{{ strain.name }}</a>
                 </li>
               </ul>
+
+              <button class="btn btn-success" @click="addStrain">Add Strain</button>
             </div>
 
-            <div class="container col-lg-6 flowers-questions">
-              <StrainForm :questions="questions" :strain="strain"/>
+            <div class="container col-sm-9">
+              <StrainForm v-if="strain" :questions="questions" :strain="strain"/>
             </div>
           </div>
         </form>
@@ -56,18 +57,15 @@ export default {
   components: {
     StrainForm
   },
-  props: ['questions'],
+  props: ['questions', 'response'],
   data() {
     return {
       strain: null
     };
   },
   computed: {
-    ...mapGetters({
-      response: 'response'
-    }),
     strains() {
-      return this.$store.getters.response.flowers.strains;
+      return this.response.strains;
     }
   },
   methods: {
@@ -78,7 +76,7 @@ export default {
       const strain = {
         name: 'New Strain'
       };
-      this.$store.commit('addStrain', strain);
+      this.$store.commit('newStrain', strain);
       this.strain = strain;
     }
   }

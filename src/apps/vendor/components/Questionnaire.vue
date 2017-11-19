@@ -1,16 +1,19 @@
 
-<style scoped>
+<style>
+#Questionnaire label {
+  white-space: nowrap;
+}
 </style>
 
 <template>
 <BasePage pageName="Questionnaire">
-  <div slot="content">
-    <Wizard v-if="questionnaire" :enabledPages="enabledPages" @complete="complete">
+  <div slot="content" id="Questionnaire">
+    <Wizard v-if="questionnaire" :enabledPages="enabledPages">
       <div slot="page1">
         <QuestionsCompany :questions="questionsFor('Company')" :response="response.company" />
       </div>
       <div slot="page2">
-        <QuestionsContact :questions="questionsFor('Company')" :response="response.contact" />
+        <QuestionsContact :questions="questionsFor('Contact')" :response="response.contact" />
       </div>
       <div slot="page3">
         <QuestionsFlowers :questions="questionsFor('Flowers')" :response="response.flowers" />

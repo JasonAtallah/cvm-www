@@ -1,17 +1,22 @@
 
+<style scoped>
+.buttons {
+  text-align: right;
+}
+</style>
 
 <template>
 <div class="wizard">
+  <div class="buttons">
+    <button class="back btn btn-light" @click="goBack" v-bind:disabled="isBackDisabled">Back</button>
+    <button class="next btn btn-primary" @click="goNext" v-bind:disabled="isNextDisabled">Next</button>
+  </div>
   <div class="pages">
     <slot name="page1" v-if="showPage(1)"></slot>
     <slot name="page2" v-if="showPage(2)"></slot>
     <slot name="page3" v-if="showPage(3)"></slot>
     <slot name="page4" v-if="showPage(4)"></slot>
     <slot name="page5" v-if="showPage(5)"></slot>
-  </div>
-  <div class="wizard">
-    <button class="back" @click="goBack" v-bind:disabled="isBackDisabled">Back</button>
-    <button class="next" @click="goNext" v-bind:disabled="isNextDisabled">Next</button>
   </div>
 </div>
 </template>

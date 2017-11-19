@@ -17,26 +17,28 @@
 
       <div class="modal-body">
         <form>
+
           <div class="row">
-            <div class="form-group col-md-6" v-if="showField('FirstName')">
-              <label for="exampleFormControlSelect1">First Name:</label>
-              <input type="text" class="form-control" id="firstname" v-model="response.contact.firstname">
+            <div class="form-group col-sm-12 col-md-6" v-if="showField('FirstName')">
+              <label for="firstName">First Name:</label>
+              <input type="text" class="form-control" id="firstName" v-model="response.firstName">
             </div>
-            <div class="form-group col-md-6" v-if="showField('LastName')">
-              <label for="exampleFormControlSelect1">Last Name:</label>
-              <input type="text" class="form-control" id="lastname" v-model="response.contact.lastname">
+            <div class="form-group col-sm-12 col-md-6" v-if="showField('LastName')">
+              <label for="lastName">Last Name:</label>
+              <input type="text" class="form-control" id="lastName" v-model="response.lastName">
             </div>
           </div>
+
           <div class="row">
-            <div class="form-group col-md-6" v-if="showField('Email')">
-              <label for="exampleFormControlSelect1">Email:</label>
-              <input type="email" class="form-control" id="email" v-model="response.contact.email">
+            <div class="form-group col-sm-12 col-md-6" v-if="showField('Email')">
+              <label for="email">Email:</label>
+              <input type="email" class="form-control" id="email" v-model="response.email">
             </div>
-            <div class="form-group col-md-6" v-if="showField('Phone')">
-              <label for="exampleFormControlSelect1">Phone:</label>
-              <input type="number" class="form-control" id="phone" v-model="response.contact.phone">
+            <div class="form-group col-sm-12 col-md-6" v-if="showField('Phone')">
+              <label for="phone">Phone:</label>
+              <input type="number" class="form-control" id="phone" v-model="response.phone">
             </div>
-          </div>   
+          </div>
         </form>
       </div>
 
@@ -47,19 +49,7 @@
 
 <script>
 export default {
-  props: ['questions'],
-  data() {
-    return {
-      response: {
-        contact: {
-          firstname: null,
-          lastname: null,
-          emai: null,
-          phone: null,
-        }
-      },
-    };
-  },
+  props: ['questions', 'response'],
   methods: {
     getField(fieldName) {
       return _.find(this.questions, { name: fieldName });
