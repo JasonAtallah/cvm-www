@@ -24,6 +24,9 @@
       <div slot="page5">
         <QuestionsConcentrates :questions="questionsFor('Concentrates')" :response="response.concentrates" />
       </div>
+      <div slot="page6">
+        <SubmitQuestionnaire :response="response" />
+      </div>
     </Wizard>
   </div>
 </BasePage>
@@ -38,6 +41,7 @@ import QuestionsContact from './QuestionsContact';
 import QuestionsFlowers from './QuestionsFlowers';
 import QuestionsEdibles from './QuestionsEdibles';
 import QuestionsConcentrates from './QuestionsConcentrates';
+import SubmitQuestionnaire from './SubmitQuestionnaire';
 
 export default {
   components: {
@@ -47,7 +51,8 @@ export default {
     QuestionsContact,
     QuestionsFlowers,
     QuestionsEdibles,
-    QuestionsConcentrates
+    QuestionsConcentrates,
+    SubmitQuestionnaire
   },
   computed: {
     ...mapGetters({
@@ -55,9 +60,11 @@ export default {
       response: 'response'
     }),
     enabledPages() {
-      return this.questionnaire.pages.map((page) => {
+      const pages = this.questionnaire.pages.map((page) => {
         return page.enabled;
       });
+      pages.push(true);
+      return pages;
     }
   },
   methods: {

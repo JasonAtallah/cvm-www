@@ -2,23 +2,23 @@ import * as http from '@/lib/http';
 
 export default {
   approveVendor(vendor) {
-    return http.put(`/data/vendors/${vendor._id}/approve`);
+    return http.put(`/api/vendors/${vendor._id}/approve`);
   },
 
   createCalendarEvent(values) {
-    return http.post('/data/events', values);
+    return http.post('/api/events', values);
   },
 
   createVendor(values) {
-    return http.post('/data/vendors', values);
+    return http.post('/api/vendors', values);
   },
 
   getCalendars() {
-    return http.get('/data/calendars');
+    return http.get('/api/calendars');
   },
 
   getEvents() {
-    return http.get('/data/events')
+    return http.get('/api/events')
       .then((result) => {
         const events = result.items;
         const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -32,11 +32,11 @@ export default {
   },
 
   getVendors() {
-    return http.get('/data/vendors');
+    return http.get('/api/vendors');
   },
 
   loadBuyer() {
-    return http.get('/data/buyer');
+    return http.get('/api/buyer');
   },
 
   loadSession() {
@@ -44,10 +44,10 @@ export default {
   },
 
   rejectVendor(vendor) {
-    return http.put(`/data/vendors/${vendor._id}/reject`);
+    return http.put(`/api/vendors/${vendor._id}/reject`);
   },
 
   setGCalendar(calendar) {
-    return http.put('/data/buyer/gcalendar', calendar);
+    return http.put('/api/buyer/gcalendar', calendar);
   }
 };

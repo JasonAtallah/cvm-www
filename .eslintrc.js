@@ -19,7 +19,8 @@ module.exports = {
     'jQuery': true,
     'auth0': true,
     'moment': true,
-    '_': true
+    '_': true,
+    '$event': true
   },
   // check if imports actually resolve
   'settings': {

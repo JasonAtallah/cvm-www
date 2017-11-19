@@ -30,7 +30,7 @@ ul#strains {
           <div class="row">
             <div class="container col-sm-3">
               <ul id="strains">
-                <li v-for="strain in strains">
+                <li v-for="strain in strains" :key="strain.id">
                   <a href="#" @click.prevent="selectStrain(strain)">{{ strain.name }}</a>
                 </li>
               </ul>
@@ -39,7 +39,7 @@ ul#strains {
             </div>
 
             <div class="container col-sm-9">
-              <StrainForm v-if="strain" :questions="questions" :strain="strain"/>
+              <StrainForm v-if="strain" :questions="strainQuestions" :strain="strain"/>
             </div>
           </div>
         </form>
@@ -50,6 +50,7 @@ ul#strains {
 </template>
 
 <script>
+import data from '@/lib/data';
 import { mapGetters } from 'vuex';
 import StrainForm from './StrainForm';
 
@@ -66,6 +67,9 @@ export default {
   computed: {
     strains() {
       return this.response.strains;
+    },
+    strainQuestions() {
+      return _.values(_.find(this.questions, { name: 'Strains' }).items);
     }
   },
   methods: {
@@ -73,11 +77,8 @@ export default {
       this.strain = strain;
     },
     addStrain() {
-      const strain = {
-        name: 'New Strain'
-      };
-      this.$store.commit('newStrain', strain);
-      this.strain = strain;
+      this.$store.commit('newStrain');
+      this.strain = this.strains[this.strains.length - 1];
     }
   }
 };

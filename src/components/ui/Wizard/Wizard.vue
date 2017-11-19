@@ -17,6 +17,7 @@
     <slot name="page3" v-if="showPage(3)"></slot>
     <slot name="page4" v-if="showPage(4)"></slot>
     <slot name="page5" v-if="showPage(5)"></slot>
+    <slot name="page6" v-if="showPage(6)"></slot>
   </div>
 </div>
 </template>

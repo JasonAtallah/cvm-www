@@ -6,6 +6,7 @@ const _ = require('lodash');
 const config = module.exports = {
   load: function () {
     _.extend(config, {
+      app: process.env.JS_APP_NAME,
       assetsRoot: path.resolve(__dirname, '../dist'),
       assetsSubDirectory: 'static',
       assetsPublicPath: '/',

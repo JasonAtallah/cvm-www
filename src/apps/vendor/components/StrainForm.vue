@@ -1,7 +1,7 @@
 
 
 <template>
-<div>
+<div id="StrainForm">
   <div class="row">
     <div class="form-group col-lg-6" v-if="showField('Name')">
       <label for="name">Strain Name:</label>
@@ -38,8 +38,8 @@
       <label for="shelfReady">Shelf Ready:</label>
       <select id="shelfReady" v-model="strain.shelfReady">
         <option value="" v-if="!reqField('ShelfReady')" />
-        <option value="no">No</option>
-        <option value="yes">Yes</option>
+        <option value="false">No</option>
+        <option value="true">Yes</option>
       </select>
     </div>
   </div>
@@ -47,11 +47,23 @@
   <div class="row">
     <div class="form-group col-lg-6" v-if="showField('Photo')">
       <label for="photo">Photo:</label>
-      <button id="photo">Upload File</button>
+      <input type="file" id="photo" name="photo"
+        accept=".png, .jpg, .jpeg, .pdf"
+        :disabled="isSaving('TestResults')"
+        @change="onFileChange('Photo', $event);" />
     </div>
     <div class="form-group col-lg-6" v-if="showField('TestResults')">
       <label for="testResults">Test Results:</label>
-      <button id="testResults">Upload File</button>
+      <input type="file" id="testResults" name="testResults"
+        accept=".png, .jpg, .jpeg, .pdf"
+        :disabled="isSaving('TestResults')"
+        @change="onFileChange('TestResults', $event);" />
+      <br/>
+      <ul>
+        <li v-for="result in strain.testResults" :key="result.id">
+          {{ result.name }}
+        </li>
+      </ul>
     </div>
   </div>
 </div>
@@ -62,6 +74,11 @@ import { mapGetters } from 'vuex';
 
 export default {
   props: ['questions', 'strain'],
+  data() {
+    return {
+      uploads: {}
+    };
+  },
   methods: {
     getField(fieldName) {
       return _.find(this.questions, { name: fieldName });
@@ -71,6 +88,24 @@ export default {
     },
     reqField(fieldName) {
       return this.getField(fieldName).required;
+    },
+    isSaving(fieldName) {
+      return this.uploads[fieldName];
+    },
+    onFileChange(fieldName, event) {
+      const inputName = event.target.name;
+      const files = event.target.files;
+
+      if (!files.length) {
+        return;
+      }
+
+      this.$store.commit('strainFile', {
+        strain: this.strain,
+        field: inputName,
+        file: files[0]
+      });
+      $('#StrainForm #testResults').val('');
     }
   }
 };

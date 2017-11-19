@@ -1,46 +1,43 @@
-const proxy = require('http-proxy-middleware');
+const express = require('express');
+const path = require('path');
 const config = require('../../config');
+const auth = require('./auth');
+const parse = require('./parse');
+const proxy = require('./proxy');
 
 module.exports = function (app) {
-  app.get('/session', function (req, res) {
-    res.send({
-      profile: {
-        givenName: req.user.name.givenName,
-        familyName: req.user.name.familyName,
-        imageUrl: req.user.picture
-      }
-    });
-  });
+  app.get('/favicon.ico', express.static(path.resolve(config.staticDir, 'img')));
 
-  app.use('/data', proxy({
-    logLevel: 'debug',
-    target: config.mgmtApi.host,
-    changeOrigin: true,
-    pathRewrite: {
-      '^/data': '/api'
-    },
-    onProxyReq(proxyReq, req, res) {
-      proxyReq.setHeader('Authorization', `Bearer ${req.user.auth.accessToken}`);
-      proxyReq.setHeader('Origin', config.host);
-      proxyReq.setHeader('Connection', 'keep-alive');
-
-      if (req.body) {
-        const bodyData = JSON.stringify(req.body);
-        proxyReq.setHeader('Content-Type', 'application/json');
-        proxyReq.setHeader('Content-Length', Buffer.byteLength(bodyData));
-        proxyReq.write(bodyData);
-      }
-    },
-    onError(err, req, res) {
-      res.status(500).send(err.toString());
-    }
-  }));
+  app.use(config.staticPath,
+    auth.isLoggedIn,
+    express.static(config.staticDir));
 
   if (process.env.NODE_ENV === 'production') {
-    app.get('/', function (req, res, next) {
-      res.sendFile(config.index);
-    });
-  } else {
+    app.get('/',
+      function (req, res, next) {
+        res.sendFile(config.index);
+      });
+  }
+
+  if (config.app === 'buyer') {
+    app.get('/session',
+      auth.isLoggedIn,
+      auth.sendBuyerSession);
+
+    app.use('/api',
+      auth.isLoggedIn,
+      proxy.api);
+  }
+
+  if (config.app === 'vendor') {
+    app.get('/session',
+      auth.sendVendorSession);
+
+    app.use('/api',
+      proxy.api);
+  }
+
+  if (process.env.NODE_ENV === 'development') {
     require('../lib/devServer')(app);
   }
 

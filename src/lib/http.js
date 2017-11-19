@@ -36,6 +36,21 @@ export const post = (path, data) => {
   });
 };
 
+export const file = (path, data) => {
+  return new Promise((res, rej) => {
+    $.ajax({
+      method: 'POST',
+      url: path,
+      cache: false,
+      contentType: false,
+      processData: false,
+      data,
+      error: handleRequest(rej),
+      success: res
+    });
+  });
+};
+
 export const put = (path, data) => {
   return new Promise((res, rej) => {
     $.ajax({
