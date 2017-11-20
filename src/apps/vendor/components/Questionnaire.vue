@@ -77,9 +77,6 @@ export default {
     complete() {
 
     }
-  },
-  beforeMount() {
-    this.$store.dispatch('loadQuestionnaire');
   }
 };
 </script>

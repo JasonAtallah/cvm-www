@@ -30,9 +30,6 @@ module.exports = function (app) {
   }
 
   if (config.app === 'vendor') {
-    app.get('/session',
-      auth.sendVendorSession);
-
     app.use('/api',
       proxy.api);
   }

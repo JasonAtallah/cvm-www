@@ -1,25 +1,15 @@
 import * as http from '@/lib/http';
 
 export default {
-  getQuestionnaire() {
-    return http.get('/api/questionnaire');
+  getQuestionnaire(questionnaireId) {
+    return http.get(`/api/questionnaires/${questionnaireId}`);
   },
 
-  loadSession() {
-    return http.get('/session');
+  saveResponse(buyerId, response) {
+    return http.post(`/api/questionnaires/${buyerId}/responses`, response);
   },
 
-  saveResponse(response) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve({
-          text: 'ariel'
-        });
-      }, 2000);
-    });
-  },
-
-  uploadFile(formData) {
-    return http.file('/api/files', formData);
+  saveFile(buyerId, responseId, formData) {
+    return http.file(`/api/questionnaires/${buyerId}/responses/${responseId}/files`, formData);
   }
 };

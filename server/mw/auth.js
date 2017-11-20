@@ -11,11 +11,5 @@ module.exports = {
         imageUrl: req.user.picture
       }
     });
-  },
-
-  sendVendorSession: (req, res) => {
-    res.send({
-
-    });
   }
 };
