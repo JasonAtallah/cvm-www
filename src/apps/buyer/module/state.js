@@ -4,7 +4,7 @@ export default {
   addCalendarEventModalIsVisible: false,
   addVendorModalIsVisible: false,
   buyer: null,
-  calendars: [],
+  calendars: null,
   events: [],
   gcalendar: null,
   pageMenuItems: [

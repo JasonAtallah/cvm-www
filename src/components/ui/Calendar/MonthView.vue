@@ -41,7 +41,7 @@
         </div>
 
         <div v-for="(event,i) in eventsForDay(day)" :key="getKeyForEvent(event, i)">
-          <a href="#" @click.prevent="onClickEvent(event)">{{ event.title }}</a>
+          <a href="#" @click.prevent="onClickEvent(event)">{{ event.summary }}</a>
         </div>
 
         <div class="monthly-indicator-wrap"></div>
@@ -58,8 +58,8 @@ export default {
   props: ['events', 'eventDateField'],
   data() {
     return {
-      month: 9,
-      year: 2017
+      month: new Date().getMonth(),
+      year: new Date().getFullYear()
     };
   },
   computed: {

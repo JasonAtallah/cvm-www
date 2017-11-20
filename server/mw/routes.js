@@ -1,45 +1,42 @@
 const express = require('express');
-const ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn();
+const path = require('path');
 const config = require('../../config');
-const Api = require('./_api');
+const auth = require('./auth');
+const parse = require('./parse');
+const proxy = require('./proxy');
 
 module.exports = function (app) {
-  const api = new Api(config.mgmtApi.rootUrl, config.host);
+  app.get('/favicon.ico', express.static(path.resolve(config.staticDir, 'img')));
 
-  app.use(ensureLoggedIn);
-
-  app.get('/data/buyer', api.get('/buyer'));
-  app.put('/data/buyer/gCalendar', api.put('/buyer/gcalendar'));
-  app.get('/data/calendars', api.get('/calendars'));
-  app.get('/data/events', api.get('/events'));
-  app.post('/data/events', api.post('/events'));
-  app.get('/data/session', function (req, res) {
-    res.send({
-      profile: {
-        givenName: req.user.name.givenName,
-        familyName: req.user.name.familyName,
-        imageUrl: req.user.picture
-      }
-    });
-  });
-  app.get('/data/vendors', api.get('/vendors'));
-  app.post('/data/vendors', api.post('/vendors'));
-  app.put('/data/vendors/:vendorId/approve', api.put(function (req) {
-    return `/vendors/${req.params.vendorId}/approve`;
-  }));
-  app.put('/data/vendors/:vendorId/reject', api.put(function (req) {
-    return `/vendors/${req.params.vendorId}/reject`;
-  }));
+  app.use(config.staticPath,
+    auth.isLoggedIn,
+    express.static(config.staticDir));
 
   if (process.env.NODE_ENV === 'production') {
-    app.get('/', function (req, res, next) {
-      res.sendFile(config.index);
-    });
-  } else {
-    require('./devServer')(app);
+    app.get('/',
+      function (req, res, next) {
+        res.sendFile(config.index);
+      });
   }
 
-  app.use(config.staticPath, express.static(config.staticDir));
+  if (config.app === 'buyer') {
+    app.get('/session',
+      auth.isLoggedIn,
+      auth.sendBuyerSession);
+
+    app.use('/api',
+      auth.isLoggedIn,
+      proxy.api);
+  }
+
+  if (config.app === 'vendor') {
+    app.use('/api',
+      proxy.api);
+  }
+
+  if (process.env.NODE_ENV === 'development') {
+    require('../lib/devServer')(app);
+  }
 
   app.use(function (req, res, next) {
     const err = new Error(`Not Found ${req.originalUrl}`);
@@ -47,13 +44,7 @@ module.exports = function (app) {
     next(err);
   });
 
-  app.use(function (req, res, next) {
-    if (req && req.query && req.query.error) {
-      req.flash('error', req.query.error);
-    }
-    if (req && req.query && req.query.error_description) {
-      req.flash('error_description', req.query.error_description);
-    }
-    next();
+  app.use(function (err, req, res, next) {
+    res.status(500).send(err.message);
   });
 };

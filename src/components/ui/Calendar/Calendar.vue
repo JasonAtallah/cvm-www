@@ -3,13 +3,11 @@
 .calview {
 
 }
-
-
 </style>
 
 <template>
 <div class="calendar">
-  <monthview class="calview" v-if="showMonth"
+  <MonthView class="calview" v-if="showMonth"
     :eventDateField="eventDateField"
     :events="events"
     @clickDay="onClickDay"
@@ -24,7 +22,7 @@ import MonthView from './MonthView';
 export default {
   name: 'calendar',
   components: {
-    monthview: MonthView
+    MonthView
   },
   props: ['events', 'eventDateField'],
   data() {

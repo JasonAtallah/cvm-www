@@ -1,65 +1,26 @@
+import * as http from '@/lib/http';
+
 export default {
-  handleRequest(reject) {
-    return (xhr, status, err) => {
-      console.error(err.message); //eslint-disable-line
-      reject(err);
-    };
-  },
-
-  _get(path) {
-    return new Promise((res, rej) => {
-      $.ajax({
-        method: 'GET',
-        url: `/data/${path}`,
-        error: this.handleRequest(rej),
-        success: res
-      });
-    });
-  },
-
-  _post(path, data) {
-    return new Promise((res, rej) => {
-      $.ajax({
-        method: 'POST',
-        url: `/data/${path}`,
-        data,
-        error: this.handleRequest(rej),
-        success: res
-      });
-    });
-  },
-
-  _put(path, data) {
-    return new Promise((res, rej) => {
-      $.ajax({
-        method: 'PUT',
-        url: `/data/${path}`,
-        data,
-        error: this.handleRequest(rej),
-        success: res
-      });
-    });
-  },
-
   approveVendor(vendor) {
-    return this._put(`vendors/${vendor._id}/approve`);
+    return http.put(`/api/vendors/${vendor._id}/approve`);
   },
 
   createCalendarEvent(values) {
-    return this._post('events', values);
+    return http.post('/api/events', values);
   },
 
   createVendor(values) {
-    return this._post('vendors', values);
+    return http.post('/api/vendors', values);
   },
 
   getCalendars() {
-    return this._get('calendars');
+    return http.get('/api/calendars');
   },
 
   getEvents() {
-    return this._get('events')
-      .then((events) => {
+    return http.get('/api/events')
+      .then((result) => {
+        const events = result.items;
         const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
         events.forEach((event) => {
@@ -71,22 +32,22 @@ export default {
   },
 
   getVendors() {
-    return this._get('vendors');
+    return http.get('/api/vendors');
   },
 
   loadBuyer() {
-    return this._get('buyer');
+    return http.get('/api/buyer');
   },
 
   loadSession() {
-    return this._get('session');
+    return http.get('/session');
   },
 
   rejectVendor(vendor) {
-    return this._put(`vendors/${vendor._id}/reject`);
+    return http.put(`/api/vendors/${vendor._id}/reject`);
   },
 
   setGCalendar(calendar) {
-    return this._put('buyer/gcalendar', calendar);
+    return http.put('/api/buyer/gcalendar', calendar);
   }
 };

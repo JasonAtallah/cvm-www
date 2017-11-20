@@ -5,7 +5,7 @@
 
 .page .content, .page .header {
   position: relative;
-  padding-left: 3rem;
+  padding: 0 3rem;
 }
 
 .header {

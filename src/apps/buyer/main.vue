@@ -18,17 +18,17 @@ html, body {
   <div id="app">
     <router-view/>
 
-    <SetCalendar />
+    <SetCalendarModal />
   </div>
 </template>
 
 <script>
-import SetCalendar from './components/SetCalendar';
+import SetCalendarModal from './components/SetCalendarModal';
 
 export default {
   name: 'app',
   components: {
-    SetCalendar
+    SetCalendarModal
   },
   beforeMount() {
     this.$store.dispatch('init');

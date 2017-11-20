@@ -1,47 +1,15 @@
+import * as http from '@/lib/http';
+
 export default {
-  handleRequest(reject) {
-    return (xhr, status, err) => {
-      console.error(err.message);
-      reject(err);
-    };
+  getQuestionnaire(questionnaireId) {
+    return http.get(`/api/questionnaires/${questionnaireId}`);
   },
 
-  _get(path) {
-    return new Promise((res, rej) => {
-      $.ajax({
-        method: 'GET',
-        url: `/data/${path}`,
-        error: this.handleRequest(rej),
-        success: res
-      });
-    });
+  saveResponse(buyerId, response) {
+    return http.post(`/api/questionnaires/${buyerId}/responses`, response);
   },
 
-  _post(path, data) {
-    return new Promise((res, rej) => {
-      $.ajax({
-        method: 'POST',
-        url: `/data/${path}`,
-        data,
-        error: this.handleRequest(rej),
-        success: res
-      });
-    });
-  },
-
-  _put(path, data) {
-    return new Promise((res, rej) => {
-      $.ajax({
-        method: 'PUT',
-        url: `/data/${path}`,
-        data,
-        error: this.handleRequest(rej),
-        success: res
-      });
-    });
-  },
-
-  approveVendor(vendor) {
-    return this._put(`vendors/${vendor._id}/approve`);
+  saveFile(buyerId, responseId, formData) {
+    return http.file(`/api/questionnaires/${buyerId}/responses/${responseId}/files`, formData);
   }
 };

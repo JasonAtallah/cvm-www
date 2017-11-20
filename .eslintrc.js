@@ -19,7 +19,8 @@ module.exports = {
     'jQuery': true,
     'auth0': true,
     'moment': true,
-    '_': true
+    '_': true,
+    '$event': true
   },
   // check if imports actually resolve
   'settings': {
@@ -50,6 +51,8 @@ module.exports = {
     'no-unused-vars': 0,
     'no-bitwise': 0,
     'no-plusplus': 0,
-    'no-underscore-dangle': 0
+    'no-underscore-dangle': 0,
+    'no-useless-escape': 0,
+    'import/prefer-default-export': 0
   }
 };
