@@ -1,27 +1,23 @@
 export const prepEmptyResponse = (questionnaire) => {
   const response = {};
-
   questionnaire.pages.forEach((page) => {
     const pageResp = {};
-    response[_.lowerFirst(page.name)] = pageResp;
+    response[page.id] = pageResp;
     page.questions.forEach((q) => {
-      pageResp[_.lowerFirst(q.name)] = q.default;
+      pageResp[q.id] = q.default;
     });
   });
 
   return response;
 };
 
-export const prepEmptyStrain = (questionnaire) => {
-  const flowersDef = _.find(questionnaire.pages, { name: 'Flowers' });
-  const strainsDef = _.find(flowersDef.questions, { name: 'Strains' });
-  const strain = {};
+export const prepEmptyProduct = (productsDef) => {
+  const product = {};
 
-  Object.keys(strainsDef.items).forEach((key) => {
-    const field = strainsDef.items[key];
-
-    strain[_.lowerFirst(field.name)] = field.default;
+  Object.keys(productsDef).forEach((key) => {
+    const field = productsDef[key];
+    product[field.id] = field.default;
   });
 
-  return strain;
+  return product;
 };

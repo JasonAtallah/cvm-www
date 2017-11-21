@@ -10,19 +10,19 @@
   <div slot="content" id="Questionnaire">
     <Wizard v-if="questionnaire" :enabledPages="enabledPages">
       <div slot="page1">
-        <QuestionsCompany :questions="questionsFor('Company')" :response="response.company" />
+        <QuestionsCompany :questions="questionsFor('company')" :response="response.company" />
       </div>
       <div slot="page2">
-        <QuestionsContact :questions="questionsFor('Contact')" :response="response.contact" />
+        <QuestionsContact :questions="questionsFor('contact')" :response="response.contact" />
       </div>
       <div slot="page3">
-        <QuestionsFlowers :questions="questionsFor('Flowers')" :response="response.flowers" />
+        <QuestionsFlowers :def="questionsFor('flowers')[0]" :products="productsFor('flowers', 0)" />
       </div>
       <div slot="page4">
-        <QuestionsEdibles :questions="questionsFor('Edibles')" :response="response.edibles" />
+        <QuestionsEdibles :def="questionsFor('edibles')[0]" :products="productsFor('edibles', 0)" />
       </div>
       <div slot="page5">
-        <QuestionsConcentrates :questions="questionsFor('Concentrates')" :response="response.concentrates" />
+        <QuestionsConcentrates :def="questionsFor('concentrates')[0]" :products="productsFor('concentrates', 0)" />
       </div>
       <div slot="page6">
         <SubmitQuestionnaire :response="response" />
@@ -68,14 +68,16 @@ export default {
     }
   },
   methods: {
-    getPage(pageName) {
-      return _.find(this.questionnaire.pages, { name: pageName });
+    getPage(pageId) {
+      return _.find(this.questionnaire.pages, { id: pageId });
     },
-    questionsFor(pageName) {
-      return this.getPage(pageName).questions;
+    questionsFor(pageId) {
+      return this.getPage(pageId).questions;
     },
-    complete() {
-
+    productsFor(pageId, questionIndex) {
+      const page = this.getPage(pageId);
+      const questionId = page.questions[questionIndex].id;
+      return this.response[pageId][questionId];
     }
   }
 };
