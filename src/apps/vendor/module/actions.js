@@ -8,7 +8,6 @@ export const init = ({ dispatch, commit }) => {
 };
 
 export const loadQuestionnaire = ({ dispatch, commit, state }) => {
-  console.log(getUrlParameter('qid'));
   return api.getQuestionnaire(getUrlParameter('qid'))
     .then((questionnaire) => {
       commit('questionnaire', questionnaire);

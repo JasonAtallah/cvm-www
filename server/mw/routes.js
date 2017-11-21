@@ -8,18 +8,11 @@ const proxy = require('./proxy');
 module.exports = function (app) {
   app.get('/favicon.ico', express.static(path.resolve(config.staticDir, 'img')));
 
-  app.use(config.staticPath,
-    auth.isLoggedIn,
-    express.static(config.staticDir));
-
-  if (process.env.NODE_ENV === 'production') {
-    app.get('/',
-      function (req, res, next) {
-        res.sendFile(config.index);
-      });
-  }
-
   if (config.app === 'buyer') {
+    app.use(config.staticPath,
+      auth.isLoggedIn,      
+      express.static(config.staticDir));
+
     app.get('/session',
       auth.isLoggedIn,
       auth.sendBuyerSession);
@@ -27,15 +20,37 @@ module.exports = function (app) {
     app.use('/api',
       auth.isLoggedIn,
       proxy.api);
+
+    if (process.env.NODE_ENV === 'production') {
+      app.get('/',
+        auth.isLoggedIn,
+        function (req, res, next) {
+          res.sendFile(config.index);
+        });
+    } else if (process.env.NODE_ENV === 'development') {
+      const devMW = require('../lib/devServer')(app);
+      app.use(
+        auth.isLoggedIn,
+        ...devMW);
+    }
   }
 
   if (config.app === 'vendor') {
+    app.use(config.staticPath,
+      express.static(config.staticDir));
+
     app.use('/api',
       proxy.api);
-  }
 
-  if (process.env.NODE_ENV === 'development') {
-    require('../lib/devServer')(app);
+    if (process.env.NODE_ENV === 'production') {
+      app.get('/',
+        function (req, res, next) {
+          res.sendFile(config.index);
+        });
+    } else if (process.env.NODE_ENV === 'development') {
+      const devMW = require('../lib/devServer')(app);
+      app.use(...devMW);
+    }
   }
 
   app.use(function (req, res, next) {

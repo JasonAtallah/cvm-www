@@ -26,13 +26,15 @@ module.exports = function(app) {
     heartbeat: 2000
   });
 
-  app.use(hotMiddleware)
-  app.use(require('connect-history-api-fallback')())
-  app.use(devMiddleware)
-
   devMiddleware.waitUntilValid(() => {
     if (autoOpenBrowser && process.env.NODE_ENV !== 'testing') {
       opn('http://localhost:' + port)
     }
   });
+
+  return [
+    hotMiddleware,
+    require('connect-history-api-fallback')(),
+    devMiddleware
+  ];
 }
