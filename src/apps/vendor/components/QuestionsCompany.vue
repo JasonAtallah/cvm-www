@@ -56,7 +56,7 @@
           <div class="row">
             <div class="form-group col-sm-12 col-md-6" v-if="showField('SREA')">
               <label for="srea">SREA#:</label>
-              <input type="text" class="form-control" id="srea" v-model="response.sREA">
+              <input type="text" class="form-control" id="srea" v-model="response.srea">
             </div>
             <div class="form-group col-sm-12 col-md-2" v-if="showField('HaveTaxId')">
               <label for="exampleFormControlSelect1">Have Tax ID:</label><br/>

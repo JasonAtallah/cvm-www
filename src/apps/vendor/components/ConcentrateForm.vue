@@ -39,7 +39,7 @@
 
     <div class="form-group col-lg-6" v-if="showField('type')">
       <label for="type">Type:</label>
-      <select id="type" v-model="product.shelfReady">
+      <select id="type" v-model="product.type">
         <option value="" v-if="!reqField('type')" />
         <option value="coldWaterHash">Cold Water Hash</option>
         <option value="solventConcentrates">Solvent Concentrates</option>
