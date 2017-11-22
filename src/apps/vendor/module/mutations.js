@@ -14,11 +14,3 @@ export const questionnaire = (state, questionnaire) => {
 export const finalResponse = (state, response) => {
   state.finalResponse = response;
 };
-
-export const strainFile = (state, params) => {
-  params.strain[params.field].push({
-    id: data.genId(),
-    name: params.file.name,
-    file: params.file
-  });
-};
