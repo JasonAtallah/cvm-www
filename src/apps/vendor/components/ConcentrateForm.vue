@@ -7,20 +7,21 @@
       <label for="name">Product Name:</label>
       <input type="text" class="form-control" id="name" v-model="product.name">
     </div>
-  </div>
 
-  <div class="row">
-    <div class="form-group col-lg-4" v-if="showField('unitsAvailable')">
+    <div class="form-group col-lg-6" v-if="showField('unitsAvailable')">
       <label for="unitsAvailable">Units Available (lbs):</label>
       <input type="number" class="form-control" id="unitsAvailable" v-model="product.unitsAvailable">
     </div>
+  </div>
 
-    <div class="form-group col-lg-4" v-if="showField('thc')">
+  <div class="row">
+
+    <div class="form-group col-lg-6" v-if="showField('thc')">
       <label for="thc">THC (mg):</label>
       <input type="number" class="form-control" id="thc" v-model="product.thc">
     </div>
 
-    <div class="form-group col-lg-4" v-if="showField('cbd')">
+    <div class="form-group col-lg-6" v-if="showField('cbd')">
       <label for="cbd">CBD (mg):</label>
       <input type="number" class="form-control" id="cbd" v-model="product.cbd">
     </div>

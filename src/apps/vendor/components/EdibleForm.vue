@@ -8,21 +8,14 @@
       <input type="text" class="form-control" id="name" v-model="product.name">
     </div>
     
-    <div class="form-group col-lg-6" v-if="showField('shelfReady')">
-      <label for="shelfReady">Shelf Ready:</label>
-      <select id="shelfReady" v-model="product.shelfReady">
-        <option value="" v-if="!reqField('shelfReady')" />
-        <option value="false">No</option>
-        <option value="true">Yes</option>
-      </select>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="form-group col-lg-4" v-if="showField('unitsAvailable')">
+    <div class="form-group col-lg-6" v-if="showField('unitsAvailable')">
       <label for="weightAvailable">Units Available (lbs):</label>
       <input type="number" class="form-control" id="unitsAvailable" v-model="product.unitsAvailable">
     </div>
+
+  </div>
+
+  <div class="row">
 
     <div class="form-group col-lg-4" v-if="showField('thc')">
       <label for="thc">THC (mg):</label>
@@ -33,6 +26,17 @@
       <label for="cbd">CBD (mg):</label>
       <input type="number" class="form-control" id="cbd" v-model="product.cbd">
     </div>
+
+    <div class="form-group col-lg-4" v-if="showField('shelfReady')">
+      <label for="shelfReady">Shelf Ready:</label>
+      <br>
+      <select id="shelfReady" v-model="product.shelfReady">
+        <option value="" v-if="!reqField('shelfReady')" />
+        <option value="false">No</option>
+        <option value="true">Yes</option>
+      </select>
+    </div>
+
   </div>
 
   <div class="row">
