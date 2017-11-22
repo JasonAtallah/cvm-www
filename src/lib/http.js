@@ -36,15 +36,17 @@ export const post = (path, data) => {
   });
 };
 
-export const file = (path, data) => {
+export const file = (path, fileData) => {
   return new Promise((res, rej) => {
     $.ajax({
       method: 'POST',
+      enctype: 'multipart/form-data',
       url: path,
+      data: fileData,
       cache: false,
+      async: true,
       contentType: false,
       processData: false,
-      data,
       error: handleRequest(rej),
       success: res
     });

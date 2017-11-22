@@ -5,11 +5,15 @@ export default {
     return http.get(`/api/questionnaires/${questionnaireId}`);
   },
 
-  saveResponse(buyerId, response) {
-    return http.post(`/api/questionnaires/${buyerId}/responses`, response);
+  saveResponse(questionnaireId, values) {
+    return http.post(`/api/questionnaires/${questionnaireId}/responses`, values);
   },
 
-  saveFile(buyerId, responseId, formData) {
-    return http.file(`/api/questionnaires/${buyerId}/responses/${responseId}/files`, formData);
+  saveFile(questionnaireId, response, data) {
+    return http.file(`/api/questionnaires/${questionnaireId}/responses/${response._id}/files`, data);
+  },
+
+  updateResponse(questionnaireId, response) {
+    return http.put(`/api/questionnaires/${questionnaireId}/responses/${response._id}`, response);
   }
 };

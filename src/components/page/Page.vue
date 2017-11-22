@@ -18,7 +18,7 @@
   text-align: left;
 }
 
-.buttons {
+.header-buttons {
   width: 40%;
   display: inline-block;
   text-align: right;
@@ -38,7 +38,7 @@
   </div>
   <div class="header">
     <page-header :pageName="pageName" />
-    <div class="buttons">
+    <div class="header-buttons">
       <slot name="header-buttons"></slot>
     </div>
   </div>

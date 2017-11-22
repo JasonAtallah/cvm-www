@@ -1,9 +1,6 @@
 import data from '@/lib/data';
 import { prepEmptyResponse, prepEmptyStrain, prepEmptyProduct } from './fns';
 
-export const finalResponse = (state, response) => {
-  state.finalResponse = response;
-};
 
 export const newConcentrateProduct = (state) => {
   const concentratesDef = _.find(state.questionnaire.pages, { name: 'Concentrates' });
@@ -37,10 +34,6 @@ export const questionnaire = (state, questionnaire) => {
   state.response = prepEmptyResponse(questionnaire);
 };
 
-export const strainFile = (state, params) => {
-  params.strain[params.field].push({
-    id: data.genId(),
-    name: params.file.name,
-    file: params.file
-  });
+export const finalResponse = (state, response) => {
+  state.finalResponse = response;
 };
