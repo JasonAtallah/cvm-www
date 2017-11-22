@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import Introduction from './components/Introduction';
 import Questionnaire from './components/Questionnaire';
 import Complete from './components/Complete';
 
@@ -10,6 +11,11 @@ export default new Router(
     routes: [
       {
         path: '/',
+        name: 'Introduction',
+        component: Introduction
+      },
+      {
+        path: '/questionnaire',
         name: 'Questionnaire',
         component: Questionnaire
       },

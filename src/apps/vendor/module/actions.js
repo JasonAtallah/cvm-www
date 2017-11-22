@@ -8,7 +8,6 @@ export const init = ({ dispatch, commit }) => {
 };
 
 export const loadQuestionnaire = ({ dispatch, commit, state }) => {
-  console.log(getUrlParameter('qid'));
   return api.getQuestionnaire(getUrlParameter('qid'))
     .then((questionnaire) => {
       commit('questionnaire', questionnaire);
@@ -16,16 +15,17 @@ export const loadQuestionnaire = ({ dispatch, commit, state }) => {
 };
 
 export const saveFile = ({ dispatch, commit, state }, params) => {
-  const formData = new FormData();
-  formData.append('file', params.fileObj.file, params.fileObj.name);
-
-  return api.saveFile(getUrlParameter('qid'), params.responseId, formData);
+  return api.saveFile(getUrlParameter('qid'), params.response, params.fileData.formData);
 };
 
 export const submitResponse = ({ dispatch, commit, state }, response) => {
   return api.saveResponse(getUrlParameter('qid'), response)
-    .then((response) => {
+    .then((newResp) => {
+      response._id = newResp._id;
       return dispatch('submitResponseFileFields', response);
+    })
+    .then((response) => {
+      return api.updateResponse(getUrlParameter('qid'), response);
     })
     .then((response) => {
       commit('finalResponse', response);
@@ -36,11 +36,12 @@ export const submitResponseFileFields = ({ dispatch, commit }, response) => {
   const uploadFns = [];
 
   response.flowers.strains.forEach((strain, strainIndex) => {
-    strain.testResults.forEach((fileObj, fileIndex) => {
+    strain.testResults.forEach((fileData, fileIndex) => {
       uploadFns.push(() => {
         return dispatch('saveFile', {
-          fileObj,
-          responseId: response._id
+          response,
+          fileData,
+          dummy: 1
         })
           .then((result) => {
             strain.testResults[fileIndex] = result;

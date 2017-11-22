@@ -49,14 +49,12 @@
       <label for="photo">Photo:</label>
       <input type="file" id="photo" name="photo"
         accept=".png, .jpg, .jpeg, .pdf"
-        :disabled="isSaving('TestResults')"
         @change="onFileChange('Photo', $event);" />
     </div>
     <div class="form-group col-lg-6" v-if="showField('TestResults')">
       <label for="testResults">Test Results:</label>
       <input type="file" id="testResults" name="testResults"
         accept=".png, .jpg, .jpeg, .pdf"
-        :disabled="isSaving('TestResults')"
         @change="onFileChange('TestResults', $event);" />
       <br/>
       <ul>
@@ -89,9 +87,6 @@ export default {
     reqField(fieldName) {
       return this.getField(fieldName).required;
     },
-    isSaving(fieldName) {
-      return this.uploads[fieldName];
-    },
     onFileChange(fieldName, event) {
       const inputName = event.target.name;
       const files = event.target.files;
@@ -100,11 +95,14 @@ export default {
         return;
       }
 
-      this.$store.commit('strainFile', {
-        strain: this.strain,
-        field: inputName,
-        file: files[0]
+      const formData = new FormData();
+      formData.append('file', files[0], files[0].name);
+
+      this.strain[inputName].push({
+        formData,
+        name: files[0].name
       });
+
       $('#StrainForm #testResults').val('');
     }
   }

@@ -20,29 +20,27 @@ ul#strains {
       </div>
 
       <div class="modal-body">
-        <form>
-          <div class="row">
-            <div class="col-sm-3">
-              <h4>Strains</h4>
-            </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <h4>Strains</h4>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="container col-sm-3">
+            <ul id="strains">
+              <li v-for="strain in strains" :key="strain.id">
+                <a href="#" @click.prevent="selectStrain(strain)">{{ strain.name }}</a>
+              </li>
+            </ul>
+
+            <button class="btn btn-success" @click="addStrain">Add Strain</button>
           </div>
 
-          <div class="row">
-            <div class="container col-sm-3">
-              <ul id="strains">
-                <li v-for="strain in strains" :key="strain.id">
-                  <a href="#" @click.prevent="selectStrain(strain)">{{ strain.name }}</a>
-                </li>
-              </ul>
-
-              <button class="btn btn-success" @click="addStrain">Add Strain</button>
-            </div>
-
-            <div class="container col-sm-9">
-              <StrainForm v-if="strain" :questions="strainQuestions" :strain="strain"/>
-            </div>
+          <div class="container col-sm-9">
+            <StrainForm v-if="strain" :questions="strainQuestions" :strain="strain"/>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   </div>

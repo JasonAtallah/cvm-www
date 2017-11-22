@@ -20,7 +20,8 @@ module.exports = {
     'auth0': true,
     'moment': true,
     '_': true,
-    '$event': true
+    '$event': true,
+    'showdown': true
   },
   // check if imports actually resolve
   'settings': {
