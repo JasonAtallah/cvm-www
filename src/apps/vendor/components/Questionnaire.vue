@@ -38,10 +38,11 @@ import Wizard from '@/components/ui/Wizard/Wizard';
 import BasePage from './BasePage';
 import QuestionsCompany from './QuestionsCompany';
 import QuestionsContact from './QuestionsContact';
-import QuestionsFlowers from './QuestionsFlowers';
-import QuestionsEdibles from './QuestionsEdibles';
-import QuestionsConcentrates from './QuestionsConcentrates';
 import SubmitQuestionnaire from './SubmitQuestionnaire';
+import FlowerForm from './FlowerForm';
+import EdibleForm from './EdibleForm';
+import ConcentrateForm from './ConcentrateForm';
+import ProductsInput from './ProductsInput';
 
 export default {
   components: {
@@ -49,9 +50,24 @@ export default {
     Wizard,
     QuestionsCompany,
     QuestionsContact,
-    QuestionsFlowers,
-    QuestionsEdibles,
-    QuestionsConcentrates,
+    QuestionsFlowers: {
+      extends: ProductsInput,
+      components: {
+        ProductForm: FlowerForm
+      }
+    },
+    QuestionsEdibles: {
+      extends: ProductsInput,
+      components: {
+        ProductForm: EdibleForm
+      }
+    },
+    QuestionsConcentrates: {
+      extends: ProductsInput,
+      components: {
+        ProductForm: ConcentrateForm
+      }
+    },
     SubmitQuestionnaire
   },
   computed: {
