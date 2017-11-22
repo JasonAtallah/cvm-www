@@ -1,7 +1,7 @@
 
 
 <template>
-<div id="StrainForm">
+<div id="flower-form">
   <div class="row">
     <div class="form-group col-lg-6" v-if="showField('name')">
       <label for="name">Product Name:</label>
