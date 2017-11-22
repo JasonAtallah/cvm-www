@@ -55,14 +55,12 @@
       <label for="photo">Photo:</label>
       <input type="file" id="photo" name="photo"
         accept=".png, .jpg, .jpeg, .pdf"
-        :disabled="isSaving('TestResults')"
         @change="onFileChange('Photo', $event);" />
     </div>
     <div class="form-group col-lg-6" v-if="showField('testResults')">
       <label for="testResults">Test Results:</label>
       <input type="file" id="testResults" name="testResults"
         accept=".png, .jpg, .jpeg, .pdf"
-        :disabled="isSaving('TestResults')"
         @change="onFileChange('TestResults', $event);" />
       <br/>
       <ul>
