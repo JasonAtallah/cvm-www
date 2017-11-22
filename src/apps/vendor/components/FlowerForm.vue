@@ -1,13 +1,13 @@
 
 
 <template>
-<div id="flower-form">
+<div id="flowerForm">
   <div class="row">
     <div class="form-group col-lg-6" v-if="showField('name')">
       <label for="name">Product Name:</label>
       <input type="text" class="form-control" id="name" v-model="product.name">
     </div>
-    
+
     <div class="form-group col-lg-6" v-if="showField('budSize')">
       <label for="budSize">Bud Size:</label>
       <input type="text" class="form-control" id="budSize" v-model="product.budSize">
@@ -55,13 +55,19 @@
       <label for="photo">Photo:</label>
       <input type="file" id="photo" name="photo"
         accept=".png, .jpg, .jpeg, .pdf"
-        @change="onFileChange('Photo', $event);" />
+        @change="onFileChange($event);" />
+      <br/>
+      <ul>
+        <li v-for="result in product.photo" :key="result.id">
+          {{ result.name }}
+        </li>
+      </ul>
     </div>
     <div class="form-group col-lg-6" v-if="showField('testResults')">
       <label for="testResults">Test Results:</label>
       <input type="file" id="testResults" name="testResults"
         accept=".png, .jpg, .jpeg, .pdf"
-        @change="onFileChange('TestResults', $event);" />
+        @change="onFileChange($event);" />
       <br/>
       <ul>
         <li v-for="result in product.testResults" :key="result.id">
@@ -88,7 +94,7 @@ export default {
     reqField(fieldName) {
       return this.getField(fieldName).required;
     },
-    onFileChange(fieldName, event) {
+    onFileChange(event) {
       const inputName = event.target.name;
       const files = event.target.files;
 
@@ -99,12 +105,12 @@ export default {
       const formData = new FormData();
       formData.append('file', files[0], files[0].name);
 
-      this.strain[inputName].push({
+      this.product[inputName].push({
         formData,
         name: files[0].name
       });
 
-      $('#StrainForm #testResults').val('');
+      $(`#flowerForm #${inputName}`).val('');
     }
   }
 };

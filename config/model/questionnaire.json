@@ -112,8 +112,8 @@
         "enabled": true,
         "questions": [
           {
-            "id": "strains",
-            "name": "Strains",
+            "id": "products",
+            "name": "Flowers",
             "type": "Array",
             "enabled": true,
             "required": false,
@@ -125,7 +125,7 @@
                 "type": "Text",
                 "enabled": true,
                 "required": true,
-                "default": "Untitled Strain"
+                "default": "New Product"
               },
               "WeightAvailable": {
                 "id": "weightAvailable",
@@ -178,10 +178,11 @@
               "Photo": {
                 "id": "photo",
                 "name": "Photo",
-                "type": "File",
+                "type": "Array",
                 "enabled": true,
                 "required": true,
-                "defalut": null
+                "default": [],
+                "items": "File"
               },
               "TestResults": {
                 "id": "testResults",
@@ -189,7 +190,8 @@
                 "type": "Array",
                 "enabled": true,
                 "required": true,
-                "default": []
+                "default": [],
+                "items": "File"
               }
             }
           }
@@ -202,7 +204,7 @@
         "questions": [
           {
             "id": "products",
-            "name": "Products",
+            "name": "Edibles & Topicals",
             "type": "Array",
             "enabled": true,
             "required": false,
@@ -214,7 +216,7 @@
                 "type": "Text",
                 "enabled": true,
                 "required": true,
-                "default": "Untitled Strain"
+                "default": "New Product"
               },
               "UnitsAvailable": {
                 "id": "unitsAvailable",
@@ -251,10 +253,11 @@
               "Photo": {
                 "id": "photo",
                 "name": "Photo",
-                "type": "File",
+                "type": "Array",
                 "enabled": true,
                 "required": true,
-                "defalut": null
+                "default": [],
+                "items": "File"
               },
               "TestResults": {
                 "id": "testResults",
@@ -262,7 +265,8 @@
                 "type": "Array",
                 "enabled": true,
                 "required": true,
-                "default": []
+                "default": [],
+                "items": "File"
               }
             }
           }
@@ -275,10 +279,10 @@
         "questions": [
           {
             "id": "products",
-            "name": "Products",
+            "name": "Concentrates",
             "type": "Array",
             "enabled": true,
-            "required": false, 
+            "required": false,
             "default": [],
             "items": {
               "Name": {
@@ -287,7 +291,7 @@
                 "type": "Text",
                 "enabled": true,
                 "required": true,
-                "default": "Untitled Strain"
+                "default": "New Product"
               },
               "Type": {
                 "id": "type",
@@ -332,10 +336,11 @@
               "Photo": {
                 "id": "photo",
                 "name": "Photo",
-                "type": "File",
+                "type": "Array",
                 "enabled": true,
                 "required": true,
-                "defalut": null
+                "default": [],
+                "items": "File"
               },
               "TestResults": {
                 "id": "testResults",
@@ -343,7 +348,8 @@
                 "type": "Array",
                 "enabled": true,
                 "required": true,
-                "default": []
+                "default": [],
+                "items": "File"
               }
             }
           }

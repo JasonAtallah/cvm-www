@@ -21,7 +21,8 @@ module.exports = {
     'moment': true,
     '_': true,
     '$event': true,
-    'showdown': true
+    'showdown': true,
+    'traverse': true
   },
   // check if imports actually resolve
   'settings': {

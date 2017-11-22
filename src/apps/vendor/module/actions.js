@@ -1,5 +1,6 @@
-import api from './api';
 import { getUrlParameter } from '../../../lib/url';
+import api from './api';
+import { pullFileFields } from './fns';
 
 export const init = ({ dispatch, commit }) => {
   return Promise.all([
@@ -11,6 +12,8 @@ export const loadQuestionnaire = ({ dispatch, commit, state }) => {
   return api.getQuestionnaire(getUrlParameter('qid'))
     .then((questionnaire) => {
       commit('questionnaire', questionnaire);
+      const fileFields = pullFileFields(questionnaire);
+      console.dir(fileFields);
     });
 };
 
@@ -32,26 +35,31 @@ export const submitResponse = ({ dispatch, commit, state }, response) => {
     });
 };
 
-export const submitResponseFileFields = ({ dispatch, commit }, response) => {
-  const uploadFns = [];
+export const submitResponseFileFields = ({ dispatch, commit, state }, response) => {
+  const uploadPromises = [];
+  const questionnaire = state.questionnaire;
+  const pages = ['flowers', 'edibles', 'concentrates'];
+  const questions = ['photo', 'testResults'];
 
-  response.flowers.strains.forEach((strain, strainIndex) => {
-    strain.testResults.forEach((fileData, fileIndex) => {
-      uploadFns.push(() => {
-        return dispatch('saveFile', {
-          response,
-          fileData,
-          dummy: 1
-        })
-          .then((result) => {
-            strain.testResults[fileIndex] = result;
-            return result;
-          });
+  pages.forEach((page) => {
+    response[page].products.forEach((product) => {
+      questions.forEach((question) => {
+        for (let i = 0; i < product[question].length; i++) {
+          uploadPromises.push(dispatch('saveFile', {
+            response,
+            fileData: product[question][i],
+            dummy: 1
+          })
+            .then((result) => {
+              product[question][i] = result;
+              return result;
+            }));
+        }
       });
     });
   });
 
-  return Promise.all(uploadFns.map(fn => fn()))
+  return Promise.all(uploadPromises)
     .then(() => {
       return response;
     });

@@ -1,13 +1,13 @@
 
 
 <template>
-<div id="edible-display">
+<div id="edibleForm">
   <div class="row">
     <div class="form-group col-lg-6" v-if="showField('name')">
       <label for="name">Product Name:</label>
       <input type="text" class="form-control" id="name" v-model="product.name">
     </div>
-    
+
     <div class="form-group col-lg-6" v-if="showField('unitsAvailable')">
       <label for="weightAvailable">Units Available (lbs):</label>
       <input type="number" class="form-control" id="unitsAvailable" v-model="product.unitsAvailable">
@@ -44,13 +44,19 @@
       <label for="photo">Photo:</label>
       <input type="file" id="photo" name="photo"
         accept=".png, .jpg, .jpeg, .pdf"
-        @change="onFileChange('photo', $event);" />
+        @change="onFileChange($event);" />
+      <br/>
+      <ul>
+        <li v-for="result in product.photo" :key="result.id">
+          {{ result.name }}
+        </li>
+      </ul>
     </div>
     <div class="form-group col-lg-6" v-if="showField('testResults')">
       <label for="testResults">Test Results:</label>
       <input type="file" id="testResults" name="testResults"
         accept=".png, .jpg, .jpeg, .pdf"
-        @change="onFileChange('testResults', $event);" />
+        @change="onFileChange($event);" />
       <br/>
       <ul>
         <li v-for="result in product.testResults" :key="result.id">
@@ -77,7 +83,7 @@ export default {
     reqField(fieldName) {
       return this.getField(fieldName).required;
     },
-    onFileChange(fieldName, event) {
+    onFileChange(event) {
       const inputName = event.target.name;
       const files = event.target.files;
 
@@ -85,12 +91,15 @@ export default {
         return;
       }
 
-      this.$store.commit('productFile', {
-        product: this.product,
-        field: inputName,
-        file: files[0]
+      const formData = new FormData();
+      formData.append('file', files[0], files[0].name);
+
+      this.product[inputName].push({
+        formData,
+        name: files[0].name
       });
-      $('#EdibleProductForm #testResults').val('');
+
+      $(`#edibleForm #${inputName}`).val('');
     }
   }
 };
