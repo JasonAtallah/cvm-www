@@ -13,11 +13,12 @@ ul.vendor-list li {
 </style>
 
 <template>
-  <ul class="vendor-list">
+  <VendorListItem />
+  <!-- <ul class="vendor-list">
     <li v-for="vendor in vendors" :key="vendor.id">
       <VendorListItem :vendor="vendor" />
     </li>
-  </ul>
+  </ul> -->
 </template>
 
 <script>
@@ -29,9 +30,9 @@ export default {
     VendorListItem
   },
   computed: {
-    ...mapGetters({
-      vendors: 'sortedVendors'
-    })
+    // ...mapGetters({
+    //   vendors: 'sortedVendors'
+    // })
   }
 };
 </script>

@@ -1,0 +1,34 @@
+<div class="vendor-list-item">
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table center-aligned-table">
+        <thead>
+          <tr class="text">
+            <th>Company</th>
+            <th>Location</th>
+            <th>Selling</th>
+            <th>Shipping Status</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="" v-for="vendor in vendors" :key="vendor.id">
+            <td>
+              <a class="name" href="#" @click.prevent="onVendorClick(vendor)">{{ vendor.company.name }}</a>
+            </td>
+            <td>{{ vendor.company.city}}, {{ vendor.company.state }}</td>
+            <td>
+              <label v-if="productTypeExists(vendor.flowers.products)" class="badge badge-success">Flower</label>
+              <label class="badge badge-danger" v-if="productTypeExists(vendor.concentrates.products)">Concentrates</label>
+              <label class="badge badge-info" v-if="productTypeExists(vendor.edibles.products)">Edibles</label>
+            </td>
+            <td>Dispatched</td>
+            <td>
+              <dropdown-button class="actionMenu" label="Action" :options="actions" @selection="onActionSelect" />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-<style>
+<style scoped>
   .profile-sidebar {
     padding: 20px 0 10px 0;
     background: #fff;
