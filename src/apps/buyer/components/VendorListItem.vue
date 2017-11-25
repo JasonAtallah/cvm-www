@@ -27,17 +27,17 @@
 
 <template>
   <div class="vendor-list-item">
-    <a class="name" href="#" @click.prevent="onVendorClick(vendor)">{{ vendor.name }}</a>
-    <span class="city">{{ vendor.city }}</span>
-    <span class="state">{{ vendor.state }}</span>
+    <a class="name" href="#" @click.prevent="onVendorClick(vendor)">{{ vendor.company.name }}</a>
+    <span class="city">{{ vendor.company.city }}</span>
     <ul class="product-chips">
-      <li v-for="type in productTypes">
-        {{ type }}
+      <li v-for="productType in productTypes">
+        {{ productType }}
       </li>
     </ul>
     <dropdown-button class="actionMenu" label="Action" :options="actions" @selection="onActionSelect" />
   </div>
 </template>
+
 
 <script>
 import DropdownButton from '@/components/form/DropdownButton';

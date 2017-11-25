@@ -22,6 +22,10 @@ export const setCalendars = (state, calendars) => {
   state.calendars = _.sortBy(calendars, 'name');
 };
 
+export const setVendorDetailsTab = (state, detailTab) => {
+  state.showVendorDetailsTab = detailTab;
+};
+
 export const setGCalendar = (state, gcalendar) => {
   state.buyer.gcalendar = gcalendar;
 };

@@ -21,6 +21,7 @@ export const statuses = (state) => {
 };
 
 export const selVendor = state => state.selVendor;
+export const showVendorDetailsTab = state => state.showVendorDetailsTab;
 export const sortedVendors = (state) => {
   let vendors = [...state.vendors];
 
