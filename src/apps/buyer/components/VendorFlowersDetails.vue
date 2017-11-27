@@ -44,6 +44,7 @@ li{
     max-height:90%;
     max-width:100%;
 }
+
 </style>
 
 <template>

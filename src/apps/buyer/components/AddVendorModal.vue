@@ -23,6 +23,18 @@
               v-model="vendor.company.name">
           </div>
           <div class="row">
+            <div class="form-group col-md-9">
+              <label for="exampleFormControlSelect1">Address:</label>
+              <input type="text" class="form-control" id="address"
+                v-model="vendor.company.address">
+            </div>
+            <div class="form-group col-md-3">
+              <label for="exampleFormControlSelect1">Zip:</label>
+              <input type="text" class="form-control" id="zip"
+                v-model="vendor.company.zip">
+            </div>
+          </div>
+          <div class="row">
             <div class="form-group col-md-6">
               <label for="exampleFormControlSelect1">City:</label>
               <input type="text" class="form-control" id="city"
@@ -82,6 +94,8 @@ export default {
       vendor: {
         company: {
           name: null,
+          address: null,
+          zip: null,
           city: null,
           state: null
         },
@@ -103,9 +117,22 @@ export default {
     cancel() {
       this.$store.commit('cancelAddVendor');
     },
+    insertRestOfQuestionnaire(vendor) {
+      vendor.flowers = {
+        products: []
+      };
+      vendor.edibles = {
+        products: []
+      };
+      vendor.concentrates = {
+        products: []
+      };
+      return vendor;
+    },
     save() {
       this.validate(this.vendor)
         .then(() => {
+          this.vendor = this.insertRestOfQuestionnaire(this.vendor);
           this.$store.dispatch('createVendor', this.vendor);
         });
     },

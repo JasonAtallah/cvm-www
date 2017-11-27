@@ -35,25 +35,19 @@
               <th>Company</th>
               <th>Location</th>
               <th>Selling</th>
-              <th>something</th>
               <th>Status</th>
             </tr>
           </thead>
           <tbody>
             <tr class="" v-for="vendor in vendors" :key="vendor.id">
-              <td>
-                <a class="name" href="#" @click.prevent="onVendorClick(vendor)">{{ vendor.company.name }}</a>
-              </td>
+              <td><a class="name" href="#" @click.prevent="onVendorClick(vendor)">{{ vendor.company.name }}</a></td>
               <td>{{ vendor.company.city}}, {{ vendor.company.state }}</td>
               <td>
                 <label v-if="productTypeExists(vendor.flowers.products)" class="badge badge-success">Flower</label>
                 <label v-if="productTypeExists(vendor.concentrates.products)" class="badge badge-danger">Concentrates</label>
                 <label v-if="productTypeExists(vendor.edibles.products)" class="badge badge-info">Edibles</label>
               </td>
-              <td>something</td>
-              <td>
-                <dropdown-button class="actionMenu" label="Action" :options="actions" @selection="onActionSelect" />
-              </td>
+              <td><dropdown-button class="actionMenu" label="Action" :options="actions" @selection="onActionSelect" /></td>
             </tr>
           </tbody>
         </table>
