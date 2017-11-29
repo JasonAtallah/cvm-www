@@ -6,7 +6,12 @@ export default {
   },
 
   createCalendarEvent(values) {
-    return http.post('/api/events', values);
+    return http.post('/api/events', values)
+      .then((event) => {
+        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        event.startDate = moment(event.start.dateTime).tz(tz).toDate();
+        return event;
+      });
   },
 
   createVendor(values) {
