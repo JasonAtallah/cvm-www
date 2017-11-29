@@ -47,7 +47,9 @@
                 <label v-if="productTypeExists(vendor.concentrates.products)" class="badge badge-danger">Concentrates</label>
                 <label v-if="productTypeExists(vendor.edibles.products)" class="badge badge-info">Edibles</label>
               </td>
-              <td><dropdown-button class="actionMenu" label="Action" :options="actions" @selection="onActionSelect" /></td>
+              <td>
+                <dropdown-button class="actionMenu" label="Action" :options="actions" @selection="onActionSelect(vendor, $event)" />
+              </td>
             </tr>
           </tbody>
         </table>
@@ -74,9 +76,9 @@ export default {
     }
   },
   methods: {
-    onActionSelect(action) {
+    onActionSelect(vendor, action) {
       this.$store.dispatch('takeVendorAction', {
-        vendor: this.vendor,
+        vendor,
         action
       });
     },
