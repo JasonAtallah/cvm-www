@@ -71,7 +71,7 @@
                   v-model="vendor.contact.email">
             </div>
           </div>
-          
+
         </form>
       </div>
 
@@ -117,30 +117,14 @@ export default {
     cancel() {
       this.$store.commit('cancelAddVendor');
     },
-    insertRestOfQuestionnaire(vendor) {
-      vendor.flowers = {
-        products: []
-      };
-      vendor.edibles = {
-        products: []
-      };
-      vendor.concentrates = {
-        products: []
-      };
-      return vendor;
-    },
     save() {
       this.validate(this.vendor)
         .then(() => {
-          this.vendor = this.insertRestOfQuestionnaire(this.vendor);
           this.$store.dispatch('createVendor', this.vendor);
         });
     },
     validate(vendor) {
       return new Promise((resolve, reject) => {
-        // if (!vendor.name.trim() || !vendor.city.trim() || !vendor.state.trim()) {
-        //   reject();
-        // }
         resolve();
       });
     }
