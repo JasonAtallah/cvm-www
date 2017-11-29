@@ -50,6 +50,10 @@ export const setVendors = (state, vendors) => {
   state.vendors = vendors;
 };
 
+export const setVendorDetailsTab = (state, detailTab) => {
+  state.vendorDetailsTab = detailTab;
+};
+
 export const setVendorSort = (state, value) => {
   state.vendorFilter.sort = value;
 };

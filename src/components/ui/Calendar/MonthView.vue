@@ -80,14 +80,12 @@ export default {
     isOtherMonth(day) {
       return day.date.getMonth() !== this.month || day.date.getFullYear() !== this.year;
     },
-
     onDayClick(day) {
       this.$emit('clickDay', day);
     },
     onClickEvent(event) {
       this.$emit('clickEvent', event);
     },
-
     eventsForDay(day) {
       if (!this.events) return [];
       return this.events.filter((event) => {
