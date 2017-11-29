@@ -101,12 +101,12 @@
 <template>
   <div class="col-md-3">
     <div class="profile-sidebar">
-     
+
       <div class="profile-userpic">
         <img id="profile-logo" src="https://cdn.allbud.com/image/upload/s--Gsagk9Ld--/c_limit,h_600,w_800/v1433196075/images/dispensary/main-street-marijuana/970/main-st-marijuana-allbud.jpg"
           alt="Vendor Logo">
       </div>
-     
+
       <div class="profile-usertitle">
         <div class="profile-usertitle-name">
           {{ vendor.contact.firstName }} {{ vendor.contact.lastName }}
@@ -114,24 +114,24 @@
         <div class="profile-usertitle-contact-info">{{ vendor.contact.email }}</div>
         <div class="profile-usertitle-contact-info">{{ vendor.contact.phone }}</div>
       </div>
-     
-      <div class="profile-userbuttons">
-        <a href="#" class="btn btn-info" role="button">Website</a>
+
+      <div class="profile-userbuttons" v-if="vendor.company.website">
+        <a :href="vendor.company.website" target="_blank" class="btn btn-info" role="button">Website</a>
       </div>
-     
+
       <div class="profile-usermenu">
         <ul class="list-unstyled">
-          <li :class="{'active': isActive === 'company'}">
-            <a @click.prevent="activateVendorDetailsTab('company')">Company</a>
+          <li :class="{'active': activeTab === 'company'}">
+            <a @click.prevent="activateTab('company')">Company</a>
           </li>
-          <li :class="{'active': isActive === 'flowers'}">
-            <a @click.prevent="activateVendorDetailsTab('flowers')">Flowers</a>
+          <li :class="{'active': activeTab === 'flowers'}">
+            <a @click.prevent="activateTab('flowers')">Flowers</a>
           </li>
-          <li :class="{'active': isActive === 'edibles'}">
-            <a @click.prevent="activateVendorDetailsTab('edibles')">Edibles & Topicals</a>
+          <li :class="{'active': activeTab === 'edibles'}">
+            <a @click.prevent="activateTab('edibles')">Edibles & Topicals</a>
           </li>
-          <li :class="{'active': isActive === 'concentrates'}">
-            <a @click.prevent="activateVendorDetailsTab('concentrates')">Concentrates</a>
+          <li :class="{'active': activeTab === 'concentrates'}">
+            <a @click.prevent="activateTab('concentrates')">Concentrates</a>
           </li>
         </ul>
       </div>
@@ -146,21 +146,13 @@ import { mapGetters } from 'vuex';
 export default {
   computed: {
     ...mapGetters({
-      vendor: 'selVendor'
+      vendor: 'selVendor',
+      activeTab: 'vendorDetailsTab'
     })
   },
-  data() {
-    return {
-      isActive: 'company'
-    };
-  },
   methods: {
-    activateVendorDetailsTab(detailTab) {
-      this.activateTab(detailTab);
-      this.$store.commit('setVendorDetailsTab', detailTab);
-    },
     activateTab(detailTab) {
-      this.isActive = detailTab;
+      this.$store.commit('setVendorDetailsTab', detailTab);
     }
   }
 };

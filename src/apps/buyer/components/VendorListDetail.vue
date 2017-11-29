@@ -51,10 +51,10 @@ body {
         <div class="col-md-9">
           <div class="profile-content">
             <main class="container">
-              <VendorCompanyDetails v-if="showVendorDetailsTab === 'company'" />
-              <VendorFlowersDetails v-if="showVendorDetailsTab === 'flowers'" />
-              <VendorEdiblesDetails v-if="showVendorDetailsTab === 'edibles'" />
-              <VendorConcentratesDetails v-if="showVendorDetailsTab === 'concentrates'" />
+              <VendorCompanyDetails v-if="vendorDetailsTab === 'company'" />
+              <VendorFlowersDetails v-if="vendorDetailsTab === 'flowers'" />
+              <VendorEdiblesDetails v-if="vendorDetailsTab === 'edibles'" />
+              <VendorConcentratesDetails v-if="vendorDetailsTab === 'concentrates'" />
             </main>
           </div>
         </div>
@@ -94,7 +94,7 @@ export default {
   computed: {
     ...mapGetters({
       vendor: 'selVendor',
-      showVendorDetailsTab: 'showVendorDetailsTab'
+      vendorDetailsTab: 'vendorDetailsTab'
     })
   },
   methods: {

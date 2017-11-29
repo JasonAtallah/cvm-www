@@ -16,7 +16,6 @@ export const statuses = (state) => {
 };
 
 export const selVendor = state => state.selVendor;
-export const showVendorDetailsTab = state => state.showVendorDetailsTab;
 export const sortedVendors = (state) => {
   let vendors = [...state.vendors];
 
@@ -44,5 +43,6 @@ export const sortedVendors = (state) => {
 };
 
 export const vendors = state => state.vendors;
-export const vendorFilter = state => state.vendorFilter;
 export const vendorActions = state => state.vendorActions;
+export const vendorDetailsTab = state => state.vendorDetailsTab;
+export const vendorFilter = state => state.vendorFilter;

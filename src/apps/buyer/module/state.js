@@ -27,7 +27,7 @@ export default {
     imageUrl: null
   },
   selVendor: null,
-  showVendorDetailsTab: 'company',
+  vendorDetailsTab: 'company',
   vendors: [],
   vendorFilter: {
     productType: null,
