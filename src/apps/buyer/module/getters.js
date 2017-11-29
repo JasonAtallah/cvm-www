@@ -9,12 +9,7 @@ export const needSetCalendar = (state, getters, rootState, rootGetters) => {
 export const pageMenuItems = state => state.pageMenuItems;
 export const profile = state => state.profile;
 export const productTypes = (state) => {
-  return [...state.vendors.reduce((types, vendor) => {
-    if (Array.isArray(vendor.products)) {
-      vendor.products.forEach(p => types.add(p.type));
-    }
-    return types;
-  }, new Set())];
+  return ['Flowers', 'Edibles & Topicals', 'Concentrates'];
 };
 export const statuses = (state) => {
   return ['New', 'Approved', 'Rejected'];
@@ -26,11 +21,9 @@ export const sortedVendors = (state) => {
   let vendors = [...state.vendors];
 
   if (state.vendorFilter.productType) {
+    const productType = state.vendorFilter.productType.split(' ').shift().toLowerCase();
     vendors = vendors.filter((vendor) => {
-      if (!vendor.products) {
-        return false;
-      }
-      return vendor.products.map(p => p.type).indexOf(state.vendorFilter.productType) >= 0;
+      return vendor[productType].products.length > 0;
     });
   }
 
