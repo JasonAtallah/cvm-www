@@ -24,7 +24,7 @@ export default {
         const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
         events.forEach((event) => {
-          event.startDate = moment(event.startDate).tz(tz).toDate();
+          event.startDate = moment(event.start.dateTime).tz(tz).toDate();
         });
 
         return events;
