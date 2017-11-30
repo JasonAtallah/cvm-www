@@ -1,8 +1,8 @@
-<style scoped>
+<style lang="scss" scoped>
 .page-menu {
   position: relative;
   height: 50px;
-  background-color: #83DB93;
+  background-color: $header-footer-color;
 }
 
 .page-menu img.logo {
@@ -10,7 +10,7 @@
   left: 0;
   top: 10px;
   margin-left: 2rem;
-  height: 2rem;
+  height: 30px;
 }
 
 .page-menu .pageMenuItem {

@@ -1,6 +1,8 @@
-<style scoped>
+<style lang="scss" scoped>
 .page {
   position: relative;
+  height: 100%;
+  width: 100%;
 }
 
 .page .content, .page .header {
@@ -8,22 +10,38 @@
   padding: 0 3rem;
 }
 
-.header {
-  text-align: left;
-}
-
-.page-header {
-  width: 50%;
+.page .header {
+  width: 100%;
   display: inline-block;
   text-align: left;
 }
 
-.header-buttons {
+.page .header-buttons {
   width: 40%;
   display: inline-block;
   text-align: right;
 }
 
+.page .content {
+  text-align: left;
+  position: absolute;
+  top: #{$menu-height + $header-height};
+  bottom: $footer-height;
+  left: 0;
+  right: 0;
+}
+
+.page .content-area {
+  height: 100%;
+  overflow: scroll;
+}
+
+.page .footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0
+}
 </style>
 
 
@@ -37,13 +55,19 @@
     </PageMenu>
   </div>
   <div class="header">
-    <page-header :pageName="pageName" />
-    <div class="header-buttons">
-      <slot name="header-buttons"></slot>
-    </div>
+    <PageHeader :pageName="pageName">
+      <div slot="right">
+        <slot name="header-buttons"></slot>
+      </div>
+    </PageHeader>
   </div>
   <div class="content">
-    <slot name="content"></slot>
+    <div class="content-area">
+      <slot name="content"></slot>
+    </div>
+  </div>
+  <div class="footer">
+    <PageFooter />
   </div>
 </div>
 </template>
@@ -51,8 +75,14 @@
 <script>
 import PageMenu from './PageMenu';
 import PageHeader from './PageHeader';
+import PageFooter from './PageFooter';
 
 export default {
+  components: {
+    PageMenu,
+    PageFooter,
+    PageHeader
+  },
   props: {
     menuItems: {
       type: Array,
@@ -62,10 +92,6 @@ export default {
       type: String,
       required: true
     }
-  },
-  components: {
-    PageMenu,
-    PageHeader
   }
 };
 </script>
