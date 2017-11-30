@@ -1,0 +1,23 @@
+{
+  "id": "google-oauth2|113600761856375492940",
+  "gcalendar": {
+    "id": "75hcmkki4jjjc5k049blihn9ok@group.calendar.google.com",
+    "name": "CVM Calendar",
+    "tz": "America/Los_Angeles",
+    "notifications": []
+  },
+  "emails": {
+    "approveVendor": {
+      "subject": "Congrats",
+      "body": "Schedule an appointment"
+    },
+    "rejectVendor": {
+      "subject": "Sorry",
+      "body": "Not interested"
+    },
+    "newVendor": {
+      "subject": "new vendor applied",
+      "body": "check your site"
+    }
+  }
+}
