@@ -14,6 +14,10 @@ export const cancelAddVendor = (state) => {
   state.addVendorModalIsVisible = false;
 };
 
+export const cancelSendVendorEmail = (state) => {
+  state.sendVendorStatusEmail.modalIsVisible = false;
+};
+
 export const setBuyer = (state, buyer) => {
   state.buyer = buyer;
 };
@@ -64,6 +68,11 @@ export const startAddCalendarEvent = (state) => {
 
 export const startAddVendor = (state) => {
   state.addVendorModalIsVisible = true;
+};
+
+export const startSendVendorStatusEmail = (state, action) => {
+  state.sendVendorStatusEmail.modalIsVisible = true;
+  state.sendVendorStatusEmail.status = action;
 };
 
 export const updateVendor = (state, params) => {

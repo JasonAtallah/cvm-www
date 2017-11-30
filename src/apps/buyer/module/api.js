@@ -54,5 +54,9 @@ export default {
 
   setGCalendar(calendar) {
     return http.put('/api/buyer/gcalendar', calendar);
+  },
+
+  setVendorStatusEmail(email) {
+    return http.put('/api/buyer/email', email);
   }
 };

@@ -27,6 +27,10 @@ export default {
     imageUrl: null
   },
   selVendor: null,
+  sendVendorStatusEmail: {
+    modalIsVisible: false,
+    status: null
+  },
   vendorDetailsTab: 'company',
   vendors: [],
   vendorFilter: {

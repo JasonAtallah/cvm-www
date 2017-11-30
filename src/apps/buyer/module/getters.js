@@ -42,6 +42,8 @@ export const sortedVendors = (state) => {
   return vendors;
 };
 
+export const sendVendorEmailModalIsVisible = state => state.sendVendorStatusEmail.modalIsVisible;
+export const vendorStatus = state => state.sendVendorStatusEmail.status;
 export const vendors = state => state.vendors;
 export const vendorActions = state => state.vendorActions;
 export const vendorDetailsTab = state => state.vendorDetailsTab;

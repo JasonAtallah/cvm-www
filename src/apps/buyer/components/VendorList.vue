@@ -69,7 +69,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      vendors: 'sortedVendors'
+      vendors: 'sortedVendors',
+      vendorStatusEmail: 'vendorStatusEmail'
     }),
     actions() {
       return this.$store.getters.vendorActions;
@@ -77,6 +78,7 @@ export default {
   },
   methods: {
     onActionSelect(vendor, action) {
+      this.$store.commit('startSendVendorStatusEmail', action.label.toLowerCase());
       this.$store.dispatch('takeVendorAction', {
         vendor,
         action

@@ -63,6 +63,14 @@ export const loadVendors = ({ rootState, commit }) => {
     });
 };
 
+export const setVendorStatusEmail = ({ rootState, commit }, email) => {
+  return api.setVendorStatusEmail(email)
+  .then((email) => {
+    commit('startSendVendorStatusEmail', email);
+    commit('cancelSendVendorEmail');
+  });
+};
+
 export const setGCalendar = ({ rootState, commit }, calendar) => {
   return api.setGCalendar(calendar)
     .then((calendar) => {
