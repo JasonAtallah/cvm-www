@@ -1,19 +1,37 @@
 import { getUrlParameter } from '../../../lib/url';
 import api from './api';
-import { pullFileFields } from './fns';
+import router from '../router';
 
 export const init = ({ dispatch, commit }) => {
-  return Promise.all([
-    dispatch('loadQuestionnaire')
-  ]);
+  if (getUrlParameter('qid')) {
+    return Promise.all([
+      dispatch('loadQuestionnaire')
+    ])
+    .then(() => {
+      router.push({ path: '/intro' });
+    });
+  } else if (getUrlParameter('vid')) {
+    return Promise.all([
+      dispatch('loadVendor')
+    ])
+    .then(() => {
+      router.push({ path: '/home' });
+    });
+  }
+  return Promise.reject(new Error('Failed to init'));
 };
 
 export const loadQuestionnaire = ({ dispatch, commit, state }) => {
   return api.getQuestionnaire(getUrlParameter('qid'))
     .then((questionnaire) => {
       commit('questionnaire', questionnaire);
-      const fileFields = pullFileFields(questionnaire);
-      console.dir(fileFields);
+    });
+};
+
+export const loadVendor = ({ dispatch, commit, state }) => {
+  return api.getVendor(getUrlParameter('vid'))
+    .then((vendor) => {
+      commit('vendor', vendor);
     });
 };
 

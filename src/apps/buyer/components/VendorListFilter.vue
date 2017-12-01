@@ -56,13 +56,13 @@ export default {
   },
   methods: {
     updateSort(value) {
-      this.$store.commit('setVendorSort', value);
+      this.$store.commit('vendorSort', value);
     },
     updateProductType(value) {
-      this.$store.commit('setProductFilter', value);
+      this.$store.commit('productFilter', value);
     },
     updateStatus(value) {
-      this.$store.commit('setStatusFilter', value);
+      this.$store.commit('statusFilter', value);
     }
   },
   components: {

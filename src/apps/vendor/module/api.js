@@ -5,6 +5,10 @@ export default {
     return http.get(`/api/questionnaires/${questionnaireId}`);
   },
 
+  getVendor(vendorId) {
+    return http.get(`/api/vendors/${vendorId}`);
+  },
+
   saveResponse(questionnaireId, values) {
     return http.post(`/api/questionnaires/${questionnaireId}/responses`, values);
   },

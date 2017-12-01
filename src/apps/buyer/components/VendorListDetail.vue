@@ -99,7 +99,7 @@ export default {
   },
   methods: {
     closeDetail() {
-      this.$store.commit('setSelVendor', null);
+      this.$store.commit('selVendor', null);
     }
   },
   watch: {

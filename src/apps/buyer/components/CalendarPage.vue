@@ -47,7 +47,9 @@ export default {
   },
   methods: {
     addCalendarEvent() {
-      this.$store.commit('startAddCalendarEvent');
+      this.$store.commit('takeAction', {
+        type: 'addCalendarEvent'
+      });
     }
   },
   beforeRouteEnter(to, from, next) {

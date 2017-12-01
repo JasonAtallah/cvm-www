@@ -82,7 +82,7 @@ export default {
       });
     },
     onVendorClick(vendor) {
-      this.$store.commit('setSelVendor', vendor);
+      this.$store.commit('selVendor', vendor);
     },
     productTypeExists(productType) {
       if (productType.length > 0) {
