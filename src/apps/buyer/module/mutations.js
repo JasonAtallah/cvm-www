@@ -6,10 +6,6 @@ export const addVendorToList = (state, vendor) => {
   state.vendors.push(vendor);
 };
 
-export const cancelAddCalendarEvent = (state) => {
-  state.addCalendarEventModalIsVisible = false;
-};
-
 export const cancelPendingAction = (state) => {
   state.pendingAction = {
     type: null
@@ -58,10 +54,6 @@ export const setVendorDetailsTab = (state, detailTab) => {
 
 export const setVendorSort = (state, value) => {
   state.vendorFilter.sort = value;
-};
-
-export const startAddCalendarEvent = (state) => {
-  state.addCalendarEventModalIsVisible = true;
 };
 
 export const takeAction = (state, action) => {

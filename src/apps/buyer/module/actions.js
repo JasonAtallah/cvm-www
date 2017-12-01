@@ -4,7 +4,7 @@ export const createCalendarEvent = ({ dispatch, commit }, values) => {
   return api.createCalendarEvent(values)
     .then((calendarEvent) => {
       commit('addCalendarEventToList', calendarEvent);
-      commit('cancelAddCalendarEvent');
+      commit('cancelPendingAction');
     });
 };
 

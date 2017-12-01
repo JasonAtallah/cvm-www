@@ -1,8 +1,6 @@
 import vendorSorts from '../config/vendorSorts';
 
 export default {
-  addCalendarEventModalIsVisible: false,
-  addVendorModalIsVisible: false,
   buyer: null,
   calendars: null,
   events: [],

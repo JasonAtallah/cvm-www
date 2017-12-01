@@ -70,13 +70,13 @@ export default {
     };
   },
   computed: {
-    ...mapGetters({
-      isVisible: 'addCalendarEventModalIsVisible'
-    })
+    isVisible() {
+      return this.$store.getters.pendingAction.type === 'addCalendarEvent';
+    }
   },
   methods: {
     cancel() {
-      this.$store.commit('cancelAddCalendarEvent');
+      this.$store.commit('cancelPendingAction');
     },
     save() {
       this.validate(this.calendarEvent)
