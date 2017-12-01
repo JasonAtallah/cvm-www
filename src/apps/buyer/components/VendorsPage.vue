@@ -12,6 +12,7 @@
     <vendor-list></vendor-list>
     <vendor-list-detail v-if="selVendor"></vendor-list-detail>
 
+    <SendVendorStatusEmailModal />
     <AddVendorModal />
   </div>
 </BasePage>
@@ -20,17 +21,18 @@
 <script>
 import { mapGetters } from 'vuex';
 
+import AddVendorModal from './AddVendorModal';
 import BasePage from './BasePage';
+import SendVendorStatusEmailModal from './SendVendorStatusEmailModal';
 import VendorList from './VendorList';
 import VendorListFilter from './VendorListFilter';
 import VendorListDetail from './VendorListDetail';
-import AddVendorModal from './AddVendorModal';
-
 
 export default {
   components: {
     AddVendorModal,
     BasePage,
+    SendVendorStatusEmailModal,
     VendorList,
     VendorListFilter,
     VendorListDetail
@@ -47,7 +49,9 @@ export default {
   },
   methods: {
     addVendor() {
-      this.$store.commit('startAddVendor');
+      this.$store.commit('takeAction', {
+        type: 'addVendor'
+      });
     }
   },
   beforeRouteEnter(to, from, next) {

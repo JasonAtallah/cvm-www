@@ -109,13 +109,13 @@ export default {
     };
   },
   computed: {
-    ...mapGetters({
-      isVisible: 'addVendorModalIsVisible'
-    })
+    isVisible() {
+      return this.$store.getters.pendingAction.type === 'addVendor';
+    }
   },
   methods: {
     cancel() {
-      this.$store.commit('cancelAddVendor');
+      this.$store.commit('cancelPendingAction');
     },
     save() {
       this.validate(this.vendor)

@@ -69,17 +69,16 @@ export default {
   },
   computed: {
     ...mapGetters({
-      vendors: 'sortedVendors'
-    }),
-    actions() {
-      return this.$store.getters.vendorActions;
-    }
+      vendors: 'sortedVendors',
+      vendorStatusEmail: 'vendorStatusEmail',
+      actions: 'vendorActions'
+    })
   },
   methods: {
     onActionSelect(vendor, action) {
-      this.$store.dispatch('takeVendorAction', {
-        vendor,
-        action
+      this.$store.commit('takeAction', {
+        type: action.value,
+        vendor
       });
     },
     onVendorClick(vendor) {

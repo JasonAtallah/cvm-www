@@ -16,11 +16,14 @@ export default {
       name: 'Calendar',
       href: '/calendar'
     },
-  // {
-  //   name: 'Onboarding',
-  //   href: '/onboarding'
-  // }
+    // {
+    //   name: 'Onboarding',
+    //   href: '/onboarding'
+    // }
   ],
+  pendingAction: {
+    type: null
+  },
   profile: {
     givenName: null,
     familyName: null,
@@ -41,10 +44,12 @@ export default {
   },
   vendorActions: [
     {
-      label: 'Approve'
+      label: 'Approve',
+      value: 'approveVendor'
     },
     {
-      label: 'Reject'
+      label: 'Reject',
+      value: 'rejectVendor'
     }
   ]
 };
