@@ -12,47 +12,47 @@ export const cancelPendingAction = (state) => {
   };
 };
 
-export const setBuyer = (state, buyer) => {
+export const buyer = (state, buyer) => {
   state.buyer = buyer;
 };
 
-export const setCalendars = (state, calendars) => {
+export const calendars = (state, calendars) => {
   state.calendars = _.sortBy(calendars, 'name');
 };
 
-export const setGCalendar = (state, gcalendar) => {
+export const gCalendar = (state, gcalendar) => {
   state.buyer.gcalendar = gcalendar;
 };
 
-export const setEvents = (state, events) => {
+export const events = (state, events) => {
   state.events = events;
 };
 
-export const setProductFilter = (state, value) => {
+export const productFilter = (state, value) => {
   state.vendorFilter.productType = value;
 };
 
-export const setStatusFilter = (state, value) => {
+export const statusFilter = (state, value) => {
   state.vendorFilter.status = value;
 };
 
-export const setSelVendor = (state, vendor) => {
+export const selVendor = (state, vendor) => {
   state.selVendor = vendor;
 };
 
-export const setSession = (state, session) => {
+export const session = (state, session) => {
   Object.assign(state.profile, session.profile);
 };
 
-export const setVendors = (state, vendors) => {
+export const vendors = (state, vendors) => {
   state.vendors = vendors;
 };
 
-export const setVendorDetailsTab = (state, detailTab) => {
+export const vendorDetailsTab = (state, detailTab) => {
   state.vendorDetailsTab = detailTab;
 };
 
-export const setVendorSort = (state, value) => {
+export const vendorSort = (state, value) => {
   state.vendorFilter.sort = value;
 };
 

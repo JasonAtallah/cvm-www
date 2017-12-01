@@ -152,7 +152,7 @@ export default {
   },
   methods: {
     activateTab(detailTab) {
-      this.$store.commit('setVendorDetailsTab', detailTab);
+      this.$store.commit('vendorDetailsTab', detailTab);
     }
   }
 };

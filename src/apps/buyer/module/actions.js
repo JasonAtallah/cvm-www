@@ -26,32 +26,32 @@ export const init = ({ dispatch }) => {
 export const loadBuyer = ({ commit, state }) => {
   return api.loadBuyer()
     .then((buyer) => {
-      commit('setBuyer', buyer);
+      commit('buyer', buyer);
     });
 };
 
 export const loadSession = ({ commit, state }) => {
   return api.loadSession()
     .then((session) => {
-      commit('setSession', session);
+      commit('session', session);
     });
 };
 
 export const loadCalendars = ({ rootState, commit }) => {
   return api.getCalendars()
     .then((calendars) => {
-      commit('setCalendars', calendars);
+      commit('calendars', calendars);
     });
 };
 
 export const loadEvents = ({ rootState, commit }) => {
   return api.getEvents()
     .then((events) => {
-      commit('setEvents', events);
+      commit('events', events);
     })
     .catch((err) => {
       if (err.status === 404) {
-        commit('setGCalendar', null);
+        commit('gCalendar', null);
       }
     });
 };
@@ -59,7 +59,7 @@ export const loadEvents = ({ rootState, commit }) => {
 export const loadVendors = ({ rootState, commit }) => {
   return api.getVendors()
     .then((vendors) => {
-      commit('setVendors', vendors);
+      commit('vendors', vendors);
     });
 };
 
@@ -93,6 +93,6 @@ export const updateBuyerEmailTemplate = ({ rootState, commit }, { templateId, em
 export const setGCalendar = ({ rootState, commit }, calendar) => {
   return api.setGCalendar(calendar)
     .then((calendar) => {
-      commit('setGCalendar', calendar);
+      commit('gCalendar', calendar);
     });
 };
