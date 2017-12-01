@@ -1,8 +1,8 @@
 import * as http from '@/lib/http';
 
 export default {
-  approveVendor(vendor) {
-    return http.put(`/api/vendors/${vendor._id}/approve`);
+  approveVendor(vendor, email) {
+    return http.put(`/api/vendors/${vendor._id}/approve`, email);
   },
 
   createCalendarEvent(values) {
@@ -48,15 +48,15 @@ export default {
     return http.get('/session');
   },
 
-  rejectVendor(vendor) {
-    return http.put(`/api/vendors/${vendor._id}/reject`);
+  rejectVendor(vendor, email) {
+    return http.put(`/api/vendors/${vendor._id}/reject`, email);
   },
 
   setGCalendar(calendar) {
     return http.put('/api/buyer/gcalendar', calendar);
   },
 
-  setVendorStatusEmail(email) {
-    return http.put('/api/buyer/email', email);
+  updateBuyerEmailTemplate(templateId, email) {
+    return http.put(`/api/buyer/emails/${templateId}`, email);
   }
 };

@@ -49,7 +49,9 @@ export default {
   },
   methods: {
     addVendor() {
-      this.$store.commit('startAddVendor');
+      this.$store.commit('takeAction', {
+        type: 'addVendor'
+      });
     }
   },
   beforeRouteEnter(to, from, next) {

@@ -1,5 +1,6 @@
 export const addCalendarEventModalIsVisible = state => state.addCalendarEventModalIsVisible;
 export const addVendorModalIsVisible = state => state.addVendorModalIsVisible;
+export const buyer = state => state.buyer;
 export const calendars = state => state.calendars;
 export const events = state => state.events;
 
@@ -7,6 +8,7 @@ export const needSetCalendar = (state, getters, rootState, rootGetters) => {
   return state.buyer && !state.buyer.gcalendar;
 };
 export const pageMenuItems = state => state.pageMenuItems;
+export const pendingAction = state => state.pendingAction;
 export const profile = state => state.profile;
 export const productTypes = (state) => {
   return ['Flowers', 'Edibles & Topicals', 'Concentrates'];
@@ -42,8 +44,6 @@ export const sortedVendors = (state) => {
   return vendors;
 };
 
-export const sendVendorEmailModalIsVisible = state => state.sendVendorStatusEmail.modalIsVisible;
-export const vendorStatus = state => state.sendVendorStatusEmail.status;
 export const vendors = state => state.vendors;
 export const vendorActions = state => state.vendorActions;
 export const vendorDetailsTab = state => state.vendorDetailsTab;

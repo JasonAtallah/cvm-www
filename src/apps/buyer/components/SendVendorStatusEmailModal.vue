@@ -19,17 +19,19 @@
           <div class="form-group">
             <label for="exampleFormControlSelect1">Subject:</label>
             <input type="text" class="form-control" id="subjectZ"
-              v-model="buyer.email.subject">
+              v-model="email.subject">
           </div>
           <div class="form-group">
             <label for="exampleFormControlSelect1">Message:</label>
             <textarea cols="30" rows="10" class="form-control" id="body"
-              v-model="buyer.email.body"></textarea>
+              v-model="email.body"></textarea>
           </div>
         </form>
       </div>
       
       <div class="modal-footer">
+        <label for="saveAsDefaultEmail">Make Default</label>
+        <input v-model="newDefaultEmail" value="yes" type="checkbox" id="saveAsDefaultEmail">
         <button type="button" class="btn btn-primary" @click.prevent="send">Send</button>
         <button type="button" class="btn btn-default" @click.prevent="cancel">Cancel</button>
       </div>
@@ -45,28 +47,45 @@ import { mapGetters } from 'vuex';
 export default {
   data() {
     return {
-      buyer: {
-        email: {
-          subject: null,
-          body: null,
-          status: null
-        }
-      }
+      newDefaultEmail: []
     };
   },
   computed: {
-    ...mapGetters({
-      isVisible: 'sendVendorEmailModalIsVisible',
-      vendorStatus: 'vendorStatus'
-    })
+    isVisible() {
+      return ['approveVendor', 'rejectVendor'].indexOf(this.action) >= 0;
+    },
+    action() {
+      return this.$store.getters.pendingAction.type;
+    },
+    vendor() {
+      return this.$store.getters.pendingAction.vendor;
+    },
+    email() {
+      return this.$store.getters.buyer.emails[this.action];
+    }
   },
   methods: {
     cancel() {
-      this.$store.commit('cancelSendVendorEmail');
+      this.$store.commit('cancelPendingAction');
     },
     send() {
-      this.buyer.email.status = this.vendorStatus;
-      this.$store.dispatch('setVendorStatusEmail', this.buyer);
+      this.updateEmail()
+        .then(() => {
+          return this.$store.dispatch('performVendorAction', {
+            vendor: this.vendor,
+            action: this.action,
+            email: this.email
+          });
+        });
+    },
+    updateEmail() {
+      if (this.newDefaultEmail.length >= 0) {
+        return this.$store.dispatch('updateBuyerEmailTemplate', {
+          email: this.email,
+          templateId: this.action
+        });
+      }
+      return Promise.resolve();
     }
   }
 };

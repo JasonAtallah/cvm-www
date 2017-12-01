@@ -12,7 +12,7 @@ export const createVendor = ({ dispatch, commit }, values) => {
   return api.createVendor(values)
     .then((vendor) => {
       commit('addVendorToList', vendor);
-      commit('cancelAddVendor');
+      commit('cancelPendingAction');
     });
 };
 
@@ -63,37 +63,36 @@ export const loadVendors = ({ rootState, commit }) => {
     });
 };
 
-export const setVendorStatusEmail = ({ rootState, commit }, email) => {
-  return api.setVendorStatusEmail(email)
-  .then((email) => {
-    commit('startSendVendorStatusEmail', email);
-    commit('cancelSendVendorEmail');
-  });
+export const performVendorAction = ({ commit }, { vendor, action, email }) => {
+  if (action === 'approveVendor') {
+    return api.approveVendor(vendor, email)
+      .then((result) => {
+        commit('updateVendor', {
+          vendor,
+          values: result
+        });
+        commit('cancelPendingAction');
+      });
+  } else if (action === 'rejectVendor') {
+    return api.rejectVendor(vendor, email)
+      .then((result) => {
+        commit('updateVendor', {
+          vendor,
+          values: result
+        });
+        commit('cancelPendingAction');
+      });
+  }
+  return Promise.reject(new Error(`Invalid Action: ${action}`));
+};
+
+export const updateBuyerEmailTemplate = ({ rootState, commit }, { templateId, email }) => {
+  return api.updateBuyerEmailTemplate(templateId, email);
 };
 
 export const setGCalendar = ({ rootState, commit }, calendar) => {
   return api.setGCalendar(calendar)
     .then((calendar) => {
       commit('setGCalendar', calendar);
-    });
-};
-
-export const takeVendorAction = ({ commit }, { vendor, action }) => {
-  if (action.label === 'Approve') {
-    return api.approveVendor(vendor)
-      .then((result) => {
-        commit('updateVendor', {
-          vendor,
-          values: result
-        });
-      });
-  }
-
-  return api.rejectVendor(vendor)
-    .then((result) => {
-      commit('updateVendor', {
-        vendor,
-        values: result
-      });
     });
 };

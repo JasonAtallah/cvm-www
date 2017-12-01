@@ -10,12 +10,10 @@ export const cancelAddCalendarEvent = (state) => {
   state.addCalendarEventModalIsVisible = false;
 };
 
-export const cancelAddVendor = (state) => {
-  state.addVendorModalIsVisible = false;
-};
-
-export const cancelSendVendorEmail = (state) => {
-  state.sendVendorStatusEmail.modalIsVisible = false;
+export const cancelPendingAction = (state) => {
+  state.pendingAction = {
+    type: null
+  };
 };
 
 export const setBuyer = (state, buyer) => {
@@ -66,13 +64,8 @@ export const startAddCalendarEvent = (state) => {
   state.addCalendarEventModalIsVisible = true;
 };
 
-export const startAddVendor = (state) => {
-  state.addVendorModalIsVisible = true;
-};
-
-export const startSendVendorStatusEmail = (state, action) => {
-  state.sendVendorStatusEmail.modalIsVisible = true;
-  state.sendVendorStatusEmail.status = action;
+export const takeAction = (state, action) => {
+  state.pendingAction = action;
 };
 
 export const updateVendor = (state, params) => {
