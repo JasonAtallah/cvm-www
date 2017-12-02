@@ -1,6 +1,15 @@
+<style scoped>
+
+.btn.btn-lg.dropdown-toggle {
+  background-color: transparent;
+
+}
+
+</style>
+
 <template>
   <div class="dropdown">
-    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <button class="btn btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       {{ label }}
     </button>
     <div class="dropdown-menu">
@@ -31,7 +40,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-
-</style>

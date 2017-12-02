@@ -24,6 +24,14 @@
   text-align: right;
 }
 
+.content {
+  background-color: #f4f4f4;
+}
+
+hr {
+  border-top: 1px solid #D3D3D3;
+  margin: 0;
+}
 </style>
 
 
@@ -42,6 +50,7 @@
       <slot name="header-buttons"></slot>
     </div>
   </div>
+  <hr>
   <div class="content">
     <slot name="content"></slot>
   </div>
