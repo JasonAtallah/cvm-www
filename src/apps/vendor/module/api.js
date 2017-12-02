@@ -1,6 +1,11 @@
 import * as http from '@/lib/http';
 
 export default {
+
+  getBuyerInfo(vendorId) {
+    return http.get(`/api/buyer/:${vendorId}`);
+  },
+
   getQuestionnaire(questionnaireId) {
     return http.get(`/api/questionnaires/${questionnaireId}`);
   },

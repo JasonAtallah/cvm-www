@@ -1,6 +1,9 @@
 import data from '@/lib/data';
 import { prepEmptyResponse, prepEmptyProduct } from './fns';
 
+export const buyerInfo = (state, buyerInfo) => {
+  state.buyerInfo = buyerInfo;
+};
 export const finalResponse = (state, response) => {
   state.finalResponse = response;
 };
