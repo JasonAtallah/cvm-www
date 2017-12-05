@@ -1,4 +1,3 @@
-export const buyerInfo = state => state.buyerInfo;
 export const finalResponse = state => state.finalResponse;
 export const questionnaire = state => state.questionnaire;
 export const response = state => state.response;

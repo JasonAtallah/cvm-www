@@ -21,13 +21,6 @@ export const init = ({ dispatch, commit }) => {
   return Promise.reject(new Error('Failed to init'));
 };
 
-export const loadBuyerInfo = ({ dispatch, commit, state }, vendorId) => {
-  return api.getBuyerInfo(vendorId)
-    .then((buyerInfo) => {
-      commit('buyerInfo', buyerInfo);
-    });
-};
-
 export const loadQuestionnaire = ({ dispatch, commit, state }) => {
   return api.getQuestionnaire(getUrlParameter('qid'))
     .then((questionnaire) => {
