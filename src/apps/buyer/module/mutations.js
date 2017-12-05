@@ -32,8 +32,17 @@ export const productFilter = (state, value) => {
   state.vendorFilter.productType = value;
 };
 
-export const statusFilter = (state, value) => {
-  state.vendorFilter.status = value;
+export const scheduleAdd = (state, value) => {
+  if (state.buyer.schedule.indexOf(value) < 0) {
+    state.buyer.schedule.push(value);
+  }
+};
+
+export const scheduleRemove = (state, value) => {
+  const index = state.buyer.schedule.indexOf(value);
+  if (index >= 0) {
+    state.buyer.schedule.splice(index, 1);
+  }
 };
 
 export const selVendor = (state, vendor) => {
@@ -42,6 +51,14 @@ export const selVendor = (state, vendor) => {
 
 export const session = (state, session) => {
   Object.assign(state.profile, session.profile);
+};
+
+export const setSchedule = (state, value) => {
+  state.setSchedule = value;
+};
+
+export const statusFilter = (state, value) => {
+  state.vendorFilter.status = value;
 };
 
 export const vendors = (state, vendors) => {

@@ -90,12 +90,10 @@
 <script>
 import PageMenu from './PageMenu';
 import PageHeader from './PageHeader';
-import PageFooter from './PageFooter';
 
 export default {
   components: {
     PageMenu,
-    PageFooter,
     PageHeader
   },
   props: {
