@@ -46,7 +46,7 @@ export default {
     })
   },
   methods: {
-    addCalendarEvent() {
+    addEvent() {
       this.$store.commit('takeAction', {
         type: 'addCalendarEvent'
       });

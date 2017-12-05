@@ -4,8 +4,6 @@
   list-style: none;
   text-align: left;
   margin: 0;
-  border-top: 1px solid #CCC;
-  border-bottom: 1px solid #CCC;
   padding: 1rem 0;
 }
 

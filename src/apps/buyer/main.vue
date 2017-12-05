@@ -19,15 +19,21 @@ html, body {
     <router-view/>
 
     <SetCalendarModal />
+    <SendVendorStatusEmailModal />
+    <AddVendorModal />
   </div>
 </template>
 
 <script>
+import AddVendorModal from './components/AddVendorModal';
+import SendVendorStatusEmailModal from './components/SendVendorStatusEmailModal';
 import SetCalendarModal from './components/SetCalendarModal';
 
 export default {
   name: 'app',
   components: {
+    AddVendorModal,
+    SendVendorStatusEmailModal,
     SetCalendarModal
   },
   beforeMount() {

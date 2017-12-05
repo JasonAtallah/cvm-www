@@ -1,47 +1,22 @@
 <style scoped>
 .vendor-list-detail {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: #fff;
-  text-align: left;
   padding: 1rem;
-  border-top: 1px solid #ccc;
 }
 
-.vendor-list-detail .detail-close {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-}
-
-/* info panel beginning */
-
-body {
-  background: #f1f3fa;
-}
-
-/* Profile container */
 .profile {
   margin: 20px 0;
 }
 
-/* Profile sidebar */
-
-
-/* Profile Content */
 .profile-content {
   padding: 20px;
   background: #fff;
   min-height: 460px;
 }
-/* info panel ending */
 </style>
 
 
 <template>
-  <div class="vendor-list-detail" :style="{height: panelHeight}">
+  <div class="vendor-list-detail">
 
     <div class="container">
       <div class="row profile">
@@ -60,10 +35,6 @@ body {
         </div>
 
       </div>
-    </div>
-
-    <div class="detail-close">
-      <button type="button" class="btn btn-default" @click="closeDetail">X</button>
     </div>
 
   </div>
@@ -86,29 +57,18 @@ export default {
     VendorConcentratesDetails
   },
   name: 'vendor-list-detail',
-  data() {
-    return {
-      panelHeight: '30%'
-    };
-  },
   computed: {
     ...mapGetters({
       vendor: 'selVendor',
       vendorDetailsTab: 'vendorDetailsTab'
-    })
+    }),
+    isVisible() {
+      return this.vendor !== null;
+    }
   },
   methods: {
     closeDetail() {
       this.$store.commit('selVendor', null);
-    }
-  },
-  watch: {
-    vendor(newVal, oldVal) {
-      if (!newVal) {
-        this.panelHeight = 0;
-      } else {
-        this.panelHeight = '30%';
-      }
     }
   }
 };
