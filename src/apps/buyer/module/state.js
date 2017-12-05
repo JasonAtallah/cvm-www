@@ -28,6 +28,7 @@ export default {
     imageUrl: null
   },
   selVendor: null,
+  setSchedule: false,
   vendorDetailsTab: 'company',
   vendors: [],
   vendorFilter: {

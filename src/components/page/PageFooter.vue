@@ -2,6 +2,10 @@
 .page-footer {
   position: relative;
   height: $footer-height;
+<<<<<<< HEAD
+=======
+  background-color: $header-footer-color;
+>>>>>>> buyer-hours-of-operation
   padding-top: 1rem;
 }
 

@@ -1,6 +1,6 @@
 import Vue from 'vue';
 
-import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/scss/bootstrap.scss';
 
 import BuyerApp from './apps/buyer/main';
 import BuyerRouter from './apps/buyer/router';

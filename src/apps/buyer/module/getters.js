@@ -12,11 +12,10 @@ export const profile = state => state.profile;
 export const productTypes = (state) => {
   return ['Flowers', 'Edibles & Topicals', 'Concentrates'];
 };
-export const statuses = (state) => {
-  return ['New', 'Approved', 'Rejected'];
-};
 
+export const schedule = state => state.buyer.schedule;
 export const selVendor = state => state.selVendor;
+export const setSchedule = state => state.setSchedule;
 export const sortedVendors = (state) => {
   let vendors = [...state.vendors];
 
@@ -42,7 +41,9 @@ export const sortedVendors = (state) => {
 
   return vendors;
 };
-
+export const statuses = (state) => {
+  return ['New', 'Approved', 'Rejected'];
+};
 export const vendors = state => state.vendors;
 export const vendorActions = state => state.vendorActions;
 export const vendorDetailsTab = state => state.vendorDetailsTab;

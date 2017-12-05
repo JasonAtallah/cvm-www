@@ -66,9 +66,7 @@ export const loadVendors = ({ rootState, commit }) => {
 export const performVendorAction = ({ commit }, { vendor, action, email }) => {
   if (action === 'approveVendor') {
     const schedUrl = window.location.href.replace('#', `?vid=${vendor._id}#`);
-    email.body += `
-
-Please Visit: ${schedUrl} to schedule a time to meet with the buyer`;
+    email.body += `\n\nPlease visit ${schedUrl} to schedule a time to meet with our buyer.`;
     return api.approveVendor(vendor, email)
       .then((result) => {
         commit('updateVendor', {
@@ -88,6 +86,13 @@ Please Visit: ${schedUrl} to schedule a time to meet with the buyer`;
       });
   }
   return Promise.reject(new Error(`Invalid Action: ${action}`));
+};
+
+export const saveSchedule = ({ rootState, commit }) => {
+  return api.saveSchedule(rootState.buyer.schedule)
+    .then((vendors) => {
+      commit('setSchedule', false);
+    });
 };
 
 export const setGCalendar = ({ rootState, commit }, calendar) => {
