@@ -68,7 +68,7 @@ export const performVendorAction = ({ commit }, { vendor, action, email }) => {
     const schedUrl = window.location.href.replace('#', `?vid=${vendor._id}#`);
     email.body += `
 
- Please Visit: ${schedUrl} to schedule a time to meet with the buyer`;
+Please Visit: ${schedUrl} to schedule a time to meet with the buyer`;
     return api.approveVendor(vendor, email)
       .then((result) => {
         commit('updateVendor', {
