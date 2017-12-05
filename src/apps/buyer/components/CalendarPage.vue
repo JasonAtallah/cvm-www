@@ -5,7 +5,8 @@
 <template>
 <BasePage pageName="Calendar">
   <div slot="header-buttons">
-    <button class="btn btn-primary" @click="addCalendarEvent">Add Event</button>
+    <button class="btn btn-info" @click="setSchedule">Set Schedule</button>
+    <button class="btn btn-primary" @click="addEvent">Add Event</button>
   </div>
   <div slot="content">
     <div class="container">
@@ -19,6 +20,7 @@
         eventDateField="startDate" />
     </div>
     <AddCalendarEventModal />
+    <SetScheduleModal />
   </div>
 </BasePage>
 </template>
@@ -28,12 +30,14 @@ import { mapGetters } from 'vuex';
 import Calendar from '@/components/ui/Calendar/Calendar';
 import BasePage from './BasePage';
 import AddCalendarEventModal from './AddCalendarEventModal';
+import SetScheduleModal from './SetScheduleModal';
 
 export default {
   components: {
     AddCalendarEventModal,
     BasePage,
-    Calendar
+    Calendar,
+    SetScheduleModal
   },
   data() {
     return {
@@ -50,6 +54,9 @@ export default {
       this.$store.commit('takeAction', {
         type: 'addCalendarEvent'
       });
+    },
+    setSchedule() {
+      this.$store.commit('setSchedule', true);
     }
   },
   beforeRouteEnter(to, from, next) {

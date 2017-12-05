@@ -63,11 +63,25 @@ export const loadVendors = ({ rootState, commit }) => {
     });
 };
 
-export const performVendorAction = ({ commit }, { vendor, action, email }) => {
-  if (action === 'approveVendor') {
+export const setGCalendar = ({ rootState, commit }, calendar) => {
+  return api.setGCalendar(calendar)
+    .then((calendar) => {
+      commit('gCalendar', calendar);
+    });
+};
+
+export const saveSchedule = ({ rootState, commit }) => {
+  return api.saveSchedule(rootState.buyer.schedule)
+    .then((vendors) => {
+      commit('setSchedule', false);
+    });
+};
+
+export const performVendorAction = ({ commit }, { vendor, action }) => {
+  if (action.label === 'Approve') {
     const schedUrl = window.location.href.replace('#', `?vid=${vendor._id}#`);
     email.body += `\r\n \r\n Please Visit: ${schedUrl} to schedule a time to meet with the buyer`;
-    return api.approveVendor(vendor, email)
+    return api.approveVendor(vendor)
       .then((result) => {
         commit('updateVendor', {
           vendor,
@@ -90,11 +104,4 @@ export const performVendorAction = ({ commit }, { vendor, action, email }) => {
 
 export const updateBuyerEmailTemplate = ({ rootState, commit }, { templateId, email }) => {
   return api.updateBuyerEmailTemplate(templateId, email);
-};
-
-export const setGCalendar = ({ rootState, commit }, calendar) => {
-  return api.setGCalendar(calendar)
-    .then((calendar) => {
-      commit('gCalendar', calendar);
-    });
 };
