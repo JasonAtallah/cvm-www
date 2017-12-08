@@ -1,6 +1,10 @@
 <template>
   <div class="dropdown">
-    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <button class="btn btn-sm dropdown-toggle" 
+    :class="{'btn-warning': vendor.status === null, 
+    'btn-success': vendor.status === 'approved', 
+    'btn-danger': vendor.status === 'rejected'}" 
+    type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       {{ label }}
     </button>
     <div class="dropdown-menu">
@@ -12,6 +16,8 @@
 </template>
 
 <script>
+import mapGetters from 'vuex';
+
 export default {
   name: 'dropdown-button',
   props: {
@@ -22,6 +28,9 @@ export default {
     options: {
       type: Array,
       required: false
+    },
+    vendor: {
+      vendor: 'vendor'
     }
   },
   methods: {

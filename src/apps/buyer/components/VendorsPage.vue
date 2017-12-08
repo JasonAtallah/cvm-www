@@ -8,7 +8,7 @@
     <button class="btn btn-primary" @click="addVendor">Add Vendor</button>
   </div>
   <div slot="content">
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
         <div class="col-sm-12">
           <VendorListFilter />

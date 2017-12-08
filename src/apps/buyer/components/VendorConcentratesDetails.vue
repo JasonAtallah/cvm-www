@@ -1,6 +1,6 @@
 <template>
   <div id="concentratesContent">
-    <div class="card-header"><h4>Concentrates</h4></div>
+    <!-- <div class="card-header"><h4>Concentrates</h4></div> -->
     <div class="card-block p-0">      
       <table class="table borderless table-sm m-0">
         <thead>

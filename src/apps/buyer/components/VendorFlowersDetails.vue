@@ -49,7 +49,7 @@ li{
 
 <template>
   <div id="flowersContent">
-        <div class="card-header"><h4>Flowers</h4></div>
+        <!-- <div class="card-header"><h4>Flowers</h4></div> -->
         <div class="card-block p-0">
           <table class="table borderless table-sm m-0">
             <thead>
