@@ -1,7 +1,25 @@
+<style>
+
+.table-header {
+  color: #a8a8a8;
+  background-color: #f9fafc;
+}
+
+.product-name {
+  font-weight: bold;
+  color: #777777
+}
+
+.product-info {
+  color: #a8a8a8;
+}
+
+</style>
+
 <template>
   <div id="concentratesContent">
     <table class="table table-hover">
-      <thead>
+      <thead class="table-header">
         <th>Name</th>
         <th>Type</th>
         <th>Units Available</th>
@@ -10,14 +28,15 @@
         <th>Shelf Ready</th>
       </thead>
       <tbody v-for="item in vendor.concentrates.products" :key="item.name">
-        <tr>
-          <td>{{ item.name }}</td>
-          <td>{{ item.type }}</td>
-          <td>{{ item.unitsAvailable }}</td>
-          <td>{{ item.thc }}</td>
-          <td>{{ item.cbd }}</td>
-          <td>{{ item.shelfReady }}</td>
+        <tr @click.prevent="showProductDetail(item.name)">
+          <td class="product-name">{{ item.name }}</td>
+          <td class="product-info">{{ item.type }}</td>
+          <td class="product-info">{{ item.unitsAvailable }}</td>
+          <td class="product-info">{{ item.thc }}</td>
+          <td class="product-info">{{ item.cbd }}</td>
+          <td class="product-info">{{ item.shelfReady }}</td>
         </tr>
+        <ProductFiles :item="item" />
       </tbody>
     </table>
   </div>
@@ -25,12 +44,26 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import ProductFiles from './ProductFiles';
 
 export default {
+  components: {
+    ProductFiles
+  },
   computed: {
     ...mapGetters({
-      vendor: 'selVendor'
+      vendor: 'selVendor',
+      activeRow: 'productDetailsRow'
     })
+  },
+  methods: {
+    showProductDetail(productName) {
+      if (productName === this.activeRow) {
+        this.$store.commit('productDetailsRow', null);
+      } else {
+        this.$store.commit('productDetailsRow', productName);
+      }
+    }
   }
 };
 </script>
