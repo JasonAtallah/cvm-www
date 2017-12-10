@@ -1,6 +1,6 @@
 <template>
   <div id="companyContent">
-    <!-- <div class="card-header"><h4>{{ vendor.company.name }}</h4></div> -->
+    <div class="card-header"><h4>{{ vendor.company.name }}</h4></div>
     <div class="card-block p-0">      
       <table class="table borderless table-sm m-0">
         <tbody>

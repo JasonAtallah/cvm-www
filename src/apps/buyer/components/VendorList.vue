@@ -11,6 +11,9 @@ img {
   float: left;
 }
 
+.company-name {
+  font-size: 24px;
+}
 @import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
 
 body {
@@ -61,7 +64,7 @@ ul.c-controls li a i {
     <div class="col-md-12">
       <ul class="list-group" id="vendor-list">
         
-        <!-- <li class="list-group-item">
+        <li class="list-group-item">
           <span class="title">Vendors</span>
           <ul class="pull-right c-controls">
             <li>
@@ -70,21 +73,21 @@ ul.c-controls li a i {
               </a>
             </li>           
           </ul>
-        </li> -->
+        </li>
 
-        <li class="list-unstyled">
+        <li class="list-group-item">
           <div class="card" v-for="vendor in vendors" :key="vendor._id">
             <div class="card-body">
-              <a class="col-md-3" href="#" @click.prevent="onVendorClick(vendor)">
+              <a class="col-sm-12 col-lg-3" href="#" @click.prevent="onVendorClick(vendor)">
                 <img id="profile-logo" src="https://cdn.allbud.com/image/upload/s--Gsagk9Ld--/c_limit,h_600,w_800/v1433196075/images/dispensary/main-street-marijuana/970/main-st-marijuana-allbud.jpg"
                   alt="Vendor Logo">
                 <span class="company-name">{{ vendor.company.name }}</span>
               </a>
-              <div class="row">
-                <div class="col-md-8">
+              <div class="row hidden-md-down">
+                <div class="col-sm-6 col-lg-9">
                   <VendorListContactInfo :vendor="vendor" />
                 </div>
-                <div class="col-md-4">
+                <div class="col-sm-6 col-lg-3">
                   <DropdownButton class="actionMenu col-md-3" label="Action" :vendor="vendor" :options="actions" @selection="onActionSelect(vendor, $event)" />
                 </div>
               </div>
