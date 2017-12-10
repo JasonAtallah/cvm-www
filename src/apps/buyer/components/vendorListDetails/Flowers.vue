@@ -8,7 +8,7 @@
         <th>CBD (mg)</th>
         <th>Grow Style</th>
         <th>Bud Size</th>
-        <th>Shelf Ready</th>
+        <th>Shelf Ready</th>        
       </thead>
       <tbody v-for="item in vendor.flowers.products" :key="item.name">
         <tr>

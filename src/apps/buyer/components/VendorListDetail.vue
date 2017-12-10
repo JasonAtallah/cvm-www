@@ -17,35 +17,35 @@
       {{ vendor.company.name }}
     </div>
     <div class="row content-options">
-      <VendorDetailsContentOptions />
+      <DetailTabs />
     </div>
     <div class="row profile-content">
-      <VendorCompanyDetails v-if="vendorDetailsTab === 'company'" />
-      <VendorContactDetails v-if="vendorDetailsTab === 'contact'" />
-      <VendorFlowersDetails v-if="vendorDetailsTab === 'flowers'" />
-      <VendorEdiblesDetails v-if="vendorDetailsTab === 'edibles'" />
-      <VendorConcentratesDetails v-if="vendorDetailsTab === 'concentrates'" />
+      <Company v-if="vendorDetailsTab === 'company'" />
+      <Contact v-if="vendorDetailsTab === 'contact'" />
+      <Flowers v-if="vendorDetailsTab === 'flowers'" />
+      <Edibles v-if="vendorDetailsTab === 'edibles'" />
+      <Concentrates v-if="vendorDetailsTab === 'concentrates'" />
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
-import VendorDetailsContentOptions from './VendorDetailsContentOptions';
-import VendorCompanyDetails from './VendorCompanyDetails';
-import VendorContactDetails from './VendorContactDetails';
-import VendorFlowersDetails from './VendorFlowersDetails';
-import VendorEdiblesDetails from './VendorEdiblesDetails';
-import VendorConcentratesDetails from './VendorConcentratesDetails';
+import DetailTabs from './vendorListDetails/DetailTabs';
+import Company from './vendorListDetails/Company';
+import Contact from './vendorListDetails/Contact';
+import Flowers from './vendorListDetails/Flowers';
+import Edibles from './vendorListDetails/Edibles';
+import Concentrates from './vendorListDetails/Concentrates';
 
 export default {
   components: {
-    VendorDetailsContentOptions,
-    VendorCompanyDetails,
-    VendorContactDetails,
-    VendorFlowersDetails,
-    VendorEdiblesDetails,
-    VendorConcentratesDetails
+    DetailTabs,
+    Company,
+    Contact,
+    Flowers,
+    Edibles,
+    Concentrates
   },
   name: 'vendor-list-detail',
   computed: {

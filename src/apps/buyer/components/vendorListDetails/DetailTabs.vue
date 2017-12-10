@@ -14,7 +14,7 @@
 .profile-usermenu ul li.active a {
   color: #5b9bd1;
   background-color: #f6f9fb;
-  border-left: 2px solid #5b9bd1;
+  border-bottom: 2px solid #5b9bd1;
 }
 
 </style>

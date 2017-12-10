@@ -63,12 +63,10 @@ a:hover {
 <script>
 import { mapGetters } from 'vuex';
 import DropdownButton from '@/components/form/DropdownButton';
-import VendorListContactInfo from './VendorListContactInfo';
 
 export default {
   components: {
-    DropdownButton,
-    VendorListContactInfo
+    DropdownButton
   },
   computed: {
     ...mapGetters({
