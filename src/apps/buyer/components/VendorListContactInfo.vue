@@ -1,3 +1,9 @@
+<style>
+.c-info {
+    padding: 5px 10px;
+}
+</style>
+
 <template>
   <div>
     <div class="row c-info">
@@ -30,9 +36,3 @@ export default {
 };
 
 </script>
-
-<style>
-.c-info {
-    padding: 5px 10px;
-}
-</style>

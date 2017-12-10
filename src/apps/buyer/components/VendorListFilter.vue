@@ -22,23 +22,21 @@
 </style>
 
 <template>
-<div class="container-fluid">
-  <ul class="vendor-list-filter">
-    <li>
-      <div class="title">Sort By</div>
-      <single-select :options="filter.sortOptions" :value="filter.sort" v-on:selection="updateSort"></single-select>
-    </li>
-    <li>
-      <div class="title">Filter by Status</div>
-      <single-select :options="statuses" :value="filter.status" v-on:selection="updateStatus"></single-select>
-    </li>
-    <li>
-      <div class="title">Filter by Product</div>
-      <single-select :options="productTypes" :value="filter.productType" v-on:selection="updateProductType"></single-select>
-    </li>
-    <hr>
-  </ul>
-</div>
+<ul class="vendor-list-filter">
+  <li>
+    <div class="title">Sort By</div>
+    <single-select :options="filter.sortOptions" :value="filter.sort" v-on:selection="updateSort"></single-select>
+  </li>
+  <li>
+    <div class="title">Filter by Status</div>
+    <single-select :options="statuses" :value="filter.status" v-on:selection="updateStatus"></single-select>
+  </li>
+  <li>
+    <div class="title">Filter by Product</div>
+    <single-select :options="productTypes" :value="filter.productType" v-on:selection="updateProductType"></single-select>
+  </li>
+  <hr>
+</ul>
 </template>
 
 <script>
