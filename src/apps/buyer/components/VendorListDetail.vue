@@ -1,11 +1,16 @@
 <style scoped>
 
+.content-option {
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
 .vendor-list-detail {
   padding-left: 1.5rem;
 }
 
 .company-name {
   font-size: 2rem;
+  color: #777777
 }
 
 </style>

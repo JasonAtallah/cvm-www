@@ -8,10 +8,11 @@ export const needSetCalendar = (state, getters, rootState, rootGetters) => {
 };
 export const pageMenuItems = state => state.pageMenuItems;
 export const pendingAction = state => state.pendingAction;
-export const profile = state => state.profile;
+export const productDetailsRow = state => state.productDetailsRow;
 export const productTypes = (state) => {
   return ['Flowers', 'Edibles & Topicals', 'Concentrates'];
 };
+export const profile = state => state.profile;
 
 export const schedule = state => state.buyer.schedule;
 export const selVendor = state => state.selVendor;
