@@ -28,7 +28,7 @@
           </div>
         </form>
       </div>
-      
+
       <div class="modal-footer">
         <label for="saveAsDefaultEmail">Make Default</label>
         <input v-model="newDefaultEmail" value="yes" type="checkbox" id="saveAsDefaultEmail">
@@ -47,7 +47,7 @@ import { mapGetters } from 'vuex';
 export default {
   data() {
     return {
-      newDefaultEmail: []
+      newDefaultEmail: null
     };
   },
   computed: {
@@ -79,7 +79,7 @@ export default {
         });
     },
     updateEmail() {
-      if (this.newDefaultEmail.length >= 0) {
+      if (this.newDefaultEmail) {
         return this.$store.dispatch('updateBuyerEmailTemplate', {
           email: this.email,
           templateId: this.action

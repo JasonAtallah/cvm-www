@@ -3,7 +3,7 @@
 </style>
 
 <template>
-<BasePage pageName="Vendors">
+<BasePage pageName="Vendors" v-if="buyer">
   <div slot="header-buttons">
     <button class="btn btn-primary" @click="addVendor">Add Vendor</button>
   </div>
@@ -44,6 +44,7 @@ export default {
   },
   computed: {
     ...mapGetters({
+      buyer: 'buyer',
       selVendor: 'selVendor'
     })
   },

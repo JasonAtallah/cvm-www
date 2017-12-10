@@ -57,9 +57,11 @@ export const loadVendors = ({ rootState, commit }) => {
 
 export const performVendorAction = ({ commit }, { vendor, action, email }) => {
   if (action === 'approveVendor') {
-    const schedUrl = window.location.href.replace('#', `?vid=${vendor._id}#`);
-    email.body += `\r\n \r\n Please Visit: ${schedUrl} to schedule a time to meet with the buyer`;
-    return api.approveVendor(vendor, email)
+    const params = Object.assign({}, email, {
+      scheduleUrl: window.location.href.replace('#', `?vid=${vendor._id}#`)
+    });
+
+    return api.approveVendor(vendor, params)
       .then((result) => {
         commit('updateVendor', {
           vendor,
