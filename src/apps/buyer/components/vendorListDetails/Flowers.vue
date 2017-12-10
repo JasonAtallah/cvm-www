@@ -69,7 +69,6 @@ export default {
   methods: {
     showProductDetail(productName) {
       this.$store.commit('productDetailsRow', productName);
-      console.log(this.activeRow);
     }
   }
 };
