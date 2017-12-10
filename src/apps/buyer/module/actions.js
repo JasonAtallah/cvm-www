@@ -82,8 +82,11 @@ export const performVendorAction = ({ commit }, { vendor, action, email }) => {
   return Promise.reject(new Error(`Invalid Action: ${action}`));
 };
 
-export const updateBuyerEmailTemplate = ({ rootState, commit }, { templateId, email }) => {
-  return api.updateBuyerEmailTemplate(templateId, email);
+export const saveSchedule = ({ rootState, commit }) => {
+  return api.saveSchedule(rootState.buyer.schedule)
+    .then((vendors) => {
+      commit('setSchedule', false);
+    });
 };
 
 export const setGCalendar = ({ rootState, commit }, calendar) => {
@@ -91,4 +94,8 @@ export const setGCalendar = ({ rootState, commit }, calendar) => {
     .then((calendar) => {
       commit('gCalendar', calendar);
     });
+};
+
+export const updateBuyerEmailTemplate = ({ rootState, commit }, { templateId, email }) => {
+  return api.updateBuyerEmailTemplate(templateId, email);
 };

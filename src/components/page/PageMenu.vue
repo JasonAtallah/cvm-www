@@ -2,15 +2,13 @@
 .page-menu {
   position: relative;
   height: 50px;
-  background-color: #83DB93;
 }
 
 .page-menu img.logo {
   position: absolute;
   left: 0;
   top: 10px;
-  margin-left: 2rem;
-  height: 2rem;
+  height: 30px;
 }
 
 .page-menu .pageMenuItem {

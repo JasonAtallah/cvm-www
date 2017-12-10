@@ -1,87 +1,91 @@
 <style lang="scss" scoped>
+.card {
+  border: none;
+  border-bottom: 1px solid #CCC;
+}
 
- img {
-    display: block;
-    margin: auto;
-    width: 20%;
+img {
+  display: block;
+  margin: auto;
+  max-width: 70px;
+  float: left;
+}
+
+.company-name {
+  font-size: 24px;
+}
+
+
+
+
+
+.title {
+    display: inline-block;
+    font-size: 1.7em;
+    font-weight: bold;
+    padding: 5px 15px;
+}
+ul.c-controls {
+    list-style: none;
+    margin: 0px;
+    min-height: 44px;
+}
+
+ul.c-controls li {
+    margin-top: 8px;
     float: left;
-  }
-
-.vendor-list-item .vendor-item {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  margin-bottom: 20px;
-  border-style: solid; 
-  border-width: thin;
-  border-color: #DCDCDC;
-  background-color: white;
-  max-width: 1400px;
 }
 
-.vendor-list-item .company-name {
-  font-weight: bold;
-  color: #a125c6;
-  font-size: 1.5rem;
+ul.c-controls li a {
+    font-size: 1.7em;
+    padding: 11px 10px 6px;   
 }
-
-.vendor-list-item .company-location {
-  font-size: 1.3rem;
-}
-
-.vendor-list-item .city, .vendor-list-item .state {
-  font-size: .9rem;
-}
-
-.vendor-list-item .product-chips {
-  list-style: none;
-  display: inline-block;
-}
-
-.vendor-list-item .product-chips {
-  background-color: $chip-color;
-  display: inline;
-  padding: 2px 5px;
-  border-radius: 5px;
-  margin-right: 10px;
-}
-
-.vendor-list-item .actionMenu {
-  display: inline-block;
+ul.c-controls li a i {
+    min-width: 24px;
+    text-align: center;
 }
 
 </style>
 
 <template>
-  <div class="vendor-list-item container">
-    <div class="card-body">      
-      <div v-for="vendor in vendors" :key="vendor._id">
-        <div class="row vendor-item">
-          <a class="col-md-3" href="#" @click.prevent="onVendorClick(vendor)">
-            <img id="profile-logo" src="https://cdn.allbud.com/image/upload/s--Gsagk9Ld--/c_limit,h_600,w_800/v1433196075/images/dispensary/main-street-marijuana/970/main-st-marijuana-allbud.jpg"
-          alt="Vendor Logo">
-            <span class="company-name">{{ vendor.company.name }}</span>
-          </a>
-          <span class="col-md-3 company-location">{{ vendor.company.city}}<span v-if="vendor.company.state">, </span> {{ vendor.company.state }}</span>
-          <span class="col-md-3">
-            <label v-if="productTypeExists(vendor.flowers.products)" class="product-chips">Flower</label>
-            <label v-if="productTypeExists(vendor.concentrates.products)" class="product-chips">Concentrates</label>
-            <label v-if="productTypeExists(vendor.edibles.products)" class="product-chips">Edibles</label>
-          </span>
-          <dropdown-button class="actionMenu col-md-3" label="Action" :options="actions" @selection="onActionSelect(vendor, $event)" />
-        </div>
-      </div>
+  <div class="vendor-list-item">
+    <div class="col-md-12">
+      <ul class="list-group" id="vendor-list">
+
+        <li class="list-group-item">
+          <div class="card" v-for="vendor in vendors" :key="vendor._id">
+            <div class="card-body">
+              <a class="col-sm-12 col-lg-3" href="#" @click.prevent="onVendorClick(vendor)">
+                <img id="profile-logo" src="https://cdn.allbud.com/image/upload/s--Gsagk9Ld--/c_limit,h_600,w_800/v1433196075/images/dispensary/main-street-marijuana/970/main-st-marijuana-allbud.jpg"
+                  alt="Vendor Logo">
+                <span class="company-name">{{ vendor.company.name }}</span>
+              </a>
+              <div class="row hidden-md-down">
+                <div class="col-sm-6 col-lg-9">
+                  <VendorListContactInfo :vendor="vendor" />
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                  <DropdownButton class="actionMenu col-md-3" label="Action" :vendor="vendor" :options="actions" @selection="onActionSelect(vendor, $event)" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+      </ul>
     </div>
   </div>
 </template>
 
-
 <script>
 import { mapGetters } from 'vuex';
 import DropdownButton from '@/components/form/DropdownButton';
+import VendorListContactInfo from './VendorListContactInfo';
 
 export default {
   components: {
-    DropdownButton
+    DropdownButton,
+    VendorListContactInfo
   },
   computed: {
     ...mapGetters({
@@ -99,12 +103,6 @@ export default {
     },
     onVendorClick(vendor) {
       this.$store.commit('selVendor', vendor);
-    },
-    productTypeExists(productType) {
-      if (productType.length > 0) {
-        return true;
-      }
-      return false;
     }
   }
 };

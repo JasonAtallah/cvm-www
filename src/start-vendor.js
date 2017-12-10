@@ -1,6 +1,6 @@
 import Vue from 'vue';
 
-import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/scss/bootstrap.scss';
 
 import VendorApp from './apps/vendor/main';
 import VendorRouter from './apps/vendor/router';

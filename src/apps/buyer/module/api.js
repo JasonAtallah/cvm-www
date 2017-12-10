@@ -48,6 +48,10 @@ export default {
     return http.put(`/api/vendors/${vendor._id}/reject`, email);
   },
 
+  saveSchedule(schedule) {
+    return http.put('/api/buyer/schedule', schedule);
+  },
+
   setGCalendar(calendar) {
     return http.put('/api/buyer/gcalendar', calendar);
   },

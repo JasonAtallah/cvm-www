@@ -5,7 +5,6 @@
   text-align: left;
   margin: 0;
   padding: 1rem 0;
-  max-width: 1200px;
 }
 
 .vendor-list-filter li {
@@ -18,32 +17,26 @@
 
 .vendor-list-filter li .title {
   display: block;
-  font-size: 1.2rem;
+  font-size: .9rem;
 }
-
-.btn.dropdown-toggle.filter-button {
-  background-color: transparent;
-}
-
 </style>
 
 <template>
-<div class="container">
   <ul class="vendor-list-filter">
     <li>
-      <div class="title">Sort</div>
-      <single-select class="btn dropdown-toggle filter-button" :options="filter.sortOptions" :value="filter.sort" v-on:selection="updateSort"></single-select>
+      <div class="title">Sort By</div>
+      <single-select :options="filter.sortOptions" :value="filter.sort" v-on:selection="updateSort"></single-select>
     </li>
     <li>
-      <div class="title">Status</div>
-      <single-select class="btn dropdown-toggle filter-button" :options="statuses" :value="filter.status" v-on:selection="updateStatus"></single-select>
+      <div class="title">Filter by Status</div>
+      <single-select :options="statuses" :value="filter.status" v-on:selection="updateStatus"></single-select>
     </li>
     <li>
-      <div class="title">Product</div>
-      <single-select class="btn dropdown-toggle filter-button" :options="productTypes" :value="filter.productType" v-on:selection="updateProductType"></single-select>
+      <div class="title">Filter by Product</div>
+      <single-select :options="productTypes" :value="filter.productType" v-on:selection="updateProductType"></single-select>
     </li>
+    <hr>
   </ul>
-</div>
 </template>
 
 <script>

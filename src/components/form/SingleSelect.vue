@@ -1,3 +1,11 @@
+
+<style scoped>
+select {
+  background: none;
+  border: none;
+}
+</style>
+
 <template>
   <select v-bind:value="value" v-on:change="updateValue">
     <option v-if="allowNull" value="">
@@ -33,7 +41,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-
-</style>

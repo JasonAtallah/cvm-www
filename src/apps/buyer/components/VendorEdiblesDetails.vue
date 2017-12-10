@@ -1,8 +1,7 @@
 <template>
   <div id="ediblesContent">
-    <div class="card-header"><h4>Edibles & Topicals</h4></div>
     <div class="card-block p-0">      
-      <table class="table borderless table-sm m-0">
+      <table class="table borderless table-md m-0">
         <thead>
           <th>Name</th>
           <th>Units Available</th>
