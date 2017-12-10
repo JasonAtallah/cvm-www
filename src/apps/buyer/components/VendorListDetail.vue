@@ -17,22 +17,16 @@
 
 <template>
   <div class="vendor-list-detail">
-
-    <div class="container">
-
-        <div class="row">
-          <VendorDetailsContentOptions />
-        </div>
-        
-          <div class="profile-content">
-              <VendorCompanyDetails v-if="vendorDetailsTab === 'company'" />
-              <VendorFlowersDetails v-if="vendorDetailsTab === 'flowers'" />
-              <VendorEdiblesDetails v-if="vendorDetailsTab === 'edibles'" />
-              <VendorConcentratesDetails v-if="vendorDetailsTab === 'concentrates'" />
-          </div>
-
+    <div class="row">
+      <VendorDetailsContentOptions />
     </div>
 
+    <div class="profile-content row">
+      <VendorCompanyDetails v-if="vendorDetailsTab === 'company'" />
+      <VendorFlowersDetails v-if="vendorDetailsTab === 'flowers'" />
+      <VendorEdiblesDetails v-if="vendorDetailsTab === 'edibles'" />
+      <VendorConcentratesDetails v-if="vendorDetailsTab === 'concentrates'" />
+    </div>
   </div>
 </template>
 

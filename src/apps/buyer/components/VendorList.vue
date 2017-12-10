@@ -51,8 +51,8 @@ ul.c-controls li a i {
   <div class="vendor-list-item">
     <div class="col-md-12">
       <ul class="list-group" id="vendor-list">
-
-        <li class="list-group-item">
+        
+        <li class="list-unstyled">
           <div class="card" v-for="vendor in vendors" :key="vendor._id">
             <div class="card-body">
               <a class="col-sm-12 col-lg-3" href="#" @click.prevent="onVendorClick(vendor)">

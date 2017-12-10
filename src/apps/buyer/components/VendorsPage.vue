@@ -8,19 +8,17 @@
     <button class="btn btn-primary" @click="addVendor">Add Vendor</button>
   </div>
   <div slot="content">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-12">
-          <VendorListFilter />
-        </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <VendorListFilter />
       </div>
-      <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-4">
-          <VendorList />
-        </div>
-        <div class="col-md-12 col-lg-8">
-          <VendorListDetail />
-        </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-4">
+        <VendorList />
+      </div>
+      <div class="col-md-12 col-lg-8">
+        <VendorListDetail />
       </div>
     </div>
   </div>
