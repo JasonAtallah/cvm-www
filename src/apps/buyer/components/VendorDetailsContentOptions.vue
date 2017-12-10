@@ -1,9 +1,5 @@
 <style scoped>
 
-.profile-usermenu ul li {
-  border-bottom: 1px solid #f0f4f7;
-}
-
 .profile-usermenu ul li a {
   color: #93a3b5;
   font-size: 20px;
@@ -12,6 +8,7 @@
 .profile-usermenu ul li a:hover {
   background-color: #fafcfd;
   color: #5b9bd1;
+  text-decoration: none;
 }
 
 .profile-usermenu ul li.active a {
@@ -28,19 +25,19 @@
       <div class="profile-usermenu">
         <ul class="list-unstyled list-inline">
           <li class="list-inline-item" :class="{'active': activeTab === 'company'}">
-            <a @click.prevent="activateTab('company')">Company</a>
+            <a href="#" @click.prevent="activateTab('company')">Company</a>
           </li>
           <li class="list-inline-item" :class="{'active': activeTab === 'contact'}">
-            <a @click.prevent="activateTab('contact')">Contact</a>
+            <a href="#" @click.prevent="activateTab('contact')">Contact</a>
           </li>
           <li class="list-inline-item" :class="{'active': activeTab === 'flowers'}">
-            <a @click.prevent="activateTab('flowers')">Flowers</a>
+            <a href="#" @click.prevent="activateTab('flowers')">Flowers</a>
           </li>
           <li class="list-inline-item" :class="{'active': activeTab === 'edibles'}">
-            <a @click.prevent="activateTab('edibles')">Edibles & Topicals</a>
+            <a href="#" @click.prevent="activateTab('edibles')">Edibles & Topicals</a>
           </li>
           <li class="list-inline-item" :class="{'active': activeTab === 'concentrates'}">
-            <a @click.prevent="activateTab('concentrates')">Concentrates</a>
+            <a href="#" @click.prevent="activateTab('concentrates')">Concentrates</a>
           </li>
         </ul>
       </div>
