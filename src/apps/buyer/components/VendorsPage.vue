@@ -1,28 +1,28 @@
-
 <style scoped>
+
 </style>
 
 <template>
-<BasePage pageName="Vendors" v-if="buyer">
-  <div slot="header-buttons">
-    <button class="btn btn-primary" @click="addVendor">Add Vendor</button>
-  </div>
-  <div slot="content">
-    <div class="row">
-      <div class="col-sm-12">
-        <VendorListFilter />
+  <BasePage pageName="Vendors" v-if="buyer">
+    <div slot="header-buttons">
+      <button class="btn btn-primary" @click="addVendor">Add Vendor</button>
+    </div>
+    <div slot="content">
+      <div class="row">
+        <div class="col-sm-12">
+          <VendorListFilter />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-4">
+          <VendorList />
+        </div>
+        <div class="col-md-12 col-lg-8">
+          <VendorListDetail />
+        </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-sm-12 col-md-12 col-lg-4">
-        <VendorList />
-      </div>
-      <div class="col-md-12 col-lg-8">
-        <VendorListDetail />
-      </div>
-    </div>
-  </div>
-</BasePage>
+  </BasePage>
 </template>
 
 <script>

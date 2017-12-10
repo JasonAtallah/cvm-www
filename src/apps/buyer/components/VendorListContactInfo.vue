@@ -1,7 +1,9 @@
-<style>
+<style scoped>
+
 .c-info {
     padding: 5px 10px;
 }
+
 </style>
 
 <template>
@@ -15,7 +17,6 @@
       <span class="fa fa-envelope text-muted c-info" :title="vendor.contact.email"></span>
       <a v-if="vendor.company.website" class="fa fa-desktop text-muted c-info" :title="vendor.company.website" target="_blank" :href="vendor.company.website" role="button"></a>
     </div>
-   
   </div>
 </template>
 
@@ -34,5 +35,4 @@ export default {
     }
   }
 };
-
 </script>

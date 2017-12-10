@@ -1,4 +1,5 @@
 <style scoped>
+
 .modal {
   text-align: left;
   display: block;
@@ -13,6 +14,7 @@
   font-size: smaller;
   padding-right: 10px;
 }
+
 </style>
 
 <template>

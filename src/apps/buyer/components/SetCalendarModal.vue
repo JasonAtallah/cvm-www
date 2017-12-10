@@ -1,8 +1,10 @@
 <style scoped>
+
 .set-calendar {
   text-align: left;
   display: block;
 }
+
 </style>
 
 <template>

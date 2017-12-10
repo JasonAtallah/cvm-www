@@ -1,7 +1,22 @@
 <style scoped>
+
+a {
+  text-decoration: none;
+  color: #888b91;
+}
+
+a:hover {
+  color: #5b9bd1;
+}
+
 .card {
   border: none;
   border-bottom: 1px solid #CCC;
+  padding-top: 15px;
+}
+
+.company-name {
+  font-size: 1.5em;
 }
 
 #profile-logo {
@@ -11,56 +26,34 @@
   float: left;
 }
 
-.company-name {
-  font-size: 1.5em;
-}
-
-.title {
-    display: inline-block;
-    font-size: 1.7em;
-    font-weight: bold;
-    padding: 5px 15px;
-}
-ul.c-controls {
-    list-style: none;
-    margin: 0px;
-    min-height: 44px;
-}
-
-ul.c-controls li {
-    margin-top: 8px;
-    float: left;
-}
-
-ul.c-controls li a {
-    font-size: 1.7em;
-    padding: 11px 10px 6px;   
-}
-ul.c-controls li a i {
-    min-width: 24px;
-    text-align: center;
-}
-
 </style>
 
 <template>
   <div class="vendor-list-item">
     <ul class="list-unstyled">
       <li>
-        <div class="card card-body" v-for="vendor in vendors" :key="vendor._id">
-          <a @click.prevent="onVendorClick(vendor)">
-            <img id="profile-logo" src="https://cdn.allbud.com/image/upload/s--Gsagk9Ld--/c_limit,h_600,w_800/v1433196075/images/dispensary/main-street-marijuana/970/main-st-marijuana-allbud.jpg" alt="Vendor Logo">
-            <span class="company-name">{{ vendor.company.name }}</span>
-          </a>
-          <div class="row">
-            <div class="col-sm-6 col-lg-9">
-              <VendorListContactInfo :vendor="vendor" />
-            </div>
-            <div class="col-sm-6 col-lg-3">
-              <DropdownButton class="actionMenu" label="Action" :vendor="vendor" 
-              :options="actions" @selection="onActionSelect(vendor, $event)"
-              />
-            </div>
+        <div class="card" v-for="vendor in vendors" :key="vendor._id">
+          <div class="col-md-12">
+            <a @click.prevent="onVendorClick(vendor)" href="#">
+              <div class="pull-left">
+                <img id="profile-logo" src="https://cdn.allbud.com/image/upload/s--Gsagk9Ld--/c_limit,h_600,w_800/v1433196075/images/dispensary/main-street-marijuana/970/main-st-marijuana-allbud.jpg"
+                  alt="Vendor Logo">
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <span class="company-name">{{ vendor.company.name }}</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-8">
+                  <VendorListContactInfo :vendor="vendor" />
+                </div>
+                <div class="col-md-4">
+                  <DropdownButton class="actionMenu text-right" label="Action" :vendor="vendor" :options="actions" @selection="onActionSelect(vendor, $event)"
+                  />
+                </div>
+              </div>
+            </a>
           </div>
         </div>
       </li>

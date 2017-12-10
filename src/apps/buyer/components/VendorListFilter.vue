@@ -1,5 +1,5 @@
-
 <style scoped>
+
 .vendor-list-filter {
   list-style: none;
   text-align: left;
@@ -19,6 +19,7 @@
   display: block;
   font-size: .9rem;
 }
+
 </style>
 
 <template>

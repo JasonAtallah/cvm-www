@@ -1,8 +1,10 @@
 <style scoped>
+
 .add-vendor-modal {
   text-align: left;
   display: block;
 }
+
 </style>
 
 <template>

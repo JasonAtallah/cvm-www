@@ -1,27 +1,27 @@
 <style scoped>
+
 .vendor-list-detail {
-  padding: 1rem;
+  padding: 2rem;
 }
 
-.profile {
-  margin: 10px 0;
+.content-options {
+  padding-left: 0.5rem;
 }
 
 .profile-content {
-  padding: 10px;
-  background: #fff;
-  min-height: 460px;
+  padding-left: 0.5rem;
+  height: 500px;
 }
+
 </style>
 
 
 <template>
   <div class="vendor-list-detail card">
-    <div class="row">
+    <div class="row content-options">
       <VendorDetailsContentOptions />
     </div>
-
-    <div class="profile-content row">
+    <div class="row profile-content">
       <VendorCompanyDetails v-if="vendorDetailsTab === 'company'" />
       <VendorFlowersDetails v-if="vendorDetailsTab === 'flowers'" />
       <VendorEdiblesDetails v-if="vendorDetailsTab === 'edibles'" />
