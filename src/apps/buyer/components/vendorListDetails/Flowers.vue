@@ -14,12 +14,6 @@
   color: #a8a8a8;
 }
 
-.product-additional-info {
-  margin-left: 1rem;
-  width: 100%;
-  border: none;
-}
-
 </style>
 
 <template>
@@ -35,7 +29,7 @@
         <th>Shelf Ready</th>        
       </thead>
       <tbody v-for="item in vendor.flowers.products" :key="item.name">
-        <tr @click.prevent="showProductDetail(item.name)" class="aa">
+        <tr @click.prevent="showProductDetail(item.name)">
           <td class="product-name">{{ item.name }}</td>
           <td class="product-info">{{ item.weightAvailable }}</td>
           <td class="product-info">{{ item.thc }}</td>
@@ -44,34 +38,7 @@
           <td class="product-info">{{ item.budSize }}</td>
           <td class="product-info">{{ item.shelfReady }}</td>
         </tr>
-        <tr v-if="activeRow === item.name">
-          <td colspan="7">
-            <div class="card product-additional-info">
-              <div class="row">
-                <div class="col-md-6">
-                  <h6>Photos</h6>
-                  <span v-if="item.photo.length === 0">No photos were included!</span>                          
-                </div>
-                <div class="col-md-6">
-                  <h6>Test Results</h6>
-                  <span v-if="item.testResults.length === 0">No test results were included!</span>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <ul class="list-unstyled" v-for="file in item.photo">
-                    <li><i class="fa fa-photo"></i> {{ file.originalname.split('.')[0] }}</li>
-                  </ul>
-                </div>                
-                <div class="col-md-6">
-                  <ul class="list-unstyled" v-for="file in item.testResults">
-                    <li><i class="fa" :class="getFileType(file.mimetype)"></i> {{ file.originalname.split('.')[0] }}</li>
-                  </ul>
-                </div>                
-              </div>              
-            </div>
-          </td>
-        </tr>
+        <ProductFiles :item="item" />
       </tbody>
     </table>
   </div>
@@ -79,8 +46,12 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import ProductFiles from './ProductFiles';
 
 export default {
+  components: {
+    ProductFiles
+  },
   computed: {
     ...mapGetters({
       vendor: 'selVendor',
@@ -89,19 +60,11 @@ export default {
   },
   methods: {
     showProductDetail(productName) {
-      this.$store.commit('productDetailsRow', productName);
-    },
-    getFileType(file) {
-      const fileTypes = {
-        'image/png': 'fa-photo',
-        'image/jpeg': 'fa-photo',
-        'application/pdf': 'fa-file-pdf-o',
-        'application/msword': 'fa fa-file-word-o'
-      };
-      if (fileTypes[file]) {
-        return fileTypes[file];
+      if (productName === this.activeRow) {
+        this.$store.commit('productDetailsRow', null);
+      } else {
+        this.$store.commit('productDetailsRow', productName);
       }
-      return 'fa-file-o';
     }
   }
 };
