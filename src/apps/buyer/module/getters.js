@@ -2,7 +2,6 @@ export const addCalendarEventModalIsVisible = state => state.addCalendarEventMod
 export const buyer = state => state.buyer;
 export const calendars = state => state.calendars;
 export const events = state => state.events;
-
 export const needSetCalendar = (state, getters, rootState, rootGetters) => {
   return state.buyer && !state.buyer.gcalendar;
 };
@@ -12,7 +11,6 @@ export const profile = state => state.profile;
 export const productTypes = (state) => {
   return ['Flowers', 'Edibles & Topicals', 'Concentrates'];
 };
-
 export const schedule = state => state.buyer.schedule;
 export const selVendor = state => state.selVendor;
 export const setSchedule = state => state.setSchedule;
@@ -37,12 +35,9 @@ export const sortedVendors = (state) => {
     });
   }
 
-  vendors.sort(state.vendorFilter.selectedSort.sortFn);
+  vendors.sort(state.vendorFilter.sort.sortFn);
 
   return vendors;
-};
-export const statuses = (state) => {
-  return ['New', 'Approved', 'Rejected'];
 };
 export const vendors = state => state.vendors;
 export const vendorActions = state => state.vendorActions;

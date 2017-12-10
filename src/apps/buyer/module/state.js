@@ -1,24 +1,14 @@
-import vendorSorts from '../config/vendorSorts';
+import pages from '../metadata/pages';
+import vendorActions from '../metadata/vendorActions';
+import vendorSorts from '../metadata/vendorSorts';
+import vendorStatuses from '../metadata/vendorStatuses';
 
 export default {
   buyer: null,
   calendars: null,
   events: [],
   gcalendar: null,
-  pageMenuItems: [
-    {
-      name: 'Vendors',
-      href: '/'
-    },
-    {
-      name: 'Calendar',
-      href: '/calendar'
-    },
-    // {
-    //   name: 'Onboarding',
-    //   href: '/onboarding'
-    // }
-  ],
+  pageMenuItems: pages,
   pendingAction: {
     type: null
   },
@@ -29,21 +19,9 @@ export default {
   vendorFilter: {
     productType: null,
     status: null,
-    sort: vendorSorts[0].label,
+    sort: vendorSorts[0],
     sortOptions: vendorSorts,
-    get selectedSort() {
-      const selectedOptions = this.sortOptions.filter(o => o.label === this.sort);
-      return selectedOptions[0];
-    }
+    statusOptions: vendorStatuses
   },
-  vendorActions: [
-    {
-      label: 'Approve',
-      value: 'approveVendor'
-    },
-    {
-      label: 'Reject',
-      value: 'rejectVendor'
-    }
-  ]
+  vendorActions
 };

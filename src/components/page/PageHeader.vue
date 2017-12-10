@@ -2,12 +2,7 @@
 .page-header {
   position: relative;
   text-align: left;
-  padding: 1rem 0;
   height: $header-height;
-}
-
-.page-header .left, .page-header .right {
-  margin: 1rem 0 1rem 0;
 }
 
 .page-header .left {
@@ -25,7 +20,7 @@
 
 .page-header h1 {
   font-size: 1.5rem;
-  margin-top: 1rem;
+  margin: 1rem 0;
 }
 </style>
 

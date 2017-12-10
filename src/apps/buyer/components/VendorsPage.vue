@@ -1,32 +1,30 @@
-<style scoped>
-
+<style lang="scss" scoped>
+.vendors-master {
+  height: 100%;
+  width: 100%;
+  border-right: 1px solid $section-border-color;
+}
 </style>
 
 <template>
   <BasePage pageName="Vendors" v-if="buyer">
-    <div slot="header-buttons">
-      <button class="btn btn-primary" @click="addVendor">Add Vendor</button>
-    </div>
-    <div slot="content">
-      <div class="row">
-        <div class="col-sm-12">
+    <div slot="content" class="vendors-page">
+      <MasterDetail>
+        <div slot="master" class="vendors-master">
           <VendorListFilter />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-4">
           <VendorList />
         </div>
-        <div class="col-md-12 col-lg-8">
+        <div class="detail">
           <VendorListDetail />
         </div>
-      </div>
+      </MasterDetail>
     </div>
   </BasePage>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
+import MasterDetail from '@/components/page/content/MasterDetail';
 import BasePage from './BasePage';
 import VendorList from './VendorList';
 import VendorListFilter from './VendorListFilter';
@@ -35,6 +33,7 @@ import VendorListDetail from './VendorListDetail';
 export default {
   components: {
     BasePage,
+    MasterDetail,
     VendorList,
     VendorListFilter,
     VendorListDetail
