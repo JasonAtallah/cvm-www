@@ -4,38 +4,46 @@ const config = require('../../config');
 const auth = require('./auth');
 const parse = require('./parse');
 const proxy = require('./proxy');
+const responses = require('./responses');
 
 module.exports = function (app) {
   app.get('/favicon.ico', express.static(path.resolve(config.staticDir, 'img')));
 
-  if (config.app === 'buyer') {
+  if (config.app.name === 'buyer') {
+
     app.use(config.staticPath,
-      auth.isLoggedIn,      
+      auth.isBuyerLoggedIn,
       express.static(config.staticDir));
 
-    app.get('/session',
-      auth.isLoggedIn,
-      auth.sendBuyerSession);
+    app.get('/login',
+      function(req, res) {
+        res.redirect(`${config.mgmtApi.host}/buyer/login?callback=${config.app.buyerCallback}`);
+      }
+    );
+
+    app.get('/buyer/callback',
+      auth.convertCodeToToken,
+      responses.redirectToHomePage);
 
     app.use('/api',
-      auth.isLoggedIn,
+      auth.isBuyerLoggedIn,
       proxy.api);
 
     if (process.env.NODE_ENV === 'production') {
       app.get('/',
-        auth.isLoggedIn,
+        auth.isBuyerLoggedIn,
         function (req, res, next) {
           res.sendFile(config.index);
         });
     } else if (process.env.NODE_ENV === 'development') {
       const devMW = require('../lib/devServer')(app);
       app.use(
-        auth.isLoggedIn,
+        auth.isBuyerLoggedIn,
         ...devMW);
     }
   }
 
-  if (config.app === 'vendor') {
+  if (config.app.name === 'vendor') {
     app.use(config.staticPath,
       express.static(config.staticDir));
 

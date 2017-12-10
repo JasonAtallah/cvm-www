@@ -44,10 +44,6 @@ export default {
     return http.get('/api/buyer');
   },
 
-  loadSession() {
-    return http.get('/session');
-  },
-
   rejectVendor(vendor, email) {
     return http.put(`/api/vendors/${vendor._id}/reject`, email);
   },

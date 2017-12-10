@@ -7,11 +7,9 @@ module.exports = {
     target: config.mgmtApi.host,
     changeOrigin: true,
     onProxyReq(proxyReq, req, res) {
-      if (req.user) {
-        proxyReq.setHeader('Authorization', `Bearer ${req.user.auth.accessToken}`);
+      if (req.session.token) {
+        proxyReq.setHeader('Authorization', `Bearer ${req.session.token}`);
       }
-
-      proxyReq.setHeader('Origin', config.host);
     },
     onError(err, req, res) {
       res.status(500).send(err.toString());

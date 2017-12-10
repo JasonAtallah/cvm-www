@@ -18,7 +18,6 @@ export const createVendor = ({ dispatch, commit }, values) => {
 
 export const init = ({ dispatch }) => {
   return Promise.all([
-    dispatch('loadSession'),
     dispatch('loadBuyer')
   ]);
 };
@@ -27,13 +26,6 @@ export const loadBuyer = ({ commit, state }) => {
   return api.loadBuyer()
     .then((buyer) => {
       commit('buyer', buyer);
-    });
-};
-
-export const loadSession = ({ commit, state }) => {
-  return api.loadSession()
-    .then((session) => {
-      commit('session', session);
     });
 };
 

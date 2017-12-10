@@ -12,7 +12,6 @@ const config = require('../../config')
 const webpackConfig = require('../../build/webpack.dev.conf');
 
 module.exports = function(app) {
-  const port = config.port;
   const autoOpenBrowser = config.autoOpenBrowser;
   const proxyTable = config.proxyTable;
   const compiler = webpack(webpackConfig);
@@ -28,7 +27,7 @@ module.exports = function(app) {
 
   devMiddleware.waitUntilValid(() => {
     if (autoOpenBrowser && process.env.NODE_ENV !== 'testing') {
-      opn('http://localhost:' + port)
+      opn('http://localhost:' + config.app.port)
     }
   });
 

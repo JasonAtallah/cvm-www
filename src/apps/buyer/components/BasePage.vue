@@ -5,7 +5,7 @@
 <template>
 <Page :menuItems="pageMenuItems" :pageName="pageName">
   <div slot="menu-right">
-    {{ profile.givenName }}
+    {{ buyer.firstName }}
   </div>
   <div slot="header-buttons">
     <slot name="header-buttons"></slot>
@@ -28,7 +28,7 @@ export default {
   props: ['pageName'],
   computed: {
     ...mapGetters({
-      profile: 'profile',
+      buyer: 'buyer',
       pageMenuItems: 'pageMenuItems'
     })
   }

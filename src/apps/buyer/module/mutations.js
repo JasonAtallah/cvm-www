@@ -40,10 +40,6 @@ export const selVendor = (state, vendor) => {
   state.selVendor = vendor;
 };
 
-export const session = (state, session) => {
-  Object.assign(state.profile, session.profile);
-};
-
 export const vendors = (state, vendors) => {
   state.vendors = vendors;
 };

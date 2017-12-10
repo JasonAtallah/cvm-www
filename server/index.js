@@ -1,6 +1,5 @@
 'use strict';
 
-const cookieParser = require('cookie-parser');
 const dotenv = require('dotenv');
 const express = require('express');
 const session = require('express-session');
@@ -12,7 +11,6 @@ config.load();
 
 const app = express();
 
-app.use(cookieParser());
 app.use(session({
   cookie: {
     // secure: true,
@@ -29,9 +27,8 @@ app.use(session({
   })
 }));
 
-require('./mw/oauth')(app);
 require('./mw/routes')(app);
 
-var server = app.listen(config.port, function () {
-  console.log(`App is running on port ${config.port}`);
+var server = app.listen(config.app.port, function () {
+  console.log(`App is running on port ${config.app.port}`);
 });

@@ -6,17 +6,15 @@ const _ = require('lodash');
 const config = module.exports = {
   load: function () {
     _.extend(config, {
-      app: process.env.JS_APP_NAME,
+      app: {
+        host: process.env.APP_HOST,
+        name: process.env.JS_APP_NAME,
+        port: process.env.PORT,
+        buyerCallback: `${process.env.APP_HOST}/buyer/callback`
+      },
       assetsRoot: path.resolve(__dirname, '../dist'),
       assetsSubDirectory: 'static',
       assetsPublicPath: '/',
-      auth0: {
-        audience: process.env.AUTH0_AUDIENCE,
-        clientId: process.env.AUTH0_CLIENT_ID,
-        clientSecret: process.env.AUTH0_CLIENT_SECRET,
-        domain: process.env.AUTH0_DOMAIN,
-        scope: process.env.AUTH0_SCOPE
-      },
       build: {
         bundleAnalyzerReport: false,
         index: path.resolve(__dirname, '../dist/index.html'),
@@ -25,15 +23,13 @@ const config = module.exports = {
         productionGzipExtensions: ['js', 'css']
       },
       entryFilePath: `./src/start-${process.env.JS_APP_NAME}`,
-      host: process.env.APP_HOST,
       index: path.resolve(__dirname, '../dist/index.html'),
       mgmtApi: {
         host: process.env.MGMT_API_HOST
       },
       mongo: {
         uri: process.env.MONGODB_URI
-      },
-      port: process.env.PORT
+      }
     });
 
     _.extend(config, {

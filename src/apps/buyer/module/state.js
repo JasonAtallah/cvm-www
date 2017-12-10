@@ -22,11 +22,6 @@ export default {
   pendingAction: {
     type: null
   },
-  profile: {
-    givenName: null,
-    familyName: null,
-    imageUrl: null
-  },
   selVendor: null,
   vendorDetailsTab: 'company',
   vendors: [],

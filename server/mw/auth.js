@@ -1,15 +1,33 @@
-const ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn();
+const request = require('request-promise-native');
+const config = require('../../config');
 
-module.exports = {
-  isLoggedIn: ensureLoggedIn,
+module.exports = new class AuthMiddleware {
 
-  sendBuyerSession: (req, res) => {
-    res.send({
-      profile: {
-        givenName: req.user.name.givenName,
-        familyName: req.user.name.familyName,
-        imageUrl: req.user.picture
+  convertCodeToToken(req, res, next) {
+    const options = {
+      method: 'GET',
+      url: `${config.mgmtApi.host}/api/buyer/token`,
+      qs: {
+        code: req.query.code
       }
-    });
+    };
+
+    request(options)
+      .then((token) => {
+        console.log(token);
+        req.session.token = token;
+        next();
+      })
+      .catch((err) => {
+        next(err);
+      });
+  }
+
+  isBuyerLoggedIn(req, res, next) {
+    if (req.session && req.session.token) {
+      next();
+    } else {
+      res.redirect(`${config.mgmtApi.host}/buyer/login?callback=${config.app.buyerCallback}`);
+    }
   }
 };
