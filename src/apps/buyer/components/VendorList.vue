@@ -1,10 +1,10 @@
-<style lang="scss" scoped>
+<style scoped>
 .card {
   border: none;
   border-bottom: 1px solid #CCC;
 }
 
-img {
+#profile-logo {
   display: block;
   margin: auto;
   max-width: 70px;
@@ -12,12 +12,8 @@ img {
 }
 
 .company-name {
-  font-size: 24px;
+  font-size: 1.5em;
 }
-
-
-
-
 
 .title {
     display: inline-block;
@@ -49,31 +45,26 @@ ul.c-controls li a i {
 
 <template>
   <div class="vendor-list-item">
-    <div class="col-md-12">
-      <ul class="list-group" id="vendor-list">
-        
-        <li class="list-unstyled">
-          <div class="card" v-for="vendor in vendors" :key="vendor._id">
-            <div class="card-body">
-              <a class="col-sm-12 col-lg-3" href="#" @click.prevent="onVendorClick(vendor)">
-                <img id="profile-logo" src="https://cdn.allbud.com/image/upload/s--Gsagk9Ld--/c_limit,h_600,w_800/v1433196075/images/dispensary/main-street-marijuana/970/main-st-marijuana-allbud.jpg"
-                  alt="Vendor Logo">
-                <span class="company-name">{{ vendor.company.name }}</span>
-              </a>
-              <div class="row hidden-md-down">
-                <div class="col-sm-6 col-lg-9">
-                  <VendorListContactInfo :vendor="vendor" />
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                  <DropdownButton class="actionMenu col-md-3" label="Action" :vendor="vendor" :options="actions" @selection="onActionSelect(vendor, $event)" />
-                </div>
-              </div>
+    <ul class="list-unstyled">
+      <li>
+        <div class="card card-body" v-for="vendor in vendors" :key="vendor._id">
+          <a @click.prevent="onVendorClick(vendor)">
+            <img id="profile-logo" src="https://cdn.allbud.com/image/upload/s--Gsagk9Ld--/c_limit,h_600,w_800/v1433196075/images/dispensary/main-street-marijuana/970/main-st-marijuana-allbud.jpg" alt="Vendor Logo">
+            <span class="company-name">{{ vendor.company.name }}</span>
+          </a>
+          <div class="row">
+            <div class="col-sm-6 col-lg-9">
+              <VendorListContactInfo :vendor="vendor" />
+            </div>
+            <div class="col-sm-6 col-lg-3">
+              <DropdownButton class="actionMenu" label="Action" :vendor="vendor" 
+              :options="actions" @selection="onActionSelect(vendor, $event)"
+              />
             </div>
           </div>
-        </li>
-
-      </ul>
-    </div>
+        </div>
+      </li>
+    </ul>
   </div>
 </template>
 

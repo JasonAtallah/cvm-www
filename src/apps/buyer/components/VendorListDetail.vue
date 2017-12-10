@@ -16,7 +16,7 @@
 
 
 <template>
-  <div class="vendor-list-detail">
+  <div class="vendor-list-detail card">
     <div class="row">
       <VendorDetailsContentOptions />
     </div>

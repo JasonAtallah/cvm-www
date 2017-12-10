@@ -1,28 +1,25 @@
 <template>
   <div id="concentratesContent">
-    <div class="card-block p-0">      
-      <table class="table borderless table-md m-0">
-        <thead>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Units Available</th>
-          <th>THC (mg)</th>
-          <th>CBD (mg)</th>
-
-          <th>Shelf Ready</th>
-        </thead>
-        <tbody v-for="item in vendor.concentrates.products">
-          <tr>
-            <td>{{ item.name }}</td>
-            <td>{{ item.type }}</td>
-            <td>{{ item.unitsAvailable }}</td>              
-            <td>{{ item.thc }}</td>      
-            <td>{{ item.cbd }}</td>          
-            <td>{{ item.shelfReady }}</td>
-          </tr>      
-        </tbody>
-      </table>
-    </div>
+    <table class="table table-hover">
+      <thead>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Units Available</th>
+        <th>THC (mg)</th>
+        <th>CBD (mg)</th>
+        <th>Shelf Ready</th>
+      </thead>
+      <tbody v-for="item in vendor.concentrates.products" :key="item.name">
+        <tr>
+          <td>{{ item.name }}</td>
+          <td>{{ item.type }}</td>
+          <td>{{ item.unitsAvailable }}</td>
+          <td>{{ item.thc }}</td>
+          <td>{{ item.cbd }}</td>
+          <td>{{ item.shelfReady }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 

@@ -1,48 +1,45 @@
 <template>
   <div id="companyContent">
-    <div class="card-header"><h4>{{ vendor.company.name }}</h4></div>
-    <div class="card-block p-0">      
-      <table class="table borderless table-sm m-0">
-        <tbody>
-          <tr>
-            <td>Website</td>
-            <td>{{ vendor.company.website }}</td>
-          </tr>
-          <tr>
-            <td>Address</td>
-            <td>{{ vendor.company.address }}</td>
-          </tr>
-          <tr>
-            <td>City</td>
-            <td>{{ vendor.company.city }}</td>
-          </tr>
-          <tr>
-            <td>State</td>
-            <td>{{ vendor.company.state }}</td>
-          </tr>
-          <tr>
-            <td>Zip</td>
-            <td>{{ vendor.company.zip }}</td>
-          </tr>
-          <tr>
-            <td>SREA#</td>
-            <td>{{ vendor.company.srea }}</td>
-          </tr>
-          <tr>
-            <td>Tax ID</td>
-            <td>{{ vendor.company.haveTaxId }}</td>
-          </tr>
-          <tr>
-            <td>Seller Permit</td>
-            <td>{{ vendor.company.haveSellerPermit }}</td>
-          </tr>
-          <tr>
-            <td>Part of Collective</td>
-            <td>{{ vendor.company.partOfCollective }}</td>
-          </tr>          
-        </tbody>
-      </table>
-    </div>
+    <table class="table table-hover">
+      <tbody>
+        <tr>
+          <th scope="row">Website</th>
+          <td>{{ vendor.company.website }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Address</th>
+          <td>{{ vendor.company.address }}</td>
+        </tr>
+        <tr>
+          <th scope="row">City</th>
+          <td>{{ vendor.company.city }}</td>
+        </tr>
+        <tr>
+          <th scope="row">State</th>
+          <td>{{ vendor.company.state }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Zip</th>
+          <td>{{ vendor.company.zip }}</td>
+        </tr>
+        <tr>
+          <th scope="row">SREA#</th>
+          <td>{{ vendor.company.srea }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Tax ID</th>
+          <td>{{ vendor.company.haveTaxId }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Seller Permit</th>
+          <td>{{ vendor.company.haveSellerPermit }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Part of Collective</th>
+          <td>{{ vendor.company.partOfCollective }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
