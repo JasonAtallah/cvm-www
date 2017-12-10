@@ -30,6 +30,9 @@
           <li class="list-inline-item" :class="{'active': activeTab === 'company'}">
             <a @click.prevent="activateTab('company')">Company</a>
           </li>
+          <li class="list-inline-item" :class="{'active': activeTab === 'contact'}">
+            <a @click.prevent="activateTab('contact')">Contact</a>
+          </li>
           <li class="list-inline-item" :class="{'active': activeTab === 'flowers'}">
             <a @click.prevent="activateTab('flowers')">Flowers</a>
           </li>

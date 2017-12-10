@@ -10,8 +10,8 @@ a:hover {
 }
 
 .card {
-  border: none;
-  border-bottom: 1px solid #CCC;
+  border-left: none;
+  border-top: none;
   padding-top: 15px;
 }
 
@@ -29,7 +29,7 @@ a:hover {
 </style>
 
 <template>
-  <div class="vendor-list-item">
+  <div class="vendor-list-item">      
     <ul class="list-unstyled">
       <li>
         <div class="card" v-for="vendor in vendors" :key="vendor._id">
@@ -42,6 +42,8 @@ a:hover {
               <div class="row">
                 <div class="col-md-12">
                   <span class="company-name">{{ vendor.company.name }}</span>
+                  <span v-if="vendor.status === 'approved'" class="badge badge-success">Approved</span>
+                  <span v-if="vendor.status === 'rejected'" class="badge badge-danger">Rejected</span>
                 </div>
               </div>
               <div class="row">

@@ -36,6 +36,7 @@
     <div class="title">Product Types</div>
     <single-select :options="productTypes" :value="filter.productType" v-on:selection="updateProductType"></single-select>
   </li>
+  <hr>
 </ul>
 </template>
 
