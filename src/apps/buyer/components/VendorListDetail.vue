@@ -4,11 +4,18 @@
   padding-left: 1.5rem;
 }
 
+.company-name {
+  font-size: 2rem;
+}
+
 </style>
 
 
 <template>
   <div class="vendor-list-detail ">
+    <div class="row company-name">
+      {{ vendor.company.name }}
+    </div>
     <div class="row content-options">
       <VendorDetailsContentOptions />
     </div>

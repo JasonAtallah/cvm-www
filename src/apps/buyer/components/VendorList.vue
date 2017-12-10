@@ -10,13 +10,22 @@ a:hover {
 }
 
 .card {
-  border-left: none;
+  padding: 15px 15px;
+  cursor: pointer;
+  border-radius: 0;
+}
+
+.card:nth-of-type(n+2) {
   border-top: none;
-  padding-top: 15px;
 }
 
 .company-name {
-  font-size: 1.5em;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.contact-name {
+  font-size: 0.9rem;
 }
 
 #profile-logo {
@@ -32,30 +41,18 @@ a:hover {
   <div class="vendor-list-item">      
     <ul class="list-unstyled">
       <li>
-        <div class="card" v-for="vendor in vendors" :key="vendor._id">
-          <div class="col-md-12">
-            <a @click.prevent="onVendorClick(vendor)" href="#">
-              <div class="pull-left">
-                <img id="profile-logo" src="https://cdn.allbud.com/image/upload/s--Gsagk9Ld--/c_limit,h_600,w_800/v1433196075/images/dispensary/main-street-marijuana/970/main-st-marijuana-allbud.jpg"
-                  alt="Vendor Logo">
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <span class="company-name">{{ vendor.company.name }}</span>
-                  <span v-if="vendor.status === 'approved'" class="badge badge-success">Approved</span>
-                  <span v-if="vendor.status === 'rejected'" class="badge badge-danger">Rejected</span>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-8">
-                  <VendorListContactInfo :vendor="vendor" />
-                </div>
-                <div class="col-md-4">
-                  <DropdownButton class="actionMenu text-right" label="Action" :vendor="vendor" :options="actions" @selection="onActionSelect(vendor, $event)"
-                  />
-                </div>
-              </div>
-            </a>
+        <div class="card" v-for="vendor in vendors" :key="vendor._id" @click.prevent="onVendorClick(vendor)">              
+          <div class="row">
+            <div class="col-md-8">
+              <span class="company-name">{{ vendor.company.name }}</span>
+              <span v-if="vendor.status === 'approved'" class="badge badge-success">Approved</span>
+              <span v-if="vendor.status === 'rejected'" class="badge badge-danger">Rejected</span>
+              <br />
+              <span class="contact-name">{{ vendor.contact.firstName }} {{ vendor.contact.lastName }}</span>                
+            </div> 
+            <div class="col-md-4">
+              <DropdownButton class="actionMenu text-right" label="Action" :vendor="vendor" :options="actions" @selection="onActionSelect(vendor, $event)" />
+            </div>            
           </div>
         </div>
       </li>
