@@ -14,7 +14,7 @@
           <VendorListFilter />
           <VendorList />
         </div>
-        <div class="detail">
+        <div slot="detail" class="vendors-detail">
           <VendorListDetail />
         </div>
       </MasterDetail>

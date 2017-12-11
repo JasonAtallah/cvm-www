@@ -8,9 +8,6 @@ export const needSetCalendar = (state, getters, rootState, rootGetters) => {
 export const pageMenuItems = state => state.pageMenuItems;
 export const pendingAction = state => state.pendingAction;
 export const profile = state => state.profile;
-export const productTypes = (state) => {
-  return ['Flowers', 'Edibles & Topicals', 'Concentrates'];
-};
 export const schedule = state => state.buyer.schedule;
 export const selVendor = state => state.selVendor;
 export const setSchedule = state => state.setSchedule;
@@ -32,6 +29,13 @@ export const sortedVendors = (state) => {
       }
 
       return vendor.status && vendor.status.toLowerCase() === status;
+    });
+  }
+
+  if (state.vendorFilter.searchTerm) {
+    const searchTerm = state.vendorFilter.searchTerm.toLowerCase();
+    vendors = vendors.filter((vendor) => {
+      return vendor.company.name.toLowerCase().indexOf(searchTerm) >= 0;
     });
   }
 
