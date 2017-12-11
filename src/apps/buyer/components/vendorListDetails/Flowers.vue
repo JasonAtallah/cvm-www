@@ -1,4 +1,4 @@
-<style>
+<style scoped>
 
 .table-header {
   color: #a8a8a8;
