@@ -1,28 +1,27 @@
 <style scoped>
+
 .vendor-list-detail {
-  padding: 1rem;
+  padding-left: 1.5rem;
 }
 
-.profile {
-  margin: 10px 0;
+.company-name {
+  font-size: 2rem;
 }
 
-.profile-content {
-  padding: 10px;
-  background: #fff;
-  min-height: 460px;
-}
 </style>
 
 
 <template>
-  <div class="vendor-list-detail">
-    <div class="row">
+  <div class="vendor-list-detail ">
+    <div class="row company-name">
+      {{ vendor.company.name }}
+    </div>
+    <div class="row content-options">
       <VendorDetailsContentOptions />
     </div>
-
-    <div class="profile-content row">
+    <div class="row profile-content">
       <VendorCompanyDetails v-if="vendorDetailsTab === 'company'" />
+      <VendorContactDetails v-if="vendorDetailsTab === 'contact'" />
       <VendorFlowersDetails v-if="vendorDetailsTab === 'flowers'" />
       <VendorEdiblesDetails v-if="vendorDetailsTab === 'edibles'" />
       <VendorConcentratesDetails v-if="vendorDetailsTab === 'concentrates'" />
@@ -34,6 +33,7 @@
 import { mapGetters } from 'vuex';
 import VendorDetailsContentOptions from './VendorDetailsContentOptions';
 import VendorCompanyDetails from './VendorCompanyDetails';
+import VendorContactDetails from './VendorContactDetails';
 import VendorFlowersDetails from './VendorFlowersDetails';
 import VendorEdiblesDetails from './VendorEdiblesDetails';
 import VendorConcentratesDetails from './VendorConcentratesDetails';
@@ -42,6 +42,7 @@ export default {
   components: {
     VendorDetailsContentOptions,
     VendorCompanyDetails,
+    VendorContactDetails,
     VendorFlowersDetails,
     VendorEdiblesDetails,
     VendorConcentratesDetails

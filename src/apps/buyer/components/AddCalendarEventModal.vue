@@ -1,8 +1,10 @@
 <style scoped>
+
 .add-calendar-event-modal {
   text-align: left;
   display: block;
 }
+
 </style>
 
 <template>

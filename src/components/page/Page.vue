@@ -14,6 +14,8 @@
   height: $header-height;
   width: 100%;
   text-align: left;
+  padding-left: 3rem;
+  padding-right: 3rem;
 }
 
 .page .header-buttons {

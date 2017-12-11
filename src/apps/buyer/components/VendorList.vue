@@ -1,80 +1,47 @@
 <style lang="scss" scoped>
-.card {
-  border: none;
-  border-bottom: 1px solid #CCC;
+.vendor-list {
+  position: absolute;
+  top: $vendor-list-filter-height;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  overflow: scroll;
 }
 
-img {
-  display: block;
-  margin: auto;
-  max-width: 70px;
-  float: left;
+.vendor-list li {
+  padding: 15px 15px;
+  cursor: pointer;
+  border-bottom: 1px solid $section-border-color;
 }
 
-.company-name {
-  font-size: 24px;
+.vendor-list .company-name {
+  font-size: .9rem;
+  font-weight: bold;
 }
 
-
-
-
-
-.title {
-    display: inline-block;
-    font-size: 1.7em;
-    font-weight: bold;
-    padding: 5px 15px;
+.vendor-list .contact-name {
+  font-size: 0.9rem;
 }
-ul.c-controls {
-    list-style: none;
-    margin: 0px;
-    min-height: 44px;
-}
-
-ul.c-controls li {
-    margin-top: 8px;
-    float: left;
-}
-
-ul.c-controls li a {
-    font-size: 1.7em;
-    padding: 11px 10px 6px;   
-}
-ul.c-controls li a i {
-    min-width: 24px;
-    text-align: center;
-}
-
 </style>
 
 <template>
-  <div class="vendor-list-item">
-    <div class="col-md-12">
-      <ul class="list-group" id="vendor-list">
-        
-        <li class="list-unstyled">
-          <div class="card" v-for="vendor in vendors" :key="vendor._id">
-            <div class="card-body">
-              <a class="col-sm-12 col-lg-3" href="#" @click.prevent="onVendorClick(vendor)">
-                <img id="profile-logo" src="https://cdn.allbud.com/image/upload/s--Gsagk9Ld--/c_limit,h_600,w_800/v1433196075/images/dispensary/main-street-marijuana/970/main-st-marijuana-allbud.jpg"
-                  alt="Vendor Logo">
-                <span class="company-name">{{ vendor.company.name }}</span>
-              </a>
-              <div class="row hidden-md-down">
-                <div class="col-sm-6 col-lg-9">
-                  <VendorListContactInfo :vendor="vendor" />
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                  <DropdownButton class="actionMenu col-md-3" label="Action" :vendor="vendor" :options="actions" @selection="onActionSelect(vendor, $event)" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </li>
-
-      </ul>
-    </div>
-  </div>
+  <ul class="vendor-list list-unstyled">
+    <li v-for="vendor in vendors" :key="vendor._id" @click.prevent="onVendorClick(vendor)">
+      <div class="row">
+        <div class="col-sm-8">
+          <span class="company-name">{{ vendor.company.name }}</span>
+          <span v-if="vendor.status === 'approved'" class="badge badge-success">Approved</span>
+          <span v-if="vendor.status === 'rejected'" class="badge badge-danger">Rejected</span>
+          <br />
+          <span class="contact-name">{{ vendor.contact.firstName }} {{ vendor.contact.lastName }}<br /></span>
+        </div>
+        <div class="col-sm-4">
+          <DropdownButton class="actionMenu text-right" label="Action" :vendor="vendor" :options="actions" @selection="onActionSelect(vendor, $event)" />
+        </div>
+      </div>
+    </li>
+  </ul>
 </template>
 
 <script>
