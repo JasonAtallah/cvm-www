@@ -1,20 +1,37 @@
+<style scoped>
+
+.card-header {
+  background-color: transparent;
+}
+
+.primary {
+  font-weight: bold;
+  color: #777777
+}
+
+.secondary {
+  color: #a8a8a8;
+}
+
+</style>
+
 <template>
   <div id="contactContent">
-    <table class="table table-hover">
+    <table class="table">
       <tbody>
-        <tr>
-          <th scope="row">Name</th>
-          <td>{{ vendor.contact.firstName }} {{ vendor.contact.lastName }}</td>
-        </tr>
-        <tr>
-          <th scope="row">Phone</th>
-          <td>{{ vendor.contact.phone }}</td>
-        </tr>
-        <tr>
-          <th scope="row">Email</th>
-          <td>{{ vendor.contact.email }}</td>
-        </tr>
+        <th>
+          <h2 class="primary">{{ vendor.contact.firstName }} {{ vendor.contact.lastName }}</h2>
+        </th>
       </tbody>
+        <tr>
+        <span class="primary">Phone: </span>
+           <span class="secondary">{{ vendor.contact.phone }}</span>
+        </tr>
+        <tr>
+          <span class="primary">Email: </span>
+          <span class="secondary">{{ vendor.contact.email }}</span>
+        </tr>
+        
     </table>
   </div>
 </template>
