@@ -27,14 +27,14 @@
         <th>Shelf Ready</th>
       </thead>
       <tbody v-for="item in vendor.edibles.products" :key="item.name">
-        <tr @click.prevent="showProductDetail(item.name)">
+        <tr @click.prevent="showProductDetail(item)">
           <td class="product-name">{{ item.name }}</td>
           <td class="product-info">{{ item.unitsAvailable }}</td>
           <td class="product-info">{{ item.thc }}</td>
           <td class="product-info">{{ item.cbd }}</td>
           <td class="product-info">{{ item.shelfReady }}</td>
         </tr>
-        <ProductFiles :item="item" />
+        <ProductFiles v-if="activeRow === item" :item="item" />
       </tbody>
     </table>
   </div>
@@ -48,18 +48,22 @@ export default {
   components: {
     ProductFiles
   },
+  data() {
+    return {
+      activeRow: null
+    };
+  },
   computed: {
     ...mapGetters({
-      vendor: 'selVendor',
-      activeRow: 'productDetailsRow'
+      vendor: 'selVendor'
     })
   },
   methods: {
-    showProductDetail(productName) {
-      if (productName === this.activeRow) {
-        this.$store.commit('productDetailsRow', null);
+    showProductDetail(item) {
+      if (item === this.activeRow) {
+        this.activeRow = null;
       } else {
-        this.$store.commit('productDetailsRow', productName);
+        this.activeRow = item;
       }
     }
   }

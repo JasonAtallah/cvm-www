@@ -28,10 +28,6 @@ export const events = (state, events) => {
   state.events = events;
 };
 
-export const productDetailsRow = (state, productName) => {
-  state.productDetailsRow = productName;
-};
-
 export const productFilter = (state, value) => {
   state.vendorFilter.productType = value;
 };

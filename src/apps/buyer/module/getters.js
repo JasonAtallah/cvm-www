@@ -8,7 +8,6 @@ export const needSetCalendar = (state, getters, rootState, rootGetters) => {
 };
 export const pageMenuItems = state => state.pageMenuItems;
 export const pendingAction = state => state.pendingAction;
-export const productDetailsRow = state => state.productDetailsRow;
 export const productTypes = (state) => {
   return ['Flowers', 'Edibles & Topicals', 'Concentrates'];
 };

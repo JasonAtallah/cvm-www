@@ -22,7 +22,6 @@ export default {
   pendingAction: {
     type: null
   },
-  productDetailsRow: null,
   selVendor: null,
   setSchedule: false,
   vendorDetailsTab: 'company',

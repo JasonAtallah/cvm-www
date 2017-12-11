@@ -9,7 +9,7 @@
 </style>
 
 <template>
-  <tr v-if="activeRow === item.name">
+  <tr>
     <td colspan="100">
       <div class="card product-files">
         <div class="row">
@@ -40,15 +40,8 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-
 export default {
   props: ['item'],
-  computed: {
-    ...mapGetters({
-      activeRow: 'productDetailsRow'
-    })
-  },
   methods: {
     getFileType(file) {
       const fileTypes = {
