@@ -9,39 +9,35 @@
 </style>
 
 <template>
-  <tr>
-    <td colspan="100">
-      <div class="card product-files">
-        <div class="row">
-          <div class="col-md-6">
-            <h6>Photos</h6>
-            <span v-if="item.photo.length === 0">No photos were included!</span>                          
-          </div>
-          <div class="col-md-6">
-            <h6>Test Results</h6>
-            <span v-if="item.testResults.length === 0">No test results were included!</span>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <ul class="list-unstyled" v-for="file in item.photo" :key="file.id">
-              <li><i class="fa fa-photo"></i> {{ file.originalname.split('.')[0] }}</li>
-            </ul>
-          </div>                
-          <div class="col-md-6">
-            <ul class="list-unstyled" v-for="file in item.testResults" :key="file.id">
-              <li><i class="fa" :class="getFileType(file.mimetype)"></i> {{ file.originalname.split('.')[0] }}</li>
-            </ul>
-          </div>                
-        </div>              
+  <div class="product-files card">
+    <div class="row">
+      <div class="col-md-6">
+        <h6>Photos</h6>
+        <span v-if="product.photo.length === 0">No photos were included!</span>
       </div>
-    </td>
-  </tr>
+      <div class="col-md-6">
+        <h6>Test Results</h6>
+        <span v-if="product.testResults.length === 0">No test results were included!</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <ul class="list-unstyled" v-for="file in product.photo" :key="file.id">
+          <li><i class="fa fa-photo"></i> {{ file.originalname.split('.')[0] }}</li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <ul class="list-unstyled" v-for="file in product.testResults" :key="file.id">
+          <li><i class="fa" :class="getFileType(file.mimetype)"></i> {{ file.originalname.split('.')[0] }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
-  props: ['item'],
+  props: ['product'],
   methods: {
     getFileType(file) {
       const fileTypes = {

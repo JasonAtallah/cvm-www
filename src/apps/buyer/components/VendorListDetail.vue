@@ -4,6 +4,7 @@
   padding-bottom: 0px;
   margin-bottom: 0px;
 }
+
 .vendor-list-detail {
   padding-left: 1.5rem;
 }
@@ -17,7 +18,7 @@
 
 
 <template>
-  <div class="vendor-list-detail ">
+  <div class="vendor-list-detail">
     <div class="row company-name">
       {{ vendor.company.name }}
     </div>
@@ -27,9 +28,9 @@
     <div class="row profile-content">
       <Company v-if="vendorDetailsTab === 'company'" />
       <Contact v-if="vendorDetailsTab === 'contact'" />
-      <Flowers v-if="vendorDetailsTab === 'flowers'" />
-      <Edibles v-if="vendorDetailsTab === 'edibles'" />
-      <Concentrates v-if="vendorDetailsTab === 'concentrates'" />
+      <ProductTable v-if="vendorDetailsTab === 'flowers'" :table="FlowersProductTable" />
+      <ProductTable v-if="vendorDetailsTab === 'edibles'" :table="EdiblesProductTable" />
+      <ProductTable v-if="vendorDetailsTab === 'concentrates'" :table="ConcentratesProductTable" />
     </div>
   </div>
 </template>
@@ -39,20 +40,23 @@ import { mapGetters } from 'vuex';
 import DetailTabs from './vendorListDetails/DetailTabs';
 import Company from './vendorListDetails/Company';
 import Contact from './vendorListDetails/Contact';
-import Flowers from './vendorListDetails/Flowers';
-import Edibles from './vendorListDetails/Edibles';
-import Concentrates from './vendorListDetails/Concentrates';
+import ProductTable from './vendorListDetails/ProductTable';
+import { FlowersProductTable, EdiblesProductTable, ConcentratesProductTable } from '../config/productTables';
 
 export default {
   components: {
     DetailTabs,
     Company,
     Contact,
-    Flowers,
-    Edibles,
-    Concentrates
+    ProductTable
   },
-  name: 'vendor-list-detail',
+  data() {
+    return {
+      FlowersProductTable,
+      EdiblesProductTable,
+      ConcentratesProductTable
+    };
+  },
   computed: {
     ...mapGetters({
       vendor: 'selVendor',

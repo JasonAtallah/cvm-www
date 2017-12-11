@@ -1,0 +1,77 @@
+<style scoped>
+.table-header {
+  color: #a8a8a8;
+  background-color: #f9fafc;
+}
+
+.product-name {
+  font-weight: bold;
+  color: #777777
+}
+
+.product-info {
+  color: #a8a8a8;
+}
+
+.product-files-row:hover {
+  background-color: transparent;
+}
+</style>
+
+<template>
+  <div class="product-table">
+    <table class="table table-hover">
+      <thead class="table-header">
+        <th v-for="col in table.columns">
+          {{ col.header }}
+        </th>
+      </thead>
+      <tbody v-for="product in products" :key="product.name">
+        <tr @click.prevent="showProductDetail(product)">
+          <td v-for="col in table.columns" :class="col.isName ? 'product-name' : 'product-info'">
+            {{ product[col.field] }}
+          </td>
+        </tr>
+        <tr class="product-files-row" v-if="activeRow === product">
+          <td :colspan="table.columns.length">
+            <ProductFiles :product="product" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</template>
+
+<script>
+import { mapGetters } from 'vuex';
+import ProductFiles from './ProductFiles';
+
+export default {
+  components: {
+    ProductFiles
+  },
+  props: ['table'],
+  data() {
+    return {
+      activeRow: null
+    };
+  },
+  computed: {
+    ...mapGetters({
+      vendor: 'selVendor'
+    }),
+    products() {
+      return this.vendor[this.table.vendorField].products;
+    }
+  },
+  methods: {
+    showProductDetail(product) {
+      if (product === this.activeRow) {
+        this.activeRow = null;
+      } else {
+        this.activeRow = product;
+      }
+    }
+  }
+};
+</script>

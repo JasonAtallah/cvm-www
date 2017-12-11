@@ -18,7 +18,7 @@
           <VendorList />
         </div>
         <div class="col-md-12 col-lg-8">
-          <VendorListDetail />
+          <VendorListDetail v-if="vendor" />
         </div>
       </div>
     </div>
@@ -47,7 +47,7 @@ export default {
   computed: {
     ...mapGetters({
       buyer: 'buyer',
-      selVendor: 'selVendor'
+      vendor: 'selVendor'
     })
   },
   methods: {

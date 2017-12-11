@@ -22,7 +22,7 @@
 
 <template>
   <div class="row">
-    <div class="col-sm-12" v-if="vendor">
+    <div class="col-sm-12">
       <div class="profile-usermenu">
         <ul class="list-unstyled list-inline">
           <li class="list-inline-item" :class="{'active': activeTab === 'company'}">
@@ -52,7 +52,6 @@ import { mapGetters } from 'vuex';
 export default {
   computed: {
     ...mapGetters({
-      vendor: 'selVendor',
       activeTab: 'vendorDetailsTab'
     })
   },
