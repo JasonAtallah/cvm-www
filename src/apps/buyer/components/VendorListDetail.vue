@@ -1,53 +1,62 @@
 <style scoped>
 
+.content-option {
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
+
 .vendor-list-detail {
   padding-left: 1.5rem;
 }
 
 .company-name {
   font-size: 2rem;
+  color: #777777
 }
 
 </style>
 
 
 <template>
-  <div class="vendor-list-detail ">
+  <div class="vendor-list-detail">
     <div class="row company-name">
       {{ vendor.company.name }}
     </div>
     <div class="row content-options">
-      <VendorDetailsContentOptions />
+      <DetailTabs />
     </div>
     <div class="row profile-content">
-      <VendorCompanyDetails v-if="vendorDetailsTab === 'company'" />
-      <VendorContactDetails v-if="vendorDetailsTab === 'contact'" />
-      <VendorFlowersDetails v-if="vendorDetailsTab === 'flowers'" />
-      <VendorEdiblesDetails v-if="vendorDetailsTab === 'edibles'" />
-      <VendorConcentratesDetails v-if="vendorDetailsTab === 'concentrates'" />
+      <Company v-if="vendorDetailsTab === 'company'" />
+      <Contact v-if="vendorDetailsTab === 'contact'" />
+      <ProductTable v-if="vendorDetailsTab === 'flowers'" :table="FlowersProductTable" />
+      <ProductTable v-if="vendorDetailsTab === 'edibles'" :table="EdiblesProductTable" />
+      <ProductTable v-if="vendorDetailsTab === 'concentrates'" :table="ConcentratesProductTable" />
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
-import VendorDetailsContentOptions from './VendorDetailsContentOptions';
-import VendorCompanyDetails from './VendorCompanyDetails';
-import VendorContactDetails from './VendorContactDetails';
-import VendorFlowersDetails from './VendorFlowersDetails';
-import VendorEdiblesDetails from './VendorEdiblesDetails';
-import VendorConcentratesDetails from './VendorConcentratesDetails';
+import DetailTabs from './vendorListDetails/DetailTabs';
+import Company from './vendorListDetails/Company';
+import Contact from './vendorListDetails/Contact';
+import ProductTable from './vendorListDetails/ProductTable';
+import { FlowersProductTable, EdiblesProductTable, ConcentratesProductTable } from '../config/productTables';
 
 export default {
   components: {
-    VendorDetailsContentOptions,
-    VendorCompanyDetails,
-    VendorContactDetails,
-    VendorFlowersDetails,
-    VendorEdiblesDetails,
-    VendorConcentratesDetails
+    DetailTabs,
+    Company,
+    Contact,
+    ProductTable
   },
-  name: 'vendor-list-detail',
+  data() {
+    return {
+      FlowersProductTable,
+      EdiblesProductTable,
+      ConcentratesProductTable
+    };
+  },
   computed: {
     ...mapGetters({
       vendor: 'selVendor',

@@ -15,7 +15,7 @@
           <VendorList />
         </div>
         <div slot="detail" class="vendors-detail">
-          <VendorListDetail />
+          <VendorListDetail v-if="vendor" />
         </div>
       </MasterDetail>
     </div>
@@ -46,7 +46,7 @@ export default {
   computed: {
     ...mapGetters({
       buyer: 'buyer',
-      selVendor: 'selVendor'
+      vendor: 'selVendor'
     })
   },
   methods: {

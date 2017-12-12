@@ -51,14 +51,15 @@
   </div>
 
   <div class="row">
-    <div class="form-group col-lg-6" v-if="showField('photo')">
-      <label for="photo">Photo:</label>
-      <input type="file" id="photo" name="photo"
+    <div class="form-group col-lg-6" v-if="showField('photos')">
+      <label for="photos">Photo:</label>
+      <input type="file" id="photos" name="photos"
+        ref="photos"
         accept=".png, .jpg, .jpeg, .pdf"
         @change="onFileChange($event);" />
       <br/>
       <ul>
-        <li v-for="result in product.photo" :key="result.id">
+        <li v-for="result in product.photos" :key="result.id">
           {{ result.name }}
         </li>
       </ul>
@@ -66,6 +67,7 @@
     <div class="form-group col-lg-6" v-if="showField('testResults')">
       <label for="testResults">Test Results:</label>
       <input type="file" id="testResults" name="testResults"
+        ref="testResults"
         accept=".png, .jpg, .jpeg, .pdf"
         @change="onFileChange($event);" />
       <br/>
@@ -105,12 +107,14 @@ export default {
       const formData = new FormData();
       formData.append('file', files[0], files[0].name);
 
-      this.product[inputName].push({
-        formData,
-        name: files[0].name
+      this.$store.commit('productFile', {
+        product: this.product,
+        field: inputName,
+        name: files[0].name,
+        formData
       });
 
-      $(`#flowerForm #${inputName}`).val('');
+      this.$refs[inputName].value = null;
     }
   }
 };
