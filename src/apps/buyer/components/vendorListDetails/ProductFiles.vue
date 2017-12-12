@@ -23,12 +23,12 @@
     <div class="row">
       <div class="col-md-6">
         <ul class="list-unstyled" v-for="file in product.photos" :key="file.id">
-          <li><i class="fa fa-photo"></i> {{ file.originalname.split('.')[0] }}</li>
+          <li><i class="fa fa-photo"></i> {{ file.originalname }}</li>
         </ul>
       </div>
       <div class="col-md-6">
         <ul class="list-unstyled" v-for="file in product.testResults" :key="file.id">
-          <li><i class="fa" :class="getFileType(file.mimetype)"></i> {{ file.originalname.split('.')[0] }}</li>
+          <li><i class="fa" :class="getFileType(file.mimetype)"></i> {{ file.originalname }}</li>
         </ul>
       </div>
     </div>
