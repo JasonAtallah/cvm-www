@@ -15,9 +15,7 @@
           <div id="calendar" class="monthly"></div>
         </div>
       </div>
-      <Calendar
-        :events="events"
-        eventDateField="startDate" />
+      <Calendar :events="events" />
     </div>
     <AddCalendarEventModal />
     <SetScheduleModal />
@@ -38,11 +36,6 @@ export default {
     BasePage,
     Calendar,
     SetScheduleModal
-  },
-  data() {
-    return {
-      days: null
-    };
   },
   computed: {
     ...mapGetters({

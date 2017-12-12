@@ -11,11 +11,12 @@ const handleRequest = (reject) => {
   };
 };
 
-export const get = (path) => {
+export const get = (path, data) => {
   return new Promise((res, rej) => {
     $.ajax({
       method: 'GET',
       url: path,
+      data,
       error: handleRequest(rej),
       success: res
     });

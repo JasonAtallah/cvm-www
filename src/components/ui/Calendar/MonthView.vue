@@ -41,7 +41,7 @@
         </div>
 
         <div v-for="(event,i) in eventsForDay(day)" :key="getKeyForEvent(event, i)">
-          <a href="#" @click.prevent="onClickEvent(event)">{{ event.summary }}</a>
+          <a href="#" @click.prevent="onClickEvent(event)">{{ event.title }}</a>
         </div>
 
         <div class="monthly-indicator-wrap"></div>
@@ -52,10 +52,12 @@
 </template>
 
 <script>
+import moment from 'moment';
+import momentTimezone from 'moment-timezone';
 import { daysOfMonth, daysToWeeks, populateEvents, daysMatch, monthsMatch } from './MonthView.fns';
 
 export default {
-  props: ['events', 'eventDateField'],
+  props: ['events'],
   data() {
     return {
       month: new Date().getMonth(),
@@ -89,11 +91,11 @@ export default {
     eventsForDay(day) {
       if (!this.events) return [];
       return this.events.filter((event) => {
-        return daysMatch(event[this.eventDateField], day.date);
+        return daysMatch(moment(event.startDate).toDate(), day.date);
       });
     },
     getKeyForEvent(event, index) {
-      return `${event[this.eventDateField].getTime()}.${index}`;
+      return `${event.startDate}.${index}`;
     },
     decrementMonth() {
       this.month--;
