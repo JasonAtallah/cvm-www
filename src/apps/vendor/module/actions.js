@@ -1,3 +1,4 @@
+import traverse from 'traverse';
 import { getUrlParameter } from '../../../lib/url';
 import api from './api';
 import router from '../router';
@@ -54,27 +55,20 @@ export const submitResponse = ({ dispatch, commit, state }, response) => {
 };
 
 export const submitResponseFileFields = ({ dispatch, commit, state }, response) => {
-  const uploadPromises = [];
   const questionnaire = state.questionnaire;
-  const pages = ['flowers', 'edibles', 'concentrates'];
-  const questions = ['photo', 'testResults'];
+  const uploadPromises = [];
 
-  pages.forEach((page) => {
-    response[page].products.forEach((product) => {
-      questions.forEach((question) => {
-        for (let i = 0; i < product[question].length; i++) {
-          uploadPromises.push(dispatch('saveFile', {
-            response,
-            fileData: product[question][i],
-            dummy: 1
-          })
-            .then((result) => {
-              product[question][i] = result;
-              return result;
-            }));
-        }
-      });
-    });
+  traverse(response).forEach(function (elem) {
+    if (elem && elem.formData) {
+      uploadPromises.push(dispatch('saveFile', {
+        response,
+        fileData: elem
+      })
+        .then((result) => {
+          this.update(result, true);
+          return result;
+        }));
+    }
   });
 
   return Promise.all(uploadPromises)

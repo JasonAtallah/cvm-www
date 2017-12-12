@@ -13,7 +13,7 @@
     <div class="row">
       <div class="col-md-6">
         <h6>Photos</h6>
-        <span v-if="product.photo.length === 0">No photos were included!</span>
+        <span v-if="product.photos.length === 0">No photos were included!</span>
       </div>
       <div class="col-md-6">
         <h6>Test Results</h6>
@@ -22,7 +22,7 @@
     </div>
     <div class="row">
       <div class="col-md-6">
-        <ul class="list-unstyled" v-for="file in product.photo" :key="file.id">
+        <ul class="list-unstyled" v-for="file in product.photos" :key="file.id">
           <li><i class="fa fa-photo"></i> {{ file.originalname.split('.')[0] }}</li>
         </ul>
       </div>

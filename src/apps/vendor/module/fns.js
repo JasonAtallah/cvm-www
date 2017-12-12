@@ -4,7 +4,7 @@ export const prepEmptyResponse = (questionnaire) => {
     const pageResp = {};
     response[page.id] = pageResp;
     page.questions.forEach((q) => {
-      pageResp[q.id] = q.default;
+      pageResp[q.id] = _.clone(q.default);
     });
   });
 
@@ -16,7 +16,7 @@ export const prepEmptyProduct = (productsDef) => {
 
   Object.keys(productsDef).forEach((key) => {
     const field = productsDef[key];
-    product[field.id] = field.default;
+    product[field.id] = _.clone(field.default);
   });
 
   return product;
