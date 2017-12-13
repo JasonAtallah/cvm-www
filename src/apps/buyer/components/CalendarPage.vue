@@ -22,7 +22,7 @@
     </div>
     <AddCalendarEventModal />
     <SetScheduleModal />
-    <ViewCalendarEventModal :event="event" :vendor="vendor" />
+    <ViewCalendarEventModal :event="event" />
   </div>
 </BasePage>
 </template>
@@ -47,7 +47,6 @@ export default {
     return {
       days: null,
       event: null,
-      vendor: null
     };
   },
   computed: {

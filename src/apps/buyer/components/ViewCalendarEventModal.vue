@@ -73,13 +73,9 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import VendorListDetail from './VendorListDetail';
 
 export default {
   props: ['event'],
-  components: {
-    VendorListDetail
-  },
   computed: {
     ...mapGetters({
       vendor: 'vendor'
