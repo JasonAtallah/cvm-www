@@ -23,7 +23,7 @@
     <div class="row">
       <div class="col-md-6">
         <ul class="list-unstyled" v-for="file in product.photos" :key="file.id">
-          <li><i class="fa fa-photo"></i> {{ file.originalname }}</li>
+          <li><i class="fa fa-photo"></i><a :href="getFileUrl(file)" target="_blank">{{ file.originalname }}</a></li>
         </ul>
       </div>
       <div class="col-md-6">
@@ -50,6 +50,9 @@ export default {
         return fileTypes[file];
       }
       return 'fa-file-o';
+    },
+    getFileUrl(file) {
+      return `/api/vendors/5a2da9a0c635863c01912b50/files/${file.id}`;
     }
   }
 };
