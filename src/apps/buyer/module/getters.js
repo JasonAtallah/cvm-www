@@ -9,6 +9,7 @@ export const pageMenuItems = state => state.pageMenuItems;
 export const pendingAction = state => state.pendingAction;
 export const profile = state => state.profile;
 export const schedule = state => state.buyer.schedule;
+export const selEvent = state => state.selEvent;
 export const selVendor = state => state.selVendor;
 export const setSchedule = state => state.setSchedule;
 export const sortedVendors = (state) => {
@@ -43,6 +44,7 @@ export const sortedVendors = (state) => {
 
   return vendors;
 };
+export const vendor = state => state.vendor;
 export const vendors = state => state.vendors;
 export const vendorActions = state => state.vendorActions;
 export const vendorDetailsTab = state => state.vendorDetailsTab;

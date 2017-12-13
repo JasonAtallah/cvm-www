@@ -48,6 +48,13 @@ export const loadEvents = ({ rootState, commit }) => {
     });
 };
 
+export const loadVendor = ({ rootState, commit }, vendorId) => {
+  return api.getVendor(vendorId)
+    .then((vendor) => {
+      commit('vendor', vendor);
+    });
+};
+
 export const loadVendors = ({ rootState, commit }) => {
   return api.getVendors()
     .then((vendors) => {
