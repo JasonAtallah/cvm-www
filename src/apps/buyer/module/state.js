@@ -13,11 +13,8 @@ export default {
   pendingAction: {
     type: null
   },
-  selEvent: null,
   selVendor: null,
   setSchedule: false,
-  vendorDetailsTab: 'company',
-  vendor: null,
   vendors: [],
   vendorFilter: {
     productType: null,

@@ -36,10 +36,6 @@ export default {
       });
   },
 
-  getVendor(vendorId) {
-    return http.get(`api/vendors/${vendorId}`);
-  },
-
   getVendors() {
     return http.get('/api/vendors');
   },

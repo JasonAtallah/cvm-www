@@ -20,9 +20,6 @@
         eventDateField="startDate"
         v-on:clickEvent="eventClicked" />
     </div>
-    <AddCalendarEventModal />
-    <SetScheduleModal />
-    <ViewCalendarEventModal :event="event" />
   </div>
 </BasePage>
 </template>
@@ -31,28 +28,20 @@
 import { mapGetters } from 'vuex';
 import Calendar from '@/components/ui/Calendar/Calendar';
 import BasePage from './BasePage';
-import AddCalendarEventModal from './AddCalendarEventModal';
-import SetScheduleModal from './SetScheduleModal';
-import ViewCalendarEventModal from './ViewCalendarEventModal';
 
 export default {
   components: {
-    AddCalendarEventModal,
     BasePage,
-    Calendar,
-    SetScheduleModal,
-    ViewCalendarEventModal
+    Calendar
   },
   data() {
     return {
-      days: null,
-      event: null,
+      days: null
     };
   },
   computed: {
     ...mapGetters({
-      events: 'events',
-      vendor: 'vendor'
+      events: 'events'
     })
   },
   methods: {
@@ -62,14 +51,10 @@ export default {
       });
     },
     eventClicked(event) {
-      this.event = event;
-      this.getVendor(event.vendorId);
       this.$store.commit('takeAction', {
-        type: 'showCalendarEvent'
+        type: 'showCalendarEvent',
+        event
       });
-    },
-    getVendor(vendorId) {
-      return this.$store.dispatch('loadVendor', '5a2ca1123f2e500cfbb6fda5');
     },
     setSchedule() {
       this.$store.commit('setSchedule', true);

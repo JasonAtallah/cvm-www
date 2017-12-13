@@ -18,7 +18,8 @@ export const createVendor = ({ dispatch, commit }, values) => {
 
 export const init = ({ dispatch }) => {
   return Promise.all([
-    dispatch('loadBuyer')
+    dispatch('loadBuyer'),
+    dispatch('loadVendors')
   ]);
 };
 

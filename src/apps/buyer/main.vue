@@ -24,23 +24,32 @@ html, body {
   <div id="app">
     <router-view/>
 
-    <SetCalendarModal />
-    <SendVendorStatusEmailModal />
+    <AddCalendarEventModal />
     <AddVendorModal />
+    <SendVendorStatusEmailModal />
+    <SetCalendarModal />
+    <SetScheduleModal />
+    <ViewCalendarEventModal />
   </div>
 </template>
 
 <script>
+import AddCalendarEventModal from './components/AddCalendarEventModal';
 import AddVendorModal from './components/AddVendorModal';
 import SendVendorStatusEmailModal from './components/SendVendorStatusEmailModal';
 import SetCalendarModal from './components/SetCalendarModal';
+import SetScheduleModal from './components/SetScheduleModal';
+import ViewCalendarEventModal from './components/ViewCalendarEventModal';
 
 export default {
   name: 'app',
   components: {
+    AddCalendarEventModal,
     AddVendorModal,
     SendVendorStatusEmailModal,
-    SetCalendarModal
+    SetCalendarModal,
+    SetScheduleModal,
+    ViewCalendarEventModal
   },
   beforeMount() {
     this.$store.dispatch('init');

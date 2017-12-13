@@ -50,16 +50,13 @@ export default {
   components: {
     ProductFiles
   },
-  props: ['table'],
+  props: ['table', 'vendor'],
   data() {
     return {
       activeRow: null
     };
   },
   computed: {
-    ...mapGetters({
-      vendor: 'selVendor'
-    }),
     products() {
       return this.vendor[this.table.vendorField].products;
     }

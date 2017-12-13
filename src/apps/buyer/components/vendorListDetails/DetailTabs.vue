@@ -50,14 +50,15 @@
 import { mapGetters } from 'vuex';
 
 export default {
-  computed: {
-    ...mapGetters({
-      activeTab: 'vendorDetailsTab'
-    })
+  data() {
+    return {
+      activeTab: 'company',
+    };
   },
   methods: {
     activateTab(detailTab) {
-      this.$store.commit('vendorDetailsTab', detailTab);
+      this.activeTab = detailTab;
+      this.$emit('changeTab', detailTab);
     }
   }
 };

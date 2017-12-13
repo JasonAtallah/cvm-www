@@ -23,14 +23,14 @@
       {{ vendor.company.name }}
     </div>
     <div class="row content-options">
-      <DetailTabs />
+      <DetailTabs @changeTab="changeTab" />
     </div>
     <div class="row profile-content">
-      <Company v-if="vendorDetailsTab === 'company'" />
-      <Contact v-if="vendorDetailsTab === 'contact'" />
-      <ProductTable v-if="vendorDetailsTab === 'flowers'" :table="FlowersProductTable" />
-      <ProductTable v-if="vendorDetailsTab === 'edibles'" :table="EdiblesProductTable" />
-      <ProductTable v-if="vendorDetailsTab === 'concentrates'" :table="ConcentratesProductTable" />
+      <Company v-if="selTab === 'company'" :vendor="vendor" />
+      <Contact v-if="selTab === 'contact'" :vendor="vendor" />
+      <ProductTable v-if="selTab === 'flowers'" :table="FlowersProductTable" :vendor="vendor" />
+      <ProductTable v-if="selTab === 'edibles'" :table="EdiblesProductTable" :vendor="vendor" />
+      <ProductTable v-if="selTab === 'concentrates'" :table="ConcentratesProductTable" :vendor="vendor" />
     </div>
   </div>
 </template>
@@ -50,25 +50,23 @@ export default {
     Contact,
     ProductTable
   },
+  props: ['vendor'],
   data() {
     return {
       FlowersProductTable,
       EdiblesProductTable,
-      ConcentratesProductTable
+      ConcentratesProductTable,
+      selTab: 'company'
     };
   },
   computed: {
-    ...mapGetters({
-      vendor: 'selVendor',
-      vendorDetailsTab: 'vendorDetailsTab'
-    }),
     isVisible() {
       return this.vendor !== null;
     }
   },
   methods: {
-    closeDetail() {
-      this.$store.commit('selVendor', null);
+    changeTab(detailTab) {
+      this.selTab = detailTab;
     }
   }
 };

@@ -47,10 +47,6 @@
 import { mapGetters } from 'vuex';
 
 export default {
-  computed: {
-    ...mapGetters({
-      vendor: 'selVendor'
-    })
-  }
+  props: ['vendor']
 };
 </script>

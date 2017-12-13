@@ -45,10 +45,6 @@ export const scheduleRemove = (state, value) => {
   }
 };
 
-export const selEvent = (state, event) => {
-  state.selEvent = event;
-};
-
 export const selVendor = (state, vendor) => {
   state.selVendor = vendor;
 };
@@ -61,16 +57,8 @@ export const statusFilter = (state, value) => {
   state.vendorFilter.status = value;
 };
 
-export const vendor = (state, vendor) => {
-  state.vendor = vendor;
-};
-
 export const vendors = (state, vendors) => {
   state.vendors = vendors;
-};
-
-export const vendorDetailsTab = (state, detailTab) => {
-  state.vendorDetailsTab = detailTab;
 };
 
 export const vendorSearch = (state, value) => {
