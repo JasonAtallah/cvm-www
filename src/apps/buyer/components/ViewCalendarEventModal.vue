@@ -15,7 +15,7 @@
         <div class="modal-header">
           <span>
             <h5>{{ event.summary }}</h5>
-            <!-- <h6>{{ vendor.contact.firstName }} {{vendor.contact.lastName }} from {{ vendor.company.name }} at {{ event.start.dateTime }}</h6> -->
+            <h6>{{ vendor.contact.firstName }} {{ vendor.contact.lastName }} from {{ vendor.company.name }} at {{ formatDate(event.start.dateTime) }}</h6>
           </span>
         </div>
 
@@ -48,13 +48,16 @@ export default {
       return this.$store.getters.pendingAction.event;
     },
     vendor() {
-      return this.vendors[0];
+      return this.vendors[1];
       // _.find(this.vendors, { _id: this.$store.getters.pendingAction.event.vendorId });
     }
   },
   methods: {
     cancel() {
       this.$store.commit('cancelPendingAction');
+    },
+    formatDate(date) {
+      return moment(date).format('LLL');
     }
   }
 };
