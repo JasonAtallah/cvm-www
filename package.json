@@ -67,6 +67,8 @@
     "karma-webpack": "^2.0.2",
     "lodash": "^4.17.4",
     "mocha": "^3.2.0",
+    "moment": "^2.19.4",
+    "moment-timezone": "^0.5.14",
     "nightwatch": "^0.9.12",
     "node-sass": "^4.6.0",
     "opn": "^5.1.0",

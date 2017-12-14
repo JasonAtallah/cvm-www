@@ -8,7 +8,6 @@
 <template>
 <div class="calendar">
   <MonthView class="calview" v-if="showMonth"
-    :eventDateField="eventDateField"
     :events="events"
     @clickDay="onClickDay"
     @clickEvent="onClickEvent" />
@@ -24,7 +23,7 @@ export default {
   components: {
     MonthView
   },
-  props: ['events', 'eventDateField'],
+  props: ['events'],
   data() {
     return {
       showMonth: true,

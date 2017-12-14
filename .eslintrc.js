@@ -17,12 +17,9 @@ module.exports = {
   globals: {
     '$': true,
     'jQuery': true,
-    'auth0': true,
-    'moment': true,
     '_': true,
     '$event': true,
-    'showdown': true,
-    'traverse': true
+    'showdown': true
   },
   // check if imports actually resolve
   'settings': {
@@ -56,6 +53,7 @@ module.exports = {
     'no-underscore-dangle': 0,
     'no-useless-escape': 0,
     'import/prefer-default-export': 0,
-    'no-mixed-operators': 0
+    'no-mixed-operators': 0,
+    'func-names': 0
   }
 };

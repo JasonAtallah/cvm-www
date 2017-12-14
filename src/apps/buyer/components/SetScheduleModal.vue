@@ -51,6 +51,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import moment from 'moment';
 import Checkbox from '@/components/form/Checkbox';
 
 export default {

@@ -1,6 +1,6 @@
 <template>
 <FullScreenPage :menuItems="pageMenuItems" :pageName="pageName">
-  <div slot="menu-right">
+  <div slot="menu-right" v-if="buyer">
     {{ buyer.firstName }}
   </div>
   <div slot="content">

@@ -34,11 +34,6 @@ export default {
     BasePage,
     Calendar
   },
-  data() {
-    return {
-      days: null
-    };
-  },
   computed: {
     ...mapGetters({
       events: 'events'

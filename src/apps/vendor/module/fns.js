@@ -25,13 +25,3 @@ export const prepEmptyProduct = (productsDef) => {
 export const isFileField = (obj) => {
   return obj && (obj.type === 'File' || (obj.type === 'Array' && obj.items === 'File'));
 };
-
-export const pullFileFields = (questionnaire) => {
-  const fields = [];
-  traverse(questionnaire).forEach((obj) => {
-    if (isFileField(obj)) {
-      fields.push(obj);
-    }
-  });
-  return fields;
-};
