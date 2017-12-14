@@ -14,7 +14,6 @@ module.exports = new class AuthMiddleware {
 
     request(options)
       .then((token) => {
-        console.log(token);
         req.session.token = token;
         next();
       })
