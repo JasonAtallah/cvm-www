@@ -6,7 +6,7 @@ module.exports = new class AuthMiddleware {
   convertCodeToToken(req, res, next) {
     const options = {
       method: 'GET',
-      url: `${config.mgmtApi.host}/api/buyer/token`,
+      url: `${config.mgmtApi.host}/buyer/v1/buyer/token`,
       qs: {
         code: req.query.code
       }
