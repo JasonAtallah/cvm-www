@@ -1,5 +1,4 @@
 <style scoped>
-
 .card-header {
   background-color: transparent;
 }
@@ -12,13 +11,9 @@
 .secondary {
   color: #a8a8a8;
 }
-
 </style>
 
 <template>
-
-  
-
   <div id="companyContent">
     <table class="table">
       <tbody>
@@ -49,7 +44,7 @@
         <tr>
           <span class="primary">Seller Permit: </span>
           <span class="secondary">{{ vendor.company.haveSellerPermit }}</span>
-        </tr>        
+        </tr>
     </table>
   </div>
 </template>

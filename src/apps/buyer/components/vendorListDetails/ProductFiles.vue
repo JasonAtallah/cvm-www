@@ -37,7 +37,7 @@
 
 <script>
 export default {
-  props: ['product'],
+  props: ['vendor', 'product'],
   methods: {
     getFileType(file) {
       const fileTypes = {
@@ -52,7 +52,7 @@ export default {
       return 'fa-file-o';
     },
     getFileUrl(file) {
-      return `/api/vendors/5a2da9a0c635863c01912b50/files/${file.id}`;
+      return `/api/vendors/${this.vendor._id}/files/${file.id}`;
     }
   }
 };
