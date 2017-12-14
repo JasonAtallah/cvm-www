@@ -23,12 +23,12 @@
     <div class="row">
       <div class="col-md-6">
         <ul class="list-unstyled" v-for="file in product.photos" :key="file.id">
-          <li><i class="fa fa-photo"></i> {{ file.originalname.split('.')[0] }}</li>
+          <li><i class="fa fa-photo"></i><a :href="getFileUrl(file)" target="_blank">{{ file.originalname }}</a></li>
         </ul>
       </div>
       <div class="col-md-6">
         <ul class="list-unstyled" v-for="file in product.testResults" :key="file.id">
-          <li><i class="fa" :class="getFileType(file.mimetype)"></i> {{ file.originalname.split('.')[0] }}</li>
+          <li><i class="fa" :class="getFileType(file.mimetype)"></i> {{ file.originalname }}</li>
         </ul>
       </div>
     </div>
@@ -37,7 +37,7 @@
 
 <script>
 export default {
-  props: ['product'],
+  props: ['vendor', 'product'],
   methods: {
     getFileType(file) {
       const fileTypes = {
@@ -50,6 +50,9 @@ export default {
         return fileTypes[file];
       }
       return 'fa-file-o';
+    },
+    getFileUrl(file) {
+      return `/api/vendors/${this.vendor._id}/files/${file.id}`;
     }
   }
 };

@@ -15,7 +15,7 @@
           <VendorList />
         </div>
         <div slot="detail" class="vendors-detail">
-          <VendorListDetail v-if="vendor" />
+          <VendorListDetail v-if="vendor" :vendor="vendor" />
         </div>
       </MasterDetail>
     </div>

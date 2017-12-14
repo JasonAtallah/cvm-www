@@ -10,15 +10,16 @@
   </div>
   <div slot="content">
     <div class="container">
-      <div class="row">
+      <div class="row">        
         <div class="col-sm-7">
           <div id="calendar" class="monthly"></div>
         </div>
       </div>
-      <Calendar :events="events" />
+      <Calendar
+        :events="events"
+        eventDateField="startDate"
+        v-on:clickEvent="eventClicked" />
     </div>
-    <AddCalendarEventModal />
-    <SetScheduleModal />
   </div>
 </BasePage>
 </template>
@@ -27,15 +28,11 @@
 import { mapGetters } from 'vuex';
 import Calendar from '@/components/ui/Calendar/Calendar';
 import BasePage from './BasePage';
-import AddCalendarEventModal from './AddCalendarEventModal';
-import SetScheduleModal from './SetScheduleModal';
 
 export default {
   components: {
-    AddCalendarEventModal,
     BasePage,
-    Calendar,
-    SetScheduleModal
+    Calendar
   },
   computed: {
     ...mapGetters({
@@ -46,6 +43,12 @@ export default {
     addEvent() {
       this.$store.commit('takeAction', {
         type: 'addCalendarEvent'
+      });
+    },
+    eventClicked(event) {
+      this.$store.commit('takeAction', {
+        type: 'showCalendarEvent',
+        event
       });
     },
     setSchedule() {

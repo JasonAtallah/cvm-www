@@ -15,7 +15,6 @@ export default {
   },
   selVendor: null,
   setSchedule: false,
-  vendorDetailsTab: 'company',
   vendors: [],
   vendorFilter: {
     productType: null,

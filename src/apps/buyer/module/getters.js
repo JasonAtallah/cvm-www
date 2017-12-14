@@ -45,5 +45,4 @@ export const sortedVendors = (state) => {
 };
 export const vendors = state => state.vendors;
 export const vendorActions = state => state.vendorActions;
-export const vendorDetailsTab = state => state.vendorDetailsTab;
 export const vendorFilter = state => state.vendorFilter;

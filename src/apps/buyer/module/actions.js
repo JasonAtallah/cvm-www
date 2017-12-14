@@ -18,7 +18,8 @@ export const createVendor = ({ dispatch, commit }, values) => {
 
 export const init = ({ dispatch }) => {
   return Promise.all([
-    dispatch('loadBuyer')
+    dispatch('loadBuyer'),
+    dispatch('loadVendors')
   ]);
 };
 
@@ -45,6 +46,13 @@ export const loadEvents = ({ rootState, commit }) => {
       if (err.status === 404) {
         commit('gCalendar', null);
       }
+    });
+};
+
+export const loadVendor = ({ rootState, commit }, vendorId) => {
+  return api.getVendor(vendorId)
+    .then((vendor) => {
+      commit('vendor', vendor);
     });
 };
 

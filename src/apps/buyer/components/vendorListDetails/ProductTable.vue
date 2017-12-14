@@ -34,7 +34,7 @@
         </tr>
         <tr class="product-files-row" v-if="activeRow === product">
           <td :colspan="table.columns.length">
-            <ProductFiles :product="product" />
+            <ProductFiles :vendor="vendor" :product="product" />
           </td>
         </tr>
       </tbody>
@@ -50,16 +50,13 @@ export default {
   components: {
     ProductFiles
   },
-  props: ['table'],
+  props: ['table', 'vendor'],
   data() {
     return {
       activeRow: null
     };
   },
   computed: {
-    ...mapGetters({
-      vendor: 'selVendor'
-    }),
     products() {
       return this.vendor[this.table.vendorField].products;
     }

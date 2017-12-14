@@ -61,10 +61,6 @@ export const vendors = (state, vendors) => {
   state.vendors = vendors;
 };
 
-export const vendorDetailsTab = (state, detailTab) => {
-  state.vendorDetailsTab = detailTab;
-};
-
 export const vendorSearch = (state, value) => {
   state.vendorFilter.searchTerm = value.trim();
 };
