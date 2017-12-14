@@ -21,7 +21,7 @@
 
         <VendorListDetail :vendor="vendor" />
 
-        <div class="modal-footer">                        
+        <div class="modal-footer">
           <button @click.prevent="cancel" class="btn btn-default">OK</button>
         </div>
       </div>
@@ -31,6 +31,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import moment from 'moment';
 import VendorListDetail from './VendorListDetail';
 
 export default {
