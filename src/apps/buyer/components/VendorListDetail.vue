@@ -6,7 +6,8 @@
 }
 
 .vendor-list-detail {
-  padding-left: 1.5rem;
+  padding-left: 3rem;
+  padding-top: 1.5rem;
 }
 
 .company-name {

@@ -1,44 +1,55 @@
+<style scoped>
+
+.card-header {
+  background-color: transparent;
+}
+
+.primary {
+  font-weight: bold;
+  color: #777777
+}
+
+.secondary {
+  color: #a8a8a8;
+}
+
+</style>
+
 <template>
+
+  
+
   <div id="companyContent">
-    <table class="table table-hover">
+    <table class="table">
       <tbody>
-        <tr>
-          <th scope="row">Website</th>
-          <td>{{ vendor.company.website }}</td>
-        </tr>
-        <tr>
-          <th scope="row">Address</th>
-          <td>{{ vendor.company.address }}</td>
-        </tr>
-        <tr>
-          <th scope="row">City</th>
-          <td>{{ vendor.company.city }}</td>
-        </tr>
-        <tr>
-          <th scope="row">State</th>
-          <td>{{ vendor.company.state }}</td>
-        </tr>
-        <tr>
-          <th scope="row">Zip</th>
-          <td>{{ vendor.company.zip }}</td>
-        </tr>
-        <tr>
-          <th scope="row">SREA#</th>
-          <td>{{ vendor.company.srea }}</td>
-        </tr>
-        <tr>
-          <th scope="row">Tax ID</th>
-          <td>{{ vendor.company.haveTaxId }}</td>
-        </tr>
-        <tr>
-          <th scope="row">Seller Permit</th>
-          <td>{{ vendor.company.haveSellerPermit }}</td>
-        </tr>
-        <tr>
-          <th scope="row">Part of Collective</th>
-          <td>{{ vendor.company.partOfCollective }}</td>
-        </tr>
+        <th>
+          <h2 class="primary">{{ vendor.company.name }}</h2>
+        </th>
       </tbody>
+        <tr>
+        <span class="primary">Website: </span>
+           <span class="secondary">{{ vendor.company.website }}</span>
+        </tr>
+        <tr>
+          <span class="primary">Address: </span>
+          <span class="secondary">{{ vendor.company.address }} {{ vendor.company.city }}, {{ vendor.company.state }}</span>
+        </tr>
+        <tr>
+          <span class="primary">SREA#: </span>
+          <span class="secondary">{{ vendor.company.srea }}</span>
+        </tr>
+        <tr>
+          <span class="primary">Tax ID: </span>
+          <span class="secondary">{{ vendor.company.haveTaxId }}</span>
+        </tr>
+        <tr>
+          <span class="primary">Part of Collective: </span>
+          <span class="secondary">{{ vendor.company.partOfCollective }}</span>
+        </tr>
+        <tr>
+          <span class="primary">Seller Permit: </span>
+          <span class="secondary">{{ vendor.company.haveSellerPermit }}</span>
+        </tr>        
     </table>
   </div>
 </template>
