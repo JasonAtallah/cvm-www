@@ -25,7 +25,7 @@ module.exports = function (app) {
       auth.convertCodeToToken,
       responses.redirectToHomePage);
 
-    app.use('/api',
+    app.use('/buyer',
       auth.isBuyerLoggedIn,
       proxy.api);
 
@@ -47,7 +47,7 @@ module.exports = function (app) {
     app.use(config.staticPath,
       express.static(config.staticDir));
 
-    app.use('/api',
+    app.use('/vendor',
       proxy.api);
 
     if (process.env.NODE_ENV === 'production') {

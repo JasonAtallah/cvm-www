@@ -52,7 +52,7 @@ export default {
       return 'fa-file-o';
     },
     getFileUrl(file) {
-      return `/api/vendors/${this.vendor._id}/files/${file.id}`;
+      return `/buyer/v1/vendors/${this.vendor._id}/files/${file.id}`;
     }
   }
 };
