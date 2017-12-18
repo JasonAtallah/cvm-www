@@ -32,7 +32,7 @@
         <div class="col-sm-8">
           <span class="company-name">{{ vendor.name }}</span>
           <span v-if="vendor.state.name === 'approved'" class="badge badge-success">Approved</span>
-          <span v-if="vendor.state.name === 'rejected'" class="badge badge-danger">Rejected</span>
+          <span v-if="vendor.state.name === 'VendorRejected'" class="badge badge-danger">Rejected</span>
         </div>
         <div class="col-sm-4">
           <DropdownButton class="actionMenu text-right" label="Action" :vendor="vendor" :options="actions" @selection="onActionSelect(vendor, $event)" />
