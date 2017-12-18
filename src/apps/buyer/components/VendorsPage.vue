@@ -11,6 +11,7 @@
     <div slot="content" class="vendors-page">
       <MasterDetail>
         <div slot="master" class="vendors-master">
+          <VendorListButtons />
           <VendorListFilter />
           <VendorList />
         </div>
@@ -27,6 +28,7 @@ import { mapGetters } from 'vuex';
 import MasterDetail from '@/components/page/content/MasterDetail';
 import BasePage from './BasePage';
 import VendorList from './VendorList';
+import VendorListButtons from './VendorListButtons';
 import VendorListFilter from './VendorListFilter';
 import VendorListDetail from './VendorListDetail';
 
@@ -35,6 +37,7 @@ export default {
     BasePage,
     MasterDetail,
     VendorList,
+    VendorListButtons,
     VendorListFilter,
     VendorListDetail
   },

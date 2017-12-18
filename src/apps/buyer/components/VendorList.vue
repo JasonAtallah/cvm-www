@@ -1,7 +1,7 @@
 <style lang="scss" scoped>
 .vendor-list {
   position: absolute;
-  top: $vendor-list-filter-height;
+  top: #{$vendor-list-filter-height * 2};
   bottom: 0;
   left: 0;
   right: 0;

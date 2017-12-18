@@ -3,6 +3,7 @@
   position: relative;
   text-align: left;
   height: $header-height;
+  padding: 1rem 0;
 }
 
 .page-header .left {
