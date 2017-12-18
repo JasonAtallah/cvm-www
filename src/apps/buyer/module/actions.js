@@ -97,6 +97,13 @@ export const saveSchedule = ({ rootState, commit }) => {
     });
 };
 
+export const selVendor = ({ rootState, commit }, vendor) => {
+  return api.getVendor(vendor)
+    .then((vendorDetail) => {
+      commit('selVendor', vendorDetail);
+    });
+};
+
 export const setGCalendar = ({ rootState, commit }, calendar) => {
   return api.setGCalendar(calendar)
     .then((calendar) => {

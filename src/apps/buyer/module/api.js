@@ -25,6 +25,10 @@ export default {
     return http.get('/buyer/v1/events', params);
   },
 
+  getVendor(vendor) {
+    return http.get(`/buyer/v1/vendors/${vendor._id}`);
+  },
+
   getVendors() {
     return http.get('/buyer/v1/vendors');
   },

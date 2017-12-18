@@ -30,11 +30,9 @@
     <li v-for="vendor in vendors" :key="vendor._id" @click.prevent="onVendorClick(vendor)">
       <div class="row">
         <div class="col-sm-8">
-          <span class="company-name">{{ vendor.company.name }}</span>
-          <span v-if="vendor.status === 'approved'" class="badge badge-success">Approved</span>
-          <span v-if="vendor.status === 'rejected'" class="badge badge-danger">Rejected</span>
-          <br />
-          <span class="contact-name">{{ vendor.contact.firstName }} {{ vendor.contact.lastName }}<br /></span>
+          <span class="company-name">{{ vendor.name }}</span>
+          <span v-if="vendor.state.name === 'approved'" class="badge badge-success">Approved</span>
+          <span v-if="vendor.state.name === 'rejected'" class="badge badge-danger">Rejected</span>
         </div>
         <div class="col-sm-4">
           <DropdownButton class="actionMenu text-right" label="Action" :vendor="vendor" :options="actions" @selection="onActionSelect(vendor, $event)" />
@@ -67,7 +65,7 @@ export default {
       });
     },
     onVendorClick(vendor) {
-      this.$store.commit('selVendor', vendor);
+      this.$store.dispatch('selVendor', vendor);
     }
   }
 };
