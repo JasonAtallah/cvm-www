@@ -6,7 +6,7 @@ module.exports = new class AuthMiddleware {
   convertCodeToToken(req, res, next) {
     const options = {
       method: 'GET',
-      url: `${config.mgmtApi.host}/buyer/v1/buyer/token`,
+      url: `${config.mgmtApi.host}/buyer/v1/token`,
       qs: {
         code: req.query.code
       }
@@ -28,5 +28,9 @@ module.exports = new class AuthMiddleware {
     } else {
       res.redirect(`${config.mgmtApi.host}/buyer/login?callback=${config.app.buyerCallback}`);
     }
+  }
+
+  loginBuyer(req, res, next) {
+    res.redirect(`${config.mgmtApi.host}/buyer/login?callback=${config.app.buyerCallback}`);
   }
 };

@@ -38,14 +38,14 @@ export default {
   },
 
   saveSchedule(schedule) {
-    return http.put('/buyer/v1/buyer/schedule', schedule);
+    return http.put('/buyer/v1/schedule', schedule);
   },
 
   setGCalendar(calendar) {
-    return http.put('/buyer/v1/buyer/gcalendar', calendar);
+    return http.put('/buyer/v1/gcalendar', calendar);
   },
 
   updateBuyerEmailTemplate(templateId, email) {
-    return http.put(`/buyer/v1/buyer/emails/${templateId}`, email);
+    return http.put(`/buyer/v1/emails/${templateId}`, email);
   }
 };
