@@ -6,7 +6,7 @@
   <div class="action-button">
     <DropdownButton v-if="vendor.state.name === 'NewVendor'" class="actionMenu text-right" label="Action" :vendor="vendor" :options="actionsByStatus()" @selection="onActionSelect(vendor, $event)" />
     <DropdownButton v-else-if="vendor.state.name === 'VendorApproved'" class="actionMenu text-right" label="Schedule" :vendor="vendor" :options="actionsByStatus()" @selection="onActionSelect(vendor, $event)" />
-    <DropdownButton v-else-if="vendor.state.name === 'VendorRejected'" class="actionMenu text-right" label="Watch" :vendor="vendor" :options="actionsByStatus()" @selection="onActionSelect(vendor, $event)" />
+    <DropdownButton v-else-if="vendor.state.name === 'VendorRejected'" class="actionMenu text-right" label="Watch" :vendor="vendor" :options="actionsByStatus()" @selection="watch(vendor, $event)" />
     <DropdownButton v-else-if="vendor.state.name === 'ApptScheduled'" class="actionMenu text-right" label="Reschedule" :vendor="vendor" :options="actionsByStatus()" @selection="onActionSelect(vendor, $event)" />
   </div>
 </template>
@@ -33,6 +33,12 @@ export default {
       this.$store.commit('takeAction', {
         type: action.value,
         vendor
+      });
+    },
+    watch(vendor, action) {
+      this.$store.dispatch('watchVendor', {
+        vendor,
+        action
       });
     }
   }

@@ -24,11 +24,11 @@ export default [
   {
     status: 'VendorRejected',
     label: 'Yes',
-    values: 'yes'
+    values: 'watchVendor'
   },
   {
     status: 'VendorRejected',
     label: 'No',
-    values: 'no'
+    values: 'unwatchVendor'
   }
 ];

@@ -117,3 +117,13 @@ export const setGCalendar = ({ rootState, commit }, calendar) => {
 export const updateBuyerEmailTemplate = ({ rootState, commit }, { templateId, email }) => {
   return api.updateBuyerEmailTemplate(templateId, email);
 };
+
+export const watchVendor = ({ commit }, { vendor, action }) => {
+  if (action.values === 'watchVendor') {
+    return api.watchVendor(vendor);
+  } else if (action === 'unwatchVendor') {
+    return api.unwatchVendor(vendor);
+  }
+
+  return Promise.reject(new Error(`Invalid Action: ${action}`));
+};
