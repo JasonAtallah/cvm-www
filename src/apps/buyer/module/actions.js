@@ -49,17 +49,10 @@ export const loadEvents = ({ rootState, commit }) => {
     });
 };
 
-export const loadVendor = ({ rootState, commit }, vendorId) => {
-  return api.getVendor(vendorId)
-    .then((vendor) => {
-      commit('vendor', vendor);
-    });
-};
-
 export const loadVendors = ({ rootState, commit }) => {
   return api.getVendors()
-    .then((vendors) => {
-      commit('vendors', vendors);
+    .then((vendorList) => {
+      commit('vendorList', vendorList);
     });
 };
 
@@ -98,9 +91,19 @@ export const saveSchedule = ({ rootState, commit }) => {
 };
 
 export const selVendor = ({ rootState, commit }, vendor) => {
-  return api.getVendor(vendor)
+  const cachedVendor = rootState.vendors[vendor._id];
+  let vendorDetailP;
+
+  if (cachedVendor) {
+    vendorDetailP = Promise.resolve(cachedVendor);
+  } else {
+    vendorDetailP = api.getVendor(vendor);
+  }
+
+  return vendorDetailP
     .then((vendorDetail) => {
       commit('selVendor', vendorDetail);
+      commit('cacheVendorDetail', vendorDetail);
     });
 };
 

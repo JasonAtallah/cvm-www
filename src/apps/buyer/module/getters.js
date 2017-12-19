@@ -12,37 +12,42 @@ export const schedule = state => state.buyer.schedule;
 export const selVendor = state => state.selVendor;
 export const setSchedule = state => state.setSchedule;
 export const sortedVendors = (state) => {
-  let vendors = [...state.vendors];
+  let vendors = [...state.vendorList];
 
-  if (state.vendorFilter.productType) {
-    const productType = state.vendorFilter.productType.split(' ').shift().toLowerCase();
-    vendors = vendors.filter((vendor) => {
-      return vendor[productType].products.length > 0;
-    });
-  }
+  // if (state.vendorFilter.productType) {
+  //   const productType = state.vendorFilter.productType.split(' ').shift().toLowerCase();
+  //   vendors = vendors.filter((vendor) => {
+  //     return vendor[productType].products.length > 0;
+  //   });
+  // }
 
   if (state.vendorFilter.status) {
-    const status = state.vendorFilter.status.toLowerCase();
+    const status = state.vendorFilter.status;
     vendors = vendors.filter((vendor) => {
-      if (status === 'new') {
-        return vendor.status === null;
+      if (status === 'New') {
+        return vendor.state.name === 'NewVendor';
+      } else if (status === 'Rejected') {
+        return vendor.state.name === 'VendorRejected';
+      } else if (status === 'Approved') {
+        return vendor.state.name === 'VendorApproved';
       }
 
-      return vendor.status && vendor.status.toLowerCase() === status;
+      return true;
     });
   }
 
   if (state.vendorFilter.searchTerm) {
     const searchTerm = state.vendorFilter.searchTerm.toLowerCase();
     vendors = vendors.filter((vendor) => {
-      return vendor.company.name.toLowerCase().indexOf(searchTerm) >= 0;
+      return vendor.name.toLowerCase().indexOf(searchTerm) >= 0;
     });
   }
 
-  vendors.sort(state.vendorFilter.sort.sortFn);
+  // vendors.sort(state.vendorFilter.sort.sortFn);
 
   return vendors;
 };
+export const vendorList = state => state.vendorList;
 export const vendors = state => state.vendors;
 export const vendorActions = state => state.vendorActions;
 export const vendorFilter = state => state.vendorFilter;

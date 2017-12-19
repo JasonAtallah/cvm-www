@@ -6,26 +6,30 @@ export const addVendorToList = (state, vendor) => {
   state.vendors.push(vendor);
 };
 
-export const cancelPendingAction = (state) => {
-  state.pendingAction = {
-    type: null
-  };
-};
-
 export const buyer = (state, buyer) => {
   state.buyer = buyer;
+};
+
+export const cacheVendorDetail = (state, vendorDetail) => {
+  state.vendors[vendorDetail._id] = vendorDetail;
 };
 
 export const calendars = (state, calendars) => {
   state.calendars = _.sortBy(calendars, 'name');
 };
 
-export const gCalendar = (state, gcalendar) => {
-  state.buyer.gcalendar = gcalendar;
+export const cancelPendingAction = (state) => {
+  state.pendingAction = {
+    type: null
+  };
 };
 
 export const events = (state, events) => {
   state.events = events;
+};
+
+export const gCalendar = (state, gcalendar) => {
+  state.buyer.gcalendar = gcalendar;
 };
 
 export const productFilter = (state, value) => {
@@ -57,8 +61,8 @@ export const statusFilter = (state, value) => {
   state.vendorFilter.status = value;
 };
 
-export const vendors = (state, vendors) => {
-  state.vendors = vendors;
+export const vendorList = (state, vendorList) => {
+  state.vendorList = vendorList;
 };
 
 export const vendorSearch = (state, value) => {

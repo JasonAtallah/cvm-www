@@ -39,9 +39,6 @@ export default {
     VendorListDetail
   },
   computed: {
-    ...mapGetters({
-      vendors: 'vendors'
-    }),
     isVisible() {
       return this.$store.getters.pendingAction.type === 'showCalendarEvent';
     },
@@ -49,8 +46,7 @@ export default {
       return this.$store.getters.pendingAction.event;
     },
     vendor() {
-      return this.vendors[1];
-      // _.find(this.vendors, { _id: this.$store.getters.pendingAction.event.vendorId });
+      return this.$store.getters.pendingAction.vendor;
     }
   },
   methods: {
