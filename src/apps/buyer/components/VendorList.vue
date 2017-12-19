@@ -35,7 +35,7 @@
           <span v-if="vendor.state.name === 'VendorRejected'" class="badge badge-danger">Rejected</span>
         </div>
         <div class="col-sm-4">
-          <DropdownButton class="actionMenu text-right" label="Action" :vendor="vendor" :options="actions" @selection="onActionSelect(vendor, $event)" />
+          <VendorActionButton :vendor="vendor" />
         </div>
       </div>
     </li>
@@ -44,26 +44,19 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import DropdownButton from '@/components/form/DropdownButton';
+import VendorActionButton from './VendorActionButton';
 
 export default {
   components: {
-    DropdownButton
+    VendorActionButton
   },
   computed: {
     ...mapGetters({
       vendors: 'sortedVendors',
       vendorStatusEmail: 'vendorStatusEmail',
-      actions: 'vendorActions'
     })
   },
   methods: {
-    onActionSelect(vendor, action) {
-      this.$store.commit('takeAction', {
-        type: action.value,
-        vendor
-      });
-    },
     onVendorClick(vendor) {
       this.$store.dispatch('selVendor', vendor);
     }
