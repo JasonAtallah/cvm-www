@@ -3,7 +3,7 @@ export const addCalendarEventToList = (state, calendarEvent) => {
 };
 
 export const addVendorToList = (state, vendor) => {
-  state.vendors.push(vendor);
+  state.vendors[vendor._id] = vendor;
 };
 
 export const buyer = (state, buyer) => {
