@@ -33,6 +33,8 @@
           <span class="company-name">{{ vendor.name }}</span>
           <span v-if="vendor.state.name === 'VendorApproved'" class="badge badge-success">Approved</span>
           <span v-if="vendor.state.name === 'VendorRejected'" class="badge badge-danger">Rejected</span>
+          <span v-if="vendor.state.name === 'ApptScheduled'" class="badge badge-primary">Scheduled</span>
+          <span v-if="vendor.state.name === 'VendorNeedsToReviewTimes'" class="badge badge-info">Awaiting Vendor Response</span>
         </div>
         <div class="col-sm-4">
           <VendorActionButton :vendor="vendor" />
@@ -53,7 +55,6 @@ export default {
   computed: {
     ...mapGetters({
       vendors: 'sortedVendors',
-      vendorStatusEmail: 'vendorStatusEmail',
     })
   },
   methods: {
