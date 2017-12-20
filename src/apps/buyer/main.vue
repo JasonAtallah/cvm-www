@@ -26,6 +26,7 @@ html, body {
 
     <AddCalendarEventModal />
     <AddVendorModal />
+    <SendMeetingTimes />
     <SendVendorStatusEmailModal />
     <SetCalendarModal />
     <SetScheduleModal />
@@ -36,6 +37,7 @@ html, body {
 <script>
 import AddCalendarEventModal from './components/AddCalendarEventModal';
 import AddVendorModal from './components/AddVendorModal';
+import SendMeetingTimes from './components/SendMeetingTimes';
 import SendVendorStatusEmailModal from './components/SendVendorStatusEmailModal';
 import SetCalendarModal from './components/SetCalendarModal';
 import SetScheduleModal from './components/SetScheduleModal';
@@ -46,6 +48,7 @@ export default {
   components: {
     AddCalendarEventModal,
     AddVendorModal,
+    SendMeetingTimes,
     SendVendorStatusEmailModal,
     SetCalendarModal,
     SetScheduleModal,

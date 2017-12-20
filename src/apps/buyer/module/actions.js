@@ -79,6 +79,11 @@ export const performVendorAction = ({ commit }, { vendor, action, email }) => {
         });
         commit('cancelPendingAction');
       });
+  } else if (action === 'scheduleTime') {
+    return api.sendApptTimes(vendor, email)
+    .then(() => {
+      commit('cancelPendingAction');
+    });
   }
   return Promise.reject(new Error(`Invalid Action: ${action}`));
 };
@@ -119,7 +124,7 @@ export const updateBuyerEmailTemplate = ({ rootState, commit }, { templateId, em
 };
 
 export const watchVendor = ({ commit }, { vendor, action }) => {
-  if (action.values === 'watchVendor') {
+  if (action.value === 'watchVendor') {
     return api.watchVendor(vendor);
   } else if (action === 'unwatchVendor') {
     return api.unwatchVendor(vendor);

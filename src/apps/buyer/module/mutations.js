@@ -61,6 +61,14 @@ export const statusFilter = (state, value) => {
   state.vendorFilter.status = value;
 };
 
+export const takeAction = (state, action) => {
+  state.pendingAction = action;
+};
+
+export const updateVendor = (state, params) => {
+  Object.assign(params.vendor, params.values);
+};
+
 export const vendorList = (state, vendorList) => {
   state.vendorList = vendorList;
 };
@@ -71,12 +79,4 @@ export const vendorSearch = (state, value) => {
 
 export const vendorSort = (state, value) => {
   state.vendorFilter.sort = value;
-};
-
-export const takeAction = (state, action) => {
-  state.pendingAction = action;
-};
-
-export const updateVendor = (state, params) => {
-  Object.assign(params.vendor, params.values);
 };

@@ -45,6 +45,10 @@ export default {
     return http.put('/buyer/v1/schedule', schedule);
   },
 
+  sendApptTimes(vendor, email) {
+    return http.post(`/buyer/v1/vendors/${vendor._id}/apptTimes`, email);
+  },
+
   setGCalendar(calendar) {
     return http.put('/buyer/v1/gcalendar', calendar);
   },

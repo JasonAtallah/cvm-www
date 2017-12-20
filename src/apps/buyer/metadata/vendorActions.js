@@ -14,21 +14,21 @@ export default [
   {
     status: 'VendorApproved',
     label: 'Schedule Time',
-    values: 'scheduleTime'
+    value: 'scheduleTime'
   },
   {
     status: 'ApptScheduled',
     label: 'Reschedule',
-    values: 'reschedule'
+    value: 'reschedule'
   },
   {
     status: 'VendorRejected',
     label: 'Yes',
-    values: 'watchVendor'
+    value: 'watchVendor'
   },
   {
     status: 'VendorRejected',
     label: 'No',
-    values: 'unwatchVendor'
+    value: 'unwatchVendor'
   }
 ];

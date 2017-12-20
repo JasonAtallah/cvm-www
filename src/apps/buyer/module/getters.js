@@ -1,4 +1,3 @@
-export const addCalendarEventModalIsVisible = state => state.addCalendarEventModalIsVisible;
 export const buyer = state => state.buyer;
 export const calendars = state => state.calendars;
 export const events = state => state.events;
