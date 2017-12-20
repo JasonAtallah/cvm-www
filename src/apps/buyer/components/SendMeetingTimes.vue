@@ -23,7 +23,7 @@
               <div class="row">
                 <div class="col-md-8">
                   <div class="form-group">
-                    <label for="exampleFormControlSelect1">email Name:</label>
+                    <label for="exampleFormControlSelect1">Event Name:</label>
                     <input type="text" class="form-control" id="name" v-model="email.name">
                   </div>
                 </div>
@@ -44,7 +44,6 @@
                 </div>
               </div>
 
-              <hr>
               <div class="row">
                 <div class="col-md-5">
                   <div class="form-group">
@@ -58,8 +57,11 @@
                     <input type="time" class="form-control" id="time" v-model="timeViewing">
                   </div>
                 </div>
-                <div class="col-md-2">                  
-                  <button type="button" class="btn btn-primary" @click.prevent="addTime">Add Time</button>
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label for="exampleFormControlSelect1">Add Time</label>
+                    <button type="button" class="btn btn-primary" @click.prevent="addTime"><i class="fa fa-plus"></i></button>
+                  </div>
                 </div>
               </div>
               
@@ -74,9 +76,9 @@
                 </div>
                 <div class="col-md-6">
                   <h5 v-if="email.timesSelected.length > 0">Times Selected</h5>
-                  <ul class="list-unstyled" v-for="time in email.timesSelected">
+                  <ul class="list-unstyled" v-for="timeSelected in email.timesSelected">
                     <li>
-                      {{ time }}
+                      {{ timeSelected }}
                     </li>
                   </ul>
                 </div>
@@ -122,7 +124,7 @@ export default {
       timeViewing: null,
       email: {
         name: null,
-        location: 'dispensary address',
+        location: '*dispensary address*',
         duration: 30,
         timesSelected: []
       }
@@ -141,7 +143,7 @@ export default {
       this.$store.commit('cancelPendingAction');
     },
     send() {
-      this.validate(this.email)
+      this.validate()
       .then(() => {
         this.$store.dispatch('performVendorAction', {
           vendor: this.vendor,
@@ -150,8 +152,9 @@ export default {
         });
       });
     },
-    validate(email) {
+    validate() {
       return new Promise((resolve, reject) => {
+        // write fn to confirm time selected doesn't overlap with other calendar events
         return resolve();
       });
     }
