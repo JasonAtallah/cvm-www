@@ -23,14 +23,14 @@
               <div class="row">
                 <div class="col-md-8">
                   <div class="form-group">
-                    <label for="exampleFormControlSelect1">Event Name:</label>
-                    <input type="text" class="form-control" id="name" v-model="event.name">
+                    <label for="exampleFormControlSelect1">email Name:</label>
+                    <input type="text" class="form-control" id="name" v-model="email.name">
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="exampleFormControlSelect1">Duration (mins):</label>
-                    <input type="number" class="form-control" id="duration" v-model="event.duration">
+                    <input type="number" class="form-control" id="duration" v-model="email.duration">
                   </div>
                 </div>
               </div>
@@ -39,53 +39,46 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label for="exampleFormControlSelect1">Location:</label>
-                    <input type="text" class="form-control" id="location" v-model="event.location">
+                    <input type="text" class="form-control" id="location" v-model="email.location">
                   </div>
                 </div>
               </div>
 
               <hr>
-              <h5>Select up to 3 options</h5>
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-5">
                   <div class="form-group">
                     <label for="exampleFormControlSelect1">Date:</label>
-                    <input type="date" class="form-control" id="date" v-model="event.choices.one.date">
+                    <input type="date" class="form-control" id="date" v-model="dateViewing">
                   </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-5">
                   <div class="form-group">
                     <label for="exampleFormControlSelect1">Time:</label>
-                    <input type="time" class="form-control" id="time" v-model="event.choices.one.time">
+                    <input type="time" class="form-control" id="time" v-model="timeViewing">
                   </div>
+                </div>
+                <div class="col-md-2">                  
+                  <button type="button" class="btn btn-primary" @click.prevent="addTime">Add Time</button>
                 </div>
               </div>
+              
               <div class="row">
                 <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="exampleFormControlSelect1">Date:</label>
-                    <input type="date" class="form-control" id="date" v-model="event.choices.two.date">
-                  </div>
+                  <h5 v-if="dateViewing">Other events you have scheduled for {{ dateViewing }}</h5>
+                  <ul class="list-unstyled" v-for="event in events">
+                    <li v-if="event.startDate.split('T')[0] === dateViewing">
+                      {{ event.title }} from {{ event.startDate.split('T')[1] }} to {{ event.endDate.split('T')[1] }}
+                    </li>
+                  </ul>
                 </div>
                 <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="exampleFormControlSelect1">Time:</label>
-                    <input type="time" class="form-control" id="time" v-model="event.choices.two.time">
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="exampleFormControlSelect1">Date:</label>
-                    <input type="date" class="form-control" id="date" v-model="event.choices.three.date">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="exampleFormControlSelect1">Time:</label>
-                    <input type="time" class="form-control" id="time" v-model="event.choices.three.time">
-                  </div>
+                  <h5 v-if="email.timesSelected.length > 0">Times Selected</h5>
+                  <ul class="list-unstyled" v-for="time in email.timesSelected">
+                    <li>
+                      {{ time }}
+                    </li>
+                  </ul>
                 </div>
               </div>
 
@@ -125,42 +118,39 @@ export default {
   },
   data() {
     return {
-      event: {
+      dateViewing: null,
+      timeViewing: null,
+      email: {
         name: null,
         location: 'dispensary address',
         duration: 30,
-        choices: {
-          one: {
-            date: null,
-            time: null
-          },
-          two: {
-            date: null,
-            time: null
-          },
-          three: {
-            date: null,
-            time: null
-          }
-        }
+        timesSelected: []
       }
     };
   },
   methods: {
+    addTime() {
+      this.email.timesSelected.push({
+        date: this.dateViewing,
+        time: this.timeViewing
+      });
+      this.dateViewing = null;
+      this.timeViewing = null;
+    },
     cancel() {
       this.$store.commit('cancelPendingAction');
     },
     send() {
-      this.validate(this.event)
+      this.validate(this.email)
       .then(() => {
         this.$store.dispatch('performVendorAction', {
           vendor: this.vendor,
           action: this.action,
-          event: this.event
+          email: this.email
         });
       });
     },
-    validate(event) {
+    validate(email) {
       return new Promise((resolve, reject) => {
         return resolve();
       });
