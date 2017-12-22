@@ -24,13 +24,13 @@
                 <div class="col-md-8">
                   <div class="form-group">
                     <label for="exampleFormControlSelect1">Event Name:</label>
-                    <input type="text" class="form-control" id="name" v-model="email.name">
+                    <input type="text" class="form-control" id="name" v-model="apptProposal.name">
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="exampleFormControlSelect1">Duration (mins):</label>
-                    <input type="number" class="form-control" id="duration" v-model="email.duration">
+                    <input type="number" class="form-control" id="duration" v-model="apptProposal.duration">
                   </div>
                 </div>
               </div>
@@ -39,7 +39,7 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label for="exampleFormControlSelect1">Location:</label>
-                    <input type="text" class="form-control" id="location" v-model="email.location">
+                    <input type="text" class="form-control" id="location" v-model="apptProposal.location">
                   </div>
                 </div>
               </div>
@@ -66,19 +66,20 @@
               </div>
               
               <div class="row">
-                <div class="col-md-6">
-                  <h5 v-if="dateViewing">Other events you have scheduled for {{ dateViewing }}</h5>
+                <div class="col-md-5">
+                  <h5 v-if="dateViewing">Scheduled for {{ dateViewing }}</h5>
                   <ul class="list-unstyled" v-for="event in events">
                     <li v-if="event.startDate.split('T')[0] === dateViewing">
                       {{ event.title }} from {{ event.startDate.split('T')[1] }} to {{ event.endDate.split('T')[1] }}
                     </li>
                   </ul>
                 </div>
-                <div class="col-md-6">
-                  <h5 v-if="email.timesSelected.length > 0">Times Selected</h5>
-                  <ul class="list-unstyled" v-for="timeSelected in email.timesSelected">
+                <div class="col-md-5">
+                  <h5 v-if="apptProposal.timesSelected.length > 0">Times Selected</h5>
+                  <ul class="list-unstyled" v-for="timeSelected in apptProposal.timesSelected">
                     <li>
                       {{ timeSelected }}
+                      <!-- <button type="button" class="btn btn-danger" @click.prevent="deleteTime"><i class="fa fa-times-circle"></i></button> -->
                     </li>
                   </ul>
                 </div>
@@ -122,7 +123,7 @@ export default {
     return {
       dateViewing: null,
       timeViewing: null,
-      email: {
+      apptProposal: {
         name: null,
         location: '*dispensary address*',
         duration: 30,
@@ -132,7 +133,7 @@ export default {
   },
   methods: {
     addTime() {
-      this.email.timesSelected.push({
+      this.apptProposal.timesSelected.push({
         date: this.dateViewing,
         time: this.timeViewing
       });
@@ -148,7 +149,7 @@ export default {
         this.$store.dispatch('performVendorAction', {
           vendor: this.vendor,
           action: this.action,
-          email: this.email
+          apptProposal: this.apptProposal
         });
       });
     },
