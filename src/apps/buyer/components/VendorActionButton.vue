@@ -4,10 +4,7 @@
 
 <template>
   <div class="action-button">
-    <DropdownButton v-if="vendor.state.name === 'NewVendor'" class="actionMenu text-right" label="Action" :vendor="vendor" :options="actionsByStatus()" @selection="onActionSelect(vendor, $event)" />
-    <DropdownButton v-else-if="vendor.state.name === 'VendorApproved'" class="actionMenu text-right" label="Schedule" :vendor="vendor" :options="actionsByStatus()" @selection="onActionSelect(vendor, $event)" />
-    <DropdownButton v-else-if="vendor.state.name === 'VendorRejected'" class="actionMenu text-right" label="Watch" :vendor="vendor" :options="actionsByStatus()" @selection="watch(vendor, $event)" />
-    <DropdownButton v-else-if="vendor.state.name === 'ApptScheduled'" class="actionMenu text-right" label="Reschedule" :vendor="vendor" :options="actionsByStatus()" @selection="onActionSelect(vendor, $event)" />
+    <DropdownButton v-if="currentAction" class="actionMenu text-right" :option="currentAction" :vendor="vendor" :options="currentAction.options" @selection="onActionSelect($event)" />
   </div>
 </template>
 
@@ -23,23 +20,24 @@ export default {
   computed: {
     ...mapGetters({
       actions: 'vendorActions'
-    })
+    }),
+    currentAction() {
+      return this.actions.find(action => action.status === this.vendor.state.name);
+    }
   },
   methods: {
-    actionsByStatus() {
-      return this.actions.filter(action => action.status === this.vendor.state.name);
-    },
-    onActionSelect(vendor, action) {
-      this.$store.commit('takeAction', {
-        type: action.value,
-        vendor
-      });
-    },
-    watch(vendor, action) {
-      this.$store.dispatch('watchVendor', {
-        vendor,
-        action
-      });
+    onActionSelect(action) {
+      if (action.commit) {
+        this.$store.commit(action.commit, {
+          type: action.value,
+          vendor: this.vendor
+        });
+      } else if (action.dispatch) {
+        this.$store.dispatch(action.dispatch, {
+          vendor: this.vendor,
+          action
+        });
+      }
     }
   }
 };
