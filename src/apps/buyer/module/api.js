@@ -5,6 +5,10 @@ export default {
     return http.put(`/buyer/v1/vendors/${vendor._id}/approve`, email);
   },
 
+  cancelMeeting(vendor) {
+    return http.put(`/buyer/v1/vendors/${vendor._id}/cancelMeeting`);
+  },
+
   createCalendarEvent(values) {
     return http.post('/buyer/v1/events', values);
   },

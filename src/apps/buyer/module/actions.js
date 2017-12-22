@@ -84,6 +84,11 @@ export const performVendorAction = ({ commit }, { vendor, action, email }) => {
     .then(() => {
       commit('cancelPendingAction');
     });
+  } else if (action === 'cancelMeeting') {
+    return api.cancelMeeting(vendor)
+    .then(() => {
+      commit('cancelPendingAction');
+    });
   }
   return Promise.reject(new Error(`Invalid Action: ${action}`));
 };

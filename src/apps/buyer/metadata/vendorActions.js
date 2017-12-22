@@ -27,22 +27,23 @@ export default [
   {
     status: 'ApptScheduled',
     label: 'Cancel',
-    value: 'cancel',
+    value: 'cancelMeeting',
     commit: 'takeAction'
   },
   {
     status: 'VendorRejected',
     label: 'Watch',
+    value: 'watch',
     options: [
       {
         label: 'Yes',
         value: 'watchVendor',
-        dispatch: 'watch'
+        dispatch: 'watchVendor'
       },
       {
         label: 'No',
         value: 'unwatchVendor',
-        dispatch: 'watch'
+        dispatch: 'watchVendor'
       }
     ]
   }
