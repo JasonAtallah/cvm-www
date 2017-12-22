@@ -33,7 +33,7 @@
 
       <div class="modal-footer">
         <label for="saveAsDefaultEmail">Make Default</label>
-        <input id="saveAsDefaultEmail" v-model="saveEmail" value="yes" type="checkbox">
+        <input id="saveAsDefaultEmail" v-model="newDefaultEmail" value="yes" type="checkbox">
         <button type="button" class="btn btn-primary" @click.prevent="send">Send</button>
         <button type="button" class="btn btn-default" @click.prevent="cancel">Cancel</button>
       </div>
