@@ -26,7 +26,7 @@ export default [
   },
   {
     status: 'ApptScheduled',
-    label: 'Cancel',
+    label: 'Cancel Meeting',
     value: 'cancelMeeting',
     commit: 'takeAction'
   },
