@@ -24,35 +24,35 @@ html, body {
   <div id="app">
     <router-view/>
 
-    <AddCalendarEventModal />
-    <AddVendorModal />
+    <AddCalendarEvent />
+    <AddVendor />
     <SendMeetingTimes />
-    <SendVendorStatusEmailModal />
-    <SetCalendarModal />
-    <SetScheduleModal />
-    <ViewCalendarEventModal />
+    <SendVendorStatusEmail />
+    <SetCalendar />
+    <SetSchedule />
+    <ViewCalendarEvent />
   </div>
 </template>
 
 <script>
-import AddCalendarEventModal from './components/AddCalendarEventModal';
-import AddVendorModal from './components/AddVendorModal';
-import SendMeetingTimes from './components/SendMeetingTimes';
-import SendVendorStatusEmailModal from './components/SendVendorStatusEmailModal';
-import SetCalendarModal from './components/SetCalendarModal';
-import SetScheduleModal from './components/SetScheduleModal';
-import ViewCalendarEventModal from './components/ViewCalendarEventModal';
+import AddCalendarEvent from './components/modals/AddCalendarEvent';
+import AddVendor from './components/modals/AddVendor';
+import SendMeetingTimes from './components/modals/SendMeetingTimes';
+import SendVendorStatusEmail from './components/modals/SendVendorStatusEmail';
+import SetCalendar from './components/modals/SetCalendar';
+import SetSchedule from './components/modals/SetSchedule';
+import ViewCalendarEvent from './components/modals/ViewCalendarEvent';
 
 export default {
   name: 'app',
   components: {
-    AddCalendarEventModal,
-    AddVendorModal,
+    AddCalendarEvent,
+    AddVendor,
     SendMeetingTimes,
-    SendVendorStatusEmailModal,
-    SetCalendarModal,
-    SetScheduleModal,
-    ViewCalendarEventModal
+    SendVendorStatusEmail,
+    SetCalendar,
+    SetSchedule,
+    ViewCalendarEvent
   },
   beforeMount() {
     this.$store.dispatch('init');
