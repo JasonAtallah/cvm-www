@@ -11,7 +11,7 @@ export default {
   gcalendar: null,
   pageMenuItems: pages,
   pendingAction: {
-    type: 'needNewUserInfo'
+    type: null
   },
   selVendor: null,
   setSchedule: false,

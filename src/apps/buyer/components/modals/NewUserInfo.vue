@@ -14,7 +14,6 @@
 
       <div class="modal-header">
         <h5 class="modal-title">Complete profile</h5>
-        {{ buyer }}
       </div>
 
       <div class="modal-body">
@@ -98,6 +97,7 @@ export default {
       buyer: 'buyer'
     }),
     isVisible() {
+      this.newUserCheck(this.buyer);
       return this.$store.getters.pendingAction.type === 'needNewUserInfo';
     }
   },
@@ -123,6 +123,15 @@ export default {
   methods: {
     cancel() {
       this.$store.commit('cancelPendingAction');
+    },
+    newUserCheck(buyer) {
+      if (!this.buyer.company || !this.buyer.contact) {
+        this.$store.commit('takeAction', {
+          type: 'needNewUserInfo'
+        });
+      } else if (this.buyer) {
+        this.cancel();
+      }
     },
     save() {
       this.validate(this.buyerInfo)
