@@ -128,8 +128,8 @@ export const setGCalendar = ({ rootState, commit }, calendar) => {
     });
 };
 
-export const updateBuyerInfo = ({ rootState, commit }, buyer) => {
-  return api.updateBuyerInfo(buyer)
+export const updateBuyerProfile = ({ rootState, commit }, buyer) => {
+  return api.updateBuyerProfile(buyer)
   .then(() => {
     commit('cancelPendingAction');
   });

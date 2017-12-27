@@ -80,7 +80,7 @@
 
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" @click.prevent="save">Save</button>
-        <button type="button" class="btn btn-default" @click.prevent="cancel">Cancel</button>
+        <button v-if="userInitiatedProfileUpdate" type="button" class="btn btn-default" @click.prevent="cancel">Cancel</button>
       </div>
 
     </div>
@@ -94,11 +94,12 @@ import { mapGetters } from 'vuex';
 export default {
   computed: {
     ...mapGetters({
-      buyer: 'buyer'
+      buyer: 'buyer',
+      userInitiatedProfileUpdate: 'userInitiatedProfileUpdate'
     }),
     isVisible() {
       this.newUserCheck(this.buyer);
-      return this.$store.getters.pendingAction.type === 'needNewUserInfo';
+      return this.$store.getters.pendingAction.type === 'updateBuyerProfile';
     }
   },
   data() {
@@ -122,24 +123,29 @@ export default {
   },
   methods: {
     cancel() {
+      this.$store.commit('userInitiatedProfileUpdate', false);
       this.$store.commit('cancelPendingAction');
     },
     newUserCheck(buyer) {
-      if (!buyer.profile.company || !buyer.profile.contact) {
+      if ((!buyer.profile.company || !buyer.profile.contact) || (
+      this.userInitiatedProfileUpdate === true)) {
         this.$store.commit('takeAction', {
-          type: 'needNewUserInfo'
+          type: 'updateBuyerProfile'
         });
-      } else if (buyer) {
+      } else if (buyer.profile.company && buyer.profile.contact && (
+        this.userInitiatedProfileUpdate === false)) {
         this.cancel();
       }
     },
     save() {
       this.validate(this.buyerInfo)
         .then(() => {
-          this.$store.commit('updateBuyerInfo', this.buyerInfo);
+          this.$store.commit('updateBuyerProfile', this.buyerInfo);
+          this.$store.commit('userInitiatedProfileUpdate', false);
         })
         .then(() => {
-          this.$store.dispatch('updateBuyerInfo', this.buyer);
+          this.cancel();
+          // this.$store.dispatch('updateBuyerProfile', this.buyer);
         });
     },
     validate(buyerInfo) {

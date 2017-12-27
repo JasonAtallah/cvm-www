@@ -46,6 +46,7 @@ export const sortedVendors = (state) => {
 
   return vendors;
 };
+export const userInitiatedProfileUpdate = state => state.userInitiatedProfileUpdate;
 export const vendorList = state => state.vendorList;
 export const vendors = state => state.vendors;
 export const vendorActions = state => state.vendorActions;
