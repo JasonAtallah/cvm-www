@@ -27,7 +27,7 @@ html, body {
     <AddCalendarEvent />
     <AddVendor />
     <ConfirmCancelMeeting />
-    <NewUserInfo />
+    <SetBuyerProfile />
     <SendMeetingTimes />
     <SendVendorStatusEmail />
     <SetCalendar />
@@ -40,7 +40,7 @@ html, body {
 import AddCalendarEvent from './components/modals/AddCalendarEvent';
 import AddVendor from './components/modals/AddVendor';
 import ConfirmCancelMeeting from './components/modals/ConfirmCancelMeeting';
-import NewUserInfo from './components/modals/NewUserInfo';
+import SetBuyerProfile from './components/modals/SetBuyerProfile';
 import SendMeetingTimes from './components/modals/SendMeetingTimes';
 import SendVendorStatusEmail from './components/modals/SendVendorStatusEmail';
 import SetCalendar from './components/modals/SetCalendar';
@@ -53,7 +53,7 @@ export default {
     AddCalendarEvent,
     AddVendor,
     ConfirmCancelMeeting,
-    NewUserInfo,
+    SetBuyerProfile,
     SendMeetingTimes,
     SendVendorStatusEmail,
     SetCalendar,
