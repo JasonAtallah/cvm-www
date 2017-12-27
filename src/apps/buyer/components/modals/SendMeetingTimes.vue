@@ -146,7 +146,7 @@ export default {
     send() {
       this.validate()
       .then(() => {
-        this.$store.dispatch('performVendorAction', {
+        this.$store.dispatch('sendApptProposal', {
           vendor: this.vendor,
           action: this.action,
           apptProposal: this.apptProposal

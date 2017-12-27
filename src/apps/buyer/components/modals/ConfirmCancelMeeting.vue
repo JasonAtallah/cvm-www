@@ -53,11 +53,10 @@ export default {
   },
   methods: {
     cancel() {
-      console.log(this.vendor);
       this.$store.commit('cancelPendingAction');
     },
     send() {
-      this.$store.dispatch('performVendorAction', {
+      this.$store.dispatch('cancelMeeting', {
         vendor: this.vendor,
         action: this.action
       });

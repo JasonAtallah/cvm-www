@@ -49,12 +49,16 @@ export default {
     return http.put('/buyer/v1/schedule', schedule);
   },
 
-  sendApptTimes(vendor, email) {
-    return http.post(`/buyer/v1/vendors/${vendor._id}/apptTimes`, email);
+  sendApptProposal(vendor, apptProposal) {
+    return http.post(`/buyer/v1/vendors/${vendor._id}/apptProposal`, apptProposal);
   },
 
   setGCalendar(calendar) {
     return http.put('/buyer/v1/gcalendar', calendar);
+  },
+
+  updateBuyerInfo(buyer)  {
+    return http.put('/buyer/v1/buyerInfo', buyer);
   },
 
   updateBuyerEmailTemplate(templateId, email) {

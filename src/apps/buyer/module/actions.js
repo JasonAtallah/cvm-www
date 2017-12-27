@@ -1,5 +1,12 @@
 import api from './api';
 
+export const cancelMeeting = ({ commit }, { vendor }) => {
+  return api.cancelMeeting(vendor)
+  .then(() => {
+    commit('cancelPendingAction');
+  });
+};
+
 export const createCalendarEvent = ({ dispatch, commit }, values) => {
   return api.createCalendarEvent(values)
     .then((calendarEvent) => {
@@ -56,7 +63,7 @@ export const loadVendors = ({ rootState, commit }) => {
     });
 };
 
-export const performVendorAction = ({ commit }, { vendor, action, email }) => {
+export const performVendorAction = ({ commit }, { vendor, action, email, apptProposal }) => {
   if (action === 'approveVendor') {
     const params = Object.assign({}, email, {
       scheduleUrl: window.location.href.replace('#', `?vid=${vendor._id}#`)
@@ -79,16 +86,6 @@ export const performVendorAction = ({ commit }, { vendor, action, email }) => {
         });
         commit('cancelPendingAction');
       });
-  } else if (action === 'scheduleTime') {
-    return api.sendApptTimes(vendor, email)
-    .then(() => {
-      commit('cancelPendingAction');
-    });
-  } else if (action === 'cancelMeeting') {
-    return api.cancelMeeting(vendor)
-    .then(() => {
-      commit('cancelPendingAction');
-    });
   }
   return Promise.reject(new Error(`Invalid Action: ${action}`));
 };
@@ -117,11 +114,22 @@ export const selVendor = ({ rootState, commit }, vendor) => {
     });
 };
 
+export const sendApptProposal = ({ commit }, { vendor, apptProposal }) => {
+  return api.sendApptProposal(vendor, apptProposal)
+  .then(() => {
+    commit('cancelPendingAction');
+  });
+};
+
 export const setGCalendar = ({ rootState, commit }, calendar) => {
   return api.setGCalendar(calendar)
     .then((calendar) => {
       commit('gCalendar', calendar);
     });
+};
+
+export const updateBuyerInfo = ({ rootState, commit }, buyer) => {
+  return api.updateBuyerInfo(buyer);
 };
 
 export const updateBuyerEmailTemplate = ({ rootState, commit }, { templateId, email }) => {

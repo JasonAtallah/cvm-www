@@ -65,6 +65,11 @@ export const takeAction = (state, action) => {
   state.pendingAction = action;
 };
 
+export const updateBuyerInfo = (state, buyerInfo) => {
+  state.buyer.company = buyerInfo.company;
+  state.buyer.contact = buyerInfo.contact;
+}
+
 export const updateVendor = (state, params) => {
   Object.assign(params.vendor, params.values);
 };
