@@ -125,11 +125,11 @@ export default {
       this.$store.commit('cancelPendingAction');
     },
     newUserCheck(buyer) {
-      if (!this.buyer.company || !this.buyer.contact) {
+      if (!buyer.profile.company || !buyer.profile.contact) {
         this.$store.commit('takeAction', {
           type: 'needNewUserInfo'
         });
-      } else if (this.buyer) {
+      } else if (buyer) {
         this.cancel();
       }
     },

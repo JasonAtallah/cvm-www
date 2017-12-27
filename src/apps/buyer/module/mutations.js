@@ -66,8 +66,8 @@ export const takeAction = (state, action) => {
 };
 
 export const updateBuyerInfo = (state, buyerInfo) => {
-  state.buyer.company = buyerInfo.company;
-  state.buyer.contact = buyerInfo.contact;
+  state.buyer.profile.company = buyerInfo.company;
+  state.buyer.profile.contact = buyerInfo.contact;
 };
 
 export const updateVendor = (state, params) => {
