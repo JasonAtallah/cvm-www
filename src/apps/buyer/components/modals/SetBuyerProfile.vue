@@ -144,8 +144,7 @@ export default {
           this.$store.commit('userInitiatedProfileUpdate', false);
         })
         .then(() => {
-          this.cancel();
-          // this.$store.dispatch('updateBuyerProfile', this.buyer);
+          this.$store.dispatch('updateBuyerProfile', this.buyer);
         });
     },
     validate(buyerInfo) {
