@@ -129,7 +129,10 @@ export const setGCalendar = ({ rootState, commit }, calendar) => {
 };
 
 export const updateBuyerInfo = ({ rootState, commit }, buyer) => {
-  return api.updateBuyerInfo(buyer);
+  return api.updateBuyerInfo(buyer)
+  .then(() => {
+    commit('cancelPendingAction');
+  });
 };
 
 export const updateBuyerEmailTemplate = ({ rootState, commit }, { templateId, email }) => {
