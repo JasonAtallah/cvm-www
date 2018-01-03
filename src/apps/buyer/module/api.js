@@ -65,11 +65,8 @@ export default {
     return http.put(`/buyer/v1/emails/${templateId}`, email);
   },
 
-  unwatchVendor(vendor) {
-    return http.put(`/buyer/v1/vendors/${vendor._id}/unwatch`);
-  },
-
-  watchVendor(vendor) {
-    return http.put(`/buyer/v1/vendors/${vendor._id}/watch`);
+  watchVendorStatus(vendor, watchStatus) {
+    return http.put(`/buyer/v1/vendors/${vendor._id}/watchVendorStatus`, watchStatus);
   }
+
 };

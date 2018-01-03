@@ -38,12 +38,12 @@ export default [
       {
         label: 'Yes',
         value: 'watchVendor',
-        dispatch: 'watchVendor'
+        dispatch: 'watchVendorStatus'
       },
       {
         label: 'No',
         value: 'unwatchVendor',
-        dispatch: 'watchVendor'
+        dispatch: 'watchVendorStatus'
       }
     ]
   }
