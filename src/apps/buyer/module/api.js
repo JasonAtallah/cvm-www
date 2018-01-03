@@ -65,8 +65,8 @@ export default {
     return http.put(`/buyer/v1/emails/${templateId}`, email);
   },
 
-  watchVendorStatus(vendor, watchStatus) {
-    return http.put(`/buyer/v1/vendors/${vendor._id}/watchVendorStatus`, watchStatus);
+  updateThreadAttribute(vendor, action) {
+    return http.put(`/buyer/v1/vendors/${vendor._id}/attributes/${action.value}`);
   }
 
 };

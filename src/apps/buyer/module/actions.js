@@ -139,9 +139,6 @@ export const updateBuyerEmailTemplate = ({ rootState, commit }, { templateId, em
   return api.updateBuyerEmailTemplate(templateId, email);
 };
 
-export const watchVendorStatus = ({ commit }, { vendor, action }) => {
-  if (action.value === 'watchVendor' || action.value === 'unwatchVendor') {
-    return api.watchVendorStatus(vendor, action);
-  }
-  return Promise.reject(new Error(`Invalid Action: ${action}`));
+export const updateThreadAttribute = ({ commit }, { vendor, action }) => {
+  return api.updateThreadAttribute(vendor, action);
 };

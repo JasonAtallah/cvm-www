@@ -38,12 +38,12 @@ export default [
       {
         label: 'Yes',
         value: 'watchVendor',
-        dispatch: 'watchVendorStatus'
+        dispatch: 'updateThreadAttribute'
       },
       {
         label: 'No',
         value: 'unwatchVendor',
-        dispatch: 'watchVendorStatus'
+        dispatch: 'updateThreadAttribute'
       }
     ]
   }
