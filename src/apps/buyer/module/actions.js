@@ -145,6 +145,5 @@ export const watchVendor = ({ commit }, { vendor, action }) => {
   } else if (action.value === 'unwatchVendor') {
     return api.unwatchVendor(vendor);
   }
-  console.log(action);
   return Promise.reject(new Error(`Invalid Action: ${action}`));
 };
