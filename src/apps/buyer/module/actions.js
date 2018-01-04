@@ -63,31 +63,24 @@ export const loadVendors = ({ rootState, commit }) => {
     });
 };
 
-export const performVendorAction = ({ commit }, { vendor, action, email, apptProposal }) => {
-  if (action === 'approveVendor') {
-    const params = Object.assign({}, email, {
-      scheduleUrl: window.location.href.replace('#', `?vid=${vendor._id}#`)
-    });
+export const approveVendor = ({ commit }, { vendor, email }) => {
+  const params = Object.assign({}, email, {
+    scheduleUrl: window.location.href.replace('#', `?vid=${vendor._id}#`)
+  });
 
-    return api.approveVendor(vendor, params)
-      .then((result) => {
-        commit('updateVendor', {
-          vendor,
-          values: result
-        });
-        commit('cancelPendingAction');
-      });
-  } else if (action === 'rejectVendor') {
-    return api.rejectVendor(vendor, email)
-      .then((result) => {
-        commit('updateVendor', {
-          vendor,
-          values: result
-        });
-        commit('cancelPendingAction');
-      });
-  }
-  return Promise.reject(new Error(`Invalid Action: ${action}`));
+  return api.approveVendor(vendor, params)
+    .then((vendorItem) => {
+      commit('updateVendorItem', vendorItem);
+      commit('cancelPendingAction');
+    });
+};
+
+export const rejectVendor = ({ commit }, { vendor, email }) => {
+  return api.rejectVendor(vendor, email)
+    .then((vendorItem) => {
+      commit('updateVendorItem', vendorItem);
+      commit('cancelPendingAction');
+    });
 };
 
 export const saveSchedule = ({ rootState, commit }) => {
@@ -116,7 +109,8 @@ export const selVendor = ({ rootState, commit }, vendor) => {
 
 export const sendApptProposal = ({ commit }, { vendor, suggestedTimes }) => {
   return api.sendApptProposal(vendor, suggestedTimes)
-    .then(() => {
+    .then((vendorItem) => {
+      commit('updateVendorItem', vendorItem);
       commit('cancelPendingAction');
     });
 };

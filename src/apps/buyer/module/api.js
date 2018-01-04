@@ -2,7 +2,9 @@ import * as http from '@/lib/http';
 
 export default {
   approveVendor(vendor, email) {
-    return http.put(`/buyer/v1/vendors/${vendor._id}/approve`, email);
+    return http.put(`/buyer/v1/vendors/${vendor._id}/actions/ApproveVendor`, {
+      email
+    });
   },
 
   cancelMeeting(vendor) {
@@ -42,7 +44,9 @@ export default {
   },
 
   rejectVendor(vendor, email) {
-    return http.put(`/buyer/v1/vendors/${vendor._id}/reject`, email);
+    return http.put(`/buyer/v1/vendors/${vendor._id}/actions/RejectVendor`, {
+      email
+    });
   },
 
   saveSchedule(schedule) {
@@ -50,7 +54,9 @@ export default {
   },
 
   sendApptProposal(vendor, suggestedTimes) {
-    return http.post(`/buyer/v1/vendors/${vendor._id}/actions/BuyerSendsTimes`, suggestedTimes);
+    return http.put(`/buyer/v1/vendors/${vendor._id}/actions/BuyerSendsTimes`, {
+      suggestedTimes
+    });
   },
 
   setGCalendar(calendar) {

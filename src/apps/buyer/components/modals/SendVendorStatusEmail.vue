@@ -64,9 +64,8 @@ export default {
     send() {
       this.updateEmail()
         .then(() => {
-          return this.$store.dispatch('performVendorAction', {
+          return this.$store.dispatch(this.action, {
             vendor: this.vendor,
-            action: this.action,
             email: this.email
           });
         });

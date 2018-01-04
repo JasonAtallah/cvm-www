@@ -69,8 +69,9 @@ export const takeAction = (state, action) => {
   state.pendingAction = action;
 };
 
-export const updateVendor = (state, params) => {
-  Object.assign(params.vendor, params.values);
+export const updateVendorItem = (state, vendorItem) => {
+  const curVendorItem = state.vendorList.find(i => i._id === vendorItem._id);
+  Object.assign(curVendorItem, vendorItem);
 };
 
 export const vendorList = (state, vendorList) => {

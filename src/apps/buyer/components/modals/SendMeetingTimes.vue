@@ -147,7 +147,6 @@ export default {
       .then(() => {
         this.$store.dispatch('sendApptProposal', {
           vendor: this.vendor,
-          action: this.action,
           suggestedTimes: this.suggestedTimes
         });
       });
