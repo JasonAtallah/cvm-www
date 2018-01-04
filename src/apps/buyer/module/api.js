@@ -49,8 +49,8 @@ export default {
     return http.put('/buyer/v1/schedule', schedule);
   },
 
-  sendApptProposal(vendor, apptProposal) {
-    return http.post(`/buyer/v1/vendors/${vendor._id}/actions/BuyerSendsTimes`, apptProposal);
+  sendApptProposal(vendor, suggestedTimes) {
+    return http.post(`/buyer/v1/vendors/${vendor._id}/actions/BuyerSendsTimes`, suggestedTimes);
   },
 
   setGCalendar(calendar) {

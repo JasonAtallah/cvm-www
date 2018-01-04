@@ -135,8 +135,8 @@ export default {
   methods: {
     addTime() {
       this.apptProposal.timeSelected.push({
-        date: this.dateViewing,
-        time: this.timeViewing
+        startDate: this.dateViewing,
+        startTime: this.timeViewing
       });
       this.suggestedTimes.push({
         name: this.apptProposal.name,
@@ -157,7 +157,7 @@ export default {
         this.$store.dispatch('sendApptProposal', {
           vendor: this.vendor,
           action: this.action,
-          apptProposal: this.apptProposal
+          suggestedTimes: this.suggestedTimes
         });
       });
     },
