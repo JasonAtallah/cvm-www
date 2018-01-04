@@ -3,7 +3,19 @@ export const addCalendarEventToList = (state, calendarEvent) => {
 };
 
 export const addVendorToList = (state, vendor) => {
-  state.vendors.push(vendor);
+  state.vendors[vendor._id] = vendor;
+};
+
+export const buyer = (state, buyer) => {
+  state.buyer = buyer;
+};
+
+export const cacheVendorDetail = (state, vendorDetail) => {
+  state.vendors[vendorDetail._id] = vendorDetail;
+};
+
+export const calendars = (state, calendars) => {
+  state.calendars = _.sortBy(calendars, 'name');
 };
 
 export const cancelPendingAction = (state) => {
@@ -12,20 +24,12 @@ export const cancelPendingAction = (state) => {
   };
 };
 
-export const buyer = (state, buyer) => {
-  state.buyer = buyer;
-};
-
-export const calendars = (state, calendars) => {
-  state.calendars = _.sortBy(calendars, 'name');
+export const events = (state, events) => {
+  state.events = events;
 };
 
 export const gCalendar = (state, gcalendar) => {
   state.buyer.gcalendar = gcalendar;
-};
-
-export const events = (state, events) => {
-  state.events = events;
 };
 
 export const productFilter = (state, value) => {
@@ -57,8 +61,25 @@ export const statusFilter = (state, value) => {
   state.vendorFilter.status = value;
 };
 
-export const vendors = (state, vendors) => {
-  state.vendors = vendors;
+export const takeAction = (state, action) => {
+  state.pendingAction = action;
+};
+
+export const updateBuyerProfile = (state, buyerInfo) => {
+  state.buyer.profile.company = buyerInfo.company;
+  state.buyer.profile.contact = buyerInfo.contact;
+};
+
+export const updateVendor = (state, params) => {
+  Object.assign(params.vendor, params.values);
+};
+
+export const userInitiatedProfileUpdate = (state, value) => {
+  state.userInitiatedProfileUpdate = value;
+};
+
+export const vendorList = (state, vendorList) => {
+  state.vendorList = vendorList;
 };
 
 export const vendorSearch = (state, value) => {
@@ -67,12 +88,4 @@ export const vendorSearch = (state, value) => {
 
 export const vendorSort = (state, value) => {
   state.vendorFilter.sort = value;
-};
-
-export const takeAction = (state, action) => {
-  state.pendingAction = action;
-};
-
-export const updateVendor = (state, params) => {
-  Object.assign(params.vendor, params.values);
 };

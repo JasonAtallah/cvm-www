@@ -1,7 +1,7 @@
 <style lang="scss" scoped>
 .vendor-list {
   position: absolute;
-  top: $vendor-list-filter-height;
+  top: #{$vendor-list-filter-height * 2};
   bottom: 0;
   left: 0;
   right: 0;
@@ -30,14 +30,14 @@
     <li v-for="vendor in vendors" :key="vendor._id" @click.prevent="onVendorClick(vendor)">
       <div class="row">
         <div class="col-sm-8">
-          <span class="company-name">{{ vendor.company.name }}</span>
-          <span v-if="vendor.status === 'approved'" class="badge badge-success">Approved</span>
-          <span v-if="vendor.status === 'rejected'" class="badge badge-danger">Rejected</span>
-          <br />
-          <span class="contact-name">{{ vendor.contact.firstName }} {{ vendor.contact.lastName }}<br /></span>
+          <span class="company-name">{{ vendor.name }}</span>
+          <span v-if="vendor.state.name === 'VendorApproved'" class="badge badge-success">Approved</span>
+          <span v-if="vendor.state.name === 'VendorRejected'" class="badge badge-danger">Rejected</span>
+          <span v-if="vendor.state.name === 'ApptScheduled'" class="badge badge-primary">Scheduled</span>
+          <span v-if="vendor.state.name === 'VendorNeedsToReviewTimes'" class="badge badge-info">Awaiting Vendor Response</span>
         </div>
         <div class="col-sm-4">
-          <DropdownButton class="actionMenu text-right" label="Action" :vendor="vendor" :options="actions" @selection="onActionSelect(vendor, $event)" />
+          <VendorActionButton :vendor="vendor" />
         </div>
       </div>
     </li>
@@ -46,28 +46,20 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import DropdownButton from '@/components/form/DropdownButton';
+import VendorActionButton from './VendorActionButton';
 
 export default {
   components: {
-    DropdownButton
+    VendorActionButton
   },
   computed: {
     ...mapGetters({
       vendors: 'sortedVendors',
-      vendorStatusEmail: 'vendorStatusEmail',
-      actions: 'vendorActions'
     })
   },
   methods: {
-    onActionSelect(vendor, action) {
-      this.$store.commit('takeAction', {
-        type: action.value,
-        vendor
-      });
-    },
     onVendorClick(vendor) {
-      this.$store.commit('selVendor', vendor);
+      this.$store.dispatch('selVendor', vendor);
     }
   }
 };

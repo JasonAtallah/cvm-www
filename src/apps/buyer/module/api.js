@@ -5,6 +5,10 @@ export default {
     return http.put(`/buyer/v1/vendors/${vendor._id}/approve`, email);
   },
 
+  cancelMeeting(vendor) {
+    return http.put(`/buyer/v1/vendors/${vendor._id}/actions/BuyerCancelsAppt`);
+  },
+
   createCalendarEvent(values) {
     return http.post('/buyer/v1/events', values);
   },
@@ -25,6 +29,10 @@ export default {
     return http.get('/buyer/v1/events', params);
   },
 
+  getVendor(vendor) {
+    return http.get(`/buyer/v1/vendors/${vendor._id}`);
+  },
+
   getVendors() {
     return http.get('/buyer/v1/vendors');
   },
@@ -38,14 +46,27 @@ export default {
   },
 
   saveSchedule(schedule) {
-    return http.put('/buyer/v1/buyer/schedule', schedule);
+    return http.put('/buyer/v1/schedule', schedule);
+  },
+
+  sendApptProposal(vendor, suggestedTimes) {
+    return http.post(`/buyer/v1/vendors/${vendor._id}/actions/BuyerSendsTimes`, suggestedTimes);
   },
 
   setGCalendar(calendar) {
-    return http.put('/buyer/v1/buyer/gcalendar', calendar);
+    return http.put('/buyer/v1/gcalendar', calendar);
+  },
+
+  updateBuyerProfile(buyer) {
+    return http.put('/buyer/v1/buyerProfile', buyer);
   },
 
   updateBuyerEmailTemplate(templateId, email) {
-    return http.put(`/buyer/v1/buyer/emails/${templateId}`, email);
+    return http.put(`/buyer/v1/emails/${templateId}`, email);
+  },
+
+  updateThreadAttribute(vendor, action) {
+    return http.put(`/buyer/v1/vendors/${vendor._id}/attributes/${action.value}`);
   }
+
 };

@@ -16,9 +16,7 @@ module.exports = function (app) {
       express.static(config.staticDir));
 
     app.get('/login',
-      function(req, res) {
-        res.redirect(`${config.mgmtApi.host}/buyer/login?callback=${config.app.buyerCallback}`);
-      }
+      auth.loginBuyer
     );
 
     app.get('/buyer/callback',

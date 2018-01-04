@@ -15,7 +15,9 @@ export default {
   },
   selVendor: null,
   setSchedule: false,
-  vendors: [],
+  userInitiatedProfileUpdate: false,
+  vendorList: [],
+  vendors: {},
   vendorFilter: {
     productType: null,
     productTypeOptions: vendorProductTypes,
