@@ -115,6 +115,7 @@ export const selVendor = ({ rootState, commit }, vendor) => {
 };
 
 export const sendApptProposal = ({ commit }, { vendor, apptProposal }) => {
+  console.log(apptProposal);
   return api.sendApptProposal(vendor, apptProposal)
   .then(() => {
     commit('cancelPendingAction');

@@ -75,10 +75,10 @@
                   </ul>
                 </div>
                 <div class="col-md-5">
-                  <h5 v-if="apptProposal.timesSelected.length > 0">Times Selected</h5>
-                  <ul class="list-unstyled" v-for="timeSelected in apptProposal.timesSelected">
+                  <h5 v-if="suggestedTimes.length > 0">Times Selected</h5>
+                  <ul class="list-unstyled" v-for="suggestedTime in suggestedTimes">
                     <li>
-                      {{ timeSelected }}
+                      {{ suggestedTime }}
                       <!-- <button type="button" class="btn btn-danger" @click.prevent="deleteTime"><i class="fa fa-times-circle"></i></button> -->
                     </li>
                   </ul>
@@ -127,16 +127,24 @@ export default {
         name: null,
         location: '*dispensary address*',
         duration: 30,
-        timesSelected: []
-      }
+        timeSelected: []
+      },
+      suggestedTimes: []
     };
   },
   methods: {
     addTime() {
-      this.apptProposal.timesSelected.push({
+      this.apptProposal.timeSelected.push({
         date: this.dateViewing,
         time: this.timeViewing
       });
+      this.suggestedTimes.push({
+        name: this.apptProposal.name,
+        location: this.apptProposal.location,
+        duration: this.apptProposal.duration,
+        suggestedTime: this.apptProposal.timeSelected[0]
+      });
+      this.apptProposal.timeSelected = [];
       this.dateViewing = null;
       this.timeViewing = null;
     },

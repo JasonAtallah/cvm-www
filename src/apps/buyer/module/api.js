@@ -6,7 +6,7 @@ export default {
   },
 
   cancelMeeting(vendor) {
-    return http.put(`/buyer/v1/vendors/${vendor._id}/cancelMeeting`);
+    return http.put(`/buyer/v1/vendors/${vendor._id}/actions/BuyerCancelsAppt`);
   },
 
   createCalendarEvent(values) {
@@ -50,7 +50,7 @@ export default {
   },
 
   sendApptProposal(vendor, apptProposal) {
-    return http.post(`/buyer/v1/vendors/${vendor._id}/apptProposal`, apptProposal);
+    return http.post(`/buyer/v1/vendors/${vendor._id}/actions/BuyerSendsTimes`, apptProposal);
   },
 
   setGCalendar(calendar) {
