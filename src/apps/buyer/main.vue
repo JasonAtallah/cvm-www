@@ -53,9 +53,9 @@ export default {
     AddCalendarEvent,
     AddVendor,
     ConfirmCancelMeeting,
-    SetBuyerProfile,
     SendMeetingTimes,
     SendVendorStatusEmail,
+    SetBuyerProfile,
     SetCalendar,
     SetSchedule,
     ViewCalendarEvent

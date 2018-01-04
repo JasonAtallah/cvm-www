@@ -27,7 +27,6 @@ export default {
   },
   methods: {
     updateBuyerProfile() {
-      this.$store.commit('userInitiatedProfileUpdate', true);
       this.$store.commit('takeAction', {
         type: 'updateBuyerProfile'
       });

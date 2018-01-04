@@ -1,10 +1,4 @@
 <style scoped>
-
-.modal {
-  text-align: left;
-  display: block;
-}
-
 .day label {
   font-weight: bold;
 }
@@ -14,7 +8,6 @@
   font-size: smaller;
   padding-right: 10px;
 }
-
 </style>
 
 <template>

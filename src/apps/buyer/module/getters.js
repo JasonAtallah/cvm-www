@@ -6,7 +6,6 @@ export const needSetCalendar = (state, getters, rootState, rootGetters) => {
 };
 export const pageMenuItems = state => state.pageMenuItems;
 export const pendingAction = state => state.pendingAction;
-export const profile = state => state.profile;
 export const schedule = state => state.buyer.schedule;
 export const selVendor = state => state.selVendor;
 export const setSchedule = state => state.setSchedule;
@@ -46,7 +45,6 @@ export const sortedVendors = (state) => {
 
   return vendors;
 };
-export const userInitiatedProfileUpdate = state => state.userInitiatedProfileUpdate;
 export const vendorList = state => state.vendorList;
 export const vendors = state => state.vendors;
 export const vendorActions = state => state.vendorActions;

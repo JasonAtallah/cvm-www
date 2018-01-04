@@ -1,14 +1,5 @@
-<style scoped>
-
-.set-calendar {
-  text-align: left;
-  display: block;
-}
-
-</style>
-
 <template>
-<div class="modal set-calendar" tabindex="-1" role="dialog" v-if="isVisible">
+<div class="modal" tabindex="-1" role="dialog" v-if="isVisible">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
 

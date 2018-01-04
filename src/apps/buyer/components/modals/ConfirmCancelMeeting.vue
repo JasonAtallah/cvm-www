@@ -1,14 +1,5 @@
-<style scoped>
-
-.add-vendor-modal {
-  text-align: left;
-  display: block;
-}
-
-</style>
-
 <template>
-  <div class="modal add-vendor-modal" tabindex="-1" role="dialog" v-if="isVisible">
+  <div class="modal" tabindex="-1" role="dialog" v-if="isVisible">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
 
@@ -23,7 +14,7 @@
             </div>
           </form>
         </div>
-        
+
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" @click.prevent="send">Confirm</button>
           <button type="button" class="btn btn-default" @click.prevent="cancel">Cancel</button>

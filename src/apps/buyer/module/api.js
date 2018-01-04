@@ -57,8 +57,8 @@ export default {
     return http.put('/buyer/v1/gcalendar', calendar);
   },
 
-  updateBuyerProfile(buyer) {
-    return http.put('/buyer/v1/buyerProfile', buyer);
+  updateBuyerProfile(profile) {
+    return http.put('/buyer/v1/profile', profile);
   },
 
   updateBuyerEmailTemplate(templateId, email) {

@@ -1,14 +1,5 @@
-<style scoped>
-
-.add-calendar-event-modal {
-  text-align: left;
-  display: block;
-}
-
-</style>
-
 <template>
-<div class="modal add-calendar-event-modal" tabindex="-1" role="dialog" v-if="isVisible">
+<div class="modal" tabindex="-1" role="dialog" v-if="isVisible">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
 
@@ -35,7 +26,7 @@
           </div>
           <div class="form-group">
             <label for="exampleFormControlSelect1">Duration (mins):</label>
-            <input type="number" class="form-control" id="duration" 
+            <input type="number" class="form-control" id="duration"
               v-model="calendarEvent.duration">
           </div>
           <div class="form-group">

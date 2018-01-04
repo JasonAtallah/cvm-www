@@ -115,11 +115,10 @@ export const selVendor = ({ rootState, commit }, vendor) => {
 };
 
 export const sendApptProposal = ({ commit }, { vendor, suggestedTimes }) => {
-  console.log(suggestedTimes);
   return api.sendApptProposal(vendor, suggestedTimes)
-  .then(() => {
-    commit('cancelPendingAction');
-  });
+    .then(() => {
+      commit('cancelPendingAction');
+    });
 };
 
 export const setGCalendar = ({ rootState, commit }, calendar) => {
@@ -129,11 +128,12 @@ export const setGCalendar = ({ rootState, commit }, calendar) => {
     });
 };
 
-export const updateBuyerProfile = ({ rootState, commit }, buyer) => {
-  return api.updateBuyerProfile(buyer)
-  .then(() => {
-    commit('cancelPendingAction');
-  });
+export const updateBuyerProfile = ({ rootState, commit }, profile) => {
+  return api.updateBuyerProfile(profile)
+    .then(() => {
+      commit('buyerProfile', profile);
+      commit('cancelPendingAction');
+    });
 };
 
 export const updateBuyerEmailTemplate = ({ rootState, commit }, { templateId, email }) => {

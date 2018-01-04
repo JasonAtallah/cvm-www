@@ -1,12 +1,3 @@
-<style scoped>
-
-.modal {
-  text-align: left;
-  display: block;
-}
-
-</style>
-
 <template>
   <div v-if="isVisible" class="modal">
     <div class="modal-dialog">
