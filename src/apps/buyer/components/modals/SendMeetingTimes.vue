@@ -15,13 +15,13 @@
                 <div class="col-md-8">
                   <div class="form-group">
                     <label for="exampleFormControlSelect1">Event Name:</label>
-                    <input type="text" class="form-control" id="name" v-model="apptProposal.name">
+                    <input type="text" class="form-control" id="name" v-model="name">
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="exampleFormControlSelect1">Duration (mins):</label>
-                    <input type="number" class="form-control" id="duration" v-model="apptProposal.duration">
+                    <input type="number" class="form-control" id="duration" v-model="duration">
                   </div>
                 </div>
               </div>
@@ -30,7 +30,7 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label for="exampleFormControlSelect1">Location:</label>
-                    <input type="text" class="form-control" id="location" v-model="apptProposal.location">
+                    <input type="text" class="form-control" id="location" v-model="location">
                   </div>
                 </div>
               </div>
@@ -39,13 +39,13 @@
                 <div class="col-md-5">
                   <div class="form-group">
                     <label for="exampleFormControlSelect1">Date:</label>
-                    <input type="date" class="form-control" id="date" v-model="dateViewing">
+                    <input type="date" class="form-control" id="date" v-model="startDate">
                   </div>
                 </div>
                 <div class="col-md-5">
                   <div class="form-group">
                     <label for="exampleFormControlSelect1">Time:</label>
-                    <input type="time" class="form-control" id="time" v-model="timeViewing">
+                    <input type="time" class="form-control" id="time" v-model="startTime">
                   </div>
                 </div>
                 <div class="col-md-2">
@@ -58,9 +58,9 @@
 
               <div class="row">
                 <div class="col-md-5">
-                  <h5 v-if="dateViewing">Scheduled for {{ dateViewing }}</h5>
+                  <h5 v-if="startDate">Scheduled for {{ startDate }}</h5>
                   <ul class="list-unstyled" v-for="event in events">
-                    <li v-if="event.startDate.split('T')[0] === dateViewing">
+                    <li v-if="event.startDate.split('T')[0] === startDate">
                       {{ event.title }} from {{ event.startDate.split('T')[1] }} to {{ event.endDate.split('T')[1] }}
                     </li>
                   </ul>
@@ -69,8 +69,8 @@
                   <h5 v-if="suggestedTimes.length > 0">Times Selected</h5>
                   <ul class="list-unstyled" v-for="suggestedTime in suggestedTimes">
                     <li>
-                      {{ suggestedTime.suggestedTime.startDate }} at {{ suggestedTime.suggestedTime.startTime }}
-                      <!-- <button type="button" class="btn btn-danger" @click.prevent="deleteTime"><i class="fa fa-times-circle"></i></button> -->
+                      {{ suggestedTime.startDate }} at {{ suggestedTime.startTime }}
+                      <button type="button" class="btn btn-default btn-sm" @click.prevent="removeTime(suggestedTime)"><i class="fa fa-times"></i></button>
                     </li>
                   </ul>
                 </div>
@@ -112,35 +112,35 @@ export default {
   },
   data() {
     return {
-      dateViewing: null,
-      timeViewing: null,
-      apptProposal: {
-        name: null,
-        location: '*dispensary address*',
-        duration: 30,
-        timeSelected: []
-      },
+      startDate: null,
+      startTime: null,
+      name: null,
+      location: '*dispensary address*',
+      duration: 30,
       suggestedTimes: []
     };
   },
   methods: {
     addTime() {
-      this.apptProposal.timeSelected.push({
-        startDate: this.dateViewing,
-        startTime: this.timeViewing
-      });
-      this.suggestedTimes.push({
-        name: this.apptProposal.name,
-        location: this.apptProposal.location,
-        duration: this.apptProposal.duration,
-        suggestedTime: this.apptProposal.timeSelected[0]
-      });
-      this.apptProposal.timeSelected = [];
-      this.dateViewing = null;
-      this.timeViewing = null;
+      if (this.startDate && this.startTime) {
+        this.suggestedTimes.push({
+          name: this.name,
+          location: this.location,
+          duration: this.duration,
+          startDate: this.startDate,
+          startTime: this.startTime
+        });
+        this.startDate = null;
+        this.startTime = null;
+      }
+      console.log(this.suggestedTimes);
     },
     cancel() {
       this.$store.commit('cancelPendingAction');
+    },
+    removeTime(suggestedTime) {
+      const index = this.suggestedTimes.indexOf(suggestedTime);
+      this.suggestedTimes.splice(index, 1);
     },
     send() {
       this.validate()
