@@ -1,3 +1,5 @@
+import { stateNameForDisplay } from '../../../lib/filters';
+
 export const buyer = state => state.buyer;
 export const calendars = state => state.calendars;
 export const events = state => state.events;
@@ -20,17 +22,8 @@ export const sortedVendors = (state) => {
   // }
 
   if (state.vendorFilter.status) {
-    const status = state.vendorFilter.status;
     vendors = vendors.filter((vendor) => {
-      if (status === 'New') {
-        return vendor.state.name === 'NewVendor';
-      } else if (status === 'Rejected') {
-        return vendor.state.name === 'VendorRejected';
-      } else if (status === 'Approved') {
-        return vendor.state.name === 'VendorApproved';
-      }
-
-      return true;
+      return vendor.state.name === state.vendorFilter.status;
     });
   }
 
@@ -41,9 +34,22 @@ export const sortedVendors = (state) => {
     });
   }
 
-  // vendors.sort(state.vendorFilter.sort.sortFn);
+  vendors.sort(state.vendorFilter.sort.sortFn);
 
   return vendors;
+};
+
+export const statusOptions = (state) => {
+  const statuses = new Set();
+  state.vendorList.forEach((vendor) => {
+    statuses.add(vendor.state.name);
+  });
+  return Array.from(statuses).map((status) => {
+    return {
+      value: status,
+      label: stateNameForDisplay(status)
+    };
+  });
 };
 export const vendorList = state => state.vendorList;
 export const vendors = state => state.vendors;
