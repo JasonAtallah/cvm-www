@@ -63,7 +63,7 @@
       <SingleSelect
         :options="statusOptions"
         :value="vendorFilter.status"
-        nullSelectionLabel="All"
+        :nullSelectionLabel="ALL_STATUS_TYPES"
         @selection="updateStatus"></SingleSelect>
 
       <br /><br />
@@ -88,6 +88,11 @@ export default {
     MenuSelect,
     SingleSelect
   },
+  data() {
+    return {
+      ALL_STATUS_TYPES: 'All'
+    };
+  },
   computed: {
     ...mapGetters({
       statusOptions: 'statusOptions',
@@ -108,7 +113,7 @@ export default {
         return this.vendorFilter.status;
       }
 
-      return this.ALL_PRODUCT_TYPES_OPTION;
+      return this.ALL_STATUS_TYPES;
     }
   },
   methods: {
