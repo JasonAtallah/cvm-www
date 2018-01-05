@@ -55,17 +55,16 @@
     <div class="title">Filter</div>
     <DropdownForm
       :label="filterValue"
-      :enableSubClick="true"
-      @selection="updateStatus">
+      :enableSubClick="true">
 
       <div class="fieldLabel">
-        Product Types
+        Status
       </div>
       <SingleSelect
-        :options="vendorFilter.productTypeOptions"
-        :value="vendorFilter.productType"
-        :nullSelectionLabel="ALL_PRODUCT_TYPES_OPTION"
-        @selection="updateProductType"></SingleSelect>
+        :options="statusOptions"
+        :value="vendorFilter.status"
+        nullSelectionLabel="All"
+        @selection="updateStatus"></SingleSelect>
 
       <br /><br />
       <div class="fieldLabel">
@@ -89,13 +88,9 @@ export default {
     MenuSelect,
     SingleSelect
   },
-  data() {
-    return {
-      ALL_PRODUCT_TYPES_OPTION: 'All Product Types'
-    };
-  },
   computed: {
     ...mapGetters({
+      statusOptions: 'statusOptions',
       vendorFilter: 'vendorFilter'
     }),
     selectedSortLabel() {
@@ -105,12 +100,12 @@ export default {
       return this.vendorFilter.sort.label;
     },
     filterValue() {
-      if (this.vendorFilter.searchTerm && this.vendorFilter.productType) {
-        return `"${this.vendorFilter.searchTerm}" in ${this.vendorFilter.productType}`;
+      if (this.vendorFilter.searchTerm && this.vendorFilter.status) {
+        return `"${this.vendorFilter.searchTerm}" in ${this.vendorFilter.status}`;
       } else if (this.vendorFilter.searchTerm) {
         return `"${this.vendorFilter.searchTerm}"`;
-      } else if (this.vendorFilter.productType) {
-        return this.vendorFilter.productType;
+      } else if (this.vendorFilter.status) {
+        return this.vendorFilter.status;
       }
 
       return this.ALL_PRODUCT_TYPES_OPTION;
