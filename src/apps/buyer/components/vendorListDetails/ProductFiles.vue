@@ -23,12 +23,12 @@
     <div class="row">
       <div class="col-md-6">
         <ul class="list-unstyled" v-for="file in product.photos" :key="file.id">
-          <li><i class="fa fa-photo"></i><a :href="getFileUrl(file)" target="_blank">{{ file.name }}</a></li>
+          <li><i class="fa" :class="getFileType(file.mimetype)"></i><a :href="getFileUrl(file)" target="_blank"> {{ file.name }}</a></li>
         </ul>
       </div>
       <div class="col-md-6">
         <ul class="list-unstyled" v-for="file in product.testResults" :key="file.id">
-          <li><i class="fa" :class="getFileType(file.mimetype)"></i> {{ file.name }}</li>
+          <li><i class="fa" :class="getFileType(file.mimetype)"></i><a :href="getFileUrl(file)" target="_blank"> {{ file.name }}</a></li>
         </ul>
       </div>
     </div>
@@ -52,6 +52,7 @@ export default {
       return 'fa-file-o';
     },
     getFileUrl(file) {
+      console.log(file);
       return `/buyer/v1/vendors/${this.vendor._id}/files/${file.id}`;
     }
   }

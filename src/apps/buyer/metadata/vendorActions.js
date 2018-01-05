@@ -19,7 +19,7 @@ export default [
     ]
   },
   {
-    status: 'VendorApproved',
+    status: 'BuyerNeedsToSendTimes',
     label: 'Schedule Time',
     value: 'scheduleTime',
     commit: 'takeAction'
