@@ -69,7 +69,7 @@
                   <h5 v-if="suggestedTimes.length > 0">Times Selected</h5>
                   <ul class="list-unstyled" v-for="suggestedTime in suggestedTimes">
                     <li>
-                      {{ suggestedTime }}
+                      {{ suggestedTime.suggestedTime.startDate }} at {{ suggestedTime.suggestedTime.startTime }}
                       <!-- <button type="button" class="btn btn-danger" @click.prevent="deleteTime"><i class="fa fa-times-circle"></i></button> -->
                     </li>
                   </ul>
