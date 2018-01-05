@@ -106,12 +106,12 @@ export default {
     ...mapGetters({
       buyer: 'buyer'
     }),
-    isVisible() {
-      return (this.buyer && !this.buyer.profile) ||
-        (this.$store.getters.pendingAction.type === 'updateBuyerProfile');
-    },
     canCancel() {
-      return this.buyer.profile !== undefined;
+      return this.$store.getters.pendingAction.type === 'updateBuyerProfile';
+    },
+    isVisible() {
+      return (this.$store.getters.pendingAction.type === 'updateBuyerProfile') ||
+      (this.buyer && !this.buyer.profile);
     },
     profile() {
       return this.buyer.profile || this.newProfile;
