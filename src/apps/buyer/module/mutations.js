@@ -4,6 +4,7 @@ export const addCalendarEventToList = (state, calendarEvent) => {
 
 export const addVendorToList = (state, vendor) => {
   state.vendors[vendor._id] = vendor;
+  state.vendorList.push(vendor);
 };
 
 export const buyer = (state, buyer) => {
