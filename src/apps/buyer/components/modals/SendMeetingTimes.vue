@@ -59,7 +59,7 @@
               <div class="row">
                 <div class="col-md-5">
                   <h5 v-if="startDate">Scheduled for {{ startDate }}</h5>
-                  <ul class="list-unstyled" v-for="event in events">
+                  <ul class="list-unstyled" v-for="event in events" :key="event.id">
                     <li v-if="event.startDate.split('T')[0] === startDate">
                       {{ event.title }} from {{ event.startDate.split('T')[1] }} to {{ event.endDate.split('T')[1] }}
                     </li>
@@ -67,7 +67,7 @@
                 </div>
                 <div class="col-md-5">
                   <h5 v-if="suggestedTimes.length > 0">Times Selected</h5>
-                  <ul class="list-unstyled" v-for="suggestedTime in suggestedTimes">
+                  <ul class="list-unstyled" v-for="suggestedTime in suggestedTimes" :key="suggestedTime.startDate">
                     <li>
                       {{ suggestedTime.startDate }} at {{ suggestedTime.startTime }}
                       <button type="button" class="btn btn-default btn-sm" @click.prevent="removeTime(suggestedTime)"><i class="fa fa-times"></i></button>
@@ -133,7 +133,6 @@ export default {
         this.startDate = null;
         this.startTime = null;
       }
-      console.log(this.suggestedTimes);
     },
     cancel() {
       this.$store.commit('cancelPendingAction');
