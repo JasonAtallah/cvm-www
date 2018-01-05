@@ -41,7 +41,7 @@ export const sortedVendors = (state) => {
     });
   }
 
-  // vendors.sort(state.vendorFilter.sort.sortFn);
+  vendors.sort(state.vendorFilter.sort.sortFn);
 
   return vendors;
 };
