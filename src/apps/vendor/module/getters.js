@@ -4,3 +4,4 @@ export const questionnaire = state => state.questionnaire;
 export const response = state => state.response;
 export const scheduledAppt = state => state.scheduledAppt;
 export const vendor = state => state.vendor;
+export const vendorStateMessages = state => state.vendorStateMessages;
