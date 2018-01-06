@@ -5,6 +5,10 @@ export default {
     return http.get(`/vendor/v1/questionnaires/${questionnaireId}`);
   },
 
+  getThreads(vendorId) {
+    return http.get(`/vendor/v1/vendors/${vendorId}/threads`);
+  },
+
   getVendor(vendorId) {
     return http.get(`/vendor/v1/vendors/${vendorId}`);
   },
