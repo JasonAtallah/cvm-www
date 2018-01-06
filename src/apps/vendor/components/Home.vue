@@ -9,8 +9,8 @@
       <div class="row">
         <div class="col-sm-8 offset-sm-2">
           <h1>Welcome back, {{ vendor.contact.firstName }} {{ vendor.contact.lastName }}</h1>
-          <VendorNeedsToReviewTimes v-if="buyer.state.name === 'VendorNeedsToReviewTimes'" />
           {{ buyer.state.name }}          
+          <VendorNeedsToReviewTimes v-if="buyer.state.name === 'VendorNeedsToReviewTimes'" />
         </div>
       </div>
     </div>

@@ -4,7 +4,6 @@ import { prepEmptyResponse, prepEmptyProduct } from './fns';
 
 export const scheduledAppt = (state, selectedTime) => {
   state.scheduledAppt = selectedTime;
-  state.buyer.state.name = 'ApptScheduled';
 };
 
 export const buyer = (state, buyer) => {

@@ -5,8 +5,8 @@ import router from '../router';
 
 export const confirmAppt = ({ commit }, { selectedTime, vendorId }) => {
   return api.confirmAppt(selectedTime, vendorId)
-    .then((vendor) => {
-      commit('vendor', vendor);
+    .then((buyer) => {
+      commit('buyer', buyer);
     });
 };
 
@@ -53,9 +53,8 @@ export const loadVendor = ({ dispatch, commit, state }) => {
 
 export const rejectAllTimes = ({ commit }, vendorId) => {
   return api.rejectAllTimes(vendorId)
-    .then((vendor) => {
-      console.log(vendor);
-      commit('vendor', vendor);
+    .then((buyer) => {
+      commit('buyer', buyer);
     });
 };
 
