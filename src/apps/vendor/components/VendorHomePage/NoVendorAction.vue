@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    {{ buyer.state.name }}<br>
     {{ message().message }}
   </div>
 </template>
