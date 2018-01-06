@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    {{ message().message }}
+    {{ message() }}
   </div>
 </template>
  
@@ -11,13 +11,12 @@ export default {
   computed: {
     ...mapGetters({
       buyer: 'buyer',
-      vendor: 'vendor',
       messages: 'vendorStateMessages'
     })
   },
   methods: {
     message() {
-      return _.find(this.messages, message => message.state === this.buyer.state.name);
+      return _.find(this.messages, message => message.state === this.buyer.state.name).message;
     }
   }
 };

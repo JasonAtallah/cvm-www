@@ -8,7 +8,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-8 offset-sm-2">
-          <h1>Welcome back, {{ vendor.contact.firstName }} {{ vendor.contact.lastName }}</h1>
+          <h1>Welcome Back</h1>
           <NoVendorAction />
           <VendorNeedsToReviewTimes v-if="buyer.state.name === 'VendorNeedsToReviewTimes'" />
           <ApptScheduled v-if="buyer.state.name === 'ApptScheduled'" />
