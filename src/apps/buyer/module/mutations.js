@@ -33,7 +33,7 @@ export const events = (state, events) => {
 };
 
 export const gCalendar = (state, gcalendar) => {
-  state.buyer.gcalendar = gcalendar;
+  state.buyer = Object.assign({}, state.buyer, { gcalendar });
 };
 
 export const productFilter = (state, value) => {
