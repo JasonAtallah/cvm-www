@@ -3,6 +3,13 @@ import { getUrlParameter } from '../../../lib/url';
 import api from './api';
 import router from '../router';
 
+export const cancelAppt = ({ commit }, vendorId) => {
+  return api.cancelAppt(vendorId)
+    .then((buyer) => {
+      commit('buyer', buyer);
+    });
+};
+
 export const confirmAppt = ({ commit }, { selectedTime, vendorId }) => {
   return api.confirmAppt(selectedTime, vendorId)
     .then((buyer) => {

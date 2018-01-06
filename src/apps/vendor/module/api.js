@@ -1,6 +1,11 @@
 import * as http from '@/lib/http';
 
 export default {
+
+  cancelAppt(vendorId) {
+    return http.put(`/vendor/v1/vendors/${vendorId}/actions/VendorCancelsAppt`);
+  },
+
   confirmAppt(selectedTime, vendorId) {
     return http.put(`/vendor/v1/vendors/${vendorId}/actions/VendorChoosesTime`, selectedTime);
   },
