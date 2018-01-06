@@ -42,7 +42,7 @@ import DetailTabs from './vendorListDetails/DetailTabs';
 import Company from './vendorListDetails/Company';
 import Contact from './vendorListDetails/Contact';
 import ProductTable from './vendorListDetails/ProductTable';
-import { FlowersProductTable, EdiblesProductTable, ConcentratesProductTable } from '../config/productTables';
+import { FlowersProductTable, EdiblesProductTable, ConcentratesProductTable } from '../metadata/productTables';
 
 export default {
   components: {
