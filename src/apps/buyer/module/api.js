@@ -2,9 +2,7 @@ import * as http from '@/lib/http';
 
 export default {
   approveVendor(vendor, params) {
-    return http.put(`/buyer/v1/vendors/${vendor._id}/actions/ApproveVendor`, {
-      params
-    });
+    return http.put(`/buyer/v1/vendors/${vendor._id}/actions/ApproveVendor`, params);
   },
 
   cancelMeeting(vendor) {

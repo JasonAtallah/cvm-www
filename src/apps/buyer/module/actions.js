@@ -4,7 +4,7 @@ import { genVendorUrl } from '../../../lib/data';
 export const approveVendor = ({ commit }, { vendor, email }) => {
   const params = {
     email,
-    vendorUrl: genVendorUrl(vendor)
+    scheduleUrl: genVendorUrl(vendor)
   };
 
   return api.approveVendor(vendor, params)
