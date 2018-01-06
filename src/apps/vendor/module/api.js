@@ -1,6 +1,10 @@
 import * as http from '@/lib/http';
 
 export default {
+  confirmAppt(selectedTime, vendorId) {
+    return http.put(`/vendor/v1/vendors/${vendorId}/actions/VendorChoosesTime`, selectedTime);
+  },
+
   getQuestionnaire(questionnaireId) {
     return http.get(`/vendor/v1/questionnaires/${questionnaireId}`);
   },
@@ -11,6 +15,10 @@ export default {
 
   getVendor(vendorId) {
     return http.get(`/vendor/v1/vendors/${vendorId}`);
+  },
+
+  rejectAllTimes(vendorId) {
+    return http.put(`/vendor/v1/vendors/${vendorId}/actions/VendorRejectsAllTimes`);
   },
 
   saveResponse(questionnaireId, values) {

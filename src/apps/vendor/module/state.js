@@ -1,7 +1,8 @@
 export default {
+  buyer: null,
   questionnaire: null,
   receipt: null,
   response: null,
-  buyer: null,
+  scheduledAppt: null,
   vendor: null
 };

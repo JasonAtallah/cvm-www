@@ -3,6 +3,13 @@ import { getUrlParameter } from '../../../lib/url';
 import api from './api';
 import router from '../router';
 
+export const confirmAppt = ({ commit }, { selectedTime, vendorId }) => {
+  return api.confirmAppt(selectedTime, vendorId)
+    .then((vendor) => {
+      commit('vendor', vendor);
+    });
+};
+
 export const init = ({ dispatch, commit }) => {
   if (getUrlParameter('qid')) {
     return Promise.all([
@@ -41,6 +48,14 @@ export const loadVendor = ({ dispatch, commit, state }) => {
     .then((vendor) => {
       commit('vendor', vendor);
       dispatch('loadBuyer', vendor);
+    });
+};
+
+export const rejectAllTimes = ({ commit }, vendorId) => {
+  return api.rejectAllTimes(vendorId)
+    .then((vendor) => {
+      console.log(vendor);
+      commit('vendor', vendor);
     });
 };
 
