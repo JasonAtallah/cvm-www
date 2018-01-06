@@ -29,10 +29,10 @@ export const loadQuestionnaire = ({ dispatch, commit, state }) => {
     });
 };
 
-export const loadThreads = ({ dispatch, commit, state }) => {
-  return api.getThreads(state.vendor._id)
-    .then((threads) => {
-      commit('threads', threads);
+export const loadBuyer = ({ dispatch, commit, state }) => {
+  return api.getBuyer(state.vendor._id)
+    .then((buyer) => {
+      commit('buyer', buyer);
     });
 };
 
@@ -40,7 +40,7 @@ export const loadVendor = ({ dispatch, commit, state }) => {
   return api.getVendor(getUrlParameter('vid'))
     .then((vendor) => {
       commit('vendor', vendor);
-      dispatch('loadThreads', vendor);
+      dispatch('loadBuyer', vendor);
     });
 };
 

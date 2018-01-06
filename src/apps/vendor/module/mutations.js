@@ -24,8 +24,8 @@ export const questionnaire = (state, questionnaire) => {
   state.response = prepEmptyResponse(questionnaire);
 };
 
-export const threads = (state, threads) => {
-  state.threads = threads;
+export const buyer = (state, buyer) => {
+  state.buyer = buyer;
 };
 
 export const vendor = (state, vendor) => {

@@ -2,6 +2,6 @@ export default {
   questionnaire: null,
   receipt: null,
   response: null,
-  threads: null,
+  buyer: null,
   vendor: null
 };

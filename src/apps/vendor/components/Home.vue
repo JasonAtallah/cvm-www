@@ -11,7 +11,7 @@
           <!-- <h1>Welcome back, {{ vendor.contact.firstName }} {{ vendor.contact.lastName }}</h1> -->
           <!-- {{ vendor }} -->
           <VendorNeedsToReviewTimes />
-          <!-- <VendorApproved v-if="threads.state.name === 'BuyerNeedsToSendTimes'" />
+          <!-- <VendorApproved v-if="buyer.state.name === 'BuyerNeedsToSendTimes'" />
           <VendorPending v-if="vendor.status === null" /> 
           <VendorRejected v-if="vendor.status === 'rejected'" />         -->
         </div>
@@ -39,7 +39,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      threads: 'threads',
+      buyer: 'buyer',
       vendor: 'vendor'
     })
   }

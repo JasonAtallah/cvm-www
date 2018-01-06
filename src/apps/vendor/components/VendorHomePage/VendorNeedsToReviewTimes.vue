@@ -2,7 +2,7 @@
 <template>
   <div class="container">
     <h2>Vendor reviews times</h2>
-    {{ threads.state.suggestedTimes }}
+    {{ buyer.state.suggestedTimes }}
   </div>
 </template>
  
@@ -12,7 +12,7 @@ import { mapGetters } from 'vuex';
 export default {
   computed: {
     ...mapGetters({
-      threads: 'threads',
+      buyer: 'buyer',
       vendor: 'vendor'
     })
   }
