@@ -1,8 +1,11 @@
 import * as http from '@/lib/http';
 
 export default {
-  approveVendor(vendor, params) {
-    return http.put(`/buyer/v1/vendors/${vendor._id}/actions/ApproveVendor`, params);
+  approveVendor(vendor, email, scheduleUrl} {
+    return http.put(`/buyer/v1/vendors/${vendor._id}/actions/ApproveVendor`, {
+      email,
+      scheduleUrl
+    });
   },
 
   cancelMeeting(vendor) {
@@ -51,9 +54,10 @@ export default {
     return http.put('/buyer/v1/schedule', schedule);
   },
 
-  sendTimes(vendor, params) {
+  sendTimes(vendor, suggestedTimes, vendorUrl) {
     return http.put(`/buyer/v1/vendors/${vendor._id}/actions/BuyerSendsTimes`, {
-      params
+      suggestedTimes,
+      vendorUrl
     });
   },
 
