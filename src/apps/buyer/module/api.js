@@ -2,7 +2,6 @@ import * as http from '@/lib/http';
 
 export default {
   approveVendor(vendor, params) {
-    console.log(params);
     return http.put(`/buyer/v1/vendors/${vendor._id}/actions/ApproveVendor`, {
       params
     });
@@ -54,9 +53,9 @@ export default {
     return http.put('/buyer/v1/schedule', schedule);
   },
 
-  sendApptProposal(vendor, suggestedTimes) {
+  sendApptProposal(vendor, params) {
     return http.put(`/buyer/v1/vendors/${vendor._id}/actions/BuyerSendsTimes`, {
-      suggestedTimes
+      params
     });
   },
 

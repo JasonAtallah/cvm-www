@@ -1,4 +1,18 @@
 import api from './api';
+import { genVendorUrl } from '../../../lib/data';
+
+export const approveVendor = ({ commit }, { vendor, email }) => {
+  const params = {
+    email,
+    vendorUrl: genVendorUrl(vendor)
+  };
+
+  return api.approveVendor(vendor, params)
+    .then((vendorItem) => {
+      commit('updateVendorItem', vendorItem);
+      commit('cancelPendingAction');
+    });
+};
 
 export const cancelMeeting = ({ commit }, { vendor }) => {
   return api.cancelMeeting(vendor)
@@ -63,19 +77,6 @@ export const loadVendors = ({ rootState, commit }) => {
     });
 };
 
-export const approveVendor = ({ commit }, { vendor, email }) => {
-  const params = {
-    email,
-    scheduleUrl: window.location.href.replace('#', `?vid=${vendor._id}#`)
-  };
-
-  return api.approveVendor(vendor, params)
-    .then((vendorItem) => {
-      commit('updateVendorItem', vendorItem);
-      commit('cancelPendingAction');
-    });
-};
-
 export const rejectVendor = ({ commit }, { vendor, email }) => {
   return api.rejectVendor(vendor, email)
     .then((vendorItem) => {
@@ -109,7 +110,12 @@ export const selVendor = ({ rootState, commit }, vendor) => {
 };
 
 export const sendApptProposal = ({ commit }, { vendor, suggestedTimes }) => {
-  return api.sendApptProposal(vendor, suggestedTimes)
+  const params = {
+    suggestedTimes,
+    vendorUrl: genVendorUrl(vendor)
+  };
+
+  return api.sendApptProposal(vendor, params)
     .then((vendorItem) => {
       commit('updateVendorItem', vendorItem);
       commit('cancelPendingAction');
