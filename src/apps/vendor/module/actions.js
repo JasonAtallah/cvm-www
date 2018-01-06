@@ -10,8 +10,8 @@ export const cancelAppt = ({ commit }, vendorId) => {
     });
 };
 
-export const confirmAppt = ({ commit }, { selectedTime, vendorId }) => {
-  return api.confirmAppt(selectedTime, vendorId)
+export const confirmAppt = ({ commit }, { vendorId, selectedTime }) => {
+  return api.confirmAppt(vendorId, selectedTime)
     .then((buyer) => {
       commit('buyer', buyer);
     });

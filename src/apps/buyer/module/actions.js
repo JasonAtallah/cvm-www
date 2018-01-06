@@ -2,12 +2,10 @@ import api from './api';
 import { genVendorUrl } from '../../../lib/data';
 
 export const approveVendor = ({ commit }, { vendor, email }) => {
-  const params = {
+  return api.approveVendor(vendor, {
     email,
     scheduleUrl: genVendorUrl(vendor)
-  };
-
-  return api.approveVendor(vendor, params)
+  })
     .then((vendorItem) => {
       commit('updateVendorItem', vendorItem);
       commit('cancelPendingAction');
@@ -109,13 +107,13 @@ export const selVendor = ({ rootState, commit }, vendor) => {
     });
 };
 
-export const sendApptProposal = ({ commit }, { vendor, suggestedTimes }) => {
+export const sendTimes = ({ commit }, { vendor, suggestedTimes }) => {
   const params = {
     suggestedTimes,
     vendorUrl: genVendorUrl(vendor)
   };
 
-  return api.sendApptProposal(vendor, params)
+  return api.sendTimes(vendor, params)
     .then((vendorItem) => {
       commit('updateVendorItem', vendorItem);
       commit('cancelPendingAction');

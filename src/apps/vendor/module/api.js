@@ -6,8 +6,10 @@ export default {
     return http.put(`/vendor/v1/vendors/${vendorId}/actions/VendorCancelsAppt`);
   },
 
-  confirmAppt(selectedTime, vendorId) {
-    return http.put(`/vendor/v1/vendors/${vendorId}/actions/VendorChoosesTime`, selectedTime);
+  confirmAppt(vendorId, selectedTime) {
+    return http.put(`/vendor/v1/vendors/${vendorId}/actions/VendorChoosesTime`, {
+      selectedTime
+    });
   },
 
   getQuestionnaire(questionnaireId) {

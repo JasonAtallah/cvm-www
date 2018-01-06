@@ -51,7 +51,7 @@ export default {
     return http.put('/buyer/v1/schedule', schedule);
   },
 
-  sendApptProposal(vendor, params) {
+  sendTimes(vendor, params) {
     return http.put(`/buyer/v1/vendors/${vendor._id}/actions/BuyerSendsTimes`, {
       params
     });

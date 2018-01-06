@@ -38,9 +38,7 @@ export default {
         this.$store.dispatch('rejectAllTimes', this.vendor._id);
       } else {
         this.$store.dispatch('confirmAppt', {
-          selectedTime: {
-            selectedTime: this.selectedTime
-          },
+          selectedTime: this.selectedTime,
           vendorId: this.vendor._id
         });
       }

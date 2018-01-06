@@ -16,7 +16,11 @@ export default {
   },
   methods: {
     message() {
-      return _.find(this.messages, message => message.state === this.buyer.state.name).message;
+      const message = _.find(this.messages, message => message.state === this.buyer.state.name);
+      if (message) {
+        return message.message;
+      }
+      return null;
     }
   }
 };
