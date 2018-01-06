@@ -13,7 +13,7 @@ export const init = ({ dispatch, commit }) => {
     });
   } else if (getUrlParameter('vid')) {
     return Promise.all([
-      dispatch('loadVendor')
+      dispatch('loadVendor'),
     ])
     .then(() => {
       router.push({ path: '/home' });
@@ -29,10 +29,18 @@ export const loadQuestionnaire = ({ dispatch, commit, state }) => {
     });
 };
 
+export const loadThreads = ({ dispatch, commit, state }) => {
+  return api.getThreads(state.vendor._id)
+    .then((threads) => {
+      commit('threads', threads);
+    });
+};
+
 export const loadVendor = ({ dispatch, commit, state }) => {
   return api.getVendor(getUrlParameter('vid'))
     .then((vendor) => {
       commit('vendor', vendor);
+      dispatch('loadThreads', vendor);
     });
 };
 
