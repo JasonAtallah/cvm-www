@@ -1,9 +1,10 @@
 import * as http from '@/lib/http';
 
 export default {
-  approveVendor(vendor, email) {
+  approveVendor(vendor, params) {
+    console.log(params);
     return http.put(`/buyer/v1/vendors/${vendor._id}/actions/ApproveVendor`, {
-      email
+      params
     });
   },
 

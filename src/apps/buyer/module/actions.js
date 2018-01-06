@@ -64,9 +64,10 @@ export const loadVendors = ({ rootState, commit }) => {
 };
 
 export const approveVendor = ({ commit }, { vendor, email }) => {
-  const params = Object.assign({}, email, {
+  const params = {
+    email,
     scheduleUrl: window.location.href.replace('#', `?vid=${vendor._id}#`)
-  });
+  };
 
   return api.approveVendor(vendor, params)
     .then((vendorItem) => {
