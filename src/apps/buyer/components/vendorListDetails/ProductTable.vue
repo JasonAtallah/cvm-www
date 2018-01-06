@@ -1,7 +1,7 @@
 <style scoped>
 .table-header {
-  color: #a8a8a8;
-  background-color: #f9fafc;
+  color: #717171;
+  background-color: #EFEFEF;
 }
 
 .product-name {

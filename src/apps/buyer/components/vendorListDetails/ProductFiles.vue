@@ -52,6 +52,7 @@ export default {
       return 'fa-file-o';
     },
     getFileUrl(file) {
+      console.log(file);
       return `/buyer/v1/vendors/${this.vendor._id}/files/${file.id}`;
     }
   }
