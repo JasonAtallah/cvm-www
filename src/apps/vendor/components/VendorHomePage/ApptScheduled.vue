@@ -5,23 +5,23 @@
     <table class="table">
       <tr>
         <th>Name</th>
-        <td>{{ buyer.state.startTime.name }}</td>
+        <td>{{ buyer.state.selectedTime.selectedTime.name }}</td>
       </tr>
       <tr>
         <th>Location</th>
-        <td>{{ buyer.state.startTime.location }}</td>
+        <td>{{ buyer.state.selectedTime.location }}</td>
       </tr>
       <tr>
         <th>Date</th>
-        <td>{{ buyer.state.startTime.startDate }}</td>
+        <td>{{ buyer.state.selectedTime.startDate }}</td>
       </tr>
       <tr>
         <th>Time</th>
-        <td>{{ buyer.state.startTime.startTime }}</td>
+        <td>{{ buyer.state.selectedTime.startTime }}</td>
       </tr>
       <tr>
         <th>Duration</th>
-        <td>{{ buyer.state.startTime.duration }}</td>
+        <td>{{ buyer.state.selectedTime.duration }}</td>
       </tr>
     </table>
     <button v-if="!cancelling" type="button" class="btn btn-danger btn-block" @click.prevent="cancelAppt">Cancel Appointment</button>
@@ -52,7 +52,7 @@ export default {
   methods: {
     confirmCancel(confirm) {
       if (confirm === true) {
-        this.$store.dispatch('cancelAppt', this.vendor._id);
+        this.$store.dispatch('cancelAppt');
       } else {
         this.cancelling = false;
       }

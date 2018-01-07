@@ -144,7 +144,7 @@ export default {
     send() {
       this.validate()
       .then(() => {
-        this.$store.dispatch('sendApptProposal', {
+        this.$store.dispatch('sendTimes', {
           vendor: this.vendor,
           suggestedTimes: this.suggestedTimes
         });

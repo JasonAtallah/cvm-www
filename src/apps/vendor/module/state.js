@@ -7,5 +7,6 @@ export default {
   response: null,
   scheduledAppt: null,
   vendor: null,
+  vendorId: null,
   vendorStateMessages
 };

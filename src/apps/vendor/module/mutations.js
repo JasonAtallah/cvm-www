@@ -35,3 +35,7 @@ export const questionnaire = (state, questionnaire) => {
 export const vendor = (state, vendor) => {
   state.vendor = vendor;
 };
+
+export const vendorId = (state, vendorId) => {
+  state.vendorId = vendorId;
+};

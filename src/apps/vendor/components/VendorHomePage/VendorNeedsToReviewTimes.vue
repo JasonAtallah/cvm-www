@@ -35,11 +35,10 @@ export default {
   methods: {
     send() {
       if (this.selectedTime === 'None') {
-        this.$store.dispatch('rejectAllTimes', this.vendor._id);
+        this.$store.dispatch('rejectAllTimes');
       } else {
         this.$store.dispatch('confirmAppt', {
-          selectedTime: this.selectedTime,
-          vendorId: this.vendor._id
+          selectedTime: this.selectedTime
         });
       }
     }

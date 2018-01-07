@@ -7,5 +7,8 @@ export const dateFromObjectId = (objectId) => {
 };
 
 export const genVendorUrl = (vendor) => {
-  return window.location.href.replace('#', `?vid=${vendor._id}#`);
+  const hashIndex = window.location.href.indexOf('#');
+  let url = window.location.href.slice(0, hashIndex);
+  url += `?vid=${vendor._id}#`;
+  return url;
 };
