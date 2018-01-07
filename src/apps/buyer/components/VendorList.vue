@@ -34,7 +34,7 @@
           <span class="badge badge-success">{{ stateNameForDisplay(vendor.state.name) }}</span>
           <ApptScheduled />
           <VendorNeedsToReviewTimes />
-          <button @click="showInfo(vendor)" type="button" class="btn btn-default">
+          <button v-show="isVisible(vendor)" @click="showInfo(vendor)" type="button" class="btn btn-default">
             <i class="fa fa-info-circle" aria-hidden="true"></i>
           </button>                   
         </div>        
@@ -63,7 +63,7 @@ export default {
     ...mapGetters({
       vendors: 'sortedVendors',
       vendorList: 'vendorList'
-    }),
+    })
   },
   methods: {
     onVendorClick(vendor) {
@@ -82,7 +82,14 @@ export default {
         });
       }
     },
-    stateNameForDisplay
+    stateNameForDisplay,
+    isVisible(vendor) {
+      console.log(vendor);
+      if (vendor.state.name === 'VendorNeedsToReviewTimes' || vendor.state.name === 'ApptScheduled') {
+        return true;
+      }
+      return false;
+    }
   },
 };
 </script>

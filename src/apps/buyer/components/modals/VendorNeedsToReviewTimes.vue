@@ -1,37 +1,34 @@
+<style scoped>
+.times {
+  padding-left: 1rem;
+}
+</style>
+
 <template>
   <div class="modal" tabindex="-1" role="dialog" v-if="isVisible">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
 
         <div class="modal-header">
-          <h5 class="modal-title">Appointment Scheduled with {{ vendor.contact.firstName }} from {{ vendor.company.name }}</h5>
+          <h5 class="modal-title">Pending review from {{ stateInfo.name }}</h5>
         </div>
 
         <div class="modal-body">
           <form>
-            <div class="form-group">                    
-              <h3>{{ appt.name }}</h3>
-              <table class="table">      
-                <tr>
-                  <th>Location: </th>
-                  <td>{{ appt.location }}</td>
-                </tr>
-                <tr>
-                  <th>Date: </th>
-                  <td>{{ appt.startDate }}</td>
-                  </th>
-                </tr>
-                <tr>
-                  <th>Time: </th>
-                  <td>{{ appt.startTime }}</td>
-                  </th>
-                </tr>
-                <tr>
-                  <th>Duration: </th>
-                  <td>{{ appt.duration }}</td>
-                  </th>
-                </tr>
-              </table>                            
+            <div class="form-group">
+              <h4>Suggested Times</h4>
+              <ul v-for="time in appt.suggestedTimes" class="list-unstyled" :key="time.startDate">
+                <li class="times">
+                  {{ time.startTime }} on {{ time.startDate }} @ {{ time.location }}
+                </li>
+              </ul>              
+              <br>            
+              <h4 v-if="appt.rejectedTimes">Rejected Times</h4>
+              <ul v-for="time in appt.rejectedTimes" class="list-unstyled" :key="time.startDate">
+                <li class="times">
+                  {{ time.startTime }} on {{ time.startDate }} @ {{ time.location }}
+                </li>
+              </ul>                          
             </div>
           </form>
         </div>
@@ -47,7 +44,6 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import moment from 'moment';
 
 export default {
   computed: {
@@ -56,7 +52,7 @@ export default {
       vendorList: 'vendorList'
     }),
     appt() {
-      return this.stateInfo.state.selectedTime;
+      return this.stateInfo.state;
     },
     isVisible() {
       const pendingAction = this.$store.getters.pendingAction.type;
