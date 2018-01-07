@@ -4,7 +4,10 @@
 
 <template>
   <div class="action-button">
-    <DropdownButton v-if="currentAction" class="actionMenu text-right" :option="currentAction" :vendor="vendor" :options="currentAction.options" @selection="onActionSelect($event)" />
+    <DropdownButton v-if="currentAction" class="actionMenu text-right" buttonClassName="btn-outline-dark"
+      :option="currentAction"
+      :options="currentAction.options"
+      @selection="onActionSelect($event)" />
   </div>
 </template>
 

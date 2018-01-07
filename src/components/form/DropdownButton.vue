@@ -4,8 +4,8 @@
 
 <template>
   <div class="dropdown">
-    <button class="btn btn-sm" :class="{'dropdown-toggle': showDropDownToggle}" type="button" 
-      :data-toggle="showDropdown" aria-haspopup="true" aria-expanded="false" 
+    <button class="btn btn-sm" :class="buttonClass" type="button"
+      :data-toggle="showDropdown" aria-haspopup="true" aria-expanded="false"
       @click="onButtonClick()">
       {{ buttonLabel }}
     </button>
@@ -32,11 +32,24 @@ export default {
     options: {
       type: Array,
       required: false
+    },
+    buttonClassName: {
+      type: String,
+      required: false
     }
   },
   computed: {
     buttonLabel() {
       return this.option ? this.option.label : this.label;
+    },
+    buttonClass() {
+      const classObj = {
+        'dropdown-toggle': this.showDropDownToggle
+      };
+      if (this.buttonClassName) {
+        classObj[this.buttonClassName] = true;
+      }
+      return classObj;
     },
     showDropdown() {
       if (this.showDropDownToggle) {
