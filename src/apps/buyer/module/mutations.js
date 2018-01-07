@@ -28,12 +28,20 @@ export const cancelPendingAction = (state) => {
   };
 };
 
+export const cancelDetailOverride = (state) => {
+  state.overridingDetail = null;
+};
+
 export const events = (state, events) => {
   state.events = events;
 };
 
 export const gCalendar = (state, gcalendar) => {
   state.buyer = Object.assign({}, state.buyer, { gcalendar });
+};
+
+export const overrideDetail = (state, value) => {
+  state.overridingDetail = value;
 };
 
 export const productFilter = (state, value) => {

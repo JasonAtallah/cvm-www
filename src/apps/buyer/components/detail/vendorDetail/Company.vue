@@ -1,6 +1,7 @@
 <style scoped>
 .company-content th {
   text-align: right;
+  width: 150px;
 }
 </style>
 

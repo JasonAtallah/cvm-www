@@ -21,6 +21,7 @@
   right: 0;
   width: 70%;
   overflow: scroll;
+  padding: 1.5rem 3rem;
 }
 </style>
 

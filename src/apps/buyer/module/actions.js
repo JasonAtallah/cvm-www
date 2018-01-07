@@ -101,6 +101,7 @@ export const selVendor = ({ rootState, commit }, vendor) => {
     .then((vendorDetail) => {
       commit('selVendor', vendorDetail);
       commit('cacheVendorDetail', vendorDetail);
+      commit('cancelDetailOverride');
     });
 };
 

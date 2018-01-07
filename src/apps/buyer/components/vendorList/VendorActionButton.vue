@@ -22,10 +22,10 @@ export default {
   props: ['vendor'],
   computed: {
     ...mapGetters({
-      actions: 'vendorActions'
+      buttons: 'vendorActionButtons'
     }),
     currentAction() {
-      return this.actions.find(action => action.status === this.vendor.state.name);
+      return this.buttons.find(button => button.status === this.vendor.state.name);
     }
   },
   methods: {

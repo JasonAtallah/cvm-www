@@ -23,7 +23,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import moment from 'moment';
-import VendorListDetail from '../VendorListDetail';
+import VendorListDetail from '../detail/VendorDetail';
 
 export default {
   components: {

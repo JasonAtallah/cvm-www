@@ -3,6 +3,7 @@ import { stateNameForDisplay } from '../../../lib/filters';
 export const buyer = state => state.buyer;
 export const calendars = state => state.calendars;
 export const events = state => state.events;
+export const overridingDetail = state => state.overridingDetail;
 export const pageMenuItems = state => state.pageMenuItems;
 export const pendingAction = state => state.pendingAction;
 export const schedule = state => state.buyer.schedule;
@@ -43,5 +44,5 @@ export const statusOptions = (state) => {
 };
 export const vendorList = state => state.vendorList;
 export const vendors = state => state.vendors;
-export const vendorActions = state => state.vendorActions;
+export const vendorActionButtons = state => state.vendorActionButtons;
 export const vendorFilter = state => state.vendorFilter;

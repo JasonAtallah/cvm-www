@@ -11,12 +11,11 @@
     <div slot="content" class="vendors-page">
       <MasterDetail>
         <div slot="master" class="vendors-master">
-          <VendorListButtons />
-          <VendorListFilter />
           <VendorList />
         </div>
         <div slot="detail" class="vendors-detail">
-          <VendorListDetail v-if="vendor" :vendor="vendor" />
+          <VendorDetail v-if="showVendorDetail" :vendor="vendor" />
+          <SendTimes v-if="isOverridingDetail('sendTimes')" />
         </div>
       </MasterDetail>
     </div>
@@ -27,19 +26,17 @@
 import { mapGetters } from 'vuex';
 import MasterDetail from '@/components/page/content/MasterDetail';
 import BasePage from './BasePage';
-import VendorList from './VendorList';
-import VendorListButtons from './VendorListButtons';
-import VendorListFilter from './VendorListFilter';
-import VendorListDetail from './VendorListDetail';
+import SendTimes from './detail/SendTimes';
+import VendorList from './master/VendorList';
+import VendorDetail from './detail/VendorDetail';
 
 export default {
   components: {
     BasePage,
     MasterDetail,
-    VendorList,
-    VendorListButtons,
-    VendorListFilter,
-    VendorListDetail
+    SendTimes,
+    VendorDetail,
+    VendorList
   },
   data() {
     return {
@@ -49,14 +46,21 @@ export default {
   computed: {
     ...mapGetters({
       buyer: 'buyer',
+      overridingDetail: 'overridingDetail',
       vendor: 'selVendor'
-    })
+    }),
+    showVendorDetail() {
+      return this.vendor && !this.overridingDetail;
+    }
   },
   methods: {
     addVendor() {
       this.$store.commit('takeAction', {
         type: 'addVendor'
       });
+    },
+    isOverridingDetail(name) {
+      return this.overridingDetail && this.overridingDetail.type === name;
     }
   },
   beforeRouteEnter(to, from, next) {

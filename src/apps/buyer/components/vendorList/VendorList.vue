@@ -27,14 +27,14 @@
 
 <template>
   <ul class="vendor-list list-unstyled">
-    <li v-for="vendor in vendors" :key="vendor._id" @click.prevent="onVendorClick(vendor)">
+    <li v-for="vendor in vendors" :key="vendor._id" @click.capture="onVendorClick(vendor)">
       <div class="row">
         <div class="col-sm-8">
           <span class="company-name">{{ vendor.name }}</span>
           <span class="badge badge-success">{{ stateNameForDisplay(vendor.state.name) }}</span>
         </div>
         <div class="col-sm-4">
-          <VendorActionButton :vendor="vendor" />
+          <VendorActionButton :vendor="vendor"/>
         </div>
       </div>
     </li>
@@ -43,7 +43,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import { stateNameForDisplay } from '../../../lib/filters';
+import { stateNameForDisplay } from '@/lib/filters';
 import VendorActionButton from './VendorActionButton';
 
 export default {
@@ -57,7 +57,7 @@ export default {
   },
   methods: {
     onVendorClick(vendor) {
-      this.$store.dispatch('selVendor', vendor);
+      this.$emit('vendorClick', vendor);
     },
     stateNameForDisplay
   }

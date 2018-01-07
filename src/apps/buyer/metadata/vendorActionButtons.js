@@ -21,8 +21,8 @@ export default [
   {
     status: 'BuyerNeedsToSendTimes',
     label: 'Schedule Time',
-    value: 'scheduleTime',
-    commit: 'takeAction'
+    value: 'sendTimes',
+    commit: 'overrideDetail'
   },
   {
     status: 'ApptScheduled',
