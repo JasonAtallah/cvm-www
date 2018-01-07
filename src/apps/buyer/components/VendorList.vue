@@ -31,7 +31,13 @@
       <div class="row">
         <div class="col-sm-8">
           <span class="company-name">{{ vendor.name }}</span>
-          <span class="badge badge-success">{{ stateNameForDisplay(vendor.state.name) }}</span>
+          <span class="badge" 
+          :class="{'badge-success': vendor.state.name === 'ApptScheduled', 
+          'badge-primary': vendor.state.name === 'NewVendor',
+          'badge-info': vendor.state.name === 'BuyerNeedsToSendTimes',
+          'badge-danger': vendor.state.name === 'VendorRejected',
+          'badge-dark': vendor.state.name === 'VendorNeedsToReviewTimes'}">
+          {{ stateNameForDisplay(vendor.state.name) }}</span>
           <ApptScheduled />
           <VendorNeedsToReviewTimes />
           <button v-show="isVisible(vendor)" @click="showInfo(vendor)" type="button" class="btn btn-default">
@@ -68,6 +74,9 @@ export default {
   methods: {
     onVendorClick(vendor) {
       this.$store.dispatch('selVendor', vendor);
+    },
+    setBadge(vendor) {
+      return vendor.state.name;
     },
     showInfo(vendor) {
       console.log(vendor);
