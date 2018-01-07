@@ -1,6 +1,12 @@
+import vendorStateMessages from '../metadata/vendorStateMessages';
+
 export default {
+  buyer: null,
   questionnaire: null,
   receipt: null,
   response: null,
-  vendor: null
+  scheduledAppt: null,
+  vendor: null,
+  vendorId: null,
+  vendorStateMessages
 };

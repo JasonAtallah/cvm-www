@@ -3,6 +3,20 @@ import { getUrlParameter } from '../../../lib/url';
 import api from './api';
 import router from '../router';
 
+export const cancelAppt = ({ commit, state }) => {
+  return api.cancelAppt(state.vendorId)
+    .then((buyer) => {
+      commit('buyer', buyer);
+    });
+};
+
+export const confirmAppt = ({ commit, state }, selectedTime) => {
+  return api.confirmAppt(state.vendorId, selectedTime)
+    .then((buyer) => {
+      commit('buyer', buyer);
+    });
+};
+
 export const init = ({ dispatch, commit }) => {
   if (getUrlParameter('qid')) {
     return Promise.all([
@@ -12,8 +26,10 @@ export const init = ({ dispatch, commit }) => {
       router.push({ path: '/intro' });
     });
   } else if (getUrlParameter('vid')) {
+    commit('vendorId', getUrlParameter('vid'));
     return Promise.all([
-      dispatch('loadVendor')
+      dispatch('loadVendor'),
+      dispatch('loadBuyer')
     ])
     .then(() => {
       router.push({ path: '/home' });
@@ -29,10 +45,24 @@ export const loadQuestionnaire = ({ dispatch, commit, state }) => {
     });
 };
 
+export const loadBuyer = ({ dispatch, commit, state }) => {
+  return api.getBuyer(state.vendorId)
+    .then((buyer) => {
+      commit('buyer', buyer);
+    });
+};
+
 export const loadVendor = ({ dispatch, commit, state }) => {
-  return api.getVendor(getUrlParameter('vid'))
+  return api.getVendor(state.vendorId)
     .then((vendor) => {
       commit('vendor', vendor);
+    });
+};
+
+export const rejectAllTimes = ({ commit, state }) => {
+  return api.rejectAllTimes(state.vendorId)
+    .then((buyer) => {
+      commit('buyer', buyer);
     });
 };
 

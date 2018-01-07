@@ -2,6 +2,14 @@ import data from '@/lib/data';
 import { uuidv4 } from '@/lib/uuid';
 import { prepEmptyResponse, prepEmptyProduct } from './fns';
 
+export const scheduledAppt = (state, selectedTime) => {
+  state.scheduledAppt = selectedTime;
+};
+
+export const buyer = (state, buyer) => {
+  state.buyer = buyer;
+};
+
 export const finalResponse = (state, response) => {
   state.finalResponse = response;
 };
@@ -26,4 +34,8 @@ export const questionnaire = (state, questionnaire) => {
 
 export const vendor = (state, vendor) => {
   state.vendor = vendor;
+};
+
+export const vendorId = (state, vendorId) => {
+  state.vendorId = vendorId;
 };
