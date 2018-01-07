@@ -12,7 +12,6 @@
         <button type="button" class="btn btn-primary btn-block" @click.prevent="send">Send</button>
       </div>
     </form>
-{{ scheduleAppt }}
 
   </div>
 </template>
