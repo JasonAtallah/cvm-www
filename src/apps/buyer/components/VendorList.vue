@@ -32,7 +32,12 @@
         <div class="col-sm-8">
           <span class="company-name">{{ vendor.name }}</span>
           <span class="badge badge-success">{{ stateNameForDisplay(vendor.state.name) }}</span>
-        </div>
+          <ApptScheduled />
+          <VendorNeedsToReviewTimes />
+          <button @click="showInfo(vendor)" type="button" class="btn btn-default">
+            <i class="fa fa-info-circle" aria-hidden="true"></i>
+          </button>                   
+        </div>        
         <div class="col-sm-4">
           <VendorActionButton :vendor="vendor" />
         </div>
@@ -44,22 +49,40 @@
 <script>
 import { mapGetters } from 'vuex';
 import { stateNameForDisplay } from '../../../lib/filters';
+import ApptScheduled from './modals/ApptScheduled';
 import VendorActionButton from './VendorActionButton';
+import VendorNeedsToReviewTimes from './modals/VendorNeedsToReviewTimes';
 
 export default {
   components: {
-    VendorActionButton
+    ApptScheduled,
+    VendorActionButton,
+    VendorNeedsToReviewTimes
   },
   computed: {
     ...mapGetters({
       vendors: 'sortedVendors',
-    })
+      vendorList: 'vendorList'
+    }),
   },
   methods: {
     onVendorClick(vendor) {
       this.$store.dispatch('selVendor', vendor);
     },
+    showInfo(vendor) {
+      console.log(vendor);
+      if (vendor.state.name === 'ApptScheduled') {
+        this.$store.commit('takeAction', {
+          type: 'viewApptInfo'
+        });
+      } else if (vendor.state.name === 'VendorNeedsToReviewTimes') {
+        console.log(vendor.state.name);
+        this.$store.commit('takeAction', {
+          type: 'viewTimesSentInfo'
+        });
+      }
+    },
     stateNameForDisplay
-  }
+  },
 };
 </script>
