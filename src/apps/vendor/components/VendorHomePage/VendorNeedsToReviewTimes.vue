@@ -37,9 +37,7 @@ export default {
       if (this.selectedTime === 'None') {
         this.$store.dispatch('rejectAllTimes');
       } else {
-        this.$store.dispatch('confirmAppt', {
-          selectedTime: this.selectedTime
-        });
+        this.$store.dispatch('confirmAppt', this.selectedTime);
       }
     }
   }

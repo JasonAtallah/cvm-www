@@ -5,7 +5,7 @@
     <table class="table">
       <tr>
         <th>Name</th>
-        <td>{{ buyer.state.selectedTime.selectedTime.name }}</td>
+        <td>{{ buyer.state.selectedTime.name }}</td>
       </tr>
       <tr>
         <th>Location</th>
