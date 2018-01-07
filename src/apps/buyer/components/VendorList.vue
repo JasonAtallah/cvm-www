@@ -32,11 +32,12 @@
         <div class="col-sm-8">
           <span class="company-name">{{ vendor.name }}</span>
           <span class="badge" 
-          :class="{'badge-success': vendor.state.name === 'ApptScheduled', 
-          'badge-primary': vendor.state.name === 'NewVendor',
-          'badge-info': vendor.state.name === 'BuyerNeedsToSendTimes',
-          'badge-danger': vendor.state.name === 'VendorRejected',
-          'badge-dark': vendor.state.name === 'VendorNeedsToReviewTimes'}">
+            :class="{'badge-success': vendor.state.name === 'ApptScheduled', 
+            'badge-primary': vendor.state.name === 'NewVendor',
+            'badge-info': vendor.state.name === 'BuyerNeedsToSendTimes',
+            'badge-danger': vendor.state.name === 'VendorRejected',
+            'badge-secondary': vendor.state.name === 'VendorNeedsToReviewTimes'}"
+          >
           {{ stateNameForDisplay(vendor.state.name) }}</span>
           <ApptScheduled />
           <VendorNeedsToReviewTimes />
