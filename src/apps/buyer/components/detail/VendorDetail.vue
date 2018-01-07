@@ -49,11 +49,6 @@ export default {
       selTab: 'company'
     };
   },
-  computed: {
-    isVisible() {
-      return this.vendor !== null;
-    }
-  },
   methods: {
     changeTab(detailTab) {
       this.selTab = detailTab;

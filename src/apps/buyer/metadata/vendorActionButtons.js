@@ -1,7 +1,6 @@
 
 
 export default [
-
   {
     status: 'NewVendor',
     label: 'Action',
@@ -22,7 +21,7 @@ export default [
     status: 'BuyerNeedsToSendTimes',
     label: 'Schedule Time',
     value: 'sendTimes',
-    commit: 'overrideDetail'
+    dispatch: 'overrideDetail'
   },
   {
     status: 'ApptScheduled',

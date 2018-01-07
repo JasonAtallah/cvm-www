@@ -15,7 +15,7 @@
         </div>
         <div slot="detail" class="vendors-detail">
           <VendorDetail v-if="showVendorDetail" :vendor="vendor" />
-          <SendTimes v-if="isOverridingDetail('sendTimes')" />
+          <SendTimes v-if="showSendTimes" :params="overridingDetail" />
         </div>
       </MasterDetail>
     </div>
@@ -50,17 +50,10 @@ export default {
       vendor: 'selVendor'
     }),
     showVendorDetail() {
-      return this.vendor && !this.overridingDetail;
-    }
-  },
-  methods: {
-    addVendor() {
-      this.$store.commit('takeAction', {
-        type: 'addVendor'
-      });
+      return !!(!this.overridingDetail && this.vendor);
     },
-    isOverridingDetail(name) {
-      return this.overridingDetail && this.overridingDetail.type === name;
+    showSendTimes() {
+      return !!(this.overridingDetail && this.overridingDetail.type === 'sendTimes');
     }
   },
   beforeRouteEnter(to, from, next) {

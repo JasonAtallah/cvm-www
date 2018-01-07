@@ -72,6 +72,17 @@ export const loadVendors = ({ rootState, commit }) => {
     });
 };
 
+export const overrideDetail = ({ commit, dispatch }, value) => {
+  if (value.vendor) {
+    dispatch('selVendor', value.vendor)
+      .then(() => {
+        commit('overrideDetail', Object.assign({ type: value.action.value }, _.omit(value, 'action')));
+      });
+  } else {
+    commit('overrideDetail', Object.assign({ type: value.action.value }, _.omit(value, 'action')));
+  }
+};
+
 export const rejectVendor = ({ commit }, { vendor, email }) => {
   return api.rejectVendor(vendor, email)
     .then((vendorItem) => {
@@ -88,19 +99,27 @@ export const saveSchedule = ({ rootState, commit }) => {
 };
 
 export const selVendor = ({ rootState, commit }, vendor) => {
+  if (!vendor) {
+    commit('selVendor', null);
+    return Promise.resolve();
+  }
+
   const cachedVendor = rootState.vendors[vendor._id];
   let vendorDetailP;
 
   if (cachedVendor) {
     vendorDetailP = Promise.resolve(cachedVendor);
   } else {
-    vendorDetailP = api.getVendor(vendor);
+    vendorDetailP = api.getVendor(vendor)
+      .then((vendorDetail) => {
+        commit('cacheVendorDetail', vendorDetail);
+        return vendorDetail;
+      });
   }
 
   return vendorDetailP
     .then((vendorDetail) => {
       commit('selVendor', vendorDetail);
-      commit('cacheVendorDetail', vendorDetail);
       commit('cancelDetailOverride');
     });
 };
