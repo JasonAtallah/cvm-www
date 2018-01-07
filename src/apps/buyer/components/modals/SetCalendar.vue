@@ -50,9 +50,12 @@ export default {
   },
   computed: {
     ...mapGetters({
-      calendars: 'calendars',
-      isVisible: 'needSetCalendar'
-    })
+      buyer: 'buyer',
+      calendars: 'calendars'
+    }),
+    isVisible() {
+      return this.buyer && !this.buyer.gcalendar;
+    }
   },
   methods: {
     onNameInput() {

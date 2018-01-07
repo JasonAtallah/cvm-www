@@ -7,7 +7,6 @@ export default {
   buyer: null,
   calendars: null,
   events: [],
-  gcalendar: null,
   pageMenuItems: pages,
   pendingAction: {
     type: null
