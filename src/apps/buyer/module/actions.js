@@ -24,6 +24,14 @@ export const createCalendarEvent = ({ dispatch, commit }, values) => {
     });
 };
 
+export const createLocation = ({ dispatch, commit }, values) => {
+  return api.createLocation(values)
+    .then((location) => {
+      commit('addLocationToList', location);
+      commit('cancelPendingAction');
+    });
+};
+
 export const createVendor = ({ dispatch, commit }, values) => {
   return api.createVendor(values)
     .then((vendor) => {
@@ -128,7 +136,7 @@ export const sendTimes = ({ commit }, { vendor, suggestedTimes }) => {
   return api.sendTimes(vendor, suggestedTimes, genVendorUrl(vendor))
     .then((vendorItem) => {
       commit('updateVendorItem', vendorItem);
-      commit('cancelPendingAction');
+      commit('cancelDetailOverride');
     });
 };
 

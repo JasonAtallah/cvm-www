@@ -2,6 +2,10 @@ export const addCalendarEventToList = (state, calendarEvent) => {
   state.events.push(calendarEvent);
 };
 
+export const addLocationToList = (state, location) => {
+  state.buyer.locations.push(location);
+};
+
 export const addVendorToList = (state, vendor) => {
   state.vendorList.push(vendor);
 };

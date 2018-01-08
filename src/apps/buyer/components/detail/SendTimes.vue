@@ -31,14 +31,14 @@ ul.suggestedTimes button {
           <div class="row">
             <div class="col-sm-6">
               <div class="form-group row">
-                <label for="exampleFormControlSelect1" class="col-sm-4 col-form-label">Location:</label>
-                <div class="col-sm-8">
-                  <!-- <input type="text" class="form-control" id="location" v-model="location"> -->
-                  <select v-model="location">
-                    <option v-for="(location, index) in locations" :key="index" :value="location.value">
-                      {{ location.label }}
-                    </option>
-                  </select>
+                <label for="location" class="col-sm-4 col-form-label">Location:</label>
+                <div class="col-sm-6">
+                  <ElSelect v-model="location" clearable>
+                    <ElOption v-for="(location, index) in locations" :key="index" :label="location.name" :value="index" />
+                  </ElSelect>
+                </div>
+                <div class="col-sm-2">
+                  <button class="btn btn-link" @click="addLocation">Add Location</button>
                 </div>
               </div>
             </div>
@@ -47,13 +47,12 @@ ul.suggestedTimes button {
           <div class="row">
             <div class="col-sm-6">
               <div class="form-group row">
-                <label for="exampleFormControlSelect1" class="col-sm-4 col-form-label">Date:</label>
+                <label for="startDate" class="col-sm-4 col-form-label">Date:</label>
                 <div class="col-sm-8">
-                  <DatePicker
+                  <ElDatePicker
                     v-model="startDate"
                     :format="datePicker.format"
-                    :type="datePicker.type">
-                  </DatePicker>
+                    :type="datePicker.type" />
                 </div>
               </div>
             </div>
@@ -62,12 +61,11 @@ ul.suggestedTimes button {
           <div class="row">
             <div class="col-sm-6">
               <div class="form-group row">
-                <label for="exampleFormControlSelect1" class="col-sm-4 col-form-label">Time:</label>
+                <label for="startTime" class="col-sm-4 col-form-label">Time:</label>
                 <div class="col-sm-8">
-                  <TimeSelect
+                  <ElTimeSelect
                     v-model="startTime"
-                    :picker-options="timePicker">
-                  </TimeSelect>
+                    :picker-options="timePicker" />
                 </div>
               </div>
             </div>
@@ -76,7 +74,7 @@ ul.suggestedTimes button {
           <div class="row">
             <div class="col-sm-6">
               <div class="form-group row">
-                <label for="exampleFormControlSelect1" class="col-sm-4 col-form-label">Duration (mins):</label>
+                <label for="duration" class="col-sm-4 col-form-label">Duration (mins):</label>
                 <div class="col-sm-3">
                   <input type="number" class="form-control" id="duration" v-model="duration">
                 </div>
@@ -115,9 +113,8 @@ ul.suggestedTimes button {
               </div>
               <ul class="suggestedTimes">
                 <li v-for="(time, index) in suggestedTimes" :key="index">
-                  {{ time.location }}<br />
-                  {{ formatDate(time.startDate) }}<br />
-                  {{ time.duration }} mins<br />
+                  {{ time.location.name }}<br />
+                  {{ formatDate(time.startDate) }} to {{ formatTime(getEndDate(time)) }}<br />
                   <button type="button" class="btn btn-link" @click.prevent="removeTime(index)">Remove</button>
                 </li>
               </ul>
@@ -140,20 +137,21 @@ ul.suggestedTimes button {
 <script>
 import { mapGetters } from 'vuex';
 import moment from 'moment';
-import { DatePicker, TimePicker, TimeSelect } from 'element-ui';
+import { DatePicker as ElDatePicker, Option as ElOption, Select as ElSelect, TimeSelect as ElTimeSelect } from 'element-ui';
 
 export default {
   components: {
-    DatePicker,
-    TimePicker,
-    TimeSelect
+    ElDatePicker,
+    ElOption,
+    ElSelect,
+    ElTimeSelect
   },
   data() {
     return {
       startDate: new Date(),
       startTime: null,
       name: null,
-      location: '*dispensary address*',
+      location: null,
       duration: 30,
       suggestedTimes: [],
       datePicker: {
@@ -174,7 +172,7 @@ export default {
       locations: 'locations'
     }),
     canAddTime() {
-      return this.location && this.startDate && this.startTime;
+      return this.location !== null && this.startDate && this.startTime;
     },
     canSubmit() {
       return this.suggestedTimes.length;
@@ -187,11 +185,16 @@ export default {
     }
   },
   methods: {
+    addLocation() {
+      this.$store.commit('takeAction', {
+        type: 'addLocation'
+      });
+    },
     addTime() {
       const timeParts = this.startTime.split(':');
       const newTime = {
         name: this.name,
-        location: this.location,
+        location: this.locations[this.location],
         duration: this.duration,
         startDate: moment(this.startDate).hour(timeParts[0]).minute(timeParts[1]).toDate()
       };
@@ -207,6 +210,12 @@ export default {
     },
     formatDate(date) {
       return moment(date).format('LLL');
+    },
+    formatTime(date) {
+      return moment(date).format('H:mm A');
+    },
+    getEndDate(suggestedTime) {
+      return moment(suggestedTime.startDate).add(suggestedTime.duration, 'minutes').toDate();
     },
     removeTime(index) {
       this.suggestedTimes.splice(index, 1);

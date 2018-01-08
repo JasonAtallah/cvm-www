@@ -3,6 +3,11 @@ import { stateNameForDisplay } from '../../../lib/filters';
 export const buyer = state => state.buyer;
 export const calendars = state => state.calendars;
 export const events = state => state.events;
+export const locations = (state) => {
+  const locations = [...state.buyer.locations];
+  locations.unshift(state.buyer.profile.company);
+  return locations;
+};
 export const overridingDetail = state => state.overridingDetail;
 export const pageMenuItems = state => state.pageMenuItems;
 export const pendingAction = state => state.pendingAction;
