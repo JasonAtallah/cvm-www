@@ -12,7 +12,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import FullScreenPage from '@/components/page/FullScreenPage';
-import BuyerSettings from './modals/BuyerSettings/BuyerSettings';
+import BuyerSettings from './dialogs/BuyerSettings/BuyerSettings';
 
 export default {
   components: {
