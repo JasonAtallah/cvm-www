@@ -8,7 +8,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-8 offset-sm-2">
-          <h1>Welcome Back, {{ vendor.contact.firstName }}</h1>
+          <h1>Welcome Back, {{ vendor.company.name }}</h1>
           <hr>
           <br><br>
           <NoVendorAction />
