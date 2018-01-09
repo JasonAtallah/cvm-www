@@ -11,6 +11,7 @@
   left: 0;
   width: 30%;
   min-width: 275px;
+  max-width: 450px;
   overflow: hidden;
 }
 
