@@ -1,6 +1,7 @@
 <style scoped>
 .contact-content th {
   text-align: right;
+  width: 150px;
 }
 </style>
 

@@ -3,23 +3,35 @@
 </style>
 
 <template>
-  <div class="dropdown">
-    <button class="btn btn-sm" :class="{'dropdown-toggle': showDropDownToggle}" type="button" 
-      :data-toggle="showDropdown" aria-haspopup="true" aria-expanded="false" 
-      @click="onButtonClick()">
+  <div class="dropdown-button">
+    <ElButton type="text" v-if="!showDropdown" @click="onButtonClick()">
       {{ buttonLabel }}
-    </button>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" v-for="option in options" @click.prevent="onItemClick(option)">
-        {{ option.label }}
-      </a>
-    </div>
+    </ElButton>
+
+    <ElDropdown v-if="showDropdown" trigger="click" @command="onItemClick">
+      <ElButton type="text">
+        {{ buttonLabel }}<i class="el-icon-arrow-down el-icon--right"></i>
+      </ElButton>
+      <ElDropdownMenu slot="dropdown">
+        <ElDropdownItem v-for="(option, index) in options" :key="index" :command="option">{{ option.label }}</ElDropdownItem>
+      </ElDropdownMenu>
+    </ElDropdown>
   </div>
 </template>
 
 <script>
+import { Button as ElButton,
+  Dropdown as ElDropdown,
+  DropdownMenu as ElDropdownMenu,
+  DropdownItem as ElDropdownItem } from 'element-ui';
+
 export default {
-  name: 'dropdown-button',
+  components: {
+    ElButton,
+    ElDropdown,
+    ElDropdownItem,
+    ElDropdownMenu
+  },
   props: {
     label: {
       type: String,
@@ -32,6 +44,10 @@ export default {
     options: {
       type: Array,
       required: false
+    },
+    buttonClassName: {
+      type: String,
+      required: false
     }
   },
   computed: {
@@ -39,12 +55,6 @@ export default {
       return this.option ? this.option.label : this.label;
     },
     showDropdown() {
-      if (this.showDropDownToggle) {
-        return 'dropdown';
-      }
-      return null;
-    },
-    showDropDownToggle() {
       return this.options && this.options.length;
     }
   },

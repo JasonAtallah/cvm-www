@@ -25,10 +25,10 @@ html, body {
     <router-view/>
 
     <AddCalendarEvent />
+    <AddLocation />
     <AddVendor />
     <ConfirmCancelMeeting />
     <SetProfile />
-    <SendMeetingTimes />
     <SendVendorStatusEmail />
     <SetCalendar />
     <SetSchedule />
@@ -38,10 +38,10 @@ html, body {
 
 <script>
 import AddCalendarEvent from './components/modals/AddCalendarEvent';
+import AddLocation from './components/modals/AddLocation';
 import AddVendor from './components/modals/AddVendor';
 import ConfirmCancelMeeting from './components/modals/ConfirmCancelMeeting';
 import SetProfile from './components/modals/SetProfile';
-import SendMeetingTimes from './components/modals/SendMeetingTimes';
 import SendVendorStatusEmail from './components/modals/SendVendorStatusEmail';
 import SetCalendar from './components/modals/SetCalendar';
 import SetSchedule from './components/modals/SetSchedule';
@@ -51,9 +51,9 @@ export default {
   name: 'app',
   components: {
     AddCalendarEvent,
+    AddLocation,
     AddVendor,
     ConfirmCancelMeeting,
-    SendMeetingTimes,
     SendVendorStatusEmail,
     SetCalendar,
     SetProfile,

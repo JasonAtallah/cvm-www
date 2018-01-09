@@ -1,4 +1,8 @@
 <style lang="scss" scoped>
+.vendors-page {
+  height: 100%;
+}
+
 .vendors-master {
   height: 100%;
   width: 100%;
@@ -11,12 +15,11 @@
     <div slot="content" class="vendors-page">
       <MasterDetail>
         <div slot="master" class="vendors-master">
-          <VendorListButtons />
-          <VendorListFilter />
-          <VendorList />
+          <VendorListMaster />
         </div>
         <div slot="detail" class="vendors-detail">
-          <VendorListDetail v-if="vendor" :vendor="vendor" />
+          <VendorDetail v-if="showVendorDetail" :vendor="vendor" />
+          <SendTimes v-if="showSendTimes" :params="overridingDetail" />
         </div>
       </MasterDetail>
     </div>
@@ -25,21 +28,19 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import MasterDetail from '@/components/page/content/MasterDetail';
+import MasterDetail from '@/components/ui/MasterDetail';
 import BasePage from './BasePage';
-import VendorList from './VendorList';
-import VendorListButtons from './VendorListButtons';
-import VendorListFilter from './VendorListFilter';
-import VendorListDetail from './VendorListDetail';
+import SendTimes from './detail/SendTimes';
+import VendorListMaster from './master/VendorListMaster';
+import VendorDetail from './detail/VendorDetail';
 
 export default {
   components: {
     BasePage,
     MasterDetail,
-    VendorList,
-    VendorListButtons,
-    VendorListFilter,
-    VendorListDetail
+    SendTimes,
+    VendorDetail,
+    VendorListMaster
   },
   data() {
     return {
@@ -49,14 +50,14 @@ export default {
   computed: {
     ...mapGetters({
       buyer: 'buyer',
+      overridingDetail: 'overridingDetail',
       vendor: 'selVendor'
-    })
-  },
-  methods: {
-    addVendor() {
-      this.$store.commit('takeAction', {
-        type: 'addVendor'
-      });
+    }),
+    showVendorDetail() {
+      return !!(!this.overridingDetail && this.vendor);
+    },
+    showSendTimes() {
+      return !!(this.overridingDetail && this.overridingDetail.type === 'sendTimes');
     }
   },
   beforeRouteEnter(to, from, next) {
