@@ -2,27 +2,24 @@
 .master-detail {
   width: 100%;
   height: 100%;
+  display: grid;
+  grid-template-columns: 450px 1fr;
+  grid-template-rows: 100%;
+  grid-template-areas: "master  detail";
+  grid-gap: 0 15px;
 }
 
 .master {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 30%;
-  min-width: 275px;
-  max-width: 450px;
+  grid-area: master;
   overflow: hidden;
+  height: 100%;
+  width: 100%;
 }
 
 .detail {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  width: 70%;
+  grid-area: detail;
   overflow: scroll;
-  padding: 1.5rem 3rem;
+  padding: 1rem 0;
 }
 </style>
 

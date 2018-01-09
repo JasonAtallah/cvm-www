@@ -1,4 +1,8 @@
 <style lang="scss" scoped>
+.vendors-page {
+  height: 100%;
+}
+
 .vendors-master {
   height: 100%;
   width: 100%;
@@ -11,7 +15,7 @@
     <div slot="content" class="vendors-page">
       <MasterDetail>
         <div slot="master" class="vendors-master">
-          <VendorList />
+          <VendorListMaster />
         </div>
         <div slot="detail" class="vendors-detail">
           <VendorDetail v-if="showVendorDetail" :vendor="vendor" />
@@ -27,7 +31,7 @@ import { mapGetters } from 'vuex';
 import MasterDetail from '@/components/ui/MasterDetail';
 import BasePage from './BasePage';
 import SendTimes from './detail/SendTimes';
-import VendorList from './master/VendorList';
+import VendorListMaster from './master/VendorListMaster';
 import VendorDetail from './detail/VendorDetail';
 
 export default {
@@ -36,7 +40,7 @@ export default {
     MasterDetail,
     SendTimes,
     VendorDetail,
-    VendorList
+    VendorListMaster
   },
   data() {
     return {

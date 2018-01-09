@@ -2,7 +2,7 @@
 </style>
 
 <template>
-  <div class="vendor-list-detail">
+  <div class="vendor-detail">
     <div class="row">
       <div class="col-sm-12">
         <h3>{{ vendor.company.name }}</h3>
@@ -27,10 +27,10 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import DetailTabs from './vendorDetail/DetailTabs';
-import Company from './vendorDetail/Company';
-import Contact from './vendorDetail/Contact';
-import ProductTable from './vendorDetail/ProductTable';
+import DetailTabs from '../vendorDetail/DetailTabs';
+import Company from '../vendorDetail/Company';
+import Contact from '../vendorDetail/Contact';
+import ProductTable from '../vendorDetail/ProductTable';
 import { FlowersProductTable, EdiblesProductTable, ConcentratesProductTable } from '../../metadata/productTables';
 
 export default {

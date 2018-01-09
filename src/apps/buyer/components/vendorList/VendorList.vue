@@ -1,10 +1,6 @@
 <style lang="scss" scoped>
 .vendor-list {
-  position: absolute;
-  top: #{$vendor-list-filter-height * 2};
-  bottom: 0;
-  left: 0;
-  right: 0;
+  height: 100%;
   margin: 0;
   overflow-x: hidden;
   overflow-y: scroll;

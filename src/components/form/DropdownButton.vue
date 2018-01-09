@@ -13,7 +13,7 @@
         {{ buttonLabel }}<i class="el-icon-arrow-down el-icon--right"></i>
       </ElButton>
       <ElDropdownMenu slot="dropdown">
-        <ElDropdownItem v-for="option in options" :command="option">{{ option.label }}</ElDropdownItem>
+        <ElDropdownItem v-for="(option, index) in options" :key="index" :command="option">{{ option.label }}</ElDropdownItem>
       </ElDropdownMenu>
     </ElDropdown>
   </div>
@@ -65,7 +65,6 @@ export default {
       }
     },
     onItemClick(option) {
-      console.dir(option);
       this.$emit('selection', option);
     }
   }
