@@ -33,12 +33,12 @@ ul.suggestedTimes button {
               <div class="form-group row">
                 <label for="location" class="col-sm-4 col-form-label">Location:</label>
                 <div class="col-sm-6">
-                  <ElSelect v-model="location" clearable>
+                  <ElSelect v-model="location" clearable @change="onLocationChange" placeholder="Choose a location">
                     <ElOption v-for="(location, index) in locations" :key="index" :label="location.name" :value="index" />
+                    <ElOption key="-1" label="Add Location" value="-1">
+                      <ElButton type="text" size="medium" style="padding: 0">Add Location</ElButton>
+                    </ElOption>
                   </ElSelect>
-                </div>
-                <div class="col-sm-2">
-                  <button class="btn btn-link" @click="addLocation">Add Location</button>
                 </div>
               </div>
             </div>
@@ -76,7 +76,7 @@ ul.suggestedTimes button {
               <div class="form-group row">
                 <label for="duration" class="col-sm-4 col-form-label">Duration (mins):</label>
                 <div class="col-sm-3">
-                  <input type="number" class="form-control" id="duration" v-model="duration">
+                  <ElInputNumber v-model="duration" controlsPosition="right" />
                 </div>
               </div>
             </div>
@@ -137,11 +137,19 @@ ul.suggestedTimes button {
 <script>
 import { mapGetters } from 'vuex';
 import moment from 'moment';
-import { DatePicker as ElDatePicker, Option as ElOption, Select as ElSelect, TimeSelect as ElTimeSelect } from 'element-ui';
+import {
+  Button as ElButton,
+  DatePicker as ElDatePicker,
+  InputNumber as ElInputNumber,
+  Option as ElOption,
+  Select as ElSelect,
+  TimeSelect as ElTimeSelect } from 'element-ui';
 
 export default {
   components: {
+    ElButton,
     ElDatePicker,
+    ElInputNumber,
     ElOption,
     ElSelect,
     ElTimeSelect
@@ -216,6 +224,12 @@ export default {
     },
     getEndDate(suggestedTime) {
       return moment(suggestedTime.startDate).add(suggestedTime.duration, 'minutes').toDate();
+    },
+    onLocationChange(value) {
+      if (value === '-1') {
+        this.location = null;
+        this.addLocation();
+      }
     },
     removeTime(index) {
       this.suggestedTimes.splice(index, 1);
