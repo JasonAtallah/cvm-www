@@ -1,7 +1,7 @@
 <template>
 <FullScreenPage :menuItems="pageMenuItems" :pageName="pageName">
   <div slot="menu-right" v-if="buyer">
-    <button @click="updateBuyerProfile" class="btn">{{ buyer.firstName }}</button>
+    <BuyerSettings :buyer="buyer" />
   </div>
   <div slot="content">
     <slot name="content"></slot>
@@ -11,12 +11,13 @@
 
 <script>
 import { mapGetters } from 'vuex';
-
 import FullScreenPage from '@/components/page/FullScreenPage';
+import BuyerSettings from './modals/BuyerSettings/BuyerSettings';
 
 export default {
   components: {
-    FullScreenPage
+    FullScreenPage,
+    BuyerSettings
   },
   props: ['pageName'],
   computed: {
@@ -24,13 +25,6 @@ export default {
       buyer: 'buyer',
       pageMenuItems: 'pageMenuItems'
     })
-  },
-  methods: {
-    updateBuyerProfile() {
-      this.$store.commit('takeAction', {
-        type: 'updateBuyerProfile'
-      });
-    }
   }
 };
 </script>
