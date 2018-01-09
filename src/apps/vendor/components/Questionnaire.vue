@@ -34,7 +34,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import Wizard from '@/components/ui/Wizard/Wizard';
+import Wizard from '@/components/Wizard/Wizard';
 import BasePage from './BasePage';
 import QuestionsCompany from './QuestionsCompany';
 import QuestionsContact from './QuestionsContact';

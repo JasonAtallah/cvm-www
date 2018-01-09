@@ -28,7 +28,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import MasterDetail from '@/components/ui/MasterDetail';
+import MasterDetail from '@/components/MasterDetail';
 import BasePage from './BasePage';
 import SendTimes from './detail/SendTimes';
 import VendorListMaster from './master/VendorListMaster';

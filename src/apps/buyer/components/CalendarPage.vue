@@ -1,38 +1,47 @@
-<style scoped>
+<style lang="scss" scoped>
+.calendar-page {
+  height: 100%;
+}
 
+.calendar-master {
+  height: 100%;
+  width: 100%;
+  border-right: 1px solid $section-border-color;
+}
 </style>
 
 <template>
-<BasePage pageName="Calendar">
-  <div slot="header-buttons">
-    <button class="btn btn-info" @click="setSchedule">Set Schedule</button>
-    <button class="btn btn-primary" @click="addEvent">Add Event</button>
-  </div>
-  <div slot="content">
-    <div class="container">
-      <div class="row">        
-        <div class="col-sm-7">
-          <div id="calendar" class="monthly"></div>
+  <BasePage pageName="Calendar">
+    <div slot="content" class="calendar-page">
+      <MasterDetail>
+        <div slot="master" class="calendar-master">
+          <CalendarButtons />
+          <Calendar
+            :events="events"
+            eventDateField="startDate"
+            v-on:clickEvent="eventClicked" />
         </div>
-      </div>
-      <Calendar
-        :events="events"
-        eventDateField="startDate"
-        v-on:clickEvent="eventClicked" />
+        <div slot="detail" class="calendar-detail">
+
+        </div>
+      </MasterDetail>
     </div>
-  </div>
-</BasePage>
+  </BasePage>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
-import Calendar from '@/components/ui/Calendar/Calendar';
+import Calendar from '@/components/Calendar/Calendar';
+import MasterDetail from '@/components/MasterDetail';
+import CalendarButtons from './calendarPage/CalendarButtons';
 import BasePage from './BasePage';
 
 export default {
   components: {
     BasePage,
-    Calendar
+    Calendar,
+    CalendarButtons,
+    MasterDetail
   },
   computed: {
     ...mapGetters({
@@ -40,19 +49,11 @@ export default {
     })
   },
   methods: {
-    addEvent() {
-      this.$store.commit('takeAction', {
-        type: 'addCalendarEvent'
-      });
-    },
     eventClicked(event) {
       this.$store.commit('takeAction', {
         type: 'showCalendarEvent',
         event
       });
-    },
-    setSchedule() {
-      this.$store.commit('setSchedule', true);
     }
   },
   beforeRouteEnter(to, from, next) {
