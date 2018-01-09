@@ -6,7 +6,6 @@
   grid-template-columns: 450px 1fr;
   grid-template-rows: 100%;
   grid-template-areas: "master  detail";
-  grid-gap: 0 15px;
 }
 
 .master {
@@ -19,7 +18,7 @@
 .detail {
   grid-area: detail;
   overflow: scroll;
-  padding: 1rem 0;
+  padding: 1rem 2rem;
 }
 </style>
 
