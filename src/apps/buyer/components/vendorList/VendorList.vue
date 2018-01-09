@@ -70,11 +70,6 @@ export default {
   components: {
     VendorActionButton
   },
-  data() {
-    return {
-      ignoredVendorClick: null
-    };
-  },
   computed: {
     ...mapGetters({
       selVendor: 'selVendor',
@@ -88,7 +83,7 @@ export default {
       }
     },
     ignoreVendorClick(event) {
-      this.ignoredVendorClick = event;
+      event.stopImmediatePropagation();
     },
     isSelected(vendor) {
       return this.selVendor && this.selVendor._id === vendor._id;

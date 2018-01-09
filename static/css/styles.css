@@ -2,3 +2,7 @@
   text-align: left;
   display: block !important;
 }
+
+button:focus {
+  outline: 0 !important;
+}
