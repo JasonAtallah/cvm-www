@@ -9,7 +9,7 @@
       <ElTabPane label="Profile" name="profile">
         <ProfileForm :buyer="buyer" />
       </ElTabPane>
-      <ElTabPane label="Emails" name="emails">
+      <ElTabPane label="Email Templates" name="emails">
         <EmailTemplatesForm :buyer="buyer" />
       </ElTabPane>
     </ElTabs>

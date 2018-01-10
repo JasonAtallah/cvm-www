@@ -1,32 +1,32 @@
 <template>
-  <ElForm :model="emails">
-    <h4>Approval Email Template</h4>
-    <ElFormItem>
-      <ElInput v-model="emails.approveVendor.subject" placeholder="Subject" />
-    </ElFormItem>
-    <ElFormItem>
-      <ElInput type="textarea" v-model="emails.approveVendor.body" placeholder="Body" />
-    </ElFormItem>
-    <h4>Rejection Email Template</h4>
-    <ElFormItem>
-      <ElInput v-model="emails.rejectVendor.subject" placeholder="Subject" />
-    </ElFormItem>
-    <ElFormItem>
-      <ElInput type="textarea" v-model="emails.rejectVendor.body" placeholder="Body" />
-    </ElFormItem>
-    <ElFormItem>
-      <ElButton type="primary" @click="updateEmail">Update</ElButton>
-    </ElFormItem>
-  </ElForm>
+  <ElTabs v-model="activeTab" >
+    <ElTabPane v-for="emailType in emailTypes" :label="emailType.label" :key="emailType.value">
+      <ElForm :model="emails[emailType.value]">
+        <ElFormItem>
+          <ElInput v-model="emails[emailType.value].subject" placeholder="Subject" />
+        </ElFormItem>
+        <ElFormItem>
+          <ElInput type="textarea" v-model="emails[emailType.value].body" placeholder="Body" />
+        </ElFormItem>    
+        <ElFormItem>
+          <ElButton type="primary" @click="updateEmail(emailType.value)">Update</ElButton>
+        </ElFormItem> 
+      </ElForm>
+    </ElTabPane>
+  </ElTabs>
+
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import {
   Button as ElButton,
   Col as ElCol,
   Form as ElForm,
   FormItem as ElFormItem,
   Input as ElInput,
+  Tabs as ElTabs,
+  TabPane as ElTabPane,
   Notification } from 'element-ui';
 
 export default {
@@ -37,7 +37,15 @@ export default {
     ElForm,
     ElFormItem,
     ElInput,
+    ElTabs,
+    ElTabPane,
     Notification
+  },
+  computed: {
+    emailTypes() {
+      const actions = this.$store.getters.vendorActionButtons;
+      return _.find(actions, { label: 'Action' }).options;
+    }
   },
   data() {
     return {
@@ -54,39 +62,41 @@ export default {
     };
   },
   methods: {
-    updateApprovalEmail() {
+    updateApprovalEmail(action) {
       return this.$store.dispatch('updateBuyerEmailTemplate', {
         email: this.emails.approveVendor,
-        templateId: 'approveVendor'
+        templateId: action
       });
     },
-    updateEmail() {
-      const newApprove = this.emails.approveVendor;
-      const curApprove = this.buyer.emails.approveVendor;
-      if (newApprove.subject !== curApprove.subject || newApprove.body !== curApprove.body) {
-        this.updateApprovalEmail();
-        Notification({
-          title: 'Success',
-          message: 'Approval Email Updated!',
-          type: 'success'
-        });
-      }
-
-      const newReject = this.emails.rejectVendor;
-      const curReject = this.buyer.emails.rejectVendor;
-      if (newReject.subject !== curReject.subject || newReject.body !== curReject.body) {
-        this.updateRejectionEmail();
-        Notification({
-          title: 'Success',
-          message: 'Rejection Email Updated!',
-          type: 'success'
-        });
+    updateEmail(action) {
+      if (action === 'approveVendor') {
+        const newApprove = this.emails.approveVendor;
+        const curApprove = this.buyer.emails.approveVendor;
+        if (newApprove.subject !== curApprove.subject || newApprove.body !== curApprove.body) {
+          this.updateApprovalEmail(action);
+          Notification({
+            title: 'Success',
+            message: 'Approval Email Updated!',
+            type: 'success'
+          });
+        }
+      } else if (action === 'rejectVendor') {
+        const newReject = this.emails.rejectVendor;
+        const curReject = this.buyer.emails.rejectVendor;
+        if (newReject.subject !== curReject.subject || newReject.body !== curReject.body) {
+          this.updateRejectionEmail(action);
+          Notification({
+            title: 'Success',
+            message: 'Rejection Email Updated!',
+            type: 'success'
+          });
+        }
       }
     },
-    updateRejectionEmail() {
+    updateRejectionEmail(action) {
       return this.$store.dispatch('updateBuyerEmailTemplate', {
         email: this.emails.rejectVendor,
-        templateId: 'rejectVendor'
+        templateId: action
       });
     }
   }
