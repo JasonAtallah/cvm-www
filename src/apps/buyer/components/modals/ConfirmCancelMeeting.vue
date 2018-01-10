@@ -1,6 +1,6 @@
 <template>
   <ElDialog :visible.sync="isVisible" title="Cancel Meeting" width="30%">
-          <ElButton class="cancel-meeting-btn" type="danger" @click="send" width="100%">Confirm</ElButton>
+    <ElButton class="cancel-meeting-btn" type="danger" @click="send" width="100%">Confirm</ElButton>
   </ElDialog>
 </template>
 
@@ -16,6 +16,9 @@ export default {
     ElDialog
   },
   computed: {
+    ...mapGetters({
+      vendor: 'selVendor'
+    }),
     isVisible: {
       get() {
         return this.$store.getters.pendingAction.type === 'cancelMeeting';
@@ -28,13 +31,11 @@ export default {
     },
     action() {
       return this.$store.getters.pendingAction.type;
-    },
-    vendor() {
-      return this.$store.getters.pendingAction.vendor;
     }
   },
   methods: {
     send() {
+      console.log(this.vendor);
       this.$store.dispatch('cancelMeeting', {
         vendor: this.vendor,
         action: this.action
