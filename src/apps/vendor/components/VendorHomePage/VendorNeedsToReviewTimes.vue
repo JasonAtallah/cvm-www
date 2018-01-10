@@ -11,18 +11,12 @@
               <input type="radio" name="selectedTime" :value="appt" v-model="selectedTime">
             </div>
             <div class="col-sm-8">
-              {{ apptDateTime(appt) }}
+              {{ startDate(appt) }}
               <br>
-              {{ appt.location }}
-            </div>
-            <div class="col-sm-3">
-              <iframe
-                width="100"
-                height="100"
-                frameborder="0" style="border:0"
-                :src="location(appt)" allowfullscreen>
-              </iframe>
-            </div>
+              {{ startTime(appt) }} to {{ endTime(appt) }}
+              <br>
+              <a :href="mapLink(appt.location)" target="_blank">{{ location(appt.location) }}</a>
+            </div>        
           </div>
            
           <br><br>
@@ -60,8 +54,14 @@ export default {
       const endTime = startTime.add(appt.duration, 'minutes').format('hh:mm A');
       return `${month} ${date.day()}, ${date.year()} ${startTime.format('h:mm a')} to ${endTime}`;
     },
-    location(appt) {
-      return `https://www.google.com/maps/embed/v1/place?key=AIzaSyBDKzpBllwTNDKDh1ltYi6U3JCV06Nivuc &q=${appt.location}`;
+    endTime(appt) {
+      return moment(appt.startDate).add(appt.duration, 'minutes').format('hh:mm A');
+    },
+    location(location) {
+      return `${location.address} ${location.city}, ${location.state} ${location.zip}`;
+    },
+    mapLink(location) {
+      return `https://www.google.com/maps/place/${location.address},+${location.city},+${location.state}+${location.zip}`;
     },
     send() {
       if (this.selectedTime) {
@@ -71,7 +71,13 @@ export default {
           this.$store.dispatch('confirmAppt', this.selectedTime);
         }
       }
-    }
+    },
+    startDate(appt) {
+      return moment(appt.startDate).format('MMMM DD, YYYY');
+    },
+    startTime(appt) {
+      return moment(appt.startDate).format('hh:mm A');
+    },
   }
 };
 </script>
