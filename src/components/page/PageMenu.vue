@@ -16,7 +16,7 @@
   display: inline-block;
   margin-right: 3rem;
   top: 15px;
-  font-size: 1.5rem;
+  font-size: 1.5rem;  
 }
 
 .page-menu .pageMenuItem a {

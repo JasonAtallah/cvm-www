@@ -1,7 +1,6 @@
 <style scoped>
-#settings-btn {
-  padding: 0%;
-  vertical-align: middle;
+#settings-btn {  
+  padding: 0%;  
   color: #4f5154;
 }
 </style>
@@ -10,7 +9,7 @@
 <FullScreenPage :menuItems="pageMenuItems" :pageName="pageName">
   <div slot="menu-right" v-if="buyer">
     <ElButton type="text" id="settings-btn" v-if="buyer" @click="showBuyerSettings">
-      <i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+      <i class="fa fa-cog fa-2x" aria-hidden="true"></i>
     </ElButton>
   </div>
   <div slot="content">
