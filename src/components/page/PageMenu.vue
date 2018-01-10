@@ -16,6 +16,7 @@
   display: inline-block;
   margin-right: 3rem;
   top: 15px;
+  font-size: 1.5rem;
 }
 
 .page-menu .pageMenuItem a {
@@ -24,7 +25,7 @@
 }
 
 .page-menu .pageMenuItem .selected {
-  font-weight: bold;
+  font-weight: bold;  
 }
 
 .page-menu .user {

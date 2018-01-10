@@ -1,8 +1,16 @@
+<style scoped>
+#settings-btn {
+  padding: 0%;
+  vertical-align: middle;
+  color: #4f5154;
+}
+</style>
+
 <template>
 <FullScreenPage :menuItems="pageMenuItems" :pageName="pageName">
   <div slot="menu-right" v-if="buyer">
-    <ElButton type="text" v-if="buyer" @click="showBuyerSettings">
-      {{ buyer.firstName }}
+    <ElButton type="text" id="settings-btn" v-if="buyer" @click="showBuyerSettings">
+      <i class="fa fa-cog fa-lg" aria-hidden="true"></i>
     </ElButton>
   </div>
   <div slot="content">
