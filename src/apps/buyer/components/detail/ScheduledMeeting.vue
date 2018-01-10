@@ -1,4 +1,4 @@
-<style scoped>
+<style >
 .cancel-meeting-btn {
   width: 100%;
 }
