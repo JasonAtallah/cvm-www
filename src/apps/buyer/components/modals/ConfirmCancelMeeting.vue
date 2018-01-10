@@ -10,6 +10,7 @@
         <div class="modal-body">
           <form>
             <div class="form-group">
+              {{ this.vendor }}
               <h4>Are you sure you'd like to cancel this meeting?</h4>
             </div>
           </form>

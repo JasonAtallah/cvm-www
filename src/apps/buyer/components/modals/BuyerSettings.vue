@@ -1,10 +1,5 @@
 <template>
-<div>
-  <ElButton type="text" v-if="buyer" @click="updateBuyerSettings=true">
-    {{ buyer.firstName }}
-  </ElButton>
-
-  <ElDialog :visible.sync="updateBuyerSettings" title="Settings">
+  <ElDialog :visible.sync="isVisible" title="Settings">
     <ElTabs v-model="activeTab" type="card">
       <ElTabPane label="Profile" name="profile">
         <ProfileForm :buyer="buyer" />
@@ -14,20 +9,19 @@
       </ElTabPane>
     </ElTabs>
   </ElDialog>
-</div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import {
   Button as ElButton,
   Dialog as ElDialog,
   Tabs as ElTabs,
   TabPane as ElTabPane } from 'element-ui';
-import EmailTemplatesForm from './EmailTemplatesForm';
-import ProfileForm from './ProfileForm';
+import EmailTemplatesForm from './buyerSettings/EmailTemplatesForm';
+import ProfileForm from './buyerSettings/ProfileForm';
 
 export default {
-  props: ['buyer'],
   components: {
     ElButton,
     ElDialog,
@@ -38,9 +32,23 @@ export default {
   },
   data() {
     return {
-      activeTab: 'profile',
-      updateBuyerSettings: false,
+      activeTab: 'profile'
     };
+  },
+  computed: {
+    ...mapGetters({
+      buyer: 'buyer'
+    }),
+    isVisible: {
+      get() {
+        return this.$store.getters.pendingAction.type === 'editBuyerSettings';
+      },
+      set(value) {
+        if (value === false) {
+          this.$store.commit('cancelPendingAction');
+        }
+      }
+    }
   }
 };
 </script>

@@ -72,7 +72,6 @@ export default {
     },
     updateEmail() {
       if (this.newDefaultEmail) {
-        console.log(this.action);
         return this.$store.dispatch('updateBuyerEmailTemplate', {
           email: this.email,
           templateId: this.action

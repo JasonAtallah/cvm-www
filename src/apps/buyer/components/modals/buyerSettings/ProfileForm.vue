@@ -38,7 +38,7 @@
       </ElCol>
     </ElFormItem>
     <ElFormItem>
-      <ElButton type="primary" @click="updateProfile">Update</ElButton>
+      <ElButton type="primary" @click="updateProfile">Update Profile</ElButton>
     </ElFormItem>
   </ElForm>
 </template>
@@ -73,10 +73,10 @@ export default {
           state: this.buyer.profile.company.state || null
         },
         contact: {
-          firstName: this.buyer.gProfile.firstName || null,
-          lastName: this.buyer.gProfile.lastName || null,
+          firstName: this.buyer.profile.contact.firstName || null,
+          lastName: this.buyer.profile.contact.lastName || null,
           phone: this.buyer.profile.contact.phone || null,
-          email: this.buyer.gProfile.email || null
+          email: this.buyer.profile.contact.email || null
         }
       }
     };

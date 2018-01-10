@@ -80,13 +80,11 @@ export default {
       return vendor.state.name;
     },
     showInfo(vendor) {
-      console.log(vendor);
       if (vendor.state.name === 'ApptScheduled') {
         this.$store.commit('takeAction', {
           type: 'viewApptInfo'
         });
       } else if (vendor.state.name === 'VendorNeedsToReviewTimes') {
-        console.log(vendor.state.name);
         this.$store.commit('takeAction', {
           type: 'viewTimesSentInfo'
         });
@@ -94,7 +92,6 @@ export default {
     },
     stateNameForDisplay,
     isVisible(vendor) {
-      console.log(vendor);
       if (vendor.state.name === 'VendorNeedsToReviewTimes' || vendor.state.name === 'ApptScheduled') {
         return true;
       }
