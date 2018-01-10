@@ -19,7 +19,7 @@ ul.suggestedTimes button {
 
 <template>
   <div>
-    <h3 class="modal-title">Propose Times to meet with {{ vendor.name }}</h3>
+    <h3>Propose Times to meet with {{ vendor.name }}</h3>
     <p class="lead">
       Invite {{ vendor.name }} to a meeting to review their products. They will receive an email inviting them to choose one of the time slots you provide below. You will be notified when they make their selection.
     </p>

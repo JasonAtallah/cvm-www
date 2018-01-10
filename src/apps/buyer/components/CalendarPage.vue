@@ -16,13 +16,10 @@
       <MasterDetail>
         <div slot="master" class="calendar-master">
           <CalendarButtons />
-          <Calendar
-            :events="events"
-            eventDateField="startDate"
-            v-on:clickEvent="eventClicked" />
+          <MonthView :events="events" @dayClick="onDayClicked" />
         </div>
         <div slot="detail" class="calendar-detail">
-
+          <DayDetail v-if="curDate" :events="events" :date="curDate" />
         </div>
       </MasterDetail>
     </div>
@@ -31,17 +28,24 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import Calendar from '@/components/Calendar/Calendar';
+import MonthView from '@/components/Calendar/MonthView';
 import MasterDetail from '@/components/MasterDetail';
-import CalendarButtons from './calendarPage/CalendarButtons';
 import BasePage from './BasePage';
+import CalendarButtons from './calendarPage/CalendarButtons';
+import DayDetail from './calendarPage/DayDetail';
 
 export default {
   components: {
     BasePage,
-    Calendar,
     CalendarButtons,
-    MasterDetail
+    DayDetail,
+    MasterDetail,
+    MonthView
+  },
+  data() {
+    return {
+      curDate: null
+    };
   },
   computed: {
     ...mapGetters({
@@ -49,11 +53,8 @@ export default {
     })
   },
   methods: {
-    eventClicked(event) {
-      this.$store.commit('takeAction', {
-        type: 'showCalendarEvent',
-        event
-      });
+    onDayClicked(date) {
+      this.curDate = date;
     }
   },
   beforeRouteEnter(to, from, next) {
