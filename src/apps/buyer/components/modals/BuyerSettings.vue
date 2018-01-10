@@ -14,7 +14,6 @@
 <script>
 import { mapGetters } from 'vuex';
 import {
-  Button as ElButton,
   Dialog as ElDialog,
   Tabs as ElTabs,
   TabPane as ElTabPane } from 'element-ui';
@@ -23,7 +22,6 @@ import ProfileForm from './buyerSettings/ProfileForm';
 
 export default {
   components: {
-    ElButton,
     ElDialog,
     ElTabs,
     ElTabPane,
