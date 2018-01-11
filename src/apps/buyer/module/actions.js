@@ -24,6 +24,14 @@ export const createCalendarEvent = ({ dispatch, commit }, values) => {
     });
 };
 
+export const createLocation = ({ dispatch, commit }, values) => {
+  return api.createLocation(values)
+    .then((location) => {
+      commit('addLocationToList', location);
+      commit('cancelPendingAction');
+    });
+};
+
 export const createVendor = ({ dispatch, commit }, values) => {
   return api.createVendor(values)
     .then((vendor) => {
@@ -72,6 +80,17 @@ export const loadVendors = ({ rootState, commit }) => {
     });
 };
 
+export const overrideDetail = ({ commit, dispatch }, value) => {
+  if (value.vendor) {
+    dispatch('selVendor', value.vendor)
+      .then(() => {
+        commit('overrideDetail', Object.assign({ type: value.action.value }, _.omit(value, 'action')));
+      });
+  } else {
+    commit('overrideDetail', Object.assign({ type: value.action.value }, _.omit(value, 'action')));
+  }
+};
+
 export const rejectVendor = ({ commit }, { vendor, email }) => {
   return api.rejectVendor(vendor, email)
     .then((vendorItem) => {
@@ -88,19 +107,28 @@ export const saveSchedule = ({ rootState, commit }) => {
 };
 
 export const selVendor = ({ rootState, commit }, vendor) => {
+  if (!vendor) {
+    commit('selVendor', null);
+    return Promise.resolve();
+  }
+
   const cachedVendor = rootState.vendors[vendor._id];
   let vendorDetailP;
 
   if (cachedVendor) {
     vendorDetailP = Promise.resolve(cachedVendor);
   } else {
-    vendorDetailP = api.getVendor(vendor);
+    vendorDetailP = api.getVendor(vendor)
+      .then((vendorDetail) => {
+        commit('cacheVendorDetail', vendorDetail);
+        return vendorDetail;
+      });
   }
 
   return vendorDetailP
     .then((vendorDetail) => {
       commit('selVendor', vendorDetail);
-      commit('cacheVendorDetail', vendorDetail);
+      commit('cancelDetailOverride');
     });
 };
 
@@ -108,7 +136,7 @@ export const sendTimes = ({ commit }, { vendor, suggestedTimes }) => {
   return api.sendTimes(vendor, suggestedTimes, genVendorUrl(vendor))
     .then((vendorItem) => {
       commit('updateVendorItem', vendorItem);
-      commit('cancelPendingAction');
+      commit('cancelDetailOverride');
     });
 };
 

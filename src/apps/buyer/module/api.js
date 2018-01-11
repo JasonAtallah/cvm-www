@@ -17,6 +17,10 @@ export default {
     return http.post('/buyer/v1/events', values);
   },
 
+  createLocation(values) {
+    return http.post('/buyer/v1/locations', values);
+  },
+
   createVendor(values) {
     return http.post('/buyer/v1/vendors', values);
   },

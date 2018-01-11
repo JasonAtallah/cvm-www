@@ -1,10 +1,24 @@
-
 <style scoped>
-.monthly-header-title, .monthly-header-link {
-  display: inline-block;
+i.fa.fa-star {
+    float: left;
+    margin: .2rem;
+    color: #CC9E61;
 }
-.monthly-is-other-month {
-  background-color: #F9F9F9;
+
+.monthly-day.monthly-day-selected {
+  background-color: rgba(102, 213, 187, 0.51);
+}
+
+.monthly-today .monthly-day-number {
+  font-weight: bold;
+  background-color: #DEDEDE;
+  padding: .1rem .3rem;
+}
+
+.monthly-day:hover {
+	cursor: pointer;
+  background-color: rgba(112, 236, 207, 0.51);
+	color: #000;
 }
 </style>
 
@@ -12,10 +26,8 @@
 <div class="monthview monthly">
   <div class="monthly-header">
     <div class="monthly-header-title">
-      <a href="#" class="monthly-header-title-date" onclick="return false">{{ monthFormatted }}</a>
-    </div>
-    <div class="monthly-header-link" v-if="!isToday">
-      <a href="#" class="monthly-header-title-date" @click="gotoToday()">Today</a>
+      <span>{{ monthFormatted }}</span>
+      <a v-if="!isToday" href="#" class="monthly-header-title-date" @click="gotoToday()">Today</a>
     </div>
     <a href="#" class="monthly-prev" @click="decrementMonth"></a>
     <a href="#" class="monthly-next" @click="incrementMonth"></a>
@@ -32,16 +44,17 @@
   </div>
   <div class="monthly-day-wrap">
     <div class="monthly-week" v-for="week in weeks">
-      <div class="m-d" v-for="day in week.days" :key="day.date.getTime()"
+      <div class="monthly-day" v-for="day in week.days" :key="day.date.getTime()"
         :data-number="day.date.getDate()"
-        :class="{ 'monthly-day': true, 'monthly-day-event': true, 'monthly-is-other-month': isOtherMonth(day), 'monthly-today': day.isToday === true }">
+        :class="getMonthlyDayClass(day)"
+        @click="selectDay(day)">
 
         <div class="monthly-day-number">
-          <a href="#" @click.prevent="onDayClick(day)">{{ day.date.getDate() }}</a>
+          {{ day.date.getDate() }}
         </div>
 
         <div v-for="(event,i) in eventsForDay(day)" :key="getKeyForEvent(event, i)">
-          <a href="#" @click.prevent="onClickEvent(event)">{{ event.title }}</a>
+          <i class="fa fa-star" aria-hidden="true"></i>
         </div>
 
         <div class="monthly-indicator-wrap"></div>
@@ -61,32 +74,31 @@ export default {
   data() {
     return {
       month: new Date().getMonth(),
-      year: new Date().getFullYear()
+      year: new Date().getFullYear(),
+      selectedDate: null
     };
   },
   computed: {
-    isToday() {
-      return monthsMatch(new Date(), this.curMonth);
-    },
     curMonth() {
       return new Date(this.year, this.month);
     },
-    weeks() {
-      return daysToWeeks(daysOfMonth(this.month, this.year));
+    isToday() {
+      return monthsMatch(new Date(), this.curMonth);
     },
     monthFormatted() {
       return moment(this.curMonth).format('MMM YYYY');
+    },
+    weeks() {
+      return daysToWeeks(daysOfMonth(this.month, this.year));
     }
   },
   methods: {
-    isOtherMonth(day) {
-      return day.date.getMonth() !== this.month || day.date.getFullYear() !== this.year;
-    },
-    onDayClick(day) {
-      this.$emit('clickDay', day);
-    },
-    onClickEvent(event) {
-      this.$emit('clickEvent', event);
+    decrementMonth() {
+      this.month--;
+      if (this.month < 0) {
+        this.month = 11;
+        this.year--;
+      }
     },
     eventsForDay(day) {
       if (!this.events) return [];
@@ -97,12 +109,17 @@ export default {
     getKeyForEvent(event, index) {
       return `${event.startDate}.${index}`;
     },
-    decrementMonth() {
-      this.month--;
-      if (this.month < 0) {
-        this.month = 11;
-        this.year--;
-      }
+    getMonthlyDayClass(day) {
+      return {
+        'monthly-is-other-month': this.isOtherMonth(day),
+        'monthly-today': day.isToday,
+        'monthly-day-selected': day.date === this.selectedDate
+      };
+    },
+    gotoToday() {
+      const today = new Date();
+      this.month = today.getMonth();
+      this.year = today.getFullYear();
     },
     incrementMonth() {
       this.month++;
@@ -111,10 +128,12 @@ export default {
         this.year++;
       }
     },
-    gotoToday() {
-      const today = new Date();
-      this.month = today.getMonth();
-      this.year = today.getFullYear();
+    isOtherMonth(day) {
+      return day.date.getMonth() !== this.month || day.date.getFullYear() !== this.year;
+    },
+    selectDay(day) {
+      this.selectedDate = day.date;
+      this.$emit('dayClick', day.date);
     }
   },
   beforeMount() {

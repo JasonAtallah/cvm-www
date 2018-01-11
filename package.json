@@ -38,6 +38,7 @@
     "cross-spawn": "^5.0.1",
     "css-loader": "^0.28.0",
     "dotenv": "^4.0.0",
+    "element-ui": "^2.0.10",
     "eslint": "^3.19.0",
     "eslint-config-airbnb-base": "^11.3.0",
     "eslint-friendly-formatter": "^3.0.0",

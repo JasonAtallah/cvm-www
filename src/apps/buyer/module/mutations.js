@@ -2,6 +2,10 @@ export const addCalendarEventToList = (state, calendarEvent) => {
   state.events.push(calendarEvent);
 };
 
+export const addLocationToList = (state, location) => {
+  state.buyer.locations.push(location);
+};
+
 export const addVendorToList = (state, vendor) => {
   state.vendorList.push(vendor);
 };
@@ -28,12 +32,20 @@ export const cancelPendingAction = (state) => {
   };
 };
 
+export const cancelDetailOverride = (state) => {
+  state.overridingDetail = null;
+};
+
 export const events = (state, events) => {
   state.events = events;
 };
 
 export const gCalendar = (state, gcalendar) => {
   state.buyer = Object.assign({}, state.buyer, { gcalendar });
+};
+
+export const overrideDetail = (state, value) => {
+  state.overridingDetail = value;
 };
 
 export const productFilter = (state, value) => {

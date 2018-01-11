@@ -4,7 +4,10 @@
 
 <template>
   <div class="action-button">
-    <DropdownButton v-if="currentAction" class="actionMenu text-right" :option="currentAction" :vendor="vendor" :options="currentAction.options" @selection="onActionSelect($event)" />
+    <DropdownButton v-if="currentAction" class="actionMenu text-right" buttonClassName="btn-link"
+      :option="currentAction"
+      :options="currentAction.options"
+      @selection="onActionSelect($event)" />
   </div>
 </template>
 
@@ -19,10 +22,10 @@ export default {
   props: ['vendor'],
   computed: {
     ...mapGetters({
-      actions: 'vendorActions'
+      buttons: 'vendorActionButtons'
     }),
     currentAction() {
-      return this.actions.find(action => action.status === this.vendor.state.name);
+      return this.buttons.find(button => button.status === this.vendor.state.name);
     }
   },
   methods: {
