@@ -19,14 +19,6 @@
           <br>
           <ElButton class="cancel-meeting-btn" type="danger" size="medium" @click="confirmCancel">Cancel Meeting</ElButton>
         </div>
-        <div class="col-md-8">
-          <iframe
-            width="100%"
-            height="400"
-            frameborder="0" style="border:0"
-            :src="mapUrl(appt)" allowfullscreen>
-          </iframe>        
-        </div>
       </div>
     </div>
   </div>
@@ -67,10 +59,6 @@ export default {
       this.$store.commit('takeAction', {
         type: 'cancelMeeting'
       });
-    },
-    mapUrl(appt) {
-      const loc = this.vendor.state.selectedTime.location;
-      return `https://www.google.com/maps/embed/v1/place?key=AIzaSyBDKzpBllwTNDKDh1ltYi6U3JCV06Nivuc &q=${loc.address},+${loc.city},+${loc.state}+${loc.zip}`;
     }
   }
 };
