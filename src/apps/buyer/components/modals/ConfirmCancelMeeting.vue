@@ -1,6 +1,7 @@
 <template>
   <ElDialog :visible.sync="isVisible" title="Cancel Meeting" width="30%">
-    <ElButton class="cancel-meeting-btn" type="danger" @click="send" width="100%">Confirm</ElButton>
+    <ElButton type="danger" @click="send">Confirm</ElButton>
+    <ElButton @click="cancel">Cancel</ElButton>
   </ElDialog>
 </template>
 
@@ -34,8 +35,10 @@ export default {
     }
   },
   methods: {
+    cancel() {
+      this.$store.commit('cancelPendingAction');
+    },
     send() {
-      console.log(this.vendor);
       this.$store.dispatch('cancelMeeting', {
         vendor: this.vendor,
         action: this.action
