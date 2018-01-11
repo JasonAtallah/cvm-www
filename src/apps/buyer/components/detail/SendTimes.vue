@@ -242,13 +242,6 @@ export default {
         });
       }
     }
-  },
-  watch: {
-    vendor(newVal) {
-      if (newVal) {
-        this.name = `Initial mtg with ${newVal.name}`;
-      }
-    }
   }
 };
 </script>

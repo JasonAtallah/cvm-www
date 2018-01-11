@@ -25,9 +25,9 @@ export default [
   },
   {
     status: 'ApptScheduled',
-    label: 'Cancel Meeting',
+    label: 'View Meeting',
     value: 'cancelMeeting',
-    commit: 'takeAction'
+    dispatch: 'overrideDetail'
   },
   {
     status: 'VendorRejected',

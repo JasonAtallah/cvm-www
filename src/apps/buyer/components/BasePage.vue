@@ -1,7 +1,16 @@
+<style scoped>
+#settings-btn {  
+  padding: 0%;  
+  color: #4f5154;
+}
+</style>
+
 <template>
 <FullScreenPage :menuItems="pageMenuItems" :pageName="pageName">
   <div slot="menu-right" v-if="buyer">
-    <button @click="updateBuyerProfile" class="btn">{{ buyer.firstName }}</button>
+    <ElButton type="text" id="settings-btn" v-if="buyer" @click="showBuyerSettings">
+      <i class="fa fa-cog fa-2x" aria-hidden="true"></i>
+    </ElButton>
   </div>
   <div slot="content">
     <slot name="content"></slot>
@@ -11,12 +20,13 @@
 
 <script>
 import { mapGetters } from 'vuex';
-
 import FullScreenPage from '@/components/page/FullScreenPage';
+import { Button as ElButton } from 'element-ui';
 
 export default {
   components: {
-    FullScreenPage
+    FullScreenPage,
+    ElButton
   },
   props: ['pageName'],
   computed: {
@@ -26,9 +36,9 @@ export default {
     })
   },
   methods: {
-    updateBuyerProfile() {
+    showBuyerSettings() {
       this.$store.commit('takeAction', {
-        type: 'updateBuyerProfile'
+        type: 'editBuyerSettings'
       });
     }
   }

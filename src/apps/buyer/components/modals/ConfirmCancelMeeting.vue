@@ -1,45 +1,37 @@
 <template>
-  <div class="modal" tabindex="-1" role="dialog" v-if="isVisible">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-
-        <div class="modal-header">
-          <h5 class="modal-title">Confirm Meeting Cancellation</h5>
-        </div>
-
-        <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <h4>Are you sure you'd like to cancel this meeting?</h4>
-            </div>
-          </form>
-        </div>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" @click.prevent="send">Confirm</button>
-          <button type="button" class="btn btn-default" @click.prevent="cancel">Cancel</button>
-        </div>
-
-      </div>
-    </div>
-  </div>
+  <ElDialog :visible.sync="isVisible" title="Cancel Meeting" width="30%">
+    <ElButton type="danger" @click="send">Confirm</ElButton>
+    <ElButton @click="cancel">Cancel</ElButton>
+  </ElDialog>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
-import moment from 'moment';
+import {
+  Button as ElButton,
+  Dialog as ElDialog } from 'element-ui';
 
 export default {
+  components: {
+    ElButton,
+    ElDialog
+  },
   computed: {
-    isVisible() {
-      const pendingAction = this.$store.getters.pendingAction.type;
-      return pendingAction === 'cancelMeeting';
+    ...mapGetters({
+      vendor: 'selVendor'
+    }),
+    isVisible: {
+      get() {
+        return this.$store.getters.pendingAction.type === 'cancelMeeting';
+      },
+      set(value) {
+        if (value === false) {
+          this.$store.commit('cancelPendingAction');
+        }
+      }
     },
     action() {
       return this.$store.getters.pendingAction.type;
-    },
-    vendor() {
-      return this.$store.getters.pendingAction.vendor;
     }
   },
   methods: {

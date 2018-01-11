@@ -1,9 +1,9 @@
 <template>
   <div class="container">
-
-    <h2>Appointment</h2>
+    <h2>You have the following meeting scheduled with {{ buyer.name }}</h2>
     <table class="table">
       <tr>
+        {{ buyer }}
         <th>Name</th>
         <td>{{ buyer.state.selectedTime.name }}</td>
       </tr>

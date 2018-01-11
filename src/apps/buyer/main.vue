@@ -13,7 +13,7 @@ html, body {
   font: 100% $font-stack;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  text-align: left;
   color: #2c3e50;
   height: 100%;
   width: 100%;
@@ -27,8 +27,8 @@ html, body {
     <AddCalendarEvent />
     <AddLocation />
     <AddVendor />
+    <BuyerSettings />
     <ConfirmCancelMeeting />
-    <SetProfile />
     <SendVendorStatusEmail />
     <SetCalendar />
     <SetSchedule />
@@ -40,8 +40,8 @@ html, body {
 import AddCalendarEvent from './components/modals/AddCalendarEvent';
 import AddLocation from './components/modals/AddLocation';
 import AddVendor from './components/modals/AddVendor';
+import BuyerSettings from './components/modals/BuyerSettings';
 import ConfirmCancelMeeting from './components/modals/ConfirmCancelMeeting';
-import SetProfile from './components/modals/SetProfile';
 import SendVendorStatusEmail from './components/modals/SendVendorStatusEmail';
 import SetCalendar from './components/modals/SetCalendar';
 import SetSchedule from './components/modals/SetSchedule';
@@ -53,10 +53,10 @@ export default {
     AddCalendarEvent,
     AddLocation,
     AddVendor,
+    BuyerSettings,
     ConfirmCancelMeeting,
     SendVendorStatusEmail,
     SetCalendar,
-    SetProfile,
     SetSchedule,
     ViewCalendarEvent
   },
