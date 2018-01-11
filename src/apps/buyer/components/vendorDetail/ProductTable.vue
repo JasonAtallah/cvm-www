@@ -13,6 +13,10 @@
   color: #a8a8a8;
 }
 
+.product-row {
+  cursor: pointer;
+}
+
 .product-files-row:hover {
   background-color: transparent;
 }
@@ -27,7 +31,7 @@
         </th>
       </thead>
       <tbody v-for="product in products" :key="product.name">
-        <tr @click.prevent="showProductDetail(product)">
+        <tr class="product-row" @click="showProductDetail(product)">
           <td v-for="col in table.columns" :class="col.isName ? 'product-name' : 'product-info'">
             {{ product[col.field] }}
           </td>

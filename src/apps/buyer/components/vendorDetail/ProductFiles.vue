@@ -1,7 +1,7 @@
 <style scoped>
 
 .product-files {
-  margin-left: 1rem;
+  padding-left: 1rem;
   width: 100%;
   border: none;
 }
@@ -9,26 +9,27 @@
 </style>
 
 <template>
-  <div class="product-files card">
+  <div class="product-files">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-1">
+        <b>Files</b>
+      </div>
+      <div class="col-md-3">
         <h6>Photos</h6>
-        <span v-if="product.photos.length === 0">No photos were included!</span>
-      </div>
-      <div class="col-md-6">
-        <h6>Test Results</h6>
-        <span v-if="product.testResults.length === 0">No test results were included!</span>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <ul class="list-unstyled" v-for="file in product.photos" :key="file.id">
-          <li><i class="fa" :class="getFileType(file.mimetype)"></i><a :href="getFileUrl(file)" target="_blank"> {{ file.name }}</a></li>
+        <ul class="list-unstyled">
+          <li v-if="product.photos.length === 0">No photos were included!</li>
+          <li v-for="file in product.photos" :key="file.id">
+            <a :href="getFileUrl(file)" target="_blank"><i class="fa" :class="getFileType(file.mimetype)"></i> {{ file.originalname }}</a>
+          </li>
         </ul>
       </div>
-      <div class="col-md-6">
-        <ul class="list-unstyled" v-for="file in product.testResults" :key="file.id">
-          <li><i class="fa" :class="getFileType(file.mimetype)"></i><a :href="getFileUrl(file)" target="_blank"> {{ file.name }}</a></li>
+      <div class="col-md-3">
+        <h6>Test Results</h6>
+        <ul class="list-unstyled">
+          <li v-if="product.testResults.length === 0">No test results were included!</li>
+          <li v-for="file in product.testResults" :key="file.id">
+            <a :href="getFileUrl(file)" target="_blank"><i class="fa" :class="getFileType(file.mimetype)"></i> {{ file.originalname }}</a>
+          </li>
         </ul>
       </div>
     </div>
