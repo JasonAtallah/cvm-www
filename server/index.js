@@ -9,6 +9,13 @@ const config = require('../config');
 dotenv.config();
 config.load();
 
+var _resolve;
+var _reject;
+const readyPromise = new Promise((resolve, reject) => {
+  _resolve = resolve;
+  _reject = reject;
+});
+
 const app = express();
 
 app.use(session({
@@ -27,8 +34,16 @@ app.use(session({
   })
 }));
 
-require('./mw/routes')(app);
+require(`./mw/${config.app.name}-routes`)(app);
 
 var server = app.listen(config.app.port, function () {
-  console.log(`App is running on port ${config.app.port}`);
+  console.log(`App is running ${config.app.name} app on port ${config.app.port}`);
+  _resolve();
 });
+
+module.exports = {
+  ready: readyPromise,
+  close: () => {
+    server.close();
+  }
+};

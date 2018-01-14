@@ -1,19 +1,25 @@
+const { URL } = require('url');
+
 // For authoring Nightwatch tests, see
 // http://nightwatchjs.org/guide#usage
-
 module.exports = {
   'default e2e tests': function test(browser) {
-    // automatically uses dev Server port from /config.index.js
-    // default: http://localhost:8080
-    // see nightwatch.conf.js
     const devServer = browser.globals.devServerURL;
+    const url = new URL(devServer);
 
     browser
       .url(devServer)
-      .waitForElementVisible('#app', 5000)
-      .assert.elementPresent('.hello')
-      .assert.containsText('h1', 'Welcome to Your Vue.js App')
-      .assert.elementCount('img', 1)
+      .waitForElementVisible('input[type=email]', 5000)
+      .setValue('input[type=email]', 'cvmtest0001@gmail.com')
+      .click('div[role=button]')
+      .pause(1000)
+      .waitForElementVisible('input[type=password]', 5000)
+      .setValue('input[type=password]', 'cvmtestcvmtest')
+      .click('div[role=button]')
+      .pause(1500)
+      .assert.elementPresent('#app');
+
+    browser
       .end();
   },
 };
