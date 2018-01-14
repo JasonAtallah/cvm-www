@@ -1,8 +1,8 @@
 <style scoped>
 i.fa.fa-star {
-    float: left;
-    margin: .2rem;
-    color: #CC9E61;
+  float: left;
+  margin: .2rem;
+  color: #CC9E61;
 }
 
 .monthly-day.monthly-day-selected {
@@ -16,9 +16,9 @@ i.fa.fa-star {
 }
 
 .monthly-day:hover {
-	cursor: pointer;
+  cursor: pointer;
   background-color: rgba(112, 236, 207, 0.51);
-	color: #000;
+  color: #000;
 }
 </style>
 
@@ -43,7 +43,7 @@ i.fa.fa-star {
     <div>Sat</div>
   </div>
   <div class="monthly-day-wrap">
-    <div class="monthly-week" v-for="week in weeks">
+    <div class="monthly-week" v-for="week in weeks" :key="week.index">
       <div class="monthly-day" v-for="day in week.days" :key="day.date.getTime()"
         :data-number="day.date.getDate()"
         :class="getMonthlyDayClass(day)"

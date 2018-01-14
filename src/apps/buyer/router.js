@@ -6,24 +6,22 @@ import OnboardingPage from './components/OnboardingPage';
 
 Vue.use(Router);
 
-export default new Router(
-  {
-    routes: [
-      {
-        path: '/',
-        name: 'Vendors',
-        component: VendorsPage
-      },
-      {
-        path: '/calendar',
-        name: 'CalendarPage',
-        component: CalendarPage
-      },
-      {
-        path: '/onboarding',
-        name: 'Onboarding',
-        component: OnboardingPage
-      }
-    ]
-  }
- );
+export default new Router({
+  routes: [
+    {
+      path: '/',
+      name: 'Vendors',
+      component: VendorsPage
+    },
+    {
+      path: '/calendar',
+      name: 'CalendarPage',
+      component: CalendarPage
+    },
+    {
+      path: '/onboarding',
+      name: 'Onboarding',
+      component: OnboardingPage
+    }
+  ]
+});

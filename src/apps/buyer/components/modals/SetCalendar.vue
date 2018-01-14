@@ -15,7 +15,7 @@
               v-model="selectedCalendar"
               @change="onCalendarSelect">
                 <option value=""></option>
-                <option v-for="calendar in calendars" :value="calendar.id">{{ calendar.name }}</option>
+                <option v-for="calendar in calendars" :key="calendar.id" :value="calendar.id">{{ calendar.name }}</option>
             </select>
           </div>
           <br/>

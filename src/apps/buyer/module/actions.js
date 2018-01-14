@@ -11,9 +11,9 @@ export const approveVendor = ({ commit }, { vendor, email }) => {
 
 export const cancelMeeting = ({ commit }, { vendor }) => {
   return api.cancelMeeting(vendor)
-  .then(() => {
-    commit('cancelPendingAction');
-  });
+    .then(() => {
+      commit('cancelPendingAction');
+    });
 };
 
 export const createCalendarEvent = ({ dispatch, commit }, values) => {

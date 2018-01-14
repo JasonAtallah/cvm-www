@@ -8,34 +8,32 @@ import Questionnaire from './components/Questionnaire';
 
 Vue.use(Router);
 
-export default new Router(
-  {
-    routes: [
-      {
-        path: '/',
-        name: 'Loading',
-        component: Loading
-      },
-      {
-        path: '/complete',
-        name: 'Complete',
-        component: Complete
-      },
-      {
-        path: '/home',
-        name: 'Home',
-        component: Home
-      },
-      {
-        path: '/intro',
-        name: 'Introduction',
-        component: Introduction
-      },
-      {
-        path: '/questionnaire',
-        name: 'Questionnaire',
-        component: Questionnaire
-      }
-    ]
-  }
-);
+export default new Router({
+  routes: [
+    {
+      path: '/',
+      name: 'Loading',
+      component: Loading
+    },
+    {
+      path: '/complete',
+      name: 'Complete',
+      component: Complete
+    },
+    {
+      path: '/home',
+      name: 'Home',
+      component: Home
+    },
+    {
+      path: '/intro',
+      name: 'Introduction',
+      component: Introduction
+    },
+    {
+      path: '/questionnaire',
+      name: 'Questionnaire',
+      component: Questionnaire
+    }
+  ]
+});

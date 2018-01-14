@@ -19,7 +19,6 @@
       <tr>
         <th>Email: </th>
         <td>{{ vendor.contact.email }}</td>
-        </th>
       </tr>
     </table>
   </div>

@@ -10,8 +10,9 @@ module.exports = {
       config.cssSourceMap,
     extract: isProduction
   }),
+  cssSourceMap: config.cssSourceMap,
   transformToRequire: {
-    video: 'src',
+    video: ['src', 'poster'],
     source: 'src',
     img: 'src',
     image: 'xlink:href'

@@ -22,18 +22,18 @@ export const init = ({ dispatch, commit }) => {
     return Promise.all([
       dispatch('loadQuestionnaire')
     ])
-    .then(() => {
-      router.push({ path: '/intro' });
-    });
+      .then(() => {
+        router.push({ path: '/intro' });
+      });
   } else if (getUrlParameter('vid')) {
     commit('vendorId', getUrlParameter('vid'));
     return Promise.all([
       dispatch('loadVendor'),
       dispatch('loadBuyer')
     ])
-    .then(() => {
-      router.push({ path: '/home' });
-    });
+      .then(() => {
+        router.push({ path: '/home' });
+      });
   }
   return Promise.reject(new Error('Failed to init'));
 };
@@ -85,7 +85,7 @@ export const submitResponse = ({ dispatch, commit, state }, response) => {
 };
 
 export const submitResponseFileFields = ({ dispatch, commit, state }, response) => {
-  const questionnaire = state.questionnaire;
+  const { questionnaire } = state;
   const uploadPromises = [];
 
   traverse(response).forEach(function (elem) {

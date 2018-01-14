@@ -75,6 +75,7 @@ export const daysToWeeks = (days) => {
     const week = weeks.length > 0 ? weeks[weeks.length - 1] : null;
     if (week === null || day.date.getDay() === 0) {
       weeks.push({
+        index: weeks.length,
         days: [day]
       });
     } else {

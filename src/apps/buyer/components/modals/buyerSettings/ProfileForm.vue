@@ -3,7 +3,7 @@
     <ElFormItem>
       <ElCol :span=12>
         <ElInput v-model="profile.contact.firstName" placeholder="First" />
-      </ElCol>            
+      </ElCol>
       <ElCol :span=12>
         <ElInput v-model="profile.contact.lastName" placeholder="last" />
       </ElCol>

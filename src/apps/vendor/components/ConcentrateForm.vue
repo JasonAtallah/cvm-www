@@ -95,19 +95,19 @@ export default {
     },
     onFileChange(event) {
       const inputName = event.target.name;
-      const files = event.target.files;
+      const filesArr = event.target.files;
 
-      if (!files.length) {
+      if (!filesArr.length) {
         return;
       }
 
       const formData = new FormData();
-      formData.append('file', files[0], files[0].name);
+      formData.append('file', filesArr[0], filesArr[0].name);
 
       this.$store.commit('productFile', {
         product: this.product,
         field: inputName,
-        name: files[0].name,
+        name: filesArr[0].name,
         formData
       });
 

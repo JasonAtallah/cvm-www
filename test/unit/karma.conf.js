@@ -2,6 +2,8 @@
 //   http://karma-runner.github.io/0.13/config/configuration-file.html
 // we are also using it with karma-webpack
 //   https://github.com/webpack/karma-webpack
+var config = require('../../config');
+config.load();
 
 var webpackConfig = require('../../build/webpack.test.conf');
 
@@ -14,7 +16,10 @@ module.exports = function (config) {
     browsers: ['PhantomJS'],
     frameworks: ['mocha', 'sinon-chai', 'phantomjs-shim'],
     reporters: ['spec', 'coverage'],
-    files: ['./index.js'],
+    files: [
+      '../../node_modules/es6-promise/dist/es6-promise.auto.js',
+      './index.js'
+    ],
     preprocessors: {
       './index.js': ['webpack', 'sourcemap']
     },
@@ -22,6 +27,7 @@ module.exports = function (config) {
     webpackMiddleware: {
       noInfo: true,
     },
+    singleRun: true,
     coverageReporter: {
       dir: './coverage',
       reporters: [

@@ -29,11 +29,11 @@
       <span>Are you sure you want to cancel your appointment?</span>
       <button type="button" class="btn btn-danger " @click.prevent="confirmCancel(true)">Yes</button>
       <button type="button" class="btn btn-secondary " @click.prevent="confirmCancel(false)">No</button>
-    </div>  
+    </div>
   </div>
 
 </template>
- 
+
 <script>
 import { mapGetters } from 'vuex';
 

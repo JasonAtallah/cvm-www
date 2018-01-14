@@ -26,13 +26,13 @@
   <div class="product-table">
     <table class="table table-hover">
       <thead class="table-header">
-        <th v-for="col in table.columns">
+        <th v-for="col in table.columns" :key="col.header">
           {{ col.header }}
         </th>
       </thead>
       <tbody v-for="product in products" :key="product.name">
         <tr class="product-row" @click="showProductDetail(product)">
-          <td v-for="col in table.columns" :class="col.isName ? 'product-name' : 'product-info'">
+          <td v-for="col in table.columns" :key="col.field" :class="col.isName ? 'product-name' : 'product-info'">
             {{ product[col.field] }}
           </td>
         </tr>

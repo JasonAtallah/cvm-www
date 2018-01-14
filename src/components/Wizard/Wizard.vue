@@ -55,21 +55,21 @@ export default {
       return this.curPage === pageNum && this.isPageEnabled(pageNum);
     },
     goBack() {
-      let curPage = this.curPage;
-      while (curPage > 1) {
-        curPage -= 1;
-        if (this.isPageEnabled(curPage)) {
-          this.curPage = curPage;
+      let page = this.curPage;
+      while (page > 1) {
+        page -= 1;
+        if (this.isPageEnabled(page)) {
+          this.curPage = page;
           break;
         }
       }
     },
     goNext() {
-      let curPage = this.curPage;
-      while (curPage < this.maxPage) {
-        curPage += 1;
-        if (this.isPageEnabled(curPage)) {
-          this.curPage = curPage;
+      let page = this.curPage;
+      while (page < this.maxPage) {
+        page += 1;
+        if (this.isPageEnabled(page)) {
+          this.curPage = page;
           break;
         }
       }

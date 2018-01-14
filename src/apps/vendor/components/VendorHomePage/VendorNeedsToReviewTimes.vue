@@ -16,9 +16,9 @@
               {{ startTime(appt) }} to {{ endTime(appt) }}
               <br>
               <a :href="mapLink(appt.location)" target="_blank">{{ location(appt.location) }}</a>
-            </div>        
+            </div>
           </div>
-           
+
           <br><br>
         </span>
         <input type="radio" name="selectedTime" value="None" v-model="selectedTime"> None of those times work for me<br><br>
@@ -28,7 +28,7 @@
 
   </div>
 </template>
- 
+
 <script>
 import { mapGetters } from 'vuex';
 import moment from 'moment';

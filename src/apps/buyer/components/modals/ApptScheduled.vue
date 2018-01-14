@@ -9,9 +9,9 @@
 
         <div class="modal-body">
           <form>
-            <div class="form-group">                    
+            <div class="form-group">
               <h3>{{ appt.name }}</h3>
-              <table class="table">      
+              <table class="table">
                 <tr>
                   <th>Location: </th>
                   <td>{{ appt.location }}</td>
@@ -19,24 +19,21 @@
                 <tr>
                   <th>Date: </th>
                   <td>{{ appt.startDate }}</td>
-                  </th>
                 </tr>
                 <tr>
                   <th>Time: </th>
                   <td>{{ appt.startTime }}</td>
-                  </th>
                 </tr>
                 <tr>
                   <th>Duration: </th>
                   <td>{{ appt.duration }}</td>
-                  </th>
                 </tr>
-              </table>                            
+              </table>
             </div>
           </form>
         </div>
 
-        <div class="modal-footer">          
+        <div class="modal-footer">
           <button type="button" class="btn btn-primary" @click.prevent="ok">OK</button>
         </div>
 

@@ -1,6 +1,6 @@
 <style scoped>
-#settings-btn {  
-  padding: 0%;  
+#settings-btn {
+  padding: 0%;
   color: #4f5154;
 }
 </style>

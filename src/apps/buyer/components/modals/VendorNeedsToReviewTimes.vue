@@ -21,19 +21,19 @@
                 <li class="times">
                   {{ time.startTime }} on {{ time.startDate }} @ {{ time.location }}
                 </li>
-              </ul>              
-              <br>            
+              </ul>
+              <br>
               <h4 v-if="appt.rejectedTimes">Rejected Times</h4>
               <ul v-for="time in appt.rejectedTimes" class="list-unstyled" :key="time.startDate">
                 <li class="times">
                   {{ time.startTime }} on {{ time.startDate }} @ {{ time.location }}
                 </li>
-              </ul>                          
+              </ul>
             </div>
           </form>
         </div>
 
-        <div class="modal-footer">          
+        <div class="modal-footer">
           <button type="button" class="btn btn-primary" @click.prevent="ok">OK</button>
         </div>
 

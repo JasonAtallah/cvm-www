@@ -7,10 +7,10 @@
         </ElFormItem>
         <ElFormItem>
           <ElInput type="textarea" v-model="emails[emailType.value].body" placeholder="Body" />
-        </ElFormItem>    
+        </ElFormItem>
         <ElFormItem>
           <ElButton type="primary" @click="updateEmail(emailType.value)">Update Email</ElButton>
-        </ElFormItem> 
+        </ElFormItem>
       </ElForm>
     </ElTabPane>
   </ElTabs>

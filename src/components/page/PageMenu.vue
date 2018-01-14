@@ -16,7 +16,7 @@
   display: inline-block;
   margin-right: 3rem;
   top: 15px;
-  font-size: 1.5rem;  
+  font-size: 1.5rem;
 }
 
 .page-menu .pageMenuItem a {
@@ -25,7 +25,7 @@
 }
 
 .page-menu .pageMenuItem .selected {
-  font-weight: bold;  
+  font-weight: bold;
 }
 
 .page-menu .user {
@@ -39,7 +39,7 @@
 <template>
 <div class="page-menu">
   <img class="logo" :src="logoUrl" />
-  <div v-for="(item,index) in pageMenu" class="pageMenuItem" :style="getPageMenuStyle(index)">
+  <div v-for="(item,index) in pageMenu" :key="index" class="pageMenuItem" :style="getPageMenuStyle(index)">
     <router-link :to="item.href" :class="{ selected: item.selected }">{{ item.name }}</router-link>
   </div>
   <div class="user">

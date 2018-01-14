@@ -3,7 +3,7 @@
     <h3>{{ message() }}</h3>
   </div>
 </template>
- 
+
 <script>
 import { mapGetters } from 'vuex';
 
