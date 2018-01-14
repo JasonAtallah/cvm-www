@@ -6,7 +6,6 @@ if (!process.env.NODE_ENV) {
   process.env.NODE_ENV = JSON.parse(config.dev.env.NODE_ENV)
 }
 
-const opn = require('opn')
 const path = require('path')
 const express = require('express')
 const webpack = require('webpack')
@@ -58,9 +57,6 @@ Object.keys(proxyTable).forEach(function (context) {
   app.use(proxyMiddleware(options.filter || context, options))
 })
 
-// handle fallback for HTML5 history API
-app.use(require('connect-history-api-fallback')())
-
 // serve webpack bundle output
 app.use(devMiddleware)
 
@@ -91,9 +87,6 @@ devMiddleware.waitUntilValid(() => {
     var uri = 'http://localhost:' + port
     console.log('> Listening at ' + uri + '\n')
     // when env is testing, don't need open it
-    if (autoOpenBrowser && process.env.NODE_ENV !== 'testing') {
-      // opn(uri)
-    }
     server = app.listen(port)
     _resolve()
   })
