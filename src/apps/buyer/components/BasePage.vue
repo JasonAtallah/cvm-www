@@ -1,5 +1,5 @@
 <style scoped>
-#settings-btn {
+#settingsBtn {
   padding: 0%;
   color: #4f5154;
 }
@@ -8,7 +8,7 @@
 <template>
 <FullScreenPage :menuItems="pageMenuItems" :pageName="pageName">
   <div slot="menu-right" v-if="buyer">
-    <ElButton type="text" id="settings-btn" v-if="buyer" @click="showBuyerSettings">
+    <ElButton id="settingsBtn" type="text" v-if="buyer" @click="showBuyerSettings">
       <i class="fa fa-cog fa-2x" aria-hidden="true"></i>
     </ElButton>
   </div>

@@ -1,5 +1,5 @@
 <template>
-<div class="modal" tabindex="-1" role="dialog" v-if="isVisible">
+<div id="setCalendar" class="modal" tabindex="-1" role="dialog" v-if="isVisible">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
 
@@ -29,7 +29,7 @@
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" @click.prevent="submitCalendar">Save</button>
+        <button id="save" type="button" class="btn btn-primary" @click.prevent="submitCalendar">Save</button>
       </div>
 
     </div>
@@ -68,9 +68,7 @@ export default {
       if (this.selectedCalendar) {
         this.$store.dispatch('setGCalendar', _.find(this.calendars, { id: this.selectedCalendar }));
       } else if (this.calendarName && this.calendarName.trim()) {
-        this.$store.dispatch('setGCalendar', {
-          name: this.calendarName
-        });
+        this.$store.dispatch('createGCalendar', this.calendarName);
       }
     }
   },

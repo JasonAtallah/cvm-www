@@ -10,7 +10,7 @@
 
 <template>
 <div class="vendor-list-buttons">
-  <button class="btn btn-sm btn-primary" @click="addVendor">Add Vendor</button>
+  <button id="addVendor" class="btn btn-sm btn-primary" @click="addVendor">Add Vendor</button>
 </div>
 </template>
 

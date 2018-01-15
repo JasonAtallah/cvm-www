@@ -1,5 +1,5 @@
 <template>
-<div class="modal" tabindex="-1" role="dialog" v-if="isVisible">
+<div id="addVendor" class="modal" tabindex="-1" role="dialog" v-if="isVisible">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
 
@@ -69,8 +69,8 @@
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" @click.prevent="save">Save</button>
-        <button type="button" class="btn btn-default" @click.prevent="cancel">Cancel</button>
+        <button id="save" type="button" class="btn btn-primary" @click.prevent="save">Save</button>
+        <button id="cancel" type="button" class="btn btn-default" @click.prevent="cancel">Cancel</button>
       </div>
 
     </div>

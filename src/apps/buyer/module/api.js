@@ -29,9 +29,9 @@ export default {
     return http.get('/buyer/v1/calendars');
   },
 
-  getEvents() {
+  getEvents(timezone) {
     const params = {
-      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
+      timezone
     };
 
     return http.get('/buyer/v1/events', params);

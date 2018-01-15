@@ -11,7 +11,7 @@
         <form>
           <div class="form-group">
             <label for="exampleFormControlSelect1">Subject:</label>
-            <input type="text" class="form-control" id="subjectZ"
+            <input type="text" class="form-control" id="subject"
               v-model="email.subject">
           </div>
           <div class="form-group">

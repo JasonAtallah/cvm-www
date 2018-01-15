@@ -1,5 +1,5 @@
 <template>
-  <ElDialog :visible.sync="isVisible" title="Settings">
+  <ElDialog id="buyerSettings" :visible.sync="isVisible" title="Settings">
     <ElTabs v-model="activeTab" type="card">
       <ElTabPane label="Profile" name="profile">
         <ProfileForm :buyer="buyer" />

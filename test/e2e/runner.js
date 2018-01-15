@@ -1,5 +1,6 @@
 process.env.NODE_ENV = 'testing';
 
+const spawn = require('cross-spawn');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -23,7 +24,6 @@ server.ready.then(() => {
     opts = opts.concat(['--env', 'chrome']);
   }
 
-  var spawn = require('cross-spawn');
   var runner = spawn('./node_modules/.bin/nightwatch', opts, { stdio: 'inherit' });
 
   runner.on('exit', function (code) {

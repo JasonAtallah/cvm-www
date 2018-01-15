@@ -1,11 +1,29 @@
 import Vue from 'vue';
+import sinon from 'sinon';
 import CalendarButtons from '@/apps/buyer/components/calendarPage/CalendarButtons';
 
 describe('CalendarButtons.vue', () => {
   it('should render correct contents', () => {
     const Constructor = Vue.extend(CalendarButtons);
     const vm = new Constructor().$mount();
-    expect(vm.$el.querySelector('button').textContent)
-      .to.equal('Add Event');
+
+    const addEventBtn = vm.$el.querySelector('button');
+
+    // spying
+    const addEventSpy = sinon.spy(vm, 'addEvent');
+
+    // stubbing
+    const addEventStub = sinon.stub(vm, 'getCalendars', () => {
+      return [];
+    })
+
+    expect(addEventBtn.textContent).to.equal('Add Event');
+    addEventBtn.click();
+
+    expect(addEventStub.callCount).to.equal(0);
+    expect(addEventStub.args[0]).to.equal('setGCalendar');
+    expect(addEventStub.args[1]).to.deep.equal({ name: valueWeSet });
+
+    addEventStub.restore();
   });
 });

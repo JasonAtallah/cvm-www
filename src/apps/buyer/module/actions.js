@@ -24,6 +24,18 @@ export const createCalendarEvent = ({ dispatch, commit }, values) => {
     });
 };
 
+export const createGCalendar = ({ rootState, commit }, name) => {
+  const values = {
+    name,
+    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
+  };
+
+  return api.setGCalendar(values)
+    .then((calendar) => {
+      commit('gCalendar', calendar);
+    });
+};
+
 export const createLocation = ({ dispatch, commit }, values) => {
   return api.createLocation(values)
     .then((location) => {
@@ -62,7 +74,9 @@ export const loadCalendars = ({ rootState, commit }) => {
 };
 
 export const loadEvents = ({ rootState, commit }) => {
-  return api.getEvents()
+  const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+  return api.getEvents(timezone)
     .then((events) => {
       commit('events', events);
     })
@@ -140,8 +154,8 @@ export const sendTimes = ({ commit }, { vendor, suggestedTimes }) => {
     });
 };
 
-export const setGCalendar = ({ rootState, commit }, calendar) => {
-  return api.setGCalendar(calendar)
+export const setGCalendar = ({ rootState, commit }, values) => {
+  return api.setGCalendar(values)
     .then((calendar) => {
       commit('gCalendar', calendar);
     });

@@ -1,44 +1,44 @@
 <template>
-  <ElForm :model="profile">
+  <ElForm id="profile" :model="profile">
     <ElFormItem>
       <ElCol :span=12>
-        <ElInput v-model="profile.contact.firstName" placeholder="First" />
+        <ElInput id="firstName" v-model="profile.contact.firstName" placeholder="First" />
       </ElCol>
       <ElCol :span=12>
-        <ElInput v-model="profile.contact.lastName" placeholder="last" />
+        <ElInput id="lastName" v-model="profile.contact.lastName" placeholder="Last" />
       </ElCol>
     </ElFormItem>
     <ElFormItem>
       <ElCol :span=12>
-        <ElInput v-model="profile.contact.phone" placeholder="Phone" />
+        <ElInput id="phone" v-model="profile.contact.phone" placeholder="Phone" />
       </ElCol>
       <ElCol :span=12>
-        <ElInput v-model="profile.contact.email" placeholder="Email" />
+        <ElInput id="email" v-model="profile.contact.email" placeholder="Email" />
       </ElCol>
     </ElFormItem>
 
     <h4>Company</h4>
     <ElFormItem>
       <ElCol :span=10>
-        <ElInput v-model="profile.company.name" placeholder="Name" />
+        <ElInput id="name" v-model="profile.company.name" placeholder="Name" />
       </ElCol>
       <ElCol :span=14>
-        <ElInput v-model="profile.company.address" placeholder="Address" />
+        <ElInput id="address" v-model="profile.company.address" placeholder="Address" />
       </ElCol>
     </ElFormItem>
     <ElFormItem>
       <ElCol :span=8>
-        <ElInput v-model="profile.company.city" placeholder="City" />
+        <ElInput id="city" v-model="profile.company.city" placeholder="City" />
       </ElCol>
       <ElCol :span=8>
-        <ElInput v-model="profile.company.state" placeholder="State" />
+        <ElInput id="state" v-model="profile.company.state" placeholder="State" />
       </ElCol>
       <ElCol :span=8>
-        <ElInput v-model="profile.company.zip" placeholder="Zip" />
+        <ElInput id="zip" v-model="profile.company.zip" placeholder="Zip" />
       </ElCol>
     </ElFormItem>
     <ElFormItem>
-      <ElButton type="primary" @click="updateProfile">Update Profile</ElButton>
+      <ElButton id="updateProfile" type="primary" @click="updateProfile">Update Profile</ElButton>
     </ElFormItem>
   </ElForm>
 </template>
@@ -87,7 +87,8 @@ export default {
       Notification({
         title: 'Success',
         message: 'Profile Updated!',
-        type: 'success'
+        type: 'success',
+        duration: 2000
       });
     }
   }

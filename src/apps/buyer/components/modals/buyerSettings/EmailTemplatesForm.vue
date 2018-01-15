@@ -1,15 +1,15 @@
 <template>
   <ElTabs v-model="activeTab" >
     <ElTabPane v-for="emailType in emailTypes" :label="emailType.label" :key="emailType.value">
-      <ElForm :model="emails[emailType.value]">
+      <ElForm :model="emails[emailType.value]" :id="emailType.value">
         <ElFormItem>
-          <ElInput v-model="emails[emailType.value].subject" placeholder="Subject" />
+          <ElInput id="subject" v-model="emails[emailType.value].subject" placeholder="Subject" />
         </ElFormItem>
         <ElFormItem>
-          <ElInput type="textarea" v-model="emails[emailType.value].body" placeholder="Body" />
+          <ElInput id="body" type="textarea" v-model="emails[emailType.value].body" placeholder="Body" />
         </ElFormItem>
         <ElFormItem>
-          <ElButton type="primary" @click="updateEmail(emailType.value)">Update Email</ElButton>
+          <ElButton id="update" type="primary" @click="updateEmail(emailType.value)">Update Email</ElButton>
         </ElFormItem>
       </ElForm>
     </ElTabPane>
