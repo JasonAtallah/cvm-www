@@ -88,7 +88,8 @@ export default {
           Notification({
             title: 'Success',
             message: 'Rejection Email Updated!',
-            type: 'success'
+            type: 'success',
+            duration: 2000
           });
         }
       }

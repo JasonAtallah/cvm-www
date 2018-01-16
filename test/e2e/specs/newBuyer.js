@@ -110,6 +110,35 @@ module.exports = {
       .setValue('#buyerSettings #pane-emails form#approveVendor input#subject', 'So far so good')
       .setValue('#buyerSettings #pane-emails form#approveVendor textarea#body', 'Next step we need to meet')
       .click('#buyerSettings #pane-emails form#approveVendor button#update')
+      .pause(500)
+      // .assert.elementPresent()
+      .pause(2000)
+      .click('#buyerSettings button[aria-label=Close]')
+      .pause(1000)
+      .assert.hidden('#buyerSettings')
+      .pause(1000);
+
+    browser
+      .click('button#settingsBtn')
+      .pause(2000)
+      .assert.visible('#buyerSettings')
+      .assert.visible('#buyerSettings #tab-emails.el-tabs__item')
+      .assert.containsText('#buyerSettings #tab-emails.el-tabs__item', 'Email Templates')
+      .click('#buyerSettings #tab-emails.el-tabs__item')
+      .pause(1000)
+      .assert.elementPresent('#buyerSettings #pane-emails')
+      .assert.elementPresent('#buyerSettings #pane-emails #tab-1')
+      .assert.containsText('#buyerSettings #pane-emails #tab-1', 'Reject')
+      .click('#buyerSettings #pane-emails #tab-1')
+      .pause(1000)
+      .assert.elementPresent('#buyerSettings #pane-emails')
+      .assert.elementPresent('#buyerSettings #pane-emails form#approveVendor')
+      .assert.elementPresent('#buyerSettings #pane-emails form#approveVendor input#subject')
+      .assert.elementPresent('#buyerSettings #pane-emails form#approveVendor textarea#body')
+      .assert.elementPresent('#buyerSettings #pane-emails form#approveVendor button#update')
+      .setValue('#buyerSettings #pane-emails form#approveVendor input#subject', 'It\'s a no go')
+      .setValue('#buyerSettings #pane-emails form#approveVendor textarea#body', 'Try back next time')
+      .click('#buyerSettings #pane-emails form#approveVendor button#update')
       .pause(1000)
       .click('#buyerSettings button[aria-label=Close]')
       .pause(1000)
@@ -143,6 +172,7 @@ module.exports = {
       .assert.elementNotPresent('#addVendor.modal');
 
     browser
+      .pause(5000)
       .end();
   },
 };
