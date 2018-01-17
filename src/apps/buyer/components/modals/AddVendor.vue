@@ -80,6 +80,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import traverse from 'traverse';
 
 export default {
   data() {
@@ -109,12 +110,23 @@ export default {
   methods: {
     cancel() {
       this.$store.commit('cancelPendingAction');
+      this.clear();
     },
     save() {
       this.validate(this.vendor)
         .then(() => {
-          this.$store.dispatch('createVendor', this.vendor);
+          this.$store.dispatch('createVendor', this.vendor)
+            .then(() => {
+              this.clear();
+            });
         });
+    },
+    clear() {
+      traverse(this.vendor).forEach(function (elem) {
+        if (this.isLeaf) {
+          this.update(null);
+        }
+      });
     },
     validate(vendor) {
       return new Promise((resolve, reject) => {

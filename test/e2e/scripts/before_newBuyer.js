@@ -29,6 +29,20 @@ function loadBuyer(db) {
 function cleanBuyer(db, buyer) {
   const update = {
     $set: {
+      emails: {
+        approveVendor: {
+          subject: "Welcome",
+          body: "You've been approved"
+        },
+        rejectVendor: {
+          subject: "Sorry",
+          body: "It's a no-go"
+        },
+        newVendor: {
+          subject: "New vendor applied",
+          body: "Check CVM"
+        }
+      },
       gcalendar: null,
       locations: [],
       profile: {

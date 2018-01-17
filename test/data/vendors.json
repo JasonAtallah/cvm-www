@@ -1,0 +1,47 @@
+[
+  {
+    "company": {
+      "name": "Weed Vendor",
+      "address": "420 Weed Lane",
+      "city": "Redwood City",
+      "state": "CA",
+      "zip": "94025"
+    },
+    "contact": {
+      "firstName": "Sam",
+      "lastName": "Spade",
+      "phone": "123-456-7890",
+      "email": "arieljake@gmail.com"
+    }
+  },
+  {
+    "company": {
+      "name": "Pot Vendor",
+      "address": "420 Pot Lane",
+      "city": "Redwood City",
+      "state": "CA",
+      "zip": "94025"
+    },
+    "contact": {
+      "firstName": "Sam",
+      "lastName": "Spade",
+      "phone": "123-456-7890",
+      "email": "arieljake@gmail.com"
+    }
+  },
+  {
+    "company": {
+      "name": "Green Vendor",
+      "address": "420 Green Lane",
+      "city": "Redwood City",
+      "state": "CA",
+      "zip": "94025"
+    },
+    "contact": {
+      "firstName": "Sam",
+      "lastName": "Spade",
+      "phone": "123-456-7890",
+      "email": "arieljake@gmail.com"
+    }
+  }
+]

@@ -30,6 +30,7 @@
     "moment-timezone": "^0.5.14",
     "request": "^2.83.0",
     "request-promise-native": "^1.0.5",
+    "require-directory": "^2.1.1",
     "traverse": "^0.6.6",
     "vue": "^2.5.13",
     "vue-router": "^3.0.1",
