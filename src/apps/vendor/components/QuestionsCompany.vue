@@ -62,24 +62,24 @@
               <label for="exampleFormControlSelect1">Have Tax ID:</label><br/>
               <select id="haveTaxId" v-model="response.haveTaxId">
                 <option value="" />
-                <option value="no">No</option>
-                <option value="yes">Yes</option>
+                <option :value="false">No</option>
+                <option :value="true">Yes</option>
               </select>
             </div>
             <div class="form-group col-sm-12 col-md-2" v-if="showField('HaveSellerPermit')">
               <label for="haveSellerPermit">Have Seller Permit:</label><br/>
               <select id="haveSellerPermit" v-model="response.haveSellerPermit">
                 <option value="" />
-                <option value="no">No</option>
-                <option value="yes">Yes</option>
+                <option :value="false">No</option>
+                <option :value="true">Yes</option>
               </select>
             </div>
             <div class="form-group col-sm-12 col-md-2" v-if="showField('PartOfCollective')">
               <label for="exampleFormControlSelect1">Part of Collective:</label><br/>
               <select id="partOfCollective" v-model="response.partOfCollective">
                 <option value="" />
-                <option value="no">No</option>
-                <option value="yes">Yes</option>
+                <option :value="false">No</option>
+                <option :value="true">Yes</option>
               </select>
             </div>
 
@@ -101,6 +101,12 @@ export default {
     },
     showField(fieldName) {
       return this.getField(fieldName).enabled;
+    },
+    false() {
+      return false;
+    },
+    true() {
+      return true;
     }
   }
 };
