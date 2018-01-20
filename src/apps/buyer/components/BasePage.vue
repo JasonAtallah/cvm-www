@@ -8,9 +8,7 @@
 <template>
 <FullScreenPage :menuItems="pageMenuItems" :pageName="pageName">
   <div slot="menu-right" v-if="buyer">
-    <ElButton id="settingsBtn" type="text" v-if="buyer" @click="showBuyerSettings">
-      <i class="fa fa-cog fa-2x" aria-hidden="true"></i>
-    </ElButton>
+    {{ buyer.firstName }}
   </div>
   <div slot="content">
     <slot name="content"></slot>
@@ -34,13 +32,6 @@ export default {
       buyer: 'buyer',
       pageMenuItems: 'pageMenuItems'
     })
-  },
-  methods: {
-    showBuyerSettings() {
-      this.$store.commit('takeAction', {
-        type: 'editBuyerSettings'
-      });
-    }
   }
 };
 </script>

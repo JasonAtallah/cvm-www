@@ -8,5 +8,9 @@ export default [
   {
     name: 'Calendar',
     href: '/calendar'
+  },
+  {
+    name: 'Settings',
+    href: '/settings'
   }
 ];

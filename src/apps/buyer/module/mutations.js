@@ -65,6 +65,10 @@ export const scheduleRemove = (state, value) => {
   }
 };
 
+export const selSettingTab = (state, settingTab) => {
+  state.buyerSettings.activeTab = settingTab;
+};
+
 export const selVendor = (state, vendor) => {
   state.selVendor = vendor;
 };
