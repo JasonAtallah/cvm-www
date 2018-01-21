@@ -1,4 +1,4 @@
-require('babel-register');
+require('babel-core/register');
 
 const dotenv = require('dotenv');
 dotenv.config();
@@ -6,7 +6,6 @@ dotenv.config();
 const config = require('../../config')
 config.load();
 
-// http://nightwatchjs.org/gettingstarted#settings-file
 module.exports = {
   src_folders: ['test/e2e/specs'],
   output_folder: 'test/e2e/reports',

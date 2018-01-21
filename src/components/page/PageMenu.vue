@@ -39,7 +39,7 @@
 <template>
 <div class="page-menu">
   <img class="logo" :src="logoUrl" />
-  <div v-for="(item,index) in pageMenu" :key="index" class="pageMenuItem" :style="getPageMenuStyle(index)">
+  <div v-for="(item,index) in pageMenu" :key="index" class="pageMenuItem" :class="{ [item.name.toLowerCase() + '-page']: true }" :style="getPageMenuStyle(index)">
     <router-link :to="item.href" :class="{ selected: item.selected }">{{ item.name }}</router-link>
   </div>
   <div class="user">

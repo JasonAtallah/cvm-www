@@ -10,7 +10,7 @@
 
 <template>
 <div class="calendar-buttons">
-  <button class="btn btn-sm btn-primary" @click="addEvent">Add Event</button>
+  <button id="addEvent" class="btn btn-sm btn-primary" @click="addEvent">Add Event</button>
 </div>
 </template>
 

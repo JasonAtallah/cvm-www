@@ -35,5 +35,6 @@ module.exports = function(browser, values)
     .setValue(`#addVendor.modal input#email`, values.contact.email)
     .click(`#addVendor.modal .modal-footer button#save`)
     .pause(2000)
-    .assert.elementNotPresent(`#addVendor.modal`);
+    .assert.elementNotPresent(`#addVendor.modal`)
+    .assert.vendorInList(values.company.name);
 };

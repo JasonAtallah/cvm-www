@@ -112,6 +112,13 @@ export default {
       this.$store.commit('cancelPendingAction');
       this.clear();
     },
+    clear() {
+      traverse(this.vendor).forEach(function (elem) {
+        if (this.isLeaf) {
+          this.update(null);
+        }
+      });
+    },
     save() {
       this.validate(this.vendor)
         .then(() => {
@@ -120,13 +127,6 @@ export default {
               this.clear();
             });
         });
-    },
-    clear() {
-      traverse(this.vendor).forEach(function (elem) {
-        if (this.isLeaf) {
-          this.update(null);
-        }
-      });
     },
     validate(vendor) {
       return new Promise((resolve, reject) => {

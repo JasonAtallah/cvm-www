@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Appt with Weed Sellers",
+    "date": "2018-01-01",
+    "time": "10:00",
+    "duration": 30,
+    "location": "555 Main St., SF"
+  },
+  {
+    "name": "Appt with Pot Vendors",
+    "date": "2018-02-01",
+    "time": "11:00",
+    "duration": 30,
+    "location": "1010 Central Ave., RC"
+  },
+  {
+    "name": "Appt with Green Growers",
+    "date": "2018-03-01",
+    "time": "12:00",
+    "duration": 60,
+    "location": "123 S. Greenhouse Dr., MP"
+  }
+]
