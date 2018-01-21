@@ -15,11 +15,12 @@
     </div>
     <div class="row">
       <div class="col-sm-12">
-        <Company v-if="selTab === 'company'" :vendor="vendor" />
-        <Contact v-if="selTab === 'contact'" :vendor="vendor" />
-        <ProductTable v-if="selTab === 'flowers'" :table="FlowersProductTable" :vendor="vendor" />
-        <ProductTable v-if="selTab === 'edibles'" :table="EdiblesProductTable" :vendor="vendor" />
-        <ProductTable v-if="selTab === 'concentrates'" :table="ConcentratesProductTable" :vendor="vendor" />
+        <div class="card card-body bg-light">
+          <Information v-if="selTab === 'information'" :vendor="vendor" />
+          <ProductTable v-if="selTab === 'flowers'" :table="FlowersProductTable" :vendor="vendor" />
+          <ProductTable v-if="selTab === 'edibles'" :table="EdiblesProductTable" :vendor="vendor" />
+          <ProductTable v-if="selTab === 'concentrates'" :table="ConcentratesProductTable" :vendor="vendor" />
+        </div>
       </div>
     </div>
   </div>
@@ -28,16 +29,14 @@
 <script>
 import { mapGetters } from 'vuex';
 import DetailTabs from '../vendorDetail/DetailTabs';
-import Company from '../vendorDetail/Company';
-import Contact from '../vendorDetail/Contact';
+import Information from '../vendorDetail/Information';
 import ProductTable from '../vendorDetail/ProductTable';
 import { FlowersProductTable, EdiblesProductTable, ConcentratesProductTable } from '../../metadata/productTables';
 
 export default {
   components: {
     DetailTabs,
-    Company,
-    Contact,
+    Information,
     ProductTable
   },
   props: ['vendor'],
@@ -46,7 +45,7 @@ export default {
       FlowersProductTable,
       EdiblesProductTable,
       ConcentratesProductTable,
-      selTab: 'company'
+      selTab: 'information'
     };
   },
   methods: {

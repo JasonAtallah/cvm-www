@@ -4,8 +4,7 @@
 
 <template>
 <ElTabs @tab-click="activateTab">
-  <ElTabPane label="Company" name="company" />
-  <ElTabPane label="Contact" name="contact" />
+  <ElTabPane label="Information" name="information" />
   <ElTabPane label="Flowers" name="flowers" />
   <ElTabPane label="Edibles" name="edibles" />
   <ElTabPane label="Concentrates" name="concentrates" />
