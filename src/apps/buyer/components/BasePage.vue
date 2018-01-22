@@ -21,12 +21,12 @@
       <span class="el-dropdown-link">{{ buyer.firstName }}
       <i class="el-icon-arrow-down el-icon--right" />
       </span>
-    <ElDropdownMenu slot="dropdown">
-      <ElDropdownItem v-for="option in appOptions" :key="option.value"
-      :command="option">
-        {{ option.label }}
-      </ElDropdownItem>
-    </ElDropdownMenu>
+      <ElDropdownMenu slot="dropdown">
+        <ElDropdownItem v-for="option in appOptions" :key="option.value"
+        :command="option">
+          {{ option.label }}
+        </ElDropdownItem>
+      </ElDropdownMenu>
     </ElDropdown>
   </div>
   <div slot="content">

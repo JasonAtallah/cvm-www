@@ -36,48 +36,65 @@
   font-size: .8rem;
   font-weight: bold;
 }
+
+.el-dropdown-link {
+  cursor: pointer;
+  font-size: 0.875rem;
+}
 </style>
 
 <template>
 <ul class="vendor-list-filter">
+
   <li class="sort">
     <div class="title">Sort</div>
-    <DropdownForm
-      :label="selectedSortLabel"
-      @selection="updateSort">
-      <MenuSelect
-        :options="vendorFilter.sortOptions"
-        :value="vendorFilter.sort"
-        @selection="updateSort"></MenuSelect>
-    </DropdownForm>
+    <ElDropdown @command="updateSort">
+      <span class="el-dropdown-link">
+        {{ selectedSortLabel }}
+        <i class="el-icon-arrow-down el-icon--right" />
+      </span>
+      <ElDropdownMenu slot="dropdown">
+        <ElDropdownItem v-for="option in vendorFilter.sortOptions" :key="option.label"
+        :command="option">
+          {{ option.label }}
+        </ElDropdownItem>
+      </ElDropdownMenu>
+    </ElDropdown>
   </li>
+
+  <li class="status">
+    <div class="title">Status</div>
+    <ElSelect @change="updateStatus"
+      v-model="statusesSelected"
+      filterable clearable
+      size="mini"
+      placeholder="All">
+      <ElOption
+        v-for="option in statusOptions"
+        :key="option.value"
+        :label="option.label"
+        :value="option.value">
+      </ElOption>
+    </ElSelect>
+  </li>
+
   <li class="filter">
-    <div class="title">Filter</div>
-    <DropdownForm
-      :label="filterValue"
-      :enableSubClick="true">
-
-      <div class="fieldLabel">
-        Status
-      </div>
-      <SingleSelect
-        :options="statusOptions"
-        :value="vendorFilter.status"
-        :nullSelectionLabel="ALL_STATUS_TYPES"
-        @selection="updateStatus"></SingleSelect>
-
-      <br /><br />
-      <div class="fieldLabel">
-        Search
-      </div>
+    <div class="title">Search</div>
       <input type="text" @input="updateSearch" />
-    </DropdownForm>
   </li>
+
 </ul>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
+import {
+  Button as ElButton,
+  Dropdown as ElDropdown,
+  DropdownMenu as ElDropdownMenu,
+  DropdownItem as ElDropdownItem,
+  Option as ElOption,
+  Select as ElSelect } from 'element-ui';
 import DropdownForm from '@/components/form/DropdownForm';
 import MenuSelect from '@/components/form/MenuSelect';
 import SingleSelect from '@/components/form/SingleSelect';
@@ -86,11 +103,19 @@ export default {
   components: {
     DropdownForm,
     MenuSelect,
-    SingleSelect
+    SingleSelect,
+    ElButton,
+    ElDropdown,
+    ElDropdownMenu,
+    ElDropdownItem,
+    ElOption,
+    ElSelect
   },
   data() {
     return {
-      ALL_STATUS_TYPES: 'All'
+      ALL_STATUS_TYPES: 'All',
+      sortSelected: '',
+      statusesSelected: ''
     };
   },
   computed: {
@@ -124,6 +149,7 @@ export default {
       this.$store.commit('vendorSearch', event.target.value);
     },
     updateSort(sort) {
+      console.log(sort);
       this.$store.commit('vendorSort', sort);
     },
     updateStatus(value) {
