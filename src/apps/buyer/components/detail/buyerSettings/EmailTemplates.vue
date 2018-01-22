@@ -16,13 +16,17 @@
               <label class="settings-input-label" for="body">Body</label>
               <ElInput id="body" type="textarea" v-model="emails[emailType.value].body" placeholder="Body" />
             </ElFormItem>
-            <ElFormItem>
-              <ElButton id="update" type="primary" @click="updateEmail(emailType.value)">Update Email</ElButton>
-            </ElFormItem>
           </ElForm>
         </ElTabPane>
       </ElTabs>
     </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-lg btn-primary" @click.prevent="updateEmails" :disabled="canNotUpdate">Update Emails</button>
+      <button type="button" class="btn btn-lg btn-default" @click.prevent="cancel">Cancel</button>
+    </div>
+
+  {{ canNotUpdate }}
   </div>
 </template>
 
@@ -51,6 +55,9 @@ export default {
     Notification
   },
   computed: {
+    canNotUpdate() {
+      return _.isEqual(this.buyer.emails.approveVendor, this.emails.approveVendor) && _.isEqual(this.buyer.emails.rejectVendor, this.emails.rejectVendor);
+    },
     emailTypes() {
       const actions = this.$store.getters.vendorActionButtons;
       return _.find(actions, { label: 'Action' }).options;
@@ -102,6 +109,10 @@ export default {
           });
         }
       }
+    },
+    updateEmails() {
+      this.updateEmail('approveVendor');
+      this.updateEmail('rejectVendor');
     },
     updateRejectionEmail(action) {
       return this.$store.dispatch('updateBuyerEmailTemplate', {

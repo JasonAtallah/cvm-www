@@ -52,11 +52,15 @@
             <ElInput id="zip" v-model="profile.company.zip" placeholder="Zip" />
           </ElCol>
         </ElFormItem>
-        <ElFormItem>
-          <ElButton id="updateProfile" type="primary" @click="updateProfile">Update Profile</ElButton>
-        </ElFormItem>
       </ElForm>
+      {{ canUpdate }}
     </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-lg btn-primary" @click.prevent="updateProfile" :disabled="canNotUpdate">Update Profile</button>
+      <button type="button" class="btn btn-lg btn-default" @click.prevent="cancel">Cancel</button>
+    </div>
+
   </div>
 </template>
 
@@ -79,6 +83,11 @@ export default {
     ElInput,
     Notification
   },
+  computed: {
+    canNotUpdate() {
+      return _.isEqual(this.buyer.profile, this.profile);
+    }
+  },
   data() {
     return {
       profile: {
@@ -99,6 +108,9 @@ export default {
     };
   },
   methods: {
+    cancel() {
+      this.profile = this.buyer.profile;
+    },
     updateProfile() {
       this.$store.dispatch('updateBuyerProfile', this.profile);
       Notification({
