@@ -7,16 +7,21 @@
     <div class="card card-body bg-light">
       <ElTabs v-model="activeTab" >
         <ElTabPane v-for="emailType in emailTypes" :label="emailType.label" :key="emailType.value">
-          <ElForm :model="emails[emailType.value]" :id="emailType.value">
-            <ElFormItem>
-              <label class="settings-input-label" for="subject">Subject</label>
-              <ElInput id="subject" v-model="emails[emailType.value].subject" placeholder="Subject" />
-            </ElFormItem>
-            <ElFormItem>
-              <label class="settings-input-label" for="body">Body</label>
-              <ElInput id="body" type="textarea" v-model="emails[emailType.value].body" placeholder="Body" />
-            </ElFormItem>
-          </ElForm>
+          <div class="form-group" :model="emails[emailType.value]">
+            <div class="row">
+              <div class="col-sm-12">
+                <label class="settings-input-label" for="subject">Subject</label>
+                <ElInput id="subject" v-model="emails[emailType.value].subject" placeholder="Subject" />
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-sm-12">
+                <label class="settings-input-label" for="body">Body</label>
+                <ElInput id="body" type="textarea" v-model="emails[emailType.value].body" placeholder="Body" />
+              </div>
+            </div>
+          </div>
         </ElTabPane>
       </ElTabs>
     </div>
@@ -33,9 +38,6 @@
 import { mapGetters } from 'vuex';
 import {
   Button as ElButton,
-  Col as ElCol,
-  Form as ElForm,
-  FormItem as ElFormItem,
   Input as ElInput,
   Tabs as ElTabs,
   TabPane as ElTabPane,
@@ -45,9 +47,6 @@ export default {
   props: ['buyer'],
   components: {
     ElButton,
-    ElCol,
-    ElForm,
-    ElFormItem,
     ElInput,
     ElTabs,
     ElTabPane,

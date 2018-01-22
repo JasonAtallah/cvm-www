@@ -30,7 +30,6 @@
 }
 
 label.settings-input-label {
-  margin-bottom: 0rem;
   margin-left: 0.5rem;
 }
 </style>
