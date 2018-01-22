@@ -49,6 +49,7 @@ export const createVendor = ({ dispatch, commit }, values) => {
     .then((vendor) => {
       commit('addVendorToList', vendor);
       commit('cancelPendingAction');
+      dispatch('selVendor', vendor);
     });
 };
 
