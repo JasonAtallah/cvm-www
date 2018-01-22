@@ -170,7 +170,6 @@ export const updateBuyerProfile = ({ rootState, commit }, profile) => {
   return api.updateBuyerProfile(profile)
     .then(() => {
       commit('buyerProfile', profile);
-      commit('cancelPendingAction');
     });
 };
 

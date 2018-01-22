@@ -108,7 +108,10 @@ export default {
   },
   methods: {
     cancel() {
-      this.profile = this.buyer.profile;
+      this.resetFields();
+    },
+    resetFields(newData = this.$data) {
+      Object.assign(newData, this.$options.data.call(this));
     },
     updateProfile() {
       this.$store.dispatch('updateBuyerProfile', this.profile);
@@ -118,6 +121,10 @@ export default {
         type: 'success',
         duration: 2000
       });
+      this.$nextTick()
+        .then(() => {
+          this.resetFields(this.buyer);
+        });
     }
   }
 };
