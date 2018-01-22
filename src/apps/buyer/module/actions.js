@@ -178,5 +178,8 @@ export const updateBuyerEmailTemplate = ({ rootState, commit }, { templateId, em
 };
 
 export const updateThreadAttribute = ({ commit }, { vendor, action }) => {
-  return api.updateThreadAttribute(vendor, action);
+  return api.updateThreadAttribute(vendor, action)
+    .then((vendorItem) => {
+      commit('updateVendorItem', vendorItem);
+    });
 };

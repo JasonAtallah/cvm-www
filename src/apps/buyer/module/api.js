@@ -83,7 +83,9 @@ export default {
   },
 
   updateThreadAttribute(vendor, action) {
-    return http.put(`/buyer/v1/vendors/${vendor._id}/attributes/${action.value}`);
+    return http.put(`/buyer/v1/vendors/${vendor._id}/attributes/${action.value}`, {
+      action
+    });
   }
 
 };

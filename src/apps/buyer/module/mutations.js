@@ -86,6 +86,7 @@ export const takeAction = (state, action) => {
 };
 
 export const updateVendorItem = (state, vendorItem) => {
+  console.log(vendorItem);
   const curVendorItem = state.vendorList.find(i => i._id === vendorItem._id);
   Object.assign(curVendorItem, vendorItem);
 };
