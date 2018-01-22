@@ -25,15 +25,20 @@
 }
 
 .vendor-list .vendor-list-item {
-  margin: 0;
+  padding: 5px;
 }
 
 .vendor-list .item-main {
-  padding: 15px;
+  padding: 15px 0px 15px 25px
 }
 
 .vendor-list .item-btns {
-  padding: 25px 15px 15px 15px;
+    padding-top: 5px;
+}
+
+span.vendor-name {
+  vertical-align: middle;
+  font-size: 1.5rem;
 }
 </style>
 
@@ -44,8 +49,11 @@
       @click="onVendorClick($event, vendor)">
       <div class="row vendor-list-item">
         <div class="col-sm-8 item-main">
-          <h5>{{ vendor.name }}</h5>
+          <span class="vendor-name">{{ vendor.name }}</span>
           <span class="badge badge-success">{{ stateNameForDisplay(vendor.state.name) }}</span>
+          <ElTooltip content="Watching Vendor" placement="top">
+            <i v-if="watchingVendor(vendor)" class="el-icon-view"></i>
+          </ElTooltip>
         </div>
         <div class="col-sm-4 item-btns">
           <div @click="ignoreVendorClick($event)">
@@ -60,10 +68,13 @@
 <script>
 import { mapGetters } from 'vuex';
 import { stateNameForDisplay } from '@/lib/filters';
+import {
+  Tooltip as ElTooltip } from 'element-ui';
 import VendorActionButton from './VendorActionButton';
 
 export default {
   components: {
+    ElTooltip,
     VendorActionButton
   },
   computed: {
@@ -84,7 +95,13 @@ export default {
     isSelected(vendor) {
       return this.selVendor && this.selVendor._id === vendor._id;
     },
-    stateNameForDisplay
+    stateNameForDisplay,
+    watchingVendor(vendor) {
+      if (vendor.attributes) {
+        return vendor.attributes.watchVendor;
+      }
+      return false;
+    }
   }
 };
 </script>
