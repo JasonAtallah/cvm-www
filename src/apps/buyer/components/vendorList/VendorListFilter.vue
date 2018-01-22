@@ -149,7 +149,6 @@ export default {
       this.$store.commit('vendorSearch', event.target.value);
     },
     updateSort(sort) {
-      console.log(sort);
       this.$store.commit('vendorSort', sort);
     },
     updateStatus(value) {
