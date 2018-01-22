@@ -1,4 +1,4 @@
-<style scoped>
+<style>
 .settings-list {
   height: 100%;
   margin: 0;
@@ -29,6 +29,10 @@
   padding: 15px;
 }
 
+label.settings-input-label {
+  margin-bottom: 0rem;
+  margin-left: 0.5rem;
+}
 </style>
 
 <template>

@@ -1,20 +1,28 @@
 <template>
-  <div class="card card-body bg-light">
-    <ElTabs v-model="activeTab" >
-      <ElTabPane v-for="emailType in emailTypes" :label="emailType.label" :key="emailType.value">
-        <ElForm :model="emails[emailType.value]" :id="emailType.value">
-          <ElFormItem>
-            <ElInput id="subject" v-model="emails[emailType.value].subject" placeholder="Subject" />
-          </ElFormItem>
-          <ElFormItem>
-            <ElInput id="body" type="textarea" v-model="emails[emailType.value].body" placeholder="Body" />
-          </ElFormItem>
-          <ElFormItem>
-            <ElButton id="update" type="primary" @click="updateEmail(emailType.value)">Update Email</ElButton>
-          </ElFormItem>
-        </ElForm>
-      </ElTabPane>
-    </ElTabs>
+  <div>
+    <h3>Email Templates</h3>
+    <p class="lead">
+      Update your default email templates. These are used when sending an approval or rejection email to a new vendor.
+    </p>
+    <div class="card card-body bg-light">
+      <ElTabs v-model="activeTab" >
+        <ElTabPane v-for="emailType in emailTypes" :label="emailType.label" :key="emailType.value">
+          <ElForm :model="emails[emailType.value]" :id="emailType.value">
+            <ElFormItem>
+              <label class="settings-input-label" for="subject">Subject</label>
+              <ElInput id="subject" v-model="emails[emailType.value].subject" placeholder="Subject" />
+            </ElFormItem>
+            <ElFormItem>
+              <label class="settings-input-label" for="body">Body</label>
+              <ElInput id="body" type="textarea" v-model="emails[emailType.value].body" placeholder="Body" />
+            </ElFormItem>
+            <ElFormItem>
+              <ElButton id="update" type="primary" @click="updateEmail(emailType.value)">Update Email</ElButton>
+            </ElFormItem>
+          </ElForm>
+        </ElTabPane>
+      </ElTabs>
+    </div>
   </div>
 </template>
 
@@ -104,7 +112,3 @@ export default {
   }
 };
 </script>
-
-<style>
-
-</style>

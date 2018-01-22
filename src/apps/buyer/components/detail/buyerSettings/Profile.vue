@@ -1,47 +1,62 @@
 <template>
-  <div class="card card-body bg-light">
-    <ElForm id="profile" :model="profile">
-      <ElFormItem>
-        <ElCol :span=12>
-          <ElInput id="firstName" v-model="profile.contact.firstName" placeholder="First" />
-        </ElCol>
-        <ElCol :span=12>
-          <ElInput id="lastName" v-model="profile.contact.lastName" placeholder="Last" />
-        </ElCol>
-      </ElFormItem>
-      <ElFormItem>
-        <ElCol :span=12>
-          <ElInput id="phone" v-model="profile.contact.phone" placeholder="Phone" />
-        </ElCol>
-        <ElCol :span=12>
-          <ElInput id="email" v-model="profile.contact.email" placeholder="Email" />
-        </ElCol>
-      </ElFormItem>
+  <div>
+    <h3>Profile</h3>
+    <p class="lead">
+      Update your personal and company information.
+    </p>
+    <div class="card card-body bg-light">
+      <ElForm id="profile" :model="profile">
+        <ElFormItem>
+          <ElCol :span=12>
+            <label class="settings-input-label" for="firstName">First Name</label>
+            <ElInput id="firstName" v-model="profile.contact.firstName" placeholder="First" />
+          </ElCol>
+          <ElCol :span=12>
+            <label class="settings-input-label" for="lastName">Last Name</label>
+            <ElInput id="lastName" v-model="profile.contact.lastName" placeholder="Last" />
+          </ElCol>
+        </ElFormItem>
+        <ElFormItem>
+          <ElCol :span=12>
+            <label class="settings-input-label" for="phone">Phone</label>
+            <ElInput id="phone" v-model="profile.contact.phone" placeholder="Phone" />
+          </ElCol>
+          <ElCol :span=12>
+            <label class="settings-input-label" for="email">Email</label>
+            <ElInput id="email" v-model="profile.contact.email" placeholder="Email" />
+          </ElCol>
+        </ElFormItem>
 
-      <h4>Company</h4>
-      <ElFormItem>
-        <ElCol :span=10>
-          <ElInput id="name" v-model="profile.company.name" placeholder="Name" />
-        </ElCol>
-        <ElCol :span=14>
-          <ElInput id="address" v-model="profile.company.address" placeholder="Address" />
-        </ElCol>
-      </ElFormItem>
-      <ElFormItem>
-        <ElCol :span=8>
-          <ElInput id="city" v-model="profile.company.city" placeholder="City" />
-        </ElCol>
-        <ElCol :span=8>
-          <ElInput id="state" v-model="profile.company.state" placeholder="State" />
-        </ElCol>
-        <ElCol :span=8>
-          <ElInput id="zip" v-model="profile.company.zip" placeholder="Zip" />
-        </ElCol>
-      </ElFormItem>
-      <ElFormItem>
-        <ElButton id="updateProfile" type="primary" @click="updateProfile">Update Profile</ElButton>
-      </ElFormItem>
-    </ElForm>
+        <h4>Company</h4>
+        <ElFormItem>
+          <ElCol :span=10>
+            <label class="settings-input-label" for="name">Name</label>
+            <ElInput id="name" v-model="profile.company.name" placeholder="Name" />
+          </ElCol>
+          <ElCol :span=14>
+            <label class="settings-input-label" for="address">Address</label>
+            <ElInput id="address" v-model="profile.company.address" placeholder="Address" />
+          </ElCol>
+        </ElFormItem>
+        <ElFormItem>
+          <ElCol :span=8>
+            <label class="settings-input-label" for="city">City</label>
+            <ElInput id="city" v-model="profile.company.city" placeholder="City" />
+          </ElCol>
+          <ElCol :span=8>
+            <label class="settings-input-label" for="state">State</label>
+            <ElInput id="state" v-model="profile.company.state" placeholder="State" />
+          </ElCol>
+          <ElCol :span=8>
+            <label class="settings-input-label" for="zip">Zip</label>
+            <ElInput id="zip" v-model="profile.company.zip" placeholder="Zip" />
+          </ElCol>
+        </ElFormItem>
+        <ElFormItem>
+          <ElButton id="updateProfile" type="primary" @click="updateProfile">Update Profile</ElButton>
+        </ElFormItem>
+      </ElForm>
+    </div>
   </div>
 </template>
 
@@ -96,7 +111,3 @@ export default {
   }
 };
 </script>
-
-<style>
-
-</style>
