@@ -1,5 +1,6 @@
 import { stateNameForDisplay } from '../../../lib/filters';
 
+export const appOptions = state => state.appOptions;
 export const buyer = state => state.buyer;
 export const buyerSettings = state => state.buyerSettings;
 export const calendars = state => state.calendars;

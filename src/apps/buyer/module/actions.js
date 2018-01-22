@@ -94,6 +94,10 @@ export const loadVendors = ({ rootState, commit }) => {
     });
 };
 
+export const logout = () => {
+  return api.logout();
+};
+
 export const overrideDetail = ({ commit, dispatch }, value) => {
   if (value.vendor) {
     dispatch('selVendor', value.vendor)

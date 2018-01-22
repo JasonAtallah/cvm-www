@@ -1,3 +1,4 @@
+import appOptions from '../metadata/appOptions';
 import pages from '../metadata/pages';
 import settingsTabs from '../metadata/settingsTabs';
 import vendorActionButtons from '../metadata/vendorActionButtons';
@@ -5,6 +6,7 @@ import vendorProductTypes from '../metadata/vendorProductTypes';
 import vendorSorts from '../metadata/vendorSorts';
 
 export default {
+  appOptions,
   buyer: null,
   buyerSettings: {
     settingsTabs,

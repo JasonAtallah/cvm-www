@@ -49,6 +49,10 @@ export default {
     return http.get('/buyer/v1/buyer');
   },
 
+  logout() {
+    console.log('logging out');
+  },
+
   rejectVendor(vendor, email) {
     return http.put(`/buyer/v1/vendors/${vendor._id}/actions/RejectVendor`, {
       email
