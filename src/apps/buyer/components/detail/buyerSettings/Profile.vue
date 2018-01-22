@@ -53,7 +53,6 @@
           </ElCol>
         </ElFormItem>
       </ElForm>
-      {{ canUpdate }}
     </div>
 
     <div class="modal-footer">

@@ -3,19 +3,31 @@
   padding: 0%;
   color: #4f5154;
 }
+
+  .el-dropdown-link {
+    cursor: pointer;
+    color: #409EFF;
+  }
+  .el-icon-arrow-down {
+    font-size: 12px;
+  }
+
 </style>
 
 <template>
 <FullScreenPage :menuItems="pageMenuItems" :pageName="pageName">
   <div slot="menu-right" v-if="buyer">
-    <DropdownForm
-      :label="buyer.firstName">
-      <MenuSelect
-        :options="appOptions"
-        :value="appOptions"
-        @selection="logout"
-        />
-    </DropdownForm>
+    <ElDropdown @command="onOptionSelect">
+      <span class="el-dropdown-link">{{ buyer.firstName }}
+      <i class="el-icon-arrow-down el-icon--right" />
+      </span>
+    <ElDropdownMenu slot="dropdown">
+      <ElDropdownItem v-for="option in appOptions" :key="option.value"
+      :command="option">
+        {{ option.label }}
+      </ElDropdownItem>
+    </ElDropdownMenu>
+    </ElDropdown>
   </div>
   <div slot="content">
     <slot name="content"></slot>
@@ -26,16 +38,19 @@
 <script>
 import { mapGetters } from 'vuex';
 import FullScreenPage from '@/components/page/FullScreenPage';
-import { Button as ElButton } from 'element-ui';
-import DropdownForm from '@/components/form/DropdownForm';
-import MenuSelect from '@/components/form/MenuSelect';
+import {
+  Button as ElButton,
+  Dropdown as ElDropdown,
+  DropdownMenu as ElDropdownMenu,
+  DropdownItem as ElDropdownItem } from 'element-ui';
 
 export default {
   components: {
     FullScreenPage,
     ElButton,
-    DropdownForm,
-    MenuSelect
+    ElDropdown,
+    ElDropdownMenu,
+    ElDropdownItem
   },
   props: ['pageName'],
   computed: {
@@ -46,8 +61,16 @@ export default {
     })
   },
   methods: {
-    logout() {
-      this.$store.dispatch('logout');
+    onOptionSelect(command) {
+      if (command.dispatch) {
+        this.$store.dispatch(command.dispatch, {
+          command
+        });
+      } else if (command.commit) {
+        this.$store.commit(command.commit, {
+          command
+        });
+      }
     }
   }
 };

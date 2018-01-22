@@ -3,6 +3,7 @@
 export default [
   {
     label: 'Logout',
-    value: 'logout'
+    value: 'logout',
+    dispatch: 'logout'
   }
 ];
