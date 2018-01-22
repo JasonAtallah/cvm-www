@@ -26,7 +26,6 @@
       <button type="button" class="btn btn-lg btn-default" @click.prevent="cancel">Cancel</button>
     </div>
 
-  {{ canNotUpdate }}
   </div>
 </template>
 
