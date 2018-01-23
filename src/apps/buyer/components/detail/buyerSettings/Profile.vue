@@ -62,8 +62,8 @@
     </div>
 
     <div class="modal-footer">
-      <button type="button" class="btn btn-lg btn-primary" @click.prevent="updateProfile" :disabled="canNotUpdate">Update Profile</button>
-      <button type="button" class="btn btn-lg btn-default" @click.prevent="cancel">Cancel</button>
+      <button type="button" class="btn btn-lg btn-primary" @click="updateProfile" :disabled="canNotUpdate">Update Profile</button>
+      <button type="button" class="btn btn-lg btn-default" @click="cancel">Cancel</button>
     </div>
 
   </div>
@@ -108,23 +108,16 @@ export default {
   },
   methods: {
     cancel() {
-      this.resetFields();
-    },
-    resetFields(newData = this.$data) {
-      Object.assign(newData, this.$options.data.call(this));
+      this.profile = _.cloneDeep(this.buyer.profile);
     },
     updateProfile() {
-      this.$store.dispatch('updateBuyerProfile', this.profile);
+      this.$store.dispatch('updateBuyerProfile', _.cloneDeep(this.profile));
       Notification({
         title: 'Success',
         message: 'Profile Updated!',
         type: 'success',
         duration: 2000
       });
-      this.$nextTick()
-        .then(() => {
-          this.resetFields(this.buyer);
-        });
     }
   }
 };
