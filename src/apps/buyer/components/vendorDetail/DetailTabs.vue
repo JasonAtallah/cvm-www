@@ -3,7 +3,7 @@
 </style>
 
 <template>
-<ElTabs @tab-click="activateTab">
+<ElTabs @tab-click="activateTab" value="information">
   <ElTabPane label="Information" name="information" />
   <ElTabPane label="Flowers" name="flowers" />
   <ElTabPane label="Edibles" name="edibles" />

@@ -15,12 +15,10 @@
     </div>
     <div class="row">
       <div class="col-sm-12">
-        <div class="card card-body bg-light">
-          <Information v-if="selTab === 'information'" :vendor="vendor" />
-          <ProductTable v-if="selTab === 'flowers'" :table="FlowersProductTable" :vendor="vendor" />
-          <ProductTable v-if="selTab === 'edibles'" :table="EdiblesProductTable" :vendor="vendor" />
-          <ProductTable v-if="selTab === 'concentrates'" :table="ConcentratesProductTable" :vendor="vendor" />
-        </div>
+        <Information v-if="selTab === 'information'" :vendor="vendor" />
+        <ProductTable v-if="selTab === 'flowers'" :table="FlowersProductTable" :vendor="vendor" />
+        <ProductTable v-if="selTab === 'edibles'" :table="EdiblesProductTable" :vendor="vendor" />
+        <ProductTable v-if="selTab === 'concentrates'" :table="ConcentratesProductTable" :vendor="vendor" />
       </div>
     </div>
   </div>
