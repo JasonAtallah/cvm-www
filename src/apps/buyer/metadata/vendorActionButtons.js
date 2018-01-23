@@ -36,13 +36,15 @@ export default [
     options: [
       {
         label: 'Yes',
-        value: 'watchVendor',
-        dispatch: 'updateThreadAttribute'
+        attribute: 'watchVendor',
+        value: true,
+        dispatch: 'updateThreadAttributes'
       },
       {
         label: 'No',
-        value: 'unwatchVendor',
-        dispatch: 'updateThreadAttribute'
+        attribute: 'watchVendor',
+        value: false,
+        dispatch: 'updateThreadAttributes'
       }
     ]
   }

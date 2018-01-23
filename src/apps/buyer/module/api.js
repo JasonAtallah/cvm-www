@@ -82,10 +82,8 @@ export default {
     return http.put(`/buyer/v1/emails/${templateId}`, email);
   },
 
-  updateThreadAttribute(vendor, action) {
-    return http.put(`/buyer/v1/vendors/${vendor._id}/attributes/${action.value}`, {
-      action
-    });
+  updateThreadAttributes(vendor, attributes) {
+    return http.put(`/buyer/v1/vendors/${vendor._id}/attributes`, attributes);
   }
 
 };
