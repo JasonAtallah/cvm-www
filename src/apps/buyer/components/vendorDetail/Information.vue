@@ -165,9 +165,6 @@ span.field-display {
         </div>
       </div>
     </div>
-    <div class="row">
-      hi
-    </div>
   </div>
 </template>
 
