@@ -87,8 +87,7 @@ export default {
   },
 
   updateQuestionnaire(questionnaire) {
-    console.log('updating questionnaire');
-    // return http.put('/buyer/v1/questionnaire', questionnaire);
+    return http.put('/buyer/v1/questionnaire', questionnaire);
   },
 
   updateThreadAttributes(vendor, attributes) {

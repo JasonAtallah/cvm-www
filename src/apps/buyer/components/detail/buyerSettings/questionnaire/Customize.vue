@@ -42,6 +42,7 @@ export default {
   data() {
     return {
       newQuestionnaire: {
+        _id: this.questionnaire._id || null,
         introduction: this.questionnaire.introduction || null,
         completion: this.questionnaire.completion || null
       }
