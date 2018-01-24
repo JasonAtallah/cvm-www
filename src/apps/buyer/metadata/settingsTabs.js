@@ -11,6 +11,22 @@ export default [
   },
   {
     label: 'Questionnaire',
-    value: 'questionnaire'
+    value: 'questionnaire',
+    options: [
+      {
+        value: 'introduction',
+        label: 'Introduction',
+        dispatch: 'updateQuestionnaire'
+      },
+      {
+        value: 'completion',
+        label: 'Completion',
+        dispatch: 'updateQuestionnaire'
+      }
+    ]
+  },
+  {
+    label: 'Button Generator',
+    value: 'buttonGenerator'
   }
 ];

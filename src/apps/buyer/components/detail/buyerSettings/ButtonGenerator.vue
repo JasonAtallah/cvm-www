@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="card card-body bg-light">
     <div slot="header" class="clearfix">
       <div class="row">
         <div class="col-sm-6">

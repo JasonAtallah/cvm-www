@@ -185,8 +185,8 @@ export const updateBuyerEmailTemplate = ({ rootState, commit }, { templateId, em
   return api.updateBuyerEmailTemplate(templateId, email);
 };
 
-export const updateQuestionnaire = ({ rootState, commit }, questionnaire) => {
-  return api.updateQuestionnaire(questionnaire)
+export const updateQuestionnaire = ({ rootState, commit }, page) => {
+  return api.updateQuestionnaire(page)
     .then((questionnaire) => {
       commit('questionnaire', questionnaire);
     });
