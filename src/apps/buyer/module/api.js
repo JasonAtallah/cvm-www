@@ -86,6 +86,11 @@ export default {
     return http.put(`/buyer/v1/emails/${templateId}`, email);
   },
 
+  updateQuestionnaire(questionnaire) {
+    console.log('updating questionnaire');
+    // return http.put('/buyer/v1/questionnaire', questionnaire);
+  },
+
   updateThreadAttributes(vendor, attributes) {
     return http.put(`/buyer/v1/vendors/${vendor._id}/attributes`, attributes);
   }

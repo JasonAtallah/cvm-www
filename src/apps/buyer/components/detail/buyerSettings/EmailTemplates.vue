@@ -5,7 +5,7 @@
       Update your default email templates. These are used when sending an approval or rejection email to a new vendor.
     </p>
     <div class="card card-body bg-light">
-      <ElTabs v-model="activeTab" >
+      <ElTabs>
         <ElTabPane v-for="emailType in emailTypes" :label="emailType.label" :key="emailType.value">
           <div class="form-group" :model="emails[emailType.value]">
             <div class="row">

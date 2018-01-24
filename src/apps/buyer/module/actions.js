@@ -92,7 +92,6 @@ export const loadEvents = ({ rootState, commit }) => {
 export const loadQuestionnaire = ({ rootstate, commit }) => {
   return api.getQuestionnaire()
     .then((questionnaire) => {
-      console.log(questionnaire);
       commit('questionnaire', questionnaire);
     });
 };
@@ -184,6 +183,13 @@ export const updateBuyerProfile = ({ rootState, commit }, profile) => {
 
 export const updateBuyerEmailTemplate = ({ rootState, commit }, { templateId, email }) => {
   return api.updateBuyerEmailTemplate(templateId, email);
+};
+
+export const updateQuestionnaire = ({ rootState, commit }, questionnaire) => {
+  return api.updateQuestionnaire(questionnaire)
+    .then((questionnaire) => {
+      commit('questionnaire', questionnaire);
+    });
 };
 
 export const updateThreadAttributes = ({ commit }, { vendor, action }) => {
