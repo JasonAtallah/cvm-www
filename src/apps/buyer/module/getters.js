@@ -13,6 +13,7 @@ export const locations = (state) => {
 export const overridingDetail = state => state.overridingDetail;
 export const pageMenuItems = state => state.pageMenuItems;
 export const pendingAction = state => state.pendingAction;
+export const questionnaire = state => state.questionnaire;
 export const schedule = state => state.buyer.schedule;
 export const selVendor = state => state.selVendor;
 export const setSchedule = state => state.setSchedule;

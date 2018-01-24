@@ -20,6 +20,7 @@
         <div slot="detail" class="settings-detail">
           <Profile v-if="activeTab === 'profile'" :buyer="buyer" />
           <EmailTemplates v-if="activeTab === 'emailTemplates'" :buyer="buyer" />
+          <Questionnaire v-if="activeTab === 'questionnaire'" :buyer="buyer" />
         </div>
       </MasterDetail>
     </div>
@@ -32,6 +33,7 @@ import MasterDetail from '@/components/MasterDetail';
 import BasePage from './BasePage';
 import EmailTemplates from './detail/buyerSettings/EmailTemplates';
 import Profile from './detail/buyerSettings/Profile';
+import Questionnaire from './detail/buyerSettings/Questionnaire';
 import SettingsMaster from './master/SettingsMaster';
 
 export default {
@@ -40,6 +42,7 @@ export default {
     MasterDetail,
     EmailTemplates,
     Profile,
+    Questionnaire,
     SettingsMaster
   },
   computed: {

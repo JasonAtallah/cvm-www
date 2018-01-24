@@ -8,5 +8,9 @@ export default [
   {
     label: 'Email Templates',
     value: 'emailTemplates'
+  },
+  {
+    label: 'Questionnaire',
+    value: 'questionnaire'
   }
 ];

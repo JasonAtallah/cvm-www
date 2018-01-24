@@ -52,6 +52,10 @@ export const productFilter = (state, value) => {
   state.vendorFilter.productType = value;
 };
 
+export const questionnaire = (state, questionnaire) => {
+  state.questionnaire = questionnaire;
+};
+
 export const scheduleAdd = (state, value) => {
   if (state.buyer.schedule.indexOf(value) < 0) {
     state.buyer.schedule.push(value);

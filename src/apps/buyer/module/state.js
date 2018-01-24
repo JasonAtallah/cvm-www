@@ -19,6 +19,7 @@ export default {
   pendingAction: {
     type: null
   },
+  questionnaire: null,
   selVendor: null,
   setSchedule: false,
   vendors: {},

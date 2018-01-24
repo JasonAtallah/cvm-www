@@ -56,7 +56,8 @@ export const createVendor = ({ dispatch, commit }, values) => {
 export const init = ({ dispatch }) => {
   return Promise.all([
     dispatch('loadBuyer'),
-    dispatch('loadVendors')
+    dispatch('loadVendors'),
+    dispatch('loadQuestionnaire')
   ]);
 };
 
@@ -85,6 +86,14 @@ export const loadEvents = ({ rootState, commit }) => {
       if (err.status === 404) {
         commit('gCalendar', null);
       }
+    });
+};
+
+export const loadQuestionnaire = ({ rootstate, commit }) => {
+  return api.getQuestionnaire()
+    .then((questionnaire) => {
+      console.log(questionnaire);
+      commit('questionnaire', questionnaire);
     });
 };
 
