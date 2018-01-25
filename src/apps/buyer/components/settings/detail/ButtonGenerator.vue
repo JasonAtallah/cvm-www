@@ -86,7 +86,6 @@ import {
   Card as ElCard,
   ColorPicker as ElColorPicker,
   Input as ElInput,
-  InputNumber as ElInputNumber,
   Slider as ElSlider } from 'element-ui';
 
 export default {
@@ -96,7 +95,6 @@ export default {
     ElCard,
     ElColorPicker,
     ElInput,
-    ElInputNumber,
     ElSlider
   },
   data() {

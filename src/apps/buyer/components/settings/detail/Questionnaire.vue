@@ -1,4 +1,15 @@
 <style scoped>
+div.preview {
+  background-color: #FFFFFF;
+  padding: 2rem;
+  text-align: center;
+}
+a.markdown-link {
+  border-left: 1px solid #CCCCCC;
+  padding-left: 15px;
+  margin-left: 15px;
+}
+
 a.markdown-link:hover {
   text-decoration: none;
 }
@@ -17,9 +28,11 @@ a.markdown-link:hover {
           <div class="form-group" :model="newQuestionnaire[page.value]">
             <div class="row">
               <div class="col-sm-12">
-                <ElButton type="text" @click="switchModes">{{ mode }}</ElButton>
-                (<a class="markdown-link" href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">Learn how to use markdown</a>)
-                <div v-if="previewMode" v-html="markdownHtml" />
+                <ElSwitch v-model="previewMode"
+                active-text="Preview"
+                inactive-text="Edit"/>
+                <ElButton type="text"><a class="markdown-link" href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">Learn how to use markdown</a></ElButton>
+                <div v-if="previewMode" v-html="markdownHtml" class="preview" />
                 <div v-else>
                 <label class="settings-input-label"></label>
                 <ElInput :id="page.value" v-model="newQuestionnaire[page.value]" placeholder="Enter text using markdown"
@@ -44,6 +57,7 @@ import { mapGetters } from 'vuex';
 import {
   Button as ElButton,
   Input as ElInput,
+  Switch as ElSwitch,
   Tabs as ElTabs,
   TabPane as ElTabPane,
   Notification } from 'element-ui';
@@ -53,6 +67,7 @@ export default {
   components: {
     ElButton,
     ElInput,
+    ElSwitch,
     ElTabs,
     ElTabPane,
     Notification
@@ -87,10 +102,6 @@ export default {
       } else if (this.curTab === 'completion') {
         this.newQuestionnaire.completion = _.cloneDeep(this.questionnaire.completion);
       }
-    },
-    switchModes() {
-      this.mode = (this.previewMode ? 'Preview' : 'Edit');
-      this.previewMode = !this.previewMode;
     },
     switchTab(tab) {
       this.curTab = tab.name;
