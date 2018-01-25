@@ -16,6 +16,7 @@ export const pendingAction = state => state.pendingAction;
 export const questionnaire = state => state.questionnaire;
 export const schedule = state => state.buyer.schedule;
 export const selVendor = state => state.selVendor;
+export const selVendorState = state => state.selVendorState;
 export const setSchedule = state => state.setSchedule;
 export const sortedVendors = (state) => {
   let vendors = [...state.vendorList];

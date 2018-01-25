@@ -21,6 +21,7 @@ export default {
   },
   questionnaire: null,
   selVendor: null,
+  selVendorState: null,
   setSchedule: false,
   vendors: {},
   vendorActionButtons,

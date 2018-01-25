@@ -81,6 +81,10 @@ export const selVendor = (state, vendor) => {
   state.selVendor = vendor;
 };
 
+export const selVendorState = (state, vendor) => {
+  state.selVendorState = vendor;
+};
+
 export const setSchedule = (state, value) => {
   state.setSchedule = value;
 };

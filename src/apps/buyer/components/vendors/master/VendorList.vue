@@ -50,10 +50,8 @@ span.vendor-name {
       <div class="row vendor-list-item">
         <div class="col-sm-8 item-main">
           <span class="vendor-name">{{ vendor.name }}</span>
-          <span class="badge badge-success">{{ stateNameForDisplay(vendor.state.name) }}</span>
-          <ElTooltip content="Watching Vendor" placement="top">
-            <i v-if="watchingVendor(vendor)" class="el-icon-view"></i>
-          </ElTooltip>
+          <StateBadge :vendor="vendor" />
+          <WatchVendorBadge :vendor="vendor" />
         </div>
         <div class="col-sm-4 item-btns">
           <div @click="ignoreVendorClick($event)">
@@ -67,15 +65,18 @@ span.vendor-name {
 
 <script>
 import { mapGetters } from 'vuex';
-import { stateNameForDisplay } from '@/lib/filters';
 import {
   Tooltip as ElTooltip } from 'element-ui';
+import StateBadge from './StateBadge';
 import VendorActionButton from './VendorActionButton';
+import WatchVendorBadge from './WatchVendorBadge';
 
 export default {
   components: {
     ElTooltip,
-    VendorActionButton
+    StateBadge,
+    VendorActionButton,
+    WatchVendorBadge
   },
   computed: {
     ...mapGetters({
@@ -86,6 +87,7 @@ export default {
   methods: {
     onVendorClick(event, vendor) {
       if (event !== this.ignoredVendorClick) {
+        this.$store.commit('selVendorState', vendor);
         this.$emit('vendorClick', vendor);
       }
     },
@@ -94,13 +96,6 @@ export default {
     },
     isSelected(vendor) {
       return this.selVendor && this.selVendor._id === vendor._id;
-    },
-    stateNameForDisplay,
-    watchingVendor(vendor) {
-      if (vendor.attributes) {
-        return vendor.attributes.watchVendor;
-      }
-      return false;
     }
   }
 };
