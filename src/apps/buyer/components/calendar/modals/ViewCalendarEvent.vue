@@ -10,7 +10,7 @@
           </span>
         </div>
 
-        <VendorListDetail :vendor="vendor" />
+        <!-- <VendorListDetail :vendor="vendor" /> -->
 
         <div class="modal-footer">
           <button @click.prevent="cancel" class="btn btn-default">OK</button>
@@ -23,11 +23,11 @@
 <script>
 import { mapGetters } from 'vuex';
 import moment from 'moment';
-import VendorListDetail from '../detail/VendorDetail';
+// import VendorListDetail from '../detail/VendorDetail';
 
 export default {
   components: {
-    VendorListDetail
+    // VendorListDetail
   },
   computed: {
     isVisible() {

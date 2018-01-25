@@ -36,14 +36,14 @@ html, body {
 </template>
 
 <script>
-import AddCalendarEvent from './components/modals/AddCalendarEvent';
-import AddLocation from './components/modals/AddLocation';
-import AddVendor from './components/modals/AddVendor';
-import ConfirmCancelMeeting from './components/modals/ConfirmCancelMeeting';
-import SendVendorStatusEmail from './components/modals/SendVendorStatusEmail';
-import SetCalendar from './components/modals/SetCalendar';
-import SetSchedule from './components/modals/SetSchedule';
-import ViewCalendarEvent from './components/modals/ViewCalendarEvent';
+import AddCalendarEvent from './components/calendar/modals/AddCalendarEvent';
+import AddLocation from './components/vendors/modals/AddLocation';
+import AddVendor from './components/vendors/modals/AddVendor';
+import ConfirmCancelMeeting from './components/vendors/modals/ConfirmCancelMeeting';
+import SendVendorStatusEmail from './components/vendors/modals/SendVendorStatusEmail';
+import SetCalendar from './components/calendar/modals/SetCalendar';
+import SetSchedule from './components/calendar/modals/SetSchedule';
+import ViewCalendarEvent from './components/calendar/modals/ViewCalendarEvent';
 
 export default {
   name: 'app',

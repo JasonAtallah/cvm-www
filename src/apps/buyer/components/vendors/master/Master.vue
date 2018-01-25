@@ -27,10 +27,10 @@
 <template>
   <div class="vendor-list-master">
     <div class="vendor-list-buttons">
-      <VendorListButtons />
+      <Buttons />
     </div>
     <div class="vendor-list-filter">
-      <VendorListFilter />
+      <Filters />
     </div>
     <div class="vendor-list-items">
       <VendorList @vendorClick="onVendorClick" />
@@ -39,15 +39,15 @@
 </template>
 
 <script>
-import VendorList from '../vendorList/VendorList';
-import VendorListButtons from '../vendorList/VendorListButtons';
-import VendorListFilter from '../vendorList/VendorListFilter';
+import VendorList from './VendorList';
+import Buttons from './headers/Buttons';
+import Filters from './headers/Filters';
 
 export default {
   components: {
     VendorList,
-    VendorListButtons,
-    VendorListFilter
+    Buttons,
+    Filters
   },
   methods: {
     onVendorClick(vendor) {

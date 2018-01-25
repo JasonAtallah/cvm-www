@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import VendorsPage from './components/VendorsPage';
-import CalendarPage from './components/CalendarPage';
-import SettingsPage from './components/SettingsPage';
+import VendorsPage from './components/vendors/VendorsPage';
+import CalendarPage from './components/calendar/CalendarPage';
+import SettingsPage from './components/settings/SettingsPage';
 import OnboardingPage from './components/OnboardingPage';
 
 Vue.use(Router);

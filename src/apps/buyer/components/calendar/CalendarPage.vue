@@ -15,7 +15,7 @@
     <div slot="content" class="calendar-page">
       <MasterDetail>
         <div slot="master" class="calendar-master">
-          <CalendarButtons />
+          <Buttons />
           <MonthView :events="events" @dayClick="onDayClicked" />
         </div>
         <div slot="detail" class="calendar-detail">
@@ -30,14 +30,14 @@
 import { mapGetters } from 'vuex';
 import MonthView from '@/components/Calendar/MonthView';
 import MasterDetail from '@/components/MasterDetail';
-import BasePage from './BasePage';
-import CalendarButtons from './calendarPage/CalendarButtons';
-import DayDetail from './calendarPage/DayDetail';
+import BasePage from '../BasePage';
+import Buttons from './master/headers/Buttons';
+import DayDetail from './detail/DayDetail';
 
 export default {
   components: {
     BasePage,
-    CalendarButtons,
+    Buttons,
     DayDetail,
     MasterDetail,
     MonthView

@@ -15,7 +15,7 @@
     <div slot="content" class="vendors-page">
       <MasterDetail>
         <div slot="master" class="vendors-master">
-          <VendorListMaster />
+          <Master />
         </div>
         <div slot="detail" class="vendors-detail">
           <VendorDetail v-if="showVendorDetail" :vendor="vendor" />
@@ -30,10 +30,10 @@
 <script>
 import { mapGetters } from 'vuex';
 import MasterDetail from '@/components/MasterDetail';
-import BasePage from './BasePage';
+import BasePage from '../BasePage';
 import ScheduledMeeting from './detail/ScheduledMeeting';
 import SendTimes from './detail/SendTimes';
-import VendorListMaster from './master/VendorListMaster';
+import Master from './master/Master';
 import VendorDetail from './detail/VendorDetail';
 
 export default {
@@ -43,7 +43,7 @@ export default {
     ScheduledMeeting,
     SendTimes,
     VendorDetail,
-    VendorListMaster
+    Master
   },
   data() {
     return {

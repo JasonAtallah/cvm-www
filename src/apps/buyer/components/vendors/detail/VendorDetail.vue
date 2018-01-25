@@ -26,10 +26,10 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import DetailTabs from '../vendorDetail/DetailTabs';
-import Information from '../vendorDetail/Information';
-import ProductTable from '../vendorDetail/ProductTable';
-import { FlowersProductTable, EdiblesProductTable, ConcentratesProductTable } from '../../metadata/productTables';
+import DetailTabs from './detailTabs/DetailTabs';
+import Information from './detailTabs/Information';
+import ProductTable from './detailTabs/ProductTable';
+import { FlowersProductTable, EdiblesProductTable, ConcentratesProductTable } from '../../../metadata/productTables';
 
 export default {
   components: {

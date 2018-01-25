@@ -15,7 +15,7 @@
     <div slot="content" class="settings-page">
       <MasterDetail>
         <div slot="master" class="settings-master">
-          <SettingsMaster :buyer="buyer"/>
+          <Master :buyer="buyer"/>
         </div>
         <div slot="detail" class="settings-detail">
           <Profile v-if="activeTab === 'profile'" :buyer="buyer" />
@@ -31,12 +31,12 @@
 <script>
 import { mapGetters } from 'vuex';
 import MasterDetail from '@/components/MasterDetail';
-import BasePage from './BasePage';
-import ButtonGenerator from './detail/buyerSettings/ButtonGenerator';
-import EmailTemplates from './detail/buyerSettings/EmailTemplates';
-import Profile from './detail/buyerSettings/Profile';
-import Questionnaire from './detail/buyerSettings/Questionnaire';
-import SettingsMaster from './master/SettingsMaster';
+import BasePage from '../BasePage';
+import ButtonGenerator from './detail/ButtonGenerator';
+import EmailTemplates from './detail/EmailTemplates';
+import Profile from './detail/Profile';
+import Questionnaire from './detail/Questionnaire';
+import Master from './master/Master';
 
 export default {
   components: {
@@ -46,7 +46,7 @@ export default {
     EmailTemplates,
     Profile,
     Questionnaire,
-    SettingsMaster
+    Master
   },
   computed: {
     ...mapGetters({
