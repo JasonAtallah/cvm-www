@@ -89,13 +89,9 @@
             </ElOption>
           </ElSelect>
         </ElDropdownItem>
-        <!-- <ElDropdownItem>
-          <div class="title">Search</div>
-            <input type="text" @input="updateSearch" />
-        </ElDropdownItem> -->
         <ElDropdownItem class="filter-dropdown-item">
           <div>Search</div>
-          <ElInput placeholder="Search" label="Search" clearable size="mini" />
+          <ElInput placeholder="Search" label="Search" clearable size="mini" @input="updateSearch" />
         </ElDropdownItem>
       </ElDropdownMenu>
     </ElDropdown>
@@ -167,7 +163,7 @@ export default {
       this.$store.commit('productFilter', value);
     },
     updateSearch(event) {
-      this.$store.commit('vendorSearch', this.a);
+      this.$store.commit('vendorSearch', event);
     },
     updateSort(sort) {
       this.$store.commit('vendorSort', sort);
