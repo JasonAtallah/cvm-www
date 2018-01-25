@@ -1,21 +1,30 @@
 <template>
   <ElTooltip content="Watching Vendor" placement="top">
     <i v-if="watchingVendor(vendor)" class="el-icon-view"></i>
+    {{ selVendorState }}
   </ElTooltip>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import { Tooltip as ElTooltip } from 'element-ui';
 
 export default {
-  props: ['vendor'],
   components: {
     ElTooltip
   },
+  props: ['vendor'],
+  computed: {
+    ...mapGetters({
+      selVendorState: 'selVendorState'
+    })
+  },
   methods: {
     watchingVendor(vendor) {
-      if (vendor.attributes) {
+      if (this.vendor) {
         return vendor.attributes.watchVendor;
+      } else if (this.selVendorState.attributes) {
+        return this.selVendorState.attributes.watchVendor;
       }
       return false;
     }

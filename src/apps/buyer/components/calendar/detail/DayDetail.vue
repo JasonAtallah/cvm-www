@@ -6,7 +6,6 @@
 
 .event-list li {
   position: relative;
-  padding: 1rem 1rem;
   margin-left: 6rem;
   border-left: 1px solid #CCC;
   border-right: 1px solid #CCC;
@@ -26,9 +25,10 @@
 }
 
 .event-list li .event {
-  display: inline;
+  display: inline-flex;
   padding: .5rem;
-  margin-right: 1rem;
+  margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+  /* margin-right: 1rem; */
   background-color: rgba(102, 213, 187, 0.51);
   border-radius: 3px;
 }
@@ -42,8 +42,15 @@
     <li v-for="hour in day" :key="hour">
       <label>{{ formatHour(hour) }}</label>
       <div class="event" v-for="event in eventsOfHour(hour)" :key="event.id">
-        <span><strong>{{ event.title }}</strong></span>
-        <span>{{ formatEventTimes(event) }}</span>
+        <ElTooltip>
+          <div slot="content">
+            <strong>Where</strong> {{ event.location }}
+            <br>
+            <strong>When</strong> {{ formatEventTimes(event) }}
+          </div>
+          <span><strong>{{ event.title }}</strong></span>
+          <span>{{ formatEventTimes(event) }}</span>
+        </ElTooltip>
       </div>
     </li>
   </ul>
@@ -52,8 +59,13 @@
 
 <script>
 import moment from 'moment';
+import {
+  Tooltip as ElTooltip } from 'element-ui';
 
 export default {
+  components: {
+    ElTooltip
+  },
   props: ['date', 'events'],
   computed: {
     day() {
@@ -61,6 +73,9 @@ export default {
     }
   },
   methods: {
+    eventInfo(event) {
+      return event;
+    },
     eventsOfHour(hour) {
       return _.chain(this.events)
         .filter((event) => {

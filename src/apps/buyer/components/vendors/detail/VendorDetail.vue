@@ -10,7 +10,7 @@ span.vendor-name {
       <div class="col-sm-12">
         <span class="vendor-name">{{ vendor.company.name }}</span>
         <StateBadge />
-        <!-- <WatchVendorBadge /> -->
+        <WatchVendorBadge />
       </div>
     </div>
     <div class="row">
@@ -36,13 +36,15 @@ import Information from './detailTabs/Information';
 import ProductTable from './detailTabs/ProductTable';
 import { FlowersProductTable, EdiblesProductTable, ConcentratesProductTable } from '../../../metadata/productTables';
 import StateBadge from '../master/StateBadge';
+import WatchVendorBadge from '../master/WatchVendorBadge';
 
 export default {
   components: {
     DetailTabs,
     Information,
     ProductTable,
-    StateBadge
+    StateBadge,
+    WatchVendorBadge
   },
   props: ['vendor'],
   data() {
