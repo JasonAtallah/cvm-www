@@ -14,7 +14,7 @@
   list-style: none;
   display: table-cell;
   text-align: left;
-  padding: .2rem 1rem;
+  padding: 1rem;
   width: 50%;
 }
 
@@ -41,6 +41,10 @@
   cursor: pointer;
   font-size: 0.875rem;
 }
+
+.filter-dropdown-item:hover {
+  background-color: inherit;
+}
 </style>
 
 <template>
@@ -62,25 +66,39 @@
     </ElDropdown>
   </li>
 
-  <li class="status">
-    <div class="title">Status</div>
-    <ElSelect @change="updateStatus"
-      v-model="statusesSelected"
-      filterable clearable
-      size="mini"
-      placeholder="All">
-      <ElOption
-        v-for="option in statusOptions"
-        :key="option.value"
-        :label="option.label"
-        :value="option.value">
-      </ElOption>
-    </ElSelect>
-  </li>
-
   <li class="filter">
-    <div class="title">Search</div>
-      <input type="text" @input="updateSearch" />
+    <div class="title">Filter</div>
+    <ElDropdown :hide-on-click="false" trigger="click">
+      <span class="el-dropdown-link">
+        {{ filterValue }}
+        <i class="el-icon-arrow-down el-icon--right" />
+      </span>
+      <ElDropdownMenu slot="dropdown">
+        <ElDropdownItem class="filter-dropdown-item">
+          <div>Status</div>
+          <ElSelect @change="updateStatus"
+            v-model="statusesSelected"
+            filterable clearable
+            size="mini"
+            placeholder="All">
+            <ElOption
+              v-for="option in statusOptions"
+              :key="option.value"
+              :label="option.label"
+              :value="option.value">
+            </ElOption>
+          </ElSelect>
+        </ElDropdownItem>
+        <!-- <ElDropdownItem>
+          <div class="title">Search</div>
+            <input type="text" @input="updateSearch" />
+        </ElDropdownItem> -->
+        <ElDropdownItem class="filter-dropdown-item">
+          <div>Search</div>
+          <ElInput placeholder="Search" label="Search" clearable size="mini" />
+        </ElDropdownItem>
+      </ElDropdownMenu>
+    </ElDropdown>
   </li>
 
 </ul>
@@ -93,6 +111,7 @@ import {
   Dropdown as ElDropdown,
   DropdownMenu as ElDropdownMenu,
   DropdownItem as ElDropdownItem,
+  Input as ElInput,
   Option as ElOption,
   Select as ElSelect } from 'element-ui';
 import DropdownForm from '@/components/form/DropdownForm';
@@ -108,6 +127,7 @@ export default {
     ElDropdown,
     ElDropdownMenu,
     ElDropdownItem,
+    ElInput,
     ElOption,
     ElSelect
   },
@@ -115,7 +135,8 @@ export default {
     return {
       ALL_STATUS_TYPES: 'All',
       sortSelected: '',
-      statusesSelected: ''
+      statusesSelected: '',
+      a: ''
     };
   },
   computed: {
@@ -123,12 +144,6 @@ export default {
       statusOptions: 'statusOptions',
       vendorFilter: 'vendorFilter'
     }),
-    selectedSortLabel() {
-      if (!this.vendorFilter.sort) {
-        return 'none';
-      }
-      return this.vendorFilter.sort.label;
-    },
     filterValue() {
       if (this.vendorFilter.searchTerm && this.vendorFilter.status) {
         return `"${this.vendorFilter.searchTerm}" in ${this.vendorFilter.status}`;
@@ -139,6 +154,12 @@ export default {
       }
 
       return this.ALL_STATUS_TYPES;
+    },
+    selectedSortLabel() {
+      if (!this.vendorFilter.sort) {
+        return 'none';
+      }
+      return this.vendorFilter.sort.label;
     }
   },
   methods: {
@@ -146,7 +167,7 @@ export default {
       this.$store.commit('productFilter', value);
     },
     updateSearch(event) {
-      this.$store.commit('vendorSearch', event.target.value);
+      this.$store.commit('vendorSearch', this.a);
     },
     updateSort(sort) {
       this.$store.commit('vendorSort', sort);

@@ -87,7 +87,6 @@ export default {
   },
 
   updateQuestionnaire(page) {
-    console.log(page);
     return http.put('/buyer/v1/questionnaire', page);
   },
 

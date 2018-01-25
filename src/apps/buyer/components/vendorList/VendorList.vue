@@ -29,7 +29,7 @@
 }
 
 .vendor-list .item-main {
-  padding: 15px 0px 15px 25px
+  padding: 15px 15px 15px 25px
 }
 
 .vendor-list .item-btns {
