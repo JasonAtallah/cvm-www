@@ -1,16 +1,11 @@
 <style scoped>
-span.vendor-name {
-  font-size: 2rem;
-}
 </style>
 
 <template>
   <div class="vendor-detail">
     <div class="row">
       <div class="col-sm-12">
-        <span class="vendor-name">{{ vendor.company.name }}</span>
-        <StateBadge />
-        <WatchVendorBadge />
+        <h3>{{ vendor.company.name }}</h3>
       </div>
     </div>
     <div class="row">
@@ -35,17 +30,14 @@ import DetailTabs from './detailTabs/DetailTabs';
 import Information from './detailTabs/Information';
 import ProductTable from './detailTabs/ProductTable';
 import { FlowersProductTable, EdiblesProductTable, ConcentratesProductTable } from '../../../metadata/productTables';
-import StateBadge from '../master/StateBadge';
-import WatchVendorBadge from '../master/WatchVendorBadge';
 
 export default {
   components: {
     DetailTabs,
     Information,
-    ProductTable,
-    StateBadge,
-    WatchVendorBadge
+    ProductTable
   },
+  props: ['vendor'],
   data() {
     return {
       FlowersProductTable,
@@ -54,7 +46,6 @@ export default {
       selTab: 'information'
     };
   },
-  props: ['vendor'],
   methods: {
     changeTab(detailTab) {
       this.selTab = detailTab;
