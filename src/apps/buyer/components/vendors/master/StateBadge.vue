@@ -1,5 +1,5 @@
 <template>
-  <span class="badge badge-success">{{ getBadge }}</span>
+  <span :class="getBadgeClass">{{ getBadge }}</span>
 </template>
 
 <script>
@@ -10,16 +10,24 @@ export default {
   props: ['vendor'],
   computed: {
     ...mapGetters({
-      selVendorState: 'selVendorState'
+      buttons: 'vendorActionButtons',
+      selVendorState: 'selVendorState',
+      curVendor: null
     }),
     getBadge() {
-      if (this.vendor) {
-        return this.stateNameForDisplay(this.vendor.state.name);
-      }
-      return this.stateNameForDisplay(this.selVendorState.state.name);
-    }
+      return this.stateNameForDisplay(this.getVendor().state.name);
+    },
+    getBadgeClass() {
+      return `badge badge-${_.find(this.buttons, { status: this.getVendor().state.name }).badge}`;
+    },
   },
   methods: {
+    getVendor() {
+      if (this.vendor) {
+        return this.vendor;
+      }
+      return this.selVendorState;
+    },
     stateNameForDisplay
   }
 };

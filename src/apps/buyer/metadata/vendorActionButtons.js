@@ -4,6 +4,7 @@ export default [
   {
     status: 'NewVendor',
     label: 'Action',
+    badge: 'info',
     options: [
       {
         value: 'approveVendor',
@@ -21,18 +22,21 @@ export default [
     status: 'BuyerNeedsToSendTimes',
     label: 'Schedule Time',
     value: 'sendTimes',
-    dispatch: 'overrideDetail'
+    dispatch: 'overrideDetail',
+    badge: 'primary'
   },
   {
     status: 'ApptScheduled',
     label: 'View Meeting',
     value: 'cancelMeeting',
-    dispatch: 'overrideDetail'
+    dispatch: 'overrideDetail',
+    badge: 'success'
   },
   {
     status: 'VendorRejected',
     label: 'Watch',
     value: 'watch',
+    badge: 'danger',
     options: [
       {
         label: 'Yes',
@@ -47,5 +51,9 @@ export default [
         dispatch: 'updateThreadAttributes'
       }
     ]
+  },
+  {
+    status: 'VendorNeedsToReviewTimes',
+    badge: 'secondary'
   }
 ];
