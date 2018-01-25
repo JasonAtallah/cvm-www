@@ -5,8 +5,9 @@
       Update your default email templates. These are used when sending an approval or rejection email to a new vendor.
     </p>
     <div class="card card-body bg-light">
-      <ElTabs>
-        <ElTabPane v-for="emailType in emailTypes" :label="emailType.label" :key="emailType.value">
+      <ElTabs value="approveVendor" @tab-click="switchTab">
+        <ElTabPane v-for="emailType in emailTypes" :label="emailType.label"
+        :key="emailType.value" :name="emailType.value">
           <div class="form-group" :model="emails[emailType.value]">
             <div class="row">
               <div class="col-sm-12">
@@ -18,7 +19,7 @@
             <div class="row">
               <div class="col-sm-12">
                 <label class="settings-input-label" for="body">Body</label>
-                <ElInput id="body" type="textarea" v-model="emails[emailType.value].body" placeholder="Body" />
+                <ElInput id="body" type="textarea" v-model="emails[emailType.value].body" placeholder="Body" :rows="10" />
               </div>
             </div>
           </div>
@@ -63,6 +64,7 @@ export default {
   },
   data() {
     return {
+      curTab: 'approveVendor',
       emails: {
         approveVendor: {
           subject: this.buyer.emails.approveVendor.subject || null,
@@ -76,46 +78,38 @@ export default {
     };
   },
   methods: {
-    updateApprovalEmail(action) {
-      return this.$store.dispatch('updateBuyerEmailTemplate', {
-        email: this.emails.approveVendor,
-        templateId: action
-      });
-    },
-    updateEmail(action) {
-      if (action === 'approveVendor') {
-        const newApprove = this.emails.approveVendor;
-        const curApprove = this.buyer.emails.approveVendor;
-        if (newApprove.subject !== curApprove.subject || newApprove.body !== curApprove.body) {
-          this.updateApprovalEmail(action);
-          Notification({
-            title: 'Success',
-            message: 'Approval Email Updated!',
-            type: 'success'
-          });
-        }
-      } else if (action === 'rejectVendor') {
-        const newReject = this.emails.rejectVendor;
-        const curReject = this.buyer.emails.rejectVendor;
-        if (newReject.subject !== curReject.subject || newReject.body !== curReject.body) {
-          this.updateRejectionEmail(action);
-          Notification({
-            title: 'Success',
-            message: 'Rejection Email Updated!',
-            type: 'success',
-            duration: 2000
-          });
-        }
+    cancel() {
+      if (this.curTab === 'approveVendor') {
+        this.emails.approveVendor = _.cloneDeep(this.buyer.emails.approveVendor);
+      } else if (this.curTab === 'rejectVendor') {
+        this.emails.rejectVendor = _.cloneDeep(this.buyer.emails.rejectVendor);
       }
     },
-    updateEmails() {
-      this.updateEmail('approveVendor');
-      this.updateEmail('rejectVendor');
+    switchTab(tab) {
+      this.curTab = tab.name;
     },
-    updateRejectionEmail(action) {
-      return this.$store.dispatch('updateBuyerEmailTemplate', {
-        email: this.emails.rejectVendor,
-        templateId: action
+    updateEmails() {
+      let email;
+      let messageName;
+      if (this.curTab === 'approveVendor') {
+        email = {
+          email: this.emails.approveVendor,
+          templateId: this.curTab
+        };
+        messageName = 'Approval Email';
+      } else if (this.curTab === 'rejectVendor') {
+        email = {
+          email: this.emails.rejectVendor,
+          templateId: this.curTab
+        };
+        messageName = 'Rejection Email';
+      }
+      this.$store.dispatch('updateBuyerEmailTemplate', email);
+      Notification({
+        title: 'Success',
+        message: `${messageName} Updated!`,
+        type: 'success',
+        duration: 2000
       });
     }
   }

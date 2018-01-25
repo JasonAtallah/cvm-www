@@ -14,6 +14,10 @@ export const buyer = (state, buyer) => {
   state.buyer = buyer;
 };
 
+export const buyerEmails = (state, emails) => {
+  state.buyer.emails = emails;
+};
+
 export const buyerProfile = (state, profile) => {
   state.buyer.profile = profile;
 };

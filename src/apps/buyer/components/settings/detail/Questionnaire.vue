@@ -23,7 +23,7 @@ a.markdown-link:hover {
                 <div v-else>
                 <label class="settings-input-label"></label>
                 <ElInput :id="page.value" v-model="newQuestionnaire[page.value]" placeholder="Enter text using markdown"
-                type="textarea" :rows="20"/>
+                type="textarea" :rows="15"/>
                 </div>
               </div>
             </div>

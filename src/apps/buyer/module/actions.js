@@ -182,7 +182,10 @@ export const updateBuyerProfile = ({ rootState, commit }, profile) => {
 };
 
 export const updateBuyerEmailTemplate = ({ rootState, commit }, { templateId, email }) => {
-  return api.updateBuyerEmailTemplate(templateId, email);
+  return api.updateBuyerEmailTemplate(templateId, email)
+    .then((emails) => {
+      commit('buyerEmails', emails);
+    });
 };
 
 export const updateQuestionnaire = ({ rootState, commit }, page) => {
