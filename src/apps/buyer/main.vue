@@ -23,8 +23,6 @@ html, body {
 <template>
   <div id="app">
     <router-view/>
-
-    <AddCalendarEvent />
     <AddLocation />
     <ConfirmCancelMeeting />
     <SendVendorStatusEmail />
@@ -35,7 +33,6 @@ html, body {
 </template>
 
 <script>
-import AddCalendarEvent from './components/calendar/modals/AddCalendarEvent';
 import AddLocation from './components/vendors/modals/AddLocation';
 import ConfirmCancelMeeting from './components/vendors/modals/ConfirmCancelMeeting';
 import SendVendorStatusEmail from './components/vendors/modals/SendVendorStatusEmail';
@@ -46,7 +43,6 @@ import ViewCalendarEvent from './components/calendar/modals/ViewCalendarEvent';
 export default {
   name: 'app',
   components: {
-    AddCalendarEvent,
     AddLocation,
     ConfirmCancelMeeting,
     SendVendorStatusEmail,

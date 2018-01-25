@@ -20,7 +20,7 @@ import { mapGetters } from 'vuex';
 export default {
   methods: {
     addEvent() {
-      this.$store.commit('takeAction', {
+      this.$store.commit('overrideDetail', {
         type: 'addCalendarEvent'
       });
     }
