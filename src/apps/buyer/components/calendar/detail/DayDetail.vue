@@ -57,7 +57,7 @@ export default {
   props: ['date', 'events'],
   computed: {
     day() {
-      return _.range(7, 21);
+      return _.range(0, 24);
     }
   },
   methods: {
