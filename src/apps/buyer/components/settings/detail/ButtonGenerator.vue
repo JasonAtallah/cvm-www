@@ -22,28 +22,24 @@ span#code-paste-text {
           <div class="row btn-gen-field">
             <div class="col-sm-6">
               <label for="width">Width</label><br>
-              <ElInputNumber name="width" v-model="button.width" :min="10" :max="520"/>
+              <ElSlider name="width" v-model="button.width" :min="10" :max="520" />
             </div>
             <div class="col-sm-6 btn-gen-field">
               <label for="height">Height</label><br>
-              <ElInputNumber name="height" v-model="button.height" :min="10" :max="520"/>
+              <ElSlider name="height" v-model="button.height" :min="10" :max="520"/>
             </div>
           </div>
           <div class="row btn-gen-field">
             <div class="col-sm-6">
               <label for="borderRadius">Border Radius</label><br>
-              <ElInputNumber name="borderRadius" v-model="button.borderRadius" :min="0" :max="50"/>
+              <ElSlider name="borderRadius" v-model="button.borderRadius" :min="0" :max="280"/>
             </div>
             <div class="col-sm-6">
               <label for="fontSize">Font Size</label><br>
-              <ElInputNumber name="fontSize" v-model="button.text.fontSize" :min="2" :max="120"/>
+              <ElSlider name="fontSize" v-model="button.text.fontSize" :min="2" :max="120"/>
             </div>
           </div>
           <div class="row btn-gen-field">
-            <div class="col-sm-6">
-              <label for="text">Text</label>
-              <ElInput name="text" v-model="button.text.text" />
-            </div>
             <div class="col-sm-3">
               <label for="backgroundColor">Background Color</label><br>
               <ElColorPicker name="backgroundColor" v-model="button.backgroundColor" />
@@ -51,6 +47,15 @@ span#code-paste-text {
             <div class="col-sm-3">
               <label for="color">Text Color</label><br>
               <ElColorPicker name="color" v-model="button.text.color" />
+            </div>
+            <div class="col-sm-6">
+              <label for="text">Text</label>
+              <ElInput name="text" v-model="button.text.text" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <ElButton type="danger" class="pull-right" @click="reset">Reset</ElButton>
             </div>
           </div>
         </div>
@@ -77,22 +82,37 @@ span#code-paste-text {
 
 <script>
 import {
+  Button as ElButton,
   Card as ElCard,
   ColorPicker as ElColorPicker,
   Input as ElInput,
-  InputNumber as ElInputNumber } from 'element-ui';
+  InputNumber as ElInputNumber,
+  Slider as ElSlider } from 'element-ui';
 
 export default {
   props: ['buyer', 'questionnaire'],
   components: {
+    ElButton,
     ElCard,
     ElColorPicker,
     ElInput,
-    ElInputNumber
+    ElInputNumber,
+    ElSlider
   },
   data() {
     return {
       button: {
+        borderRadius: 12,
+        backgroundColor: '#00e64d',
+        width: 200,
+        height: 75,
+        text: {
+          fontSize: 30,
+          text: 'Apply',
+          color: '#f2f2f2'
+        }
+      },
+      defaultButton: {
         borderRadius: 12,
         backgroundColor: '#00e64d',
         width: 200,
@@ -113,6 +133,9 @@ export default {
     },
     generateUrl() {
       return `http://localhost:8082/?qid=${this.questionnaire._id}#/`;
+    },
+    reset() {
+      this.button = _.cloneDeep(this.defaultButton);
     }
   }
 };
