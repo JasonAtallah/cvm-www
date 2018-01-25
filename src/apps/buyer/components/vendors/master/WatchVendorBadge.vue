@@ -22,7 +22,10 @@ export default {
   methods: {
     watchingVendor(vendor) {
       if (this.vendor) {
-        return vendor.attributes.watchVendor;
+        if (this.vendor.attributes) {
+          return this.vendor.attributes.watchVendor;
+        }
+        return false;
       } else if (this.selVendorState.attributes) {
         return this.selVendorState.attributes.watchVendor;
       }
