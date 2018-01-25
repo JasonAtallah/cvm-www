@@ -26,7 +26,6 @@ html, body {
 
     <AddCalendarEvent />
     <AddLocation />
-    <AddVendor />
     <ConfirmCancelMeeting />
     <SendVendorStatusEmail />
     <SetCalendar />
@@ -38,7 +37,6 @@ html, body {
 <script>
 import AddCalendarEvent from './components/calendar/modals/AddCalendarEvent';
 import AddLocation from './components/vendors/modals/AddLocation';
-import AddVendor from './components/vendors/modals/AddVendor';
 import ConfirmCancelMeeting from './components/vendors/modals/ConfirmCancelMeeting';
 import SendVendorStatusEmail from './components/vendors/modals/SendVendorStatusEmail';
 import SetCalendar from './components/calendar/modals/SetCalendar';
@@ -50,7 +48,6 @@ export default {
   components: {
     AddCalendarEvent,
     AddLocation,
-    AddVendor,
     ConfirmCancelMeeting,
     SendVendorStatusEmail,
     SetCalendar,

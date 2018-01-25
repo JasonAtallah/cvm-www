@@ -21,6 +21,7 @@
           <VendorDetail v-if="showVendorDetail" :vendor="vendor" />
           <ScheduledMeeting v-if="showScheduledMeeting" :params="overridingDetail" />
           <SendTimes v-if="showSendTimes" :params="overridingDetail" />
+          <AddVendor v-if="addVendor" :params="overridingDetail" />
         </div>
       </MasterDetail>
     </div>
@@ -30,6 +31,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import MasterDetail from '@/components/MasterDetail';
+import AddVendor from './detail/AddVendor';
 import BasePage from '../BasePage';
 import ScheduledMeeting from './detail/ScheduledMeeting';
 import SendTimes from './detail/SendTimes';
@@ -38,6 +40,7 @@ import VendorDetail from './detail/VendorDetail';
 
 export default {
   components: {
+    AddVendor,
     BasePage,
     MasterDetail,
     ScheduledMeeting,
@@ -56,6 +59,9 @@ export default {
       overridingDetail: 'overridingDetail',
       vendor: 'selVendor'
     }),
+    addVendor() {
+      return !!(this.overridingDetail && this.overridingDetail.type === 'addVendor');
+    },
     showVendorDetail() {
       return !!(!this.overridingDetail && this.vendor);
     },
