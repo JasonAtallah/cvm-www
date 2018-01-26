@@ -70,7 +70,7 @@ export default {
   props: ['buyer'],
   computed: {
     canNotUpdate() {
-      return _.isEqual(this.buyer.emails.approveVendor, this.emails.approveVendor) && _.isEqual(this.buyer.emails.rejectVendor, this.emails.rejectVendor);
+      return _.isEqual(this.buyer.emails[this.curTab], this.emails[this.curTab]);
     },
     emailTypes() {
       const actions = this.$store.getters.vendorActionButtons;
@@ -79,35 +79,20 @@ export default {
   },
   methods: {
     cancel() {
-      if (this.curTab === 'approveVendor') {
-        this.emails.approveVendor = _.cloneDeep(this.buyer.emails.approveVendor);
-      } else if (this.curTab === 'rejectVendor') {
-        this.emails.rejectVendor = _.cloneDeep(this.buyer.emails.rejectVendor);
-      }
+      this.emails[this.curTab] = _.cloneDeep(this.buyer.emails[this.curTab]);
     },
     switchTab(tab) {
       this.curTab = tab.name;
     },
     updateEmails() {
-      let email;
-      let messageName;
-      if (this.curTab === 'approveVendor') {
-        email = {
-          email: this.emails.approveVendor,
-          templateId: this.curTab
-        };
-        messageName = 'Approval Email';
-      } else if (this.curTab === 'rejectVendor') {
-        email = {
-          email: this.emails.rejectVendor,
-          templateId: this.curTab
-        };
-        messageName = 'Rejection Email';
-      }
+      const email = {
+        email: this.emails[this.curTab],
+        templateId: this.curTab
+      };
       this.$store.dispatch('updateBuyerEmailTemplate', email);
       Notification({
         title: 'Success',
-        message: `${messageName} Updated!`,
+        message: 'Email Template Updated!',
         type: 'success',
         duration: 2000
       });
