@@ -30,6 +30,7 @@ export default {
   },
   methods: {
     onActionSelect(action) {
+      console.log(action);
       if (action.commit) {
         this.$store.commit(action.commit, {
           type: action.value,

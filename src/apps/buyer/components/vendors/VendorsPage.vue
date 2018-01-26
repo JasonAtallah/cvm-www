@@ -18,10 +18,11 @@
           <Master />
         </div>
         <div slot="detail" class="vendors-detail">
-          <VendorDetail v-if="showVendorDetail" :vendor="vendor" />
-          <ScheduledMeeting v-if="showScheduledMeeting" :params="overridingDetail" />
-          <SendTimes v-if="showSendTimes" :params="overridingDetail" />
           <AddVendor v-if="addVendor" :params="overridingDetail" />
+          <ApptScheduled v-if="showScheduledMeeting" :params="overridingDetail" />
+          <SendTimes v-if="showSendTimes" :params="overridingDetail" />
+          <SendVendorStatusEmail v-if="showSendStatusEmail" :params="overridingDetail" />
+          <VendorDetail v-if="showVendorDetail" :vendor="vendor" />
         </div>
       </MasterDetail>
     </div>
@@ -32,19 +33,21 @@
 import { mapGetters } from 'vuex';
 import MasterDetail from '@/components/MasterDetail';
 import AddVendor from './detail/AddVendor';
+import ApptScheduled from './detail/ApptScheduled';
 import BasePage from '../BasePage';
-import ScheduledMeeting from './detail/ScheduledMeeting';
 import SendTimes from './detail/SendTimes';
+import SendVendorStatusEmail from './detail/SendVendorStatusEmail';
 import Master from './master/Master';
 import VendorDetail from './detail/VendorDetail';
 
 export default {
   components: {
     AddVendor,
+    ApptScheduled,
     BasePage,
     MasterDetail,
-    ScheduledMeeting,
     SendTimes,
+    SendVendorStatusEmail,
     VendorDetail,
     Master
   },
@@ -70,6 +73,9 @@ export default {
     },
     showSendTimes() {
       return !!(this.overridingDetail && this.overridingDetail.type === 'sendTimes');
+    },
+    showSendStatusEmail() {
+      return !!(this.overridingDetail && (this.overridingDetail.type === 'approveVendor' || this.overridingDetail.type === 'rejectVendor'));
     }
   },
   beforeRouteEnter(to, from, next) {

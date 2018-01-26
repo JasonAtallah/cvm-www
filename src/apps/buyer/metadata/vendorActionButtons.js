@@ -9,12 +9,12 @@ export default [
       {
         value: 'approveVendor',
         label: 'Approve',
-        commit: 'takeAction'
+        dispatch: 'overrideDetail'
       },
       {
         value: 'rejectVendor',
         label: 'Reject',
-        commit: 'takeAction'
+        dispatch: 'overrideDetail'
       }
     ]
   },

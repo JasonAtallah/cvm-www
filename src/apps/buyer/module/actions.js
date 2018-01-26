@@ -5,7 +5,7 @@ export const approveVendor = ({ commit }, { vendor, email }) => {
   return api.approveVendor(vendor, email, genVendorUrl(vendor))
     .then((vendorItem) => {
       commit('updateVendorItem', vendorItem);
-      commit('cancelPendingAction');
+      commit('cancelDetailOverride');
     });
 };
 
@@ -122,7 +122,7 @@ export const rejectVendor = ({ commit }, { vendor, email }) => {
   return api.rejectVendor(vendor, email)
     .then((vendorItem) => {
       commit('updateVendorItem', vendorItem);
-      commit('cancelPendingAction');
+      commit('cancelDetailOverride');
     });
 };
 
