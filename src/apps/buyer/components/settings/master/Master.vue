@@ -3,7 +3,7 @@
 </style>
 
 <template>
-  <ElRow class="tac">
+  <ElRow>
     <ElCol :span="24">
       <ElMenu default-active="profile">
         <ElMenuItem v-for="setting in settings.settingsTabs" :key="setting.value" @click="switchTab(setting)" :index="setting.value">
