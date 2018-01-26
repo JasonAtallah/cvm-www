@@ -62,11 +62,14 @@
 </template>
 
 <script>
-import { Input as ElInput } from 'element-ui';
+import {
+  Input as ElInput,
+  Notification } from 'element-ui';
 
 export default {
   components: {
-    ElInput
+    ElInput,
+    Notification
   },
   data() {
     return {
@@ -93,6 +96,12 @@ export default {
     },
     save() {
       this.$store.dispatch('createVendor', this.vendor);
+      Notification({
+        title: 'Success',
+        message: 'Vendor Added',
+        type: 'success',
+        duration: 2000
+      });
     }
   }
 };

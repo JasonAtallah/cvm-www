@@ -1,7 +1,7 @@
 <style lang="scss" scoped>
 .vendor-list {
   height: 100%;
-  margin: 4px 0px 0px 0px;
+  margin: 15px 0px 0px 0px;
   overflow-x: hidden;
   overflow-y: scroll;
   background-color: #DEDEDE;

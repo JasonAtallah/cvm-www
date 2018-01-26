@@ -4,7 +4,7 @@ export default [
   {
     status: 'NewVendor',
     label: 'Action',
-    badge: 'info',
+    badge: 'success',
     options: [
       {
         value: 'approveVendor',
@@ -23,14 +23,14 @@ export default [
     label: 'Schedule Time',
     value: 'sendTimes',
     dispatch: 'overrideDetail',
-    badge: 'primary'
+    badge: 'info'
   },
   {
     status: 'ApptScheduled',
     label: 'View Meeting',
     value: 'cancelMeeting',
     dispatch: 'overrideDetail',
-    badge: 'success'
+    badge: 'primary'
   },
   {
     status: 'VendorRejected',
