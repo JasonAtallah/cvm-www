@@ -28,9 +28,9 @@
   display: inline-flex;
   padding: .5rem;
   margin: 0.5rem 0.5rem 0.5rem 0.5rem;
-  /* margin-right: 1rem; */
   background-color: rgba(102, 213, 187, 0.51);
   border-radius: 3px;
+  cursor: pointer;
 }
 </style>
 
@@ -42,15 +42,37 @@
     <li v-for="hour in day" :key="hour">
       <label>{{ formatHour(hour) }}</label>
       <div class="event" v-for="event in eventsOfHour(hour)" :key="event.id">
-        <ElTooltip>
-          <div slot="content">
-            <strong>Where</strong> {{ event.location }}
-            <br>
-            <strong>When</strong> {{ formatEventTimes(event) }}
+        <ElPopover ref="eventPopOver" :title="event.title" width="200" trigger="click">
+          <hr>
+          <div class="popoverContent">
+            <div class="row">
+              <div class="col-sm-2">
+                <i class="el-icon-time"></i>
+              </div>
+              <div class="col-sm-10">
+                <h5>{{ formatDate(date) }}</h5>
+                <h6>{{ formatEventTimes(event) }}</h6>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-2">
+                <i class="el-icon-location-outline"></i>
+              </div>
+              <div class="col-sm-10">
+                <h5>{{ event.location }}</h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-2">
+                <i class="el-icon-date"></i>
+              </div>
+              <div class="col-sm-10">
+                <h5>{{ buyerCalendar() }}</h5>
+              </div>
+            </div>
           </div>
-          <span><strong>{{ event.title }}</strong></span>
-          <span>{{ formatEventTimes(event) }}</span>
-        </ElTooltip>
+          <span slot="reference"><strong>{{ event.title }}</strong></span>
+        </ElPopover>
       </div>
     </li>
   </ul>
@@ -60,10 +82,12 @@
 <script>
 import moment from 'moment';
 import {
+  Popover as ElPopover,
   Tooltip as ElTooltip } from 'element-ui';
 
 export default {
   components: {
+    ElPopover,
     ElTooltip
   },
   props: ['date', 'events'],
@@ -73,6 +97,9 @@ export default {
     }
   },
   methods: {
+    buyerCalendar() {
+      return this.$store.getters.buyer.gcalendar.name;
+    },
     eventInfo(event) {
       return event;
     },
