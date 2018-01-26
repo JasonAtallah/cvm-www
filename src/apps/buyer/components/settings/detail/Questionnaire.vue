@@ -97,31 +97,17 @@ export default {
   },
   methods: {
     cancel() {
-      if (this.curTab === 'introduction') {
-        this.newQuestionnaire.introduction = _.cloneDeep(this.questionnaire.introduction);
-      } else if (this.curTab === 'completion') {
-        this.newQuestionnaire.completion = _.cloneDeep(this.questionnaire.completion);
-      }
+      this.newQuestionnaire[this.curTab] = _.cloneDeep(this.questionnaire[this.curTab]);
     },
     switchTab(tab) {
       this.curTab = tab.name;
     },
     updateQuestionnaire() {
-      let page;
-      if (this.curTab === 'introduction') {
-        page = {
-          introduction: this.newQuestionnaire.introduction
-        };
-      } else if (this.curTab === 'completion') {
-        page = {
-          completion: this.newQuestionnaire.completion
-        };
-      }
+      const page = { introduction: this.newQuestionnaire[this.curTab] };
       this.$store.dispatch('updateQuestionnaire', page);
       Notification({
-        title: 'Success',
-        message: `${this.curTab} page updated`,
-        type: 'success',
+        message: `${this.curTab} Page Updated!`,
+        type: 'Success',
         duration: 2000
       });
     }
