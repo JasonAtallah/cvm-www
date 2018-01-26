@@ -38,16 +38,16 @@
 import { mapGetters } from 'vuex';
 
 export default {
+  data() {
+    return {
+      cancelling: false
+    };
+  },
   computed: {
     ...mapGetters({
       buyer: 'buyer',
       vendor: 'vendor'
     })
-  },
-  data() {
-    return {
-      cancelling: false
-    };
   },
   methods: {
     confirmCancel(confirm) {

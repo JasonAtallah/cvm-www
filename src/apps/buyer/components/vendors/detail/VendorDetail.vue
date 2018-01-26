@@ -46,7 +46,6 @@ export default {
     StateBadge,
     WatchVendorBadge
   },
-  props: ['vendor'],
   data() {
     return {
       FlowersProductTable,
@@ -55,6 +54,7 @@ export default {
       selTab: 'information'
     };
   },
+  props: ['vendor'],
   methods: {
     changeTab(detailTab) {
       this.selTab = detailTab;

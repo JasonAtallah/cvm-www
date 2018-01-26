@@ -54,12 +54,12 @@ export default {
   components: {
     ProductFiles
   },
-  props: ['table', 'vendor'],
   data() {
     return {
       activeRow: null
     };
   },
+  props: ['table', 'vendor'],
   computed: {
     products() {
       return this.vendor[this.table.vendorField].products;

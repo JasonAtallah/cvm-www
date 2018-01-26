@@ -76,16 +76,10 @@ import {
   Notification } from 'element-ui';
 
 export default {
-  props: ['buyer'],
   components: {
     ElButton,
     ElInput,
     Notification
-  },
-  computed: {
-    canNotUpdate() {
-      return _.isEqual(this.buyer.profile, this.profile);
-    }
   },
   data() {
     return {
@@ -105,6 +99,12 @@ export default {
         }
       }
     };
+  },
+  props: ['buyer'],
+  computed: {
+    canNotUpdate() {
+      return _.isEqual(this.buyer.profile, this.profile);
+    }
   },
   methods: {
     cancel() {

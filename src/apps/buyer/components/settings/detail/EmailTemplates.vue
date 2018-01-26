@@ -45,22 +45,12 @@ import {
   Notification } from 'element-ui';
 
 export default {
-  props: ['buyer'],
   components: {
     ElButton,
     ElInput,
     ElTabs,
     ElTabPane,
     Notification
-  },
-  computed: {
-    canNotUpdate() {
-      return _.isEqual(this.buyer.emails.approveVendor, this.emails.approveVendor) && _.isEqual(this.buyer.emails.rejectVendor, this.emails.rejectVendor);
-    },
-    emailTypes() {
-      const actions = this.$store.getters.vendorActionButtons;
-      return _.find(actions, { label: 'Action' }).options;
-    }
   },
   data() {
     return {
@@ -76,6 +66,16 @@ export default {
         }
       }
     };
+  },
+  props: ['buyer'],
+  computed: {
+    canNotUpdate() {
+      return _.isEqual(this.buyer.emails.approveVendor, this.emails.approveVendor) && _.isEqual(this.buyer.emails.rejectVendor, this.emails.rejectVendor);
+    },
+    emailTypes() {
+      const actions = this.$store.getters.vendorActionButtons;
+      return _.find(actions, { label: 'Action' }).options;
+    }
   },
   methods: {
     cancel() {

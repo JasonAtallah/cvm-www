@@ -23,12 +23,8 @@
 <script>
 import { mapGetters } from 'vuex';
 import moment from 'moment';
-// import VendorListDetail from '../detail/VendorDetail';
 
 export default {
-  components: {
-    // VendorListDetail
-  },
   computed: {
     isVisible() {
       return this.$store.getters.pendingAction.type === 'showCalendarEvent';

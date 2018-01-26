@@ -52,6 +52,11 @@
 import { mapGetters } from 'vuex';
 
 export default {
+  data() {
+    return {
+      logoUrl: '/static/logo.png'
+    };
+  },
   props: {
     menuItems: {
       type: Array,
@@ -61,11 +66,6 @@ export default {
       type: String,
       required: true
     }
-  },
-  data() {
-    return {
-      logoUrl: '/static/logo.png'
-    };
   },
   computed: {
     pageMenu() {

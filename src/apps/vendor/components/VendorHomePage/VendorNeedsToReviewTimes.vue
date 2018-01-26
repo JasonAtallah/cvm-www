@@ -34,17 +34,17 @@ import { mapGetters } from 'vuex';
 import moment from 'moment';
 
 export default {
+  data() {
+    return {
+      selectedTime: null
+    };
+  },
   computed: {
     ...mapGetters({
       buyer: 'buyer',
       scheduledAppt: 'scheduledAppt',
       vendor: 'vendor'
     })
-  },
-  date() {
-    return {
-      selectedTime: null
-    };
   },
   methods: {
     apptDateTime(appt) {

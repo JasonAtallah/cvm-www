@@ -89,7 +89,6 @@ import {
   Slider as ElSlider } from 'element-ui';
 
 export default {
-  props: ['buyer', 'questionnaire'],
   components: {
     ElButton,
     ElCard,
@@ -123,6 +122,7 @@ export default {
       }
     };
   },
+  props: ['buyer', 'questionnaire'],
   methods: {
     generateButtonCode() {
       return `<button type="button" style="border-radius:${this.button.borderRadius}px; background-color:${this.button.backgroundColor};

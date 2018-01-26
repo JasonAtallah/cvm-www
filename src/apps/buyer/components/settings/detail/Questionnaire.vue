@@ -63,7 +63,6 @@ import {
   Notification } from 'element-ui';
 
 export default {
-  props: ['buyer', 'buyerSettings', 'questionnaire'],
   components: {
     ElButton,
     ElInput,
@@ -71,17 +70,6 @@ export default {
     ElTabs,
     ElTabPane,
     Notification
-  },
-  computed: {
-    canNotUpdate() {
-      return _.isEqual(this.questionnaire.introduction, this.newQuestionnaire.introduction) && _.isEqual(this.questionnaire.completion, this.newQuestionnaire.completion);
-    },
-    markdownHtml() {
-      return this.markdown.makeHtml(this.newQuestionnaire[this.curTab]);
-    },
-    questionnairePages() {
-      return _.find(this.buyerSettings.settingsTabs, { value: 'questionnaire' }).options;
-    },
   },
   data() {
     return {
@@ -94,6 +82,18 @@ export default {
       },
       previewMode: false
     };
+  },
+  props: ['buyer', 'buyerSettings', 'questionnaire'],
+  computed: {
+    canNotUpdate() {
+      return _.isEqual(this.questionnaire.introduction, this.newQuestionnaire.introduction) && _.isEqual(this.questionnaire.completion, this.newQuestionnaire.completion);
+    },
+    markdownHtml() {
+      return this.markdown.makeHtml(this.newQuestionnaire[this.curTab]);
+    },
+    questionnairePages() {
+      return _.find(this.buyerSettings.settingsTabs, { value: 'questionnaire' }).options;
+    },
   },
   methods: {
     cancel() {
