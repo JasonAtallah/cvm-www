@@ -7,7 +7,7 @@
       Update your personal and company information.
     </p>
     <div class="card card-body bg-light">
-      <ElForm :model="profile.contact" :rules="rules">
+      <ElForm :model="profile.contact" :rules="rules" ref="profile.contact">
         <ElCol :span="11">
           <ElFormItem label="First Name" prop="firstName">
             <ElInput v-model="profile.contact.firstName" placeholder="First Name" />
@@ -31,7 +31,7 @@
           </ElFormItem>
         </ElCol>
       </ElForm>
-      <ElForm :model="profile.company" :rules="rules">
+      <ElForm :model="profile.company" :rules="rules" ref="profile.company">
         <ElCol :span="11">
           <ElFormItem label="Name" prop="name">
             <ElInput v-model="profile.company.name" placeholder="Name" />
@@ -152,12 +152,25 @@ export default {
       this.profile = _.cloneDeep(this.buyer.profile);
     },
     updateProfile() {
-      this.$store.dispatch('updateBuyerProfile', _.cloneDeep(this.profile));
-      Notification({
-        title: 'Success',
-        message: 'Profile Updated!',
-        type: 'success',
-        duration: 2000
+      this.$refs['profile.contact'].validate((valid) => {
+        this.$refs['profile.company'].validate((valid) => {
+          if (valid) {
+            this.$store.dispatch('updateBuyerProfile', _.cloneDeep(this.profile));
+            Notification({
+              title: 'Success',
+              message: 'Profile Updated!',
+              type: 'success',
+              duration: 2000
+            });
+          } else {
+            Notification({
+              title: 'Uh oh',
+              message: 'Something Went Wrong',
+              type: 'error',
+              duration: 2000
+            });
+          }
+        });
       });
     }
   }
