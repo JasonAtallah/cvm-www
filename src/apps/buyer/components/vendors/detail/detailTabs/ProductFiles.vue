@@ -11,10 +11,10 @@
 <template>
   <div class="product-files">
     <div class="row">
-      <div class="col-md-1">
+      <div class="col-sm-1">
         <b>Files</b>
       </div>
-      <div class="col-md-3">
+      <div class="col-sm-3">
         <h6>Photos</h6>
         <ul class="list-unstyled">
           <li v-if="product.photos.length === 0">No photos were included!</li>
@@ -23,7 +23,7 @@
           </li>
         </ul>
       </div>
-      <div class="col-md-3">
+      <div class="col-sm-3">
         <h6>Test Results</h6>
         <ul class="list-unstyled">
           <li v-if="product.testResults.length === 0">No test results were included!</li>

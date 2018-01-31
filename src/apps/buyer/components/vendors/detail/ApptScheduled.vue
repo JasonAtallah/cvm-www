@@ -9,7 +9,7 @@
     <h2 class="modal-title">Scheduled appointment with {{ vendor.name }}</h2>
     <div class="card card-body bg-light">
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-sm-4">
           <ElCard>
             <h3>{{ startDate }}</h3><br>
             <h3>{{ startTime }} - {{ endTime }}</h3><br>

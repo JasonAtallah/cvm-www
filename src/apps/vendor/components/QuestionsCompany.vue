@@ -19,11 +19,11 @@
         <form>
 
           <div class="row">
-            <div class="form-group col-sm-12 col-md-6" v-if="showField('Name')">
+            <div class="form-group col-sm-12 col-sm-6" v-if="showField('Name')">
               <label for="name">Name:</label>
               <input type="text" class="form-control" id="name" v-model="response.name">
             </div>
-            <div class="form-group col-sm-12 col-md-6" v-if="showField('Website')">
+            <div class="form-group col-sm-12 col-sm-6" v-if="showField('Website')">
               <label for="website">Website:</label>
               <input type="text" class="form-control" id="website" v-model="response.website">
             </div>
@@ -37,28 +37,28 @@
           </div>
 
           <div class="row">
-            <div class="form-group col-sm-12 col-md-6" v-if="showField('City')">
+            <div class="form-group col-sm-12 col-sm-6" v-if="showField('City')">
               <label for="city">City:</label>
               <input type="text" class="form-control" id="city" v-model="response.city">
             </div>
 
-            <div class="form-group col-sm-6 col-md-3" v-if="showField('State')">
+            <div class="form-group col-sm-6 col-sm-3" v-if="showField('State')">
               <label for="state">State:</label>
               <input type="text" class="form-control" id="state" v-model="response.state">
             </div>
 
-            <div class="form-group col-sm-6 col-md-3" v-if="showField('Zip')">
+            <div class="form-group col-sm-6 col-sm-3" v-if="showField('Zip')">
               <label for="zip">Zip:</label>
               <input type="number" class="form-control" id="zip" v-model="response.zip">
             </div>
           </div>
 
           <div class="row">
-            <div class="form-group col-sm-12 col-md-6" v-if="showField('SREA')">
+            <div class="form-group col-sm-12 col-sm-6" v-if="showField('SREA')">
               <label for="srea">SREA#:</label>
               <input type="text" class="form-control" id="srea" v-model="response.srea">
             </div>
-            <div class="form-group col-sm-12 col-md-2" v-if="showField('HaveTaxId')">
+            <div class="form-group col-sm-12 col-sm-2" v-if="showField('HaveTaxId')">
               <label for="exampleFormControlSelect1">Have Tax ID:</label><br/>
               <select id="haveTaxId" v-model="response.haveTaxId">
                 <option value="" />
@@ -66,7 +66,7 @@
                 <option :value="true">Yes</option>
               </select>
             </div>
-            <div class="form-group col-sm-12 col-md-2" v-if="showField('HaveSellerPermit')">
+            <div class="form-group col-sm-12 col-sm-2" v-if="showField('HaveSellerPermit')">
               <label for="haveSellerPermit">Have Seller Permit:</label><br/>
               <select id="haveSellerPermit" v-model="response.haveSellerPermit">
                 <option value="" />
@@ -74,7 +74,7 @@
                 <option :value="true">Yes</option>
               </select>
             </div>
-            <div class="form-group col-sm-12 col-md-2" v-if="showField('PartOfCollective')">
+            <div class="form-group col-sm-12 col-sm-2" v-if="showField('PartOfCollective')">
               <label for="exampleFormControlSelect1">Part of Collective:</label><br/>
               <select id="partOfCollective" v-model="response.partOfCollective">
                 <option value="" />

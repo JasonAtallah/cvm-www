@@ -5,48 +5,58 @@
       Add your already existing vendors.
     </p>
     <div class="card card-body bg-light">
-      <h3>Company</h3>
-      <div class="form-group">
-        <label for="exampleFormControlSelect1">Name:</label>
-        <ElInput placeholder="Name" v-model="vendor.company.name" />
+      <div class="row">
+        <div class="col-sm-12">
+          <h3>Company</h3>
+        </div>
       </div>
       <div class="row">
-        <div class="form-group col-md-9">
+        <div class="form-group col-sm-12">
+          <label for="exampleFormControlSelect1">Name:</label>
+          <ElInput placeholder="Name" v-model="vendor.company.name" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-sm-12">
           <label for="exampleFormControlSelect1">Address:</label>
           <ElInput placeholder="Address" v-model="vendor.company.address" />
         </div>
-        <div class="form-group col-md-3">
+      </div>
+      <div class="row">
+        <div class="form-group col-sm-6">
+          <label for="exampleFormControlSelect1">City:</label>
+          <ElInput placeholder="City" v-model="vendor.company.city" />
+        </div>
+        <div class="form-group col-sm-3">
+          <label for="exampleFormControlSelect1">State:</label>
+          <ElInput placeholder="State" v-model="vendor.company.state" />
+        </div>
+        <div class="form-group col-sm-3">
           <label for="exampleFormControlSelect1">Zip:</label>
           <ElInput placeholder="Zip" v-model="vendor.company.zip" />
         </div>
       </div>
       <div class="row">
-        <div class="form-group col-md-6">
-          <label for="exampleFormControlSelect1">City:</label>
-          <ElInput placeholder="City" v-model="vendor.company.city" />
-        </div>
-        <div class="form-group col-md-6">
-          <label for="exampleFormControlSelect1">State:</label>
-          <ElInput placeholder="State" v-model="vendor.company.state" />
+        <div class="col-sm-12">
+          <h3>Contact</h3>
         </div>
       </div>
-      <h3>Contact</h3>
       <div class="row">
-        <div class="form-group col-md-6">
+        <div class="form-group col-sm-6">
           <label for="exampleFormControlSelect1">First:</label>
             <ElInput placeholder="First Name" v-model="vendor.contact.firstName" />
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-sm-6">
           <label for="exampleFormControlSelect1">Last:</label>
             <ElInput placeholder="Last Name" v-model="vendor.contact.lastName" />
         </div>
       </div>
       <div class="row">
-        <div class="form-group col-md-6">
+        <div class="form-group col-sm-6">
           <label for="exampleFormControlSelect1">Phone:</label>
             <ElInput placeholder="Phone" v-model="vendor.contact.phone" />
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-sm-6">
           <label for="exampleFormControlSelect1">Email:</label>
             <ElInput placeholder="Email" v-model="vendor.contact.email" />
         </div>

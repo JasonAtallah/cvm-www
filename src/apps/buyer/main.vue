@@ -27,7 +27,6 @@ html, body {
     <ConfirmCancelMeeting />
     <SetCalendar />
     <SetSchedule />
-    <ViewCalendarEvent />
   </div>
 </template>
 
@@ -36,7 +35,6 @@ import AddLocation from './components/vendors/modals/AddLocation';
 import ConfirmCancelMeeting from './components/vendors/modals/ConfirmCancelMeeting';
 import SetCalendar from './components/calendar/modals/SetCalendar';
 import SetSchedule from './components/calendar/modals/SetSchedule';
-import ViewCalendarEvent from './components/calendar/modals/ViewCalendarEvent';
 
 export default {
   name: 'app',
@@ -44,8 +42,7 @@ export default {
     AddLocation,
     ConfirmCancelMeeting,
     SetCalendar,
-    SetSchedule,
-    ViewCalendarEvent
+    SetSchedule
   },
   beforeMount() {
     this.$store.dispatch('init');
