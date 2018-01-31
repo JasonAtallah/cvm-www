@@ -3,9 +3,6 @@ div.btn-gen-field {
   margin-bottom: 1rem;
 }
 
-span#code-paste-text {
-  margin-left: 10px;
-}
 </style>
 
 <template>
@@ -17,55 +14,58 @@ span#code-paste-text {
   <div class="card card-body bg-light">
     <div slot="header" class="clearfix">
 
-      <div class="row">
-        <div class="col-sm-8">
-          <div class="row btn-gen-field">
-            <div class="col-sm-6">
-              <label for="width">Width</label><br>
-              <ElSlider name="width" v-model="button.width" :min="10" :max="520" />
-            </div>
-            <div class="col-sm-6 btn-gen-field">
-              <label for="height">Height</label><br>
-              <ElSlider name="height" v-model="button.height" :min="10" :max="520"/>
-            </div>
-          </div>
-          <div class="row btn-gen-field">
-            <div class="col-sm-6">
-              <label for="borderRadius">Border Radius</label><br>
-              <ElSlider name="borderRadius" v-model="button.borderRadius" :min="0" :max="280"/>
-            </div>
-            <div class="col-sm-6">
-              <label for="fontSize">Font Size</label><br>
-              <ElSlider name="fontSize" v-model="button.text.fontSize" :min="2" :max="120"/>
-            </div>
-          </div>
-          <div class="row btn-gen-field">
-            <div class="col-sm-3">
-              <label for="backgroundColor">Background Color</label><br>
-              <ElColorPicker name="backgroundColor" v-model="button.backgroundColor" />
-            </div>
-            <div class="col-sm-3">
-              <label for="color">Text Color</label><br>
-              <ElColorPicker name="color" v-model="button.text.color" />
-            </div>
-            <div class="col-sm-6">
-              <label for="text">Text</label>
-              <ElInput name="text" v-model="button.text.text" />
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-12">
-              <ElButton type="danger" class="pull-right" @click="reset">Reset</ElButton>
-            </div>
-          </div>
+      <div class="row btn-gen-field">
+        <div class="col-sm-6">
+          <label for="width">Width</label><br>
+          <ElSlider name="width" v-model="button.width" :min="10" :max="520" />
         </div>
-
-        <div class="col-sm-4">
-          <div v-html="generateButtonCode()"></div>
+        <div class="col-sm-6 btn-gen-field">
+          <label for="height">Height</label><br>
+          <ElSlider name="height" v-model="button.height" :min="10" :max="520"/>
         </div>
-
       </div>
-      <br>
+
+      <div class="row btn-gen-field">
+        <div class="col-sm-6">
+          <label for="borderRadius">Border Radius</label><br>
+          <ElSlider name="borderRadius" v-model="button.borderRadius" :min="0" :max="280"/>
+        </div>
+        <div class="col-sm-6">
+          <label for="fontSize">Font Size</label><br>
+          <ElSlider name="fontSize" v-model="button.text.fontSize" :min="2" :max="120"/>
+        </div>
+      </div>
+
+      <div class="row btn-gen-field">
+        <div class="col-sm-3">
+          <label for="backgroundColor">Background Color</label><br>
+          <ElColorPicker name="backgroundColor" v-model="button.backgroundColor" />
+        </div>
+        <div class="col-sm-3">
+          <label for="color">Text Color</label><br>
+          <ElColorPicker name="color" v-model="button.text.color" />
+        </div>
+        <div class="col-sm-6">
+          <label for="text">Text</label>
+          <ElInput name="text" v-model="button.text.text" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <ElButton type="danger" class="pull-right" @click="reset">Reset</ElButton>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <label for="btnSample">Click Me to see what vendors will see.</label><br>
+          <div v-html="generateButtonCode()"></div>
+          <br />
+          <br />
+        </div>
+      </div>
+
       <div class="row">
         <div class="col-sm-12">
           <span id="code-paste-text">Paste the code below on your site to generate this button.</span>
@@ -138,4 +138,3 @@ export default {
   }
 };
 </script>
-
