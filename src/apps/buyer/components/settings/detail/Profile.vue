@@ -7,7 +7,7 @@
       Update your personal and company information.
     </p>
     <div class="card card-body bg-light">
-      <ElForm :model="profile.contact" :rules="rules" ref="profile.contact">
+      <ElForm :model="profile.contact" :rules="rules.contact" ref="profile.contact">
         <ElCol :span="11">
           <ElFormItem label="First Name" prop="firstName">
             <ElInput v-model="profile.contact.firstName" placeholder="First Name" />
@@ -31,7 +31,7 @@
           </ElFormItem>
         </ElCol>
       </ElForm>
-      <ElForm :model="profile.company" :rules="rules" ref="profile.company">
+      <ElForm :model="profile.company" :rules="rules.company" ref="profile.company">
         <ElCol :span="11">
           <ElFormItem label="Name" prop="name">
             <ElInput v-model="profile.company.name" placeholder="Name" />
@@ -79,6 +79,8 @@ import {
   FormItem as ElFormItem,
   Input as ElInput,
   Notification } from 'element-ui';
+import companyFormRules from '../../../metadata/formRules/profile.company';
+import contactFormRules from '../../../metadata/formRules/profile.contact';
 
 export default {
   components: {
@@ -107,37 +109,8 @@ export default {
         }
       },
       rules: {
-        firstName: [
-          { required: true, message: 'Please Enter First Name', trigger: 'blur' }
-        ],
-        lastName: [
-          { required: true, message: 'Please Enter Last Name', trigger: 'blur' }
-        ],
-        phone: [
-          { required: true, message: 'Please Enter Phone Number', trigger: 'blur' },
-          { min: 7, message: 'Number Should Be At Least 7 Digits', trigger: 'blur' }
-        ],
-        email: [
-          { required: true, message: 'Please Input Email Address', trigger: 'blur' },
-          { type: 'email', message: 'Please Input Valid Email Address', trigger: 'blur,change' }
-        ],
-        name: [
-          { required: true, message: 'Please Enter a Company Name', trigger: 'blur' }
-        ],
-        address: [
-          { required: true, message: 'Please Enter an Address', trigger: 'blur' }
-        ],
-        city: [
-          { required: true, message: 'Please Enter a City', trigger: 'blur' }
-        ],
-        state: [
-          { required: true, message: 'Please Enter a State', trigger: 'blur' },
-          { min: 2, max: 2, message: 'State Must Be Two Letters', trigger: 'blur' }
-        ],
-        zip: [
-          { required: true, message: 'Please Enter a Zip', trigger: 'blur' },
-          { min: 5, message: 'Zip Must Be 5 or More Digits', trigger: 'blur' }
-        ]
+        company: companyFormRules,
+        contact: contactFormRules
       }
     };
   },
@@ -152,23 +125,37 @@ export default {
       this.profile = _.cloneDeep(this.buyer.profile);
     },
     updateProfile() {
-      this.$refs['profile.contact'].validate((valid) => {
-        this.$refs['profile.company'].validate((valid) => {
+      this.validateForm('profile.contact')
+        .then(() => {
+          return this.validateForm('profile.company');
+        })
+        .then(() => {
+          return this.$store.dispatch('updateBuyerProfile', _.cloneDeep(this.profile));
+        })
+        .then(() => {
+          Notification({
+            title: 'Success',
+            message: 'Profile Updated!',
+            type: 'success',
+            duration: 2000
+          });
+        })
+        .catch(() => {
+          Notification({
+            title: 'Error',
+            message: 'Please check the form for errors.',
+            type: 'error',
+            duration: 2000
+          });
+        });
+    },
+    validateForm(formRef) {
+      return new Promise((res, rej) => {
+        this.$refs[formRef].validate((valid) => {
           if (valid) {
-            this.$store.dispatch('updateBuyerProfile', _.cloneDeep(this.profile));
-            Notification({
-              title: 'Success',
-              message: 'Profile Updated!',
-              type: 'success',
-              duration: 2000
-            });
+            res();
           } else {
-            Notification({
-              title: 'Uh oh',
-              message: 'Something Went Wrong',
-              type: 'error',
-              duration: 2000
-            });
+            rej();
           }
         });
       });

@@ -89,13 +89,15 @@ export default {
         email: this.emails[this.curTab],
         templateId: this.curTab
       };
-      this.$store.dispatch('updateBuyerEmailTemplate', email);
-      Notification({
-        title: 'Success',
-        message: 'Email Template Updated!',
-        type: 'success',
-        duration: 2000
-      });
+      this.$store.dispatch('updateBuyerEmailTemplate', email)
+        .then(() => {
+          Notification({
+            title: 'Success',
+            message: 'Email Template Updated!',
+            type: 'success',
+            duration: 2000
+          });
+        });
     }
   }
 };
