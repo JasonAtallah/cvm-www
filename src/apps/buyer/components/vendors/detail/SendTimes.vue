@@ -113,9 +113,24 @@ ul.suggestedTimes button {
               </div>
               <ul class="suggestedTimes">
                 <li v-for="(time, index) in suggestedTimes" :key="index">
-                  {{ time.location.name }}<br />
-                  {{ formatDate(time.startDate) }} to {{ formatTime(getEndDate(time)) }}<br />
-                  <button type="button" class="btn btn-link" @click.prevent="removeTime(index)">Remove</button>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <i class="el-icon-time"></i>
+                      <span>{{ formatDate(time.startDate) }} to {{ formatTime(getEndDate(time)) }}</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <i class="el-icon-location-outline"></i>
+                      <span>{{ time.location.name }}</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <i class="el-icon-delete"></i>
+                      <button type="button" class="btn btn-link" @click.prevent="removeTime(index)">Remove</button>
+                    </div>
+                  </div>
                 </li>
               </ul>
             </div>
@@ -220,7 +235,7 @@ export default {
       return moment(date).format('LLL');
     },
     formatTime(date) {
-      return moment(date).format('H:mm A');
+      return moment(date).format('h:mm A');
     },
     getEndDate(suggestedTime) {
       return moment(suggestedTime.startDate).add(suggestedTime.duration, 'minutes').toDate();
