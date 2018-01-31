@@ -37,17 +37,15 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import FullScreenPage from '@/components/page/FullScreenPage';
 import {
-  Button as ElButton,
   Dropdown as ElDropdown,
   DropdownMenu as ElDropdownMenu,
   DropdownItem as ElDropdownItem } from 'element-ui';
+import FullScreenPage from '@/components/page/FullScreenPage';
 
 export default {
   components: {
     FullScreenPage,
-    ElButton,
     ElDropdown,
     ElDropdownMenu,
     ElDropdownItem

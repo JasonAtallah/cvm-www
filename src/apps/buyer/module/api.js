@@ -38,7 +38,7 @@ export default {
   },
 
   getQuestionnaire() {
-    return http.get('buyer/v1/questionnaire');
+    return http.get('/buyer/v1/questionnaire');
   },
 
   getVendor(vendor) {
@@ -54,7 +54,7 @@ export default {
   },
 
   logout() {
-    console.log('logging out');
+    // console.log('logging out');
   },
 
   rejectVendor(vendor, email) {
