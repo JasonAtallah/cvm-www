@@ -16,7 +16,9 @@ export const cancelMeeting = ({ commit }, { vendor }) => {
     });
 };
 
-export const createCalendarEvent = ({ dispatch, commit }, values) => {
+export const createCalendarEvent = ({ rootState, dispatch, commit }, values) => {
+  values.timezone = rootState.timezone;
+
   return api.createCalendarEvent(values)
     .then((calendarEvent) => {
       commit('addCalendarEventToList', calendarEvent);
@@ -27,7 +29,7 @@ export const createCalendarEvent = ({ dispatch, commit }, values) => {
 export const createGCalendar = ({ rootState, commit }, name) => {
   const values = {
     name,
-    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
+    timezone: rootState.timezone
   };
 
   return api.setGCalendar(values)
@@ -76,9 +78,7 @@ export const loadCalendars = ({ rootState, commit }) => {
 };
 
 export const loadEvents = ({ rootState, commit }) => {
-  const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
-  return api.getEvents(timezone)
+  return api.getEvents(rootState.timezone)
     .then((events) => {
       commit('events', events);
     })

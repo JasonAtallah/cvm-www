@@ -20,7 +20,7 @@
         </div>
         <div slot="detail" class="calendar-detail">
           <DayDetail v-if="showDay" :events="events" :date="curDate" />
-          <AddCalendarEvent v-if="addEvent" :curDate="curDate" />
+          <AddCalendarEvent v-if="addEvent" />
         </div>
       </MasterDetail>
     </div>
@@ -59,15 +59,12 @@ export default {
       return !!(this.overridingDetail && this.overridingDetail.type === 'addCalendarEvent');
     },
     showDay() {
-      return !!(this.overridingDetail && this.curDate && this.overridingDetail.type === 'viewCalendarDay');
+      return !!(!this.overridingDetail && this.curDate);
     }
   },
   methods: {
     onDayClicked(date) {
       this.curDate = date;
-      this.$store.commit('overrideDetail', {
-        type: 'viewCalendarDay'
-      });
     }
   },
   beforeRouteEnter(to, from, next) {

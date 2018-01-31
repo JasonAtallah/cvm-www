@@ -28,7 +28,7 @@ div.field-rows {
           :picker-options="{
             start: '06:00',
             step: '00:15',
-            end: '24:00'
+            end: '23:45'
           }"/>
         </div>
         <div class="col-sm-4">
@@ -54,6 +54,7 @@ div.field-rows {
 </template>
 
 <script>
+import moment from 'moment';
 import {
   DatePicker as ElDatePicker,
   Input as ElInput,
@@ -80,20 +81,26 @@ export default {
   },
   props: ['curDate'],
   methods: {
-    backToCurDate() {
-      if (this.curDate) {
-        this.$store.commit('overrideDetail', {
-          type: 'viewCalendarDay'
-        });
-      }
-    },
     cancel() {
       this.$store.commit('cancelDetailOverride');
-      this.backToCurDate();
+    },
+    getDateTime(date, time) {
+      const timeParts = time.split(':');
+      const dateM = moment(date).hour(timeParts[0]).minute(timeParts[1]);
+      return dateM.toJSON();
     },
     save() {
-      this.$store.dispatch('createCalendarEvent', this.calendarEvent);
-      this.backToCurDate();
+      const calendarEvent = {
+        name: this.calendarEvent.name,
+        dateTime: this.getDateTime(this.calendarEvent.date, this.calendarEvent.time),
+        duration: this.calendarEvent.duration,
+        location: this.calendarEvent.location
+      };
+
+      this.$store.dispatch('createCalendarEvent', calendarEvent)
+        .then(() => {
+          this.cancel();
+        });
     }
   }
 };

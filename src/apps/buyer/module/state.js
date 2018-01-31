@@ -23,6 +23,7 @@ export default {
   selVendor: null,
   selVendorState: null,
   setSchedule: false,
+  timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
   vendors: {},
   vendorActionButtons,
   vendorFilter: {
