@@ -22,6 +22,7 @@
           <EmailTemplates v-if="activeTab === 'emailTemplates'" :buyer="buyer" />
           <Questionnaire v-if="activeTab === 'questionnaire'" :buyer="buyer" :questionnaire="questionnaire" :buyerSettings="settings" />
           <ButtonGenerator v-if="activeTab === 'buttonGenerator'" :buyer="buyer" :questionnaire="questionnaire" />
+          <Calendar v-if="activeTab === 'calendar'" :buyer="buyer" />
         </div>
       </MasterDetail>
     </div>
@@ -33,6 +34,7 @@ import { mapGetters } from 'vuex';
 import MasterDetail from '@/components/MasterDetail';
 import BasePage from '../BasePage';
 import ButtonGenerator from './detail/ButtonGenerator';
+import Calendar from './detail/Calendar';
 import EmailTemplates from './detail/EmailTemplates';
 import Profile from './detail/Profile';
 import Questionnaire from './detail/Questionnaire';
@@ -42,6 +44,7 @@ export default {
   components: {
     BasePage,
     ButtonGenerator,
+    Calendar,
     MasterDetail,
     EmailTemplates,
     Profile,

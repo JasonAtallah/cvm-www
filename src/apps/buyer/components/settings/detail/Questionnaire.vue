@@ -19,11 +19,11 @@ a.markdown-link:hover {
   <div>
     <h3>Questionnaire</h3>
     <p class="lead">
-      Customize your questionnaire and get button code.
+      Customize your questionnaire.
     </p>
     <div class="card card-body bg-light">
       <ElTabs value="introduction" @tab-click="switchTab">
-        <ElTabPane v-for="page in questionnairePages" :label="page.label"
+        <ElTabPane v-for="page in markdownPages" :label="page.label"
         :key="page.value" :name="page.value">
           <div class="form-group" :model="newQuestionnaire[page.value]">
             <div class="row">
@@ -42,6 +42,15 @@ a.markdown-link:hover {
             </div>
           </div>
         </ElTabPane>
+        <ElTabPane v-for="page in inputPages" :label="page.label"
+        :key="page.value" :name="page.value">
+          <div v-for="option in page.options" :key="option">
+            {{ option }}
+            <ElCheckboxGroup v-model="newQuestionnaire[page.value]">
+
+            </ElCheckboxGroup>
+          </div>
+        </ElTabPane>
       </ElTabs>
     </div>
     <div class="modal-footer">
@@ -56,6 +65,8 @@ a.markdown-link:hover {
 import { mapGetters } from 'vuex';
 import {
   Button as ElButton,
+  Checkbox as ElCheckbox,
+  CheckboxGroup as ElCheckboxGroup,
   Input as ElInput,
   Switch as ElSwitch,
   Tabs as ElTabs,
@@ -65,6 +76,8 @@ import {
 export default {
   components: {
     ElButton,
+    ElCheckbox,
+    ElCheckboxGroup,
     ElInput,
     ElSwitch,
     ElTabs,
@@ -88,8 +101,14 @@ export default {
     canNotUpdate() {
       return _.isEqual(this.questionnaire.introduction, this.newQuestionnaire.introduction) && _.isEqual(this.questionnaire.completion, this.newQuestionnaire.completion);
     },
+    inputPages() {
+      return _.filter(this.questionnairePages, { markdown: false });
+    },
     markdownHtml() {
       return this.markdown.makeHtml(this.newQuestionnaire[this.curTab]);
+    },
+    markdownPages() {
+      return _.filter(this.questionnairePages, { markdown: true });
     },
     questionnairePages() {
       return _.find(this.buyerSettings.settingsTabs, { value: 'questionnaire' }).options;

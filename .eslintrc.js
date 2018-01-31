@@ -60,6 +60,7 @@ module.exports = {
     'no-plusplus': 0,
     'no-underscore-dangle': 0,
     'no-useless-escape': 0,
-    'no-mixed-operators': 0
+    'no-mixed-operators': 0,
+    'object-shorthand': 0
   }
 };
