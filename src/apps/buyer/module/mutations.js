@@ -14,6 +14,10 @@ export const buyer = (state, buyer) => {
   state.buyer = buyer;
 };
 
+export const buyerEmails = (state, emails) => {
+  state.buyer.emails = emails;
+};
+
 export const buyerProfile = (state, profile) => {
   state.buyer.profile = profile;
 };
@@ -52,6 +56,10 @@ export const productFilter = (state, value) => {
   state.vendorFilter.productType = value;
 };
 
+export const questionnaire = (state, questionnaire) => {
+  state.questionnaire = questionnaire;
+};
+
 export const scheduleAdd = (state, value) => {
   if (state.buyer.schedule.indexOf(value) < 0) {
     state.buyer.schedule.push(value);
@@ -65,8 +73,16 @@ export const scheduleRemove = (state, value) => {
   }
 };
 
+export const selSettingTab = (state, settingTab) => {
+  state.buyerSettings.activeTab = settingTab;
+};
+
 export const selVendor = (state, vendor) => {
   state.selVendor = vendor;
+};
+
+export const selVendorState = (state, vendor) => {
+  state.selVendorState = vendor;
 };
 
 export const setSchedule = (state, value) => {

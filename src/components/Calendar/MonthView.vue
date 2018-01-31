@@ -70,7 +70,6 @@ import momentTimezone from 'moment-timezone';
 import { daysOfMonth, daysToWeeks, populateEvents, daysMatch, monthsMatch } from './MonthView.fns';
 
 export default {
-  props: ['events'],
   data() {
     return {
       month: new Date().getMonth(),
@@ -78,6 +77,7 @@ export default {
       selectedDate: null
     };
   },
+  props: ['events'],
   computed: {
     curMonth() {
       return new Date(this.year, this.month);

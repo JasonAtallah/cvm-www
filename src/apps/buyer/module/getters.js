@@ -1,6 +1,8 @@
 import { stateNameForDisplay } from '../../../lib/filters';
 
+export const appOptions = state => state.appOptions;
 export const buyer = state => state.buyer;
+export const buyerSettings = state => state.buyerSettings;
 export const calendars = state => state.calendars;
 export const events = state => state.events;
 export const locations = (state) => {
@@ -11,8 +13,10 @@ export const locations = (state) => {
 export const overridingDetail = state => state.overridingDetail;
 export const pageMenuItems = state => state.pageMenuItems;
 export const pendingAction = state => state.pendingAction;
+export const questionnaire = state => state.questionnaire;
 export const schedule = state => state.buyer.schedule;
 export const selVendor = state => state.selVendor;
+export const selVendorState = state => state.selVendorState;
 export const setSchedule = state => state.setSchedule;
 export const sortedVendors = (state) => {
   let vendors = [...state.vendorList];

@@ -49,12 +49,12 @@ ul#products {
 
 <script>
 export default {
-  props: ['def', 'products'],
   data() {
     return {
       product: null
     };
   },
+  props: ['def', 'products'],
   computed: {
     productDef() {
       return this.def.items;

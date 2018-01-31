@@ -4,16 +4,17 @@ export default [
   {
     status: 'NewVendor',
     label: 'Action',
+    badge: 'success',
     options: [
       {
         value: 'approveVendor',
         label: 'Approve',
-        commit: 'takeAction'
+        dispatch: 'overrideDetail'
       },
       {
         value: 'rejectVendor',
         label: 'Reject',
-        commit: 'takeAction'
+        dispatch: 'overrideDetail'
       }
     ]
   },
@@ -21,29 +22,38 @@ export default [
     status: 'BuyerNeedsToSendTimes',
     label: 'Schedule Time',
     value: 'sendTimes',
-    dispatch: 'overrideDetail'
+    dispatch: 'overrideDetail',
+    badge: 'info'
   },
   {
     status: 'ApptScheduled',
     label: 'View Meeting',
     value: 'cancelMeeting',
-    dispatch: 'overrideDetail'
+    dispatch: 'overrideDetail',
+    badge: 'primary'
   },
   {
     status: 'VendorRejected',
     label: 'Watch',
     value: 'watch',
+    badge: 'danger',
     options: [
       {
         label: 'Yes',
-        value: 'watchVendor',
-        dispatch: 'updateThreadAttribute'
+        attribute: 'watchVendor',
+        value: true,
+        dispatch: 'updateThreadAttributes'
       },
       {
         label: 'No',
-        value: 'unwatchVendor',
-        dispatch: 'updateThreadAttribute'
+        attribute: 'watchVendor',
+        value: false,
+        dispatch: 'updateThreadAttributes'
       }
     ]
+  },
+  {
+    status: 'VendorNeedsToReviewTimes',
+    badge: 'secondary'
   }
 ];

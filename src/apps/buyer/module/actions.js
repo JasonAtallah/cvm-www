@@ -5,7 +5,7 @@ export const approveVendor = ({ commit }, { vendor, email }) => {
   return api.approveVendor(vendor, email, genVendorUrl(vendor))
     .then((vendorItem) => {
       commit('updateVendorItem', vendorItem);
-      commit('cancelPendingAction');
+      commit('cancelDetailOverride');
     });
 };
 
@@ -16,7 +16,9 @@ export const cancelMeeting = ({ commit }, { vendor }) => {
     });
 };
 
-export const createCalendarEvent = ({ dispatch, commit }, values) => {
+export const createCalendarEvent = ({ rootState, dispatch, commit }, values) => {
+  values.timezone = rootState.timezone;
+
   return api.createCalendarEvent(values)
     .then((calendarEvent) => {
       commit('addCalendarEventToList', calendarEvent);
@@ -27,7 +29,7 @@ export const createCalendarEvent = ({ dispatch, commit }, values) => {
 export const createGCalendar = ({ rootState, commit }, name) => {
   const values = {
     name,
-    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
+    timezone: rootState.timezone
   };
 
   return api.setGCalendar(values)
@@ -49,13 +51,15 @@ export const createVendor = ({ dispatch, commit }, values) => {
     .then((vendor) => {
       commit('addVendorToList', vendor);
       commit('cancelPendingAction');
+      dispatch('selVendor', vendor);
     });
 };
 
 export const init = ({ dispatch }) => {
   return Promise.all([
     dispatch('loadBuyer'),
-    dispatch('loadVendors')
+    dispatch('loadVendors'),
+    dispatch('loadQuestionnaire')
   ]);
 };
 
@@ -74,9 +78,7 @@ export const loadCalendars = ({ rootState, commit }) => {
 };
 
 export const loadEvents = ({ rootState, commit }) => {
-  const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
-  return api.getEvents(timezone)
+  return api.getEvents(rootState.timezone)
     .then((events) => {
       commit('events', events);
     })
@@ -87,11 +89,22 @@ export const loadEvents = ({ rootState, commit }) => {
     });
 };
 
+export const loadQuestionnaire = ({ rootstate, commit }) => {
+  return api.getQuestionnaire()
+    .then((questionnaire) => {
+      commit('questionnaire', questionnaire);
+    });
+};
+
 export const loadVendors = ({ rootState, commit }) => {
   return api.getVendors()
     .then((vendorList) => {
       commit('vendorList', vendorList);
     });
+};
+
+export const logout = () => {
+  return api.logout();
 };
 
 export const overrideDetail = ({ commit, dispatch }, value) => {
@@ -109,7 +122,7 @@ export const rejectVendor = ({ commit }, { vendor, email }) => {
   return api.rejectVendor(vendor, email)
     .then((vendorItem) => {
       commit('updateVendorItem', vendorItem);
-      commit('cancelPendingAction');
+      commit('cancelDetailOverride');
     });
 };
 
@@ -165,14 +178,29 @@ export const updateBuyerProfile = ({ rootState, commit }, profile) => {
   return api.updateBuyerProfile(profile)
     .then(() => {
       commit('buyerProfile', profile);
-      commit('cancelPendingAction');
     });
 };
 
 export const updateBuyerEmailTemplate = ({ rootState, commit }, { templateId, email }) => {
-  return api.updateBuyerEmailTemplate(templateId, email);
+  return api.updateBuyerEmailTemplate(templateId, email)
+    .then((emails) => {
+      commit('buyerEmails', emails);
+    });
 };
 
-export const updateThreadAttribute = ({ commit }, { vendor, action }) => {
-  return api.updateThreadAttribute(vendor, action);
+export const updateQuestionnaire = ({ rootState, commit }, page) => {
+  return api.updateQuestionnaire(page)
+    .then((questionnaire) => {
+      commit('questionnaire', questionnaire);
+    });
+};
+
+export const updateThreadAttributes = ({ commit }, { vendor, action }) => {
+  const attributes = {
+    [action.attribute]: action.value
+  };
+  return api.updateThreadAttributes(vendor, attributes)
+    .then((vendorItem) => {
+      commit('updateVendorItem', vendorItem);
+    });
 };

@@ -37,6 +37,10 @@ export default {
     return http.get('/buyer/v1/events', params);
   },
 
+  getQuestionnaire() {
+    return http.get('/buyer/v1/questionnaire');
+  },
+
   getVendor(vendor) {
     return http.get(`/buyer/v1/vendors/${vendor._id}`);
   },
@@ -47,6 +51,10 @@ export default {
 
   loadBuyer() {
     return http.get('/buyer/v1/buyer');
+  },
+
+  logout() {
+    // console.log('logging out');
   },
 
   rejectVendor(vendor, email) {
@@ -78,8 +86,12 @@ export default {
     return http.put(`/buyer/v1/emails/${templateId}`, email);
   },
 
-  updateThreadAttribute(vendor, action) {
-    return http.put(`/buyer/v1/vendors/${vendor._id}/attributes/${action.value}`);
+  updateQuestionnaire(page) {
+    return http.put('/buyer/v1/questionnaire', page);
+  },
+
+  updateThreadAttributes(vendor, attributes) {
+    return http.put(`/buyer/v1/vendors/${vendor._id}/attributes`, attributes);
   }
 
 };
