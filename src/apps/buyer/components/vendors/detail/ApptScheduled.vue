@@ -9,42 +9,40 @@
   <h3>Scheduled appointment with {{ vendor.name }}</h3>
   <div class="card card-body bg-light">
     <div class="appt-card">
-      <ElCard>
-        <div class="row">
-          <div class="col-sm-2">
-            <i class="fa fa-calendar" />
-          </div>
-          <div class="col-sm-10">
-            <div class="row">
-              <div class="col-sm-12">
-                <h5>{{ startDate }}</h5>
-              </div>
+      <div class="row">
+        <div class="col-sm-2">
+          <i class="fa fa-calendar" />
+        </div>
+        <div class="col-sm-10">
+          <div class="row">
+            <div class="col-sm-12">
+              <h5>{{ startDate }}</h5>
             </div>
-            <div class="row">
-              <div class="col-sm-12">
-                <h6>{{ startTime }} - {{ endTime }}</h6>
-              </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <h6>{{ startTime }} - {{ endTime }}</h6>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-2">
-            <i class="fa fa-map-marker" aria-hidden="true" />
-          </div>
-          <div class="col-sm-10">
-            <div class="row">
-              <div class="col-sm-12">
-                <h5>{{ location.address }}</h5>
-              </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-2">
+          <i class="fa fa-map-marker" aria-hidden="true" />
+        </div>
+        <div class="col-sm-10">
+          <div class="row">
+            <div class="col-sm-12">
+              <h5>{{ location.address }}</h5>
             </div>
-            <div class="row">
-              <div class="col-sm-12">
-                <h5>{{ location.city }}, {{ location.state }} {{ location.zip }}</h5>
-              </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <h5>{{ location.city }}, {{ location.state }} {{ location.zip }}</h5>
             </div>
           </div>
         </div>
-      </ElCard>
+      </div>
       <div class="modal-footer">
         <button id="cancel-meeting" type="button" class="btn btn-danger" @click="confirmCancel">Cancel Meeting</button>
       </div>
