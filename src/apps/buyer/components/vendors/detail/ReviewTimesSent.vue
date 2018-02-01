@@ -5,7 +5,7 @@
       <div class="row">
         <div class="col-sm-6">
           <ElCard>
-            <div slot="header" class="clearfix">
+            <div slot="header">
               <h3>Suggested Times</h3>
             </div>
             <div v-for="time in suggestedTimes" :key="time.date">
@@ -33,7 +33,7 @@
         </div>
         <div v-if="rejectedTimes.length > 0" class="col-sm-6">
           <ElCard>
-            <div slot="header" class="clearfix">
+            <div slot="header">
               <h3>Rejected Times</h3>
             </div>
             <div v-for="time in rejectedTimes" :key="time.date">
