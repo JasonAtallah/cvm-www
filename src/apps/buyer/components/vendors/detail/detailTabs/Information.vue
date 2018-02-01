@@ -37,11 +37,11 @@ i.el-icon-close {
               </div>
             </div>
             <div class="row">
-              <div class="col-sm-1">
+              <div class="col-sm-1" v-show="vendor.company.website">
                 <i class="fa fa-window-maximize" />
               </div>
               <div class="col-sm-10">
-                <span class="field-display"><a :href="vendor.company.website" target="_blank">{{ vendor.company.website }}</a></span>
+                <h5 class="field-display"><a :href="vendor.company.website" target="_blank">{{ vendor.company.website }}</a></h5>
               </div>
             </div>
             <div class="row">

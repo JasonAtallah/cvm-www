@@ -11,7 +11,7 @@
             <div v-for="time in suggestedTimes" :key="time.date">
               <div class="row">
                 <div class="col-sm-1">
-                  <i class="fa fa-map-marker" aria-hidden="true"></i>
+                  <i class="fa fa-map-marker" aria-hidden="true" />
                 </div>
                 <div class="col-sm-10">
                   <h5>{{ time.location.name }}</h5>
@@ -20,7 +20,7 @@
               </div>
               <div class="row">
                 <div class="col-sm-1">
-                  <i class="fa fa-calendar"></i>
+                  <i class="fa fa-calendar" />
                 </div>
                 <div class="col-sm-10">
                   <h5>{{ formatDate(time.startDate) }}</h5>
@@ -39,7 +39,7 @@
             <div v-for="time in rejectedTimes" :key="time.date">
               <div class="row">
                 <div class="col-sm-1">
-                  <i class="fa fa-map-marker" aria-hidden="true"></i>
+                  <i class="fa fa-map-marker" aria-hidden="true" />
                 </div>
                 <div class="col-sm-10">
                   <h5>{{ time.location.name }}</h5>
@@ -48,7 +48,7 @@
               </div>
               <div class="row">
                 <div class="col-sm-1">
-                  <i class="fa fa-calendar"></i>
+                  <i class="fa fa-calendar" />
                 </div>
                 <div class="col-sm-10">
                   <h5>{{ formatDate(time.startDate) }}</h5>
