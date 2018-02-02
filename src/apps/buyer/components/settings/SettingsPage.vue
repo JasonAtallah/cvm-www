@@ -20,7 +20,7 @@
         <div slot="detail" class="settings-detail">
           <Profile v-if="activeTab === 'profile'" :buyer="buyer" />
           <EmailTemplates v-if="activeTab === 'emailTemplates'" :buyer="buyer" />
-          <Questionnaire v-if="activeTab === 'questionnaire'" :buyer="buyer" :questionnaire="questionnaire" :buyerSettings="settings" />
+          <Questionnaire v-if="activeTab === 'questionnaire'" :buyer="buyer" :questionnaire="questionnaire" :buyerSettings="buyerSettings" />
           <ButtonGenerator v-if="activeTab === 'buttonGenerator'" :buyer="buyer" :questionnaire="questionnaire" />
           <Calendar v-if="activeTab === 'calendar'" :buyer="buyer" />
         </div>
@@ -55,10 +55,10 @@ export default {
     ...mapGetters({
       buyer: 'buyer',
       questionnaire: 'questionnaire',
-      settings: 'buyerSettings'
+      buyerSettings: 'buyerSettings'
     }),
     activeTab() {
-      return this.settings.activeTab;
+      return this.buyerSettings.activeTab;
     }
   }
 };

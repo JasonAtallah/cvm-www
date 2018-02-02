@@ -1,18 +1,35 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import store from './store';
 import VendorsPage from './components/vendors/VendorsPage';
 import CalendarPage from './components/calendar/CalendarPage';
 import SettingsPage from './components/settings/SettingsPage';
-import OnboardingPage from './components/OnboardingPage';
+import OnboardingPage from './components/onboarding/OnboardingPage';
+import check from '../../lib/check';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
       name: 'Vendors',
-      component: VendorsPage
+      component: VendorsPage,
+      beforeEnter: (to, from, next) => {
+        store.dispatch('init')
+          .then(() => {
+            const buyer = store.state.buyer;
+            if (!check.profileComplete(buyer) || !check.calendarSelected(buyer)) {
+              next({
+                path: '/onboarding',
+                name: 'Onboarding',
+                component: OnboardingPage
+              });
+            } else {
+              next();
+            }
+          });
+      }
     },
     {
       path: '/calendar',
@@ -31,3 +48,5 @@ export default new Router({
     }
   ]
 });
+
+export default router;
