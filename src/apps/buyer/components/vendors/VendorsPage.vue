@@ -18,14 +18,13 @@
           <Master />
         </div>
         <div slot="detail" class="vendors-detail">
-          <ElCard v-if="!showVendorDetail && overridingDetail">
-            <AddVendor v-if="addVendor" :params="overridingDetail" />
-            <ApptScheduled v-if="showScheduledMeeting" :params="overridingDetail" />
-            <ReviewTimesSent v-if="showTimesSent" :params="overridingDetail" />
-            <SendTimes v-if="showSendTimes" :params="overridingDetail" />
-            <SendVendorStatusEmail v-if="showSendStatusEmail" :params="overridingDetail" />
-          </ElCard>
-          <VendorDetail v-else :vendor="vendor" />
+          <VendorDetail v-if="showVendorDetail" :vendor="vendor" />
+
+          <AddVendor v-if="showAddVendor" :params="overridingDetail" />
+          <ApptScheduled v-if="showScheduledMeeting" :params="overridingDetail" />
+          <ReviewTimesSent v-if="showTimesSent" :params="overridingDetail" />
+          <SendTimes v-if="showSendTimes" :params="overridingDetail" />
+          <SendVendorStatusEmail v-if="showSendStatusEmail" :params="overridingDetail" />
         </div>
       </MasterDetail>
     </div>
@@ -70,11 +69,8 @@ export default {
       overridingDetail: 'overridingDetail',
       vendor: 'selVendor'
     }),
-    addVendor() {
+    showAddVendor() {
       return !!(this.overridingDetail && this.overridingDetail.type === 'addVendor');
-    },
-    showVendorDetail() {
-      return !!(!this.overridingDetail && this.vendor);
     },
     showScheduledMeeting() {
       return !!(this.overridingDetail && this.overridingDetail.type === 'cancelMeeting');
@@ -87,6 +83,9 @@ export default {
     },
     showTimesSent() {
       return !!(this.overridingDetail && this.overridingDetail.type === 'timesSent');
+    },
+    showVendorDetail() {
+      return !!(!this.overridingDetail && this.vendor);
     }
   },
   beforeRouteEnter(to, from, next) {
