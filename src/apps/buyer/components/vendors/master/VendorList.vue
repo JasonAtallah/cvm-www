@@ -51,7 +51,7 @@ span.vendor-name {
         <div class="col-sm-8 item-main">
           <span class="vendor-name">{{ vendor.name }}</span>
           <StateBadge :vendor="vendor" />
-          <WatchVendorBadge :vendor="vendor" />
+          <!-- <WatchVendorBadge :vendor="vendor" /> -->
         </div>
         <div class="col-sm-4 item-btns">
           <div @click="ignoreVendorClick($event)">

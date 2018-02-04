@@ -1,7 +1,6 @@
 <template>
   <ElTooltip content="Watching Vendor" placement="top">
     <i v-if="watchingVendor(vendor)" class="el-icon-view"></i>
-    {{ selVendorState }}
   </ElTooltip>
 </template>
 

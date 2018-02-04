@@ -34,23 +34,23 @@ export default [
   },
   {
     status: 'VendorRejected',
-    label: 'Watch',
-    value: 'watch',
+    // label: 'Watch',
+    // value: 'watch',
     badge: 'danger',
-    options: [
-      {
-        label: 'Yes',
-        attribute: 'watchVendor',
-        value: true,
-        dispatch: 'updateThreadAttributes'
-      },
-      {
-        label: 'No',
-        attribute: 'watchVendor',
-        value: false,
-        dispatch: 'updateThreadAttributes'
-      }
-    ]
+    // options: [
+    //   {
+    //     label: 'Yes',
+    //     attribute: 'watchVendor',
+    //     value: true,
+    //     dispatch: 'updateThreadAttributes'
+    //   },
+    //   {
+    //     label: 'No',
+    //     attribute: 'watchVendor',
+    //     value: false,
+    //     dispatch: 'updateThreadAttributes'
+    //   }
+    // ]
   },
   {
     status: 'VendorNeedsToReviewTimes',

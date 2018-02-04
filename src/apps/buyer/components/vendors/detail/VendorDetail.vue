@@ -10,7 +10,7 @@ span.vendor-name {
       <div class="col-sm-12">
         <span class="vendor-name">{{ vendor.company.name }}</span>
         <StateBadge />
-        <WatchVendorBadge />
+        <!-- <WatchVendorBadge /> -->
       </div>
     </div>
     <div class="row">
