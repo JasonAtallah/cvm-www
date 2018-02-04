@@ -44,11 +44,8 @@ a.markdown-link:hover {
         </ElTabPane>
         <ElTabPane v-for="page in inputPages" :label="page.label"
         :key="page.value" :name="page.value">
-          <div v-for="option in page.options" :key="option">
+          <div v-for="option in getOptions(page)" :key="option.value">
             {{ option }}
-            <ElCheckboxGroup v-model="newQuestionnaire[page.value]">
-
-            </ElCheckboxGroup>
           </div>
         </ElTabPane>
       </ElTabs>
@@ -91,7 +88,7 @@ export default {
       mode: 'Preview',
       newQuestionnaire: {
         introduction: this.questionnaire.introduction || null,
-        completion: this.questionnaire.completion || null
+        completion: this.questionnaire.completion || null,
       },
       previewMode: false
     };
@@ -118,11 +115,27 @@ export default {
     cancel() {
       this.newQuestionnaire[this.curTab] = _.cloneDeep(this.questionnaire[this.curTab]);
     },
+    getOptions(page) {
+      const pageQuestions = _.find(this.questionnaire.pages, { id: page.value }).questions;
+      const options = [];
+      pageQuestions.forEach((option) => {
+        if (page.options.includes(option.id)) {
+          options.push({
+            value: option.id,
+            label: option.name.split(/(?=[A-Z])/).join(' '),
+            enabled: option.enabled,
+            required: option.required,
+            default: option.default
+          });
+        }
+      });
+      return options;
+    },
     switchTab(tab) {
       this.curTab = tab.name;
     },
     updateQuestionnaire() {
-      const page = { introduction: this.newQuestionnaire[this.curTab] };
+      const page = { [this.curTab]: this.newQuestionnaire[this.curTab] };
       this.$store.dispatch('updateQuestionnaire', page);
       Notification({
         message: `${this.curTab} Page Updated!`,

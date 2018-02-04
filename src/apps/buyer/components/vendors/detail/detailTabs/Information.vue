@@ -11,10 +11,6 @@ i.el-icon-check {
 i.el-icon-close {
   color: #ff4949;
 }
-
-span.field-display {
-  font-size: 1.2rem;
-}
 </style>
 
 <template>
@@ -22,20 +18,30 @@ span.field-display {
     <div class="card card-body bg-light">
       <div class="row">
         <div class="col-sm-6">
-          <h3>Company</h3>
+          <ElCard class="box-card">
+            <div slot="header"><h3>Company</h3></div>
             <div class="row">
-              <div class="col-sm-12">
-                <span class="field-display">{{ vendor.company.name}}</span>
+              <div class="col-sm-1">
+                <i class="fa fa-building" />
+              </div>
+              <div class="col-sm-10">
+                <h4>{{ vendor.company.name}}</h4>
               </div>
             </div>
             <div class="row">
-              <div class="col-sm-12">
-                <span class="field-display">{{ vendor.company.address}} {{ vendor.company.city }}, {{ vendor.company.state }} {{ vendor.company.zip }}</span>
+              <div class="col-sm-1">
+                <i class="fa fa-map-marker" />
+              </div>
+              <div class="col-sm-10">
+                <h5 class="field-display">{{ vendor.company.address}} {{ vendor.company.city }}, {{ vendor.company.state }} {{ vendor.company.zip }}</h5>
               </div>
             </div>
             <div class="row">
-              <div class="col-sm-12">
-                <span class="field-display"><a :href="vendor.company.website" target="_blank">{{ vendor.company.website }}</a></span>
+              <div class="col-sm-1" v-show="vendor.company.website">
+                <i class="fa fa-window-maximize" />
+              </div>
+              <div class="col-sm-10">
+                <h5 class="field-display"><a :href="vendor.company.website" target="_blank">{{ vendor.company.website }}</a></h5>
               </div>
             </div>
             <div class="row">
@@ -67,24 +73,36 @@ span.field-display {
                 <span class="field-display">Seller Permit</span>
               </div>
             </div>
+          </ElCard>
         </div>
         <div class="col-sm-6">
-          <h3>Contact</h3>
+          <ElCard class="box-card">
+            <div slot="header"><h3>Contact</h3></div>
             <div class="row">
-              <div class="col-sm-12">
-                <span class="field-display">{{ vendor.contact.firstName }} {{ vendor.contact.lastName }}</span>
+              <div class="col-sm-1">
+                <i class="fa fa-user" />
+              </div>
+              <div class="col-sm-10">
+                <h4 class="field-display">{{ vendor.contact.firstName }} {{ vendor.contact.lastName }}</h4>
               </div>
             </div>
             <div class="row">
-              <div class="col-sm-12">
-                <span class="field-display">{{ vendor.contact.phone }}</span>
+              <div class="col-sm-1">
+                <i class="fa fa-phone" />
+              </div>
+              <div class="col-sm-10">
+                <h5 class="field-display">{{ vendor.contact.phone }}</h5>
               </div>
             </div>
             <div class="row">
-              <div class="col-sm-12">
-                <span class="field-display">{{ vendor.contact.email }}</span>
+              <div class="col-sm-1">
+                <i class="fa fa-envelope" />
+              </div>
+              <div class="col-sm-10">
+                <h5 class="field-display">{{ vendor.contact.email }}</h5>
               </div>
             </div>
+          </ElCard>
         </div>
       </div>
     </div>
@@ -93,8 +111,13 @@ span.field-display {
 
 <script>
 import { mapGetters } from 'vuex';
+import {
+  Card as ElCard } from 'element-ui';
 
 export default {
+  components: {
+    ElCard
+  },
   props: ['vendor']
 };
 </script>

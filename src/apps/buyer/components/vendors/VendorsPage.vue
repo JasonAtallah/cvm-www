@@ -18,11 +18,14 @@
           <Master />
         </div>
         <div slot="detail" class="vendors-detail">
-          <AddVendor v-if="addVendor" :params="overridingDetail" />
-          <ApptScheduled v-if="showScheduledMeeting" :params="overridingDetail" />
-          <SendTimes v-if="showSendTimes" :params="overridingDetail" />
-          <SendVendorStatusEmail v-if="showSendStatusEmail" :params="overridingDetail" />
-          <VendorDetail v-if="showVendorDetail" :vendor="vendor" />
+          <ElCard v-if="!showVendorDetail && overridingDetail">
+            <AddVendor v-if="addVendor" :params="overridingDetail" />
+            <ApptScheduled v-if="showScheduledMeeting" :params="overridingDetail" />
+            <ReviewTimesSent v-if="showTimesSent" :params="overridingDetail" />
+            <SendTimes v-if="showSendTimes" :params="overridingDetail" />
+            <SendVendorStatusEmail v-if="showSendStatusEmail" :params="overridingDetail" />
+          </ElCard>
+          <VendorDetail v-else :vendor="vendor" />
         </div>
       </MasterDetail>
     </div>
@@ -31,10 +34,13 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import {
+  Card as ElCard } from 'element-ui';
 import MasterDetail from '@/components/MasterDetail';
 import AddVendor from './detail/AddVendor';
 import ApptScheduled from './detail/ApptScheduled';
 import BasePage from '../BasePage';
+import ReviewTimesSent from './detail/ReviewTimesSent';
 import SendTimes from './detail/SendTimes';
 import SendVendorStatusEmail from './detail/SendVendorStatusEmail';
 import Master from './master/Master';
@@ -45,7 +51,9 @@ export default {
     AddVendor,
     ApptScheduled,
     BasePage,
+    ElCard,
     MasterDetail,
+    ReviewTimesSent,
     SendTimes,
     SendVendorStatusEmail,
     VendorDetail,
@@ -76,6 +84,9 @@ export default {
     },
     showSendStatusEmail() {
       return !!(this.overridingDetail && (this.overridingDetail.type === 'approveVendor' || this.overridingDetail.type === 'rejectVendor'));
+    },
+    showTimesSent() {
+      return !!(this.overridingDetail && this.overridingDetail.type === 'timesSent');
     }
   },
   beforeRouteEnter(to, from, next) {

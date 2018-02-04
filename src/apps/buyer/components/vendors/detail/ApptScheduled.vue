@@ -1,26 +1,53 @@
-<style >
-.cancel-meeting-btn {
-  width: 100%;
+<style scoped>
+.appt-card {
+  max-width: 300px;
 }
 </style>
 
 <template>
   <div>
-    <h2 class="modal-title">Scheduled appointment with {{ vendor.name }}</h2>
-    <div class="card card-body bg-light">
+  <h3>Scheduled appointment with {{ vendor.name }}</h3>
+  <div class="card card-body bg-light">
+    <div class="appt-card">
       <div class="row">
-        <div class="col-sm-4">
-          <ElCard>
-            <h3>{{ startDate }}</h3><br>
-            <h3>{{ startTime }} - {{ endTime }}</h3><br>
-            <h4>{{ location.address }}</h4>
-            <h4>{{ location.city }}, {{ location.state }} {{ location.zip }}</h4>
-          </ElCard>
-          <br>
-          <ElButton class="cancel-meeting-btn" type="danger" size="medium" @click="confirmCancel">Cancel Meeting</ElButton>
+        <div class="col-sm-2">
+          <i class="fa fa-calendar" />
+        </div>
+        <div class="col-sm-10">
+          <div class="row">
+            <div class="col-sm-12">
+              <h5>{{ startDate }}</h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <h6>{{ startTime }} - {{ endTime }}</h6>
+            </div>
+          </div>
         </div>
       </div>
+      <div class="row">
+        <div class="col-sm-2">
+          <i class="fa fa-map-marker" aria-hidden="true" />
+        </div>
+        <div class="col-sm-10">
+          <div class="row">
+            <div class="col-sm-12">
+              <h5>{{ location.address }}</h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <h5>{{ location.city }}, {{ location.state }} {{ location.zip }}</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="cancel-meeting" type="button" class="btn btn-danger" @click="confirmCancel">Cancel Meeting</button>
+      </div>
     </div>
+  </div>
   </div>
 </template>
 

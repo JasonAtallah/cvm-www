@@ -54,6 +54,9 @@ export default [
   },
   {
     status: 'VendorNeedsToReviewTimes',
+    label: 'Times Sent',
+    value: 'timesSent',
+    dispatch: 'overrideDetail',
     badge: 'secondary'
   }
 ];
