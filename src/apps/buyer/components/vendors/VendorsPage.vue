@@ -18,14 +18,14 @@
           <Master />
         </div>
         <div slot="detail" class="vendors-detail">
-          <VendorDetail v-if="showVendorDetail" :vendor="vendor" />
-          <ElCard v-else>
+          <ElCard v-if="!showVendorDetail && overridingDetail">
             <AddVendor v-if="addVendor" :params="overridingDetail" />
             <ApptScheduled v-if="showScheduledMeeting" :params="overridingDetail" />
             <ReviewTimesSent v-if="showTimesSent" :params="overridingDetail" />
             <SendTimes v-if="showSendTimes" :params="overridingDetail" />
             <SendVendorStatusEmail v-if="showSendStatusEmail" :params="overridingDetail" />
           </ElCard>
+          <VendorDetail v-else :vendor="vendor" />
         </div>
       </MasterDetail>
     </div>

@@ -1,28 +1,17 @@
 <style>
-.predashboard-card {
-  height: 645px;
-}
+
 </style>
 
 <template>
 <div class="container">
   <div class="row">
-    <div class="col-sm-12">
-      <ElCard class="predashboard-card">
-        <Calendar v-if="form === 'Calendar'" :buyer="buyer" />
-        <Profile v-if="form === 'Profile'" :buyer="buyer" />
-        <Questionnaire v-if="form === 'Questionnaire'" :buyer="buyer" :buyerSettings="buyerSettings" :questionnaire="questionnaire"/>
-        <Complete v-if="form === 'Complete'" :buyer="buyer" />
+    <div class="col-xs-12 col-md-6 offset-md-3">
+      <ElCard>
+        <Profile v-if="curTab === 0" :buyer="buyer" @updated="next" />
+        <Calendar v-if="curTab === 1" :buyer="buyer" />
+        <Questionnaire v-if="curTab === 2" :buyer="buyer" :buyerSettings="buyerSettings" :questionnaire="questionnaire"/>
+        <Complete v-if="curTab === 3" :buyer="buyer" />
       </ElCard>
-    </div>
-  </div><br>
-  <div class="row">
-    <div class="col-sm-6">
-      <button type="button" class="btn btn-default btn-lg pull-right" @click="back">Back</button>
-    </div>
-    <div class="col-sm-6">
-      <button v-if="form === 'Complete'" type="button" class="btn btn-primary btn-lg" @click="save">Save</button>
-      <button v-else type="button" class="btn btn-primary btn-lg" @click="next">Next</button>
     </div>
   </div>
 </div>
@@ -33,7 +22,7 @@ import { mapGetters } from 'vuex';
 import { Card as ElCard } from 'element-ui';
 import Calendar from '../settings/detail/Calendar';
 import Complete from './Complete';
-import Profile from '../settings/detail/Profile';
+import Profile from './Profile';
 import Questionnaire from '../settings/detail/Questionnaire';
 
 export default {
@@ -46,8 +35,7 @@ export default {
   },
   data() {
     return {
-      active: 0,
-      form: 'Profile'
+      curTab: 0
     };
   },
   computed: {
@@ -55,32 +43,14 @@ export default {
       buyer: 'buyer',
       buyerSettings: 'buyerSettings',
       questionnaire: 'questionnaire'
-    }),
-    showProfileForm() {
-      return this.form === 'Profile';
-    }
+    })
   },
   methods: {
-    back() {
-      if (this.active > 0) {
-        this.active--;
-        this.setForm();
-      }
-    },
     next() {
-      if (this.active < 3) {
-        this.active++;
-        this.setForm();
-      }
+      this.curTab += 1;
     },
-    save() {
-      this.active = 0;
-      this.setForm();
+    complete() {
       this.$router.push('/');
-    },
-    setForm() {
-      const forms = ['Profile', 'Calendar', 'Questionnaire', 'Complete'];
-      this.form = forms[this.active];
     }
   }
 };

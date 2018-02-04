@@ -44,10 +44,8 @@ a.markdown-link:hover {
         </ElTabPane>
         <ElTabPane v-for="page in inputPages" :label="page.label"
         :key="page.value" :name="page.value">
-          <div v-for="option in getOptions(page)" :key="option">
-            {{ option.label }}
-            <br>
-            <!-- {{ inputPages }} -->
+          <div v-for="option in getOptions(page)" :key="option.value">
+            {{ option }}
           </div>
         </ElTabPane>
       </ElTabs>
@@ -124,7 +122,10 @@ export default {
         if (page.options.includes(option.id)) {
           options.push({
             value: option.id,
-            label: option.name.split(/(?=[A-Z])/).join(' ')
+            label: option.name.split(/(?=[A-Z])/).join(' '),
+            enabled: option.enabled,
+            required: option.required,
+            default: option.default
           });
         }
       });
@@ -134,7 +135,7 @@ export default {
       this.curTab = tab.name;
     },
     updateQuestionnaire() {
-      const page = { introduction: this.newQuestionnaire[this.curTab] };
+      const page = { [this.curTab]: this.newQuestionnaire[this.curTab] };
       this.$store.dispatch('updateQuestionnaire', page);
       Notification({
         message: `${this.curTab} Page Updated!`,

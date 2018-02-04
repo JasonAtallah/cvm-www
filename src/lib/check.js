@@ -2,7 +2,10 @@
 
 module.exports = {
   profileComplete: (user) => {
-    if (!user.profile.company.namea) {
+    // Object.keys(user.profile.company).forEach((field) => {
+    //   console.log(user.profile.company[field]);
+    // });
+    if (!user.profile.company.name) {
       return false;
     }
     return true;
