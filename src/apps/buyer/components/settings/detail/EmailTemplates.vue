@@ -1,38 +1,35 @@
 <template>
-  <div>
-    <h3>Email Templates</h3>
-    <p class="lead">
-      Update your default email templates. These are used when sending an approval or rejection email to a new vendor.
-    </p>
-    <div class="card card-body bg-light">
-      <ElTabs value="approveVendor" @tab-click="switchTab">
-        <ElTabPane v-for="emailType in emailTypes" :label="emailType.label"
-        :key="emailType.value" :name="emailType.value">
-          <div class="form-group" :model="emails[emailType.value]">
-            <div class="row">
-              <div class="col-sm-12">
-                <label class="settings-input-label" for="subject">Subject</label>
-                <ElInput id="subject" v-model="emails[emailType.value].subject" placeholder="Subject" />
-              </div>
-            </div>
-            <br>
-            <div class="row">
-              <div class="col-sm-12">
-                <label class="settings-input-label" for="body">Body</label>
-                <ElInput id="body" type="textarea" v-model="emails[emailType.value].body" placeholder="Body" :rows="10" />
-              </div>
+  <Detail title="Email Templates" description="Update your default email templates. These are used when sending an approval or rejection email to a new vendor."
+    :canSave="canSave"
+    :canCancel="canCancel"
+    @save="save"
+    @cancel="cancel">
+
+    <ElTabs value="approveVendor" @tab-click="switchTab">
+      <ElTabPane v-for="emailType in emailTypes" :key="emailType.value"
+        :label="emailType.label"
+        :name="emailType.value">
+
+        <div class="form-group" :model="emails[emailType.value]">
+          <div class="row">
+            <div class="col-sm-12">
+              <label class="settings-input-label" for="subject">Subject</label>
+              <ElInput id="subject" v-model="emails[emailType.value].subject" placeholder="Subject" />
             </div>
           </div>
-        </ElTabPane>
-      </ElTabs>
-    </div>
+          <br>
+          <div class="row">
+            <div class="col-sm-12">
+              <label class="settings-input-label" for="body">Body</label>
+              <ElInput id="body" type="textarea" v-model="emails[emailType.value].body" placeholder="Body" :rows="10" />
+            </div>
+          </div>
+        </div>
 
-    <div class="modal-footer">
-      <button type="button" class="btn btn-lg btn-primary" @click.prevent="updateEmails" :disabled="canNotUpdate">Save</button>
-      <button type="button" class="btn btn-lg btn-default" @click.prevent="cancel">Cancel</button>
-    </div>
+      </ElTabPane>
+    </ElTabs>
 
-  </div>
+  </Detail>
 </template>
 
 <script>
@@ -43,9 +40,11 @@ import {
   Tabs as ElTabs,
   TabPane as ElTabPane,
   Notification } from 'element-ui';
+import Detail from '@/components/masterDetail/Detail';
 
 export default {
   components: {
+    Detail,
     ElButton,
     ElInput,
     ElTabs,
@@ -69,8 +68,11 @@ export default {
   },
   props: ['buyer'],
   computed: {
-    canNotUpdate() {
-      return _.isEqual(this.buyer.emails[this.curTab], this.emails[this.curTab]);
+    canCancel() {
+      return this.canSave;
+    },
+    canSave() {
+      return _.isEqual(this.buyer.emails[this.curTab], this.emails[this.curTab]) === false;
     },
     emailTypes() {
       const actions = this.$store.getters.vendorActionButtons;
@@ -84,11 +86,12 @@ export default {
     switchTab(tab) {
       this.curTab = tab.name;
     },
-    updateEmails() {
+    save() {
       const email = {
         email: this.emails[this.curTab],
         templateId: this.curTab
       };
+
       this.$store.dispatch('updateBuyerEmailTemplate', email)
         .then(() => {
           Notification({
