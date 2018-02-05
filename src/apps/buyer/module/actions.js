@@ -26,7 +26,7 @@ export const createCalendarEvent = ({ rootState, dispatch, commit }, values) => 
     });
 };
 
-export const createGCalendar = ({ rootState, commit }, name) => {
+export const createGCalendar = ({ rootState, commit, dispatch }, name) => {
   const values = {
     name,
     timezone: rootState.timezone
@@ -35,6 +35,7 @@ export const createGCalendar = ({ rootState, commit }, name) => {
   return api.setGCalendar(values)
     .then((calendar) => {
       commit('gCalendar', calendar);
+      dispatch('loadEvents');
     });
 };
 
@@ -167,10 +168,11 @@ export const sendTimes = ({ commit }, { vendor, suggestedTimes }) => {
     });
 };
 
-export const setGCalendar = ({ rootState, commit }, values) => {
+export const setGCalendar = ({ rootState, commit, dispatch }, values) => {
   return api.setGCalendar(values)
     .then((calendar) => {
       commit('gCalendar', calendar);
+      dispatch('loadEvents');
     });
 };
 

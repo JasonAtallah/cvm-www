@@ -1,50 +1,44 @@
 <template>
-  <div>
-    <h3>Calendar</h3>
-    <p class="lead">
-      Select the calendar you would like to sync with us.
-    </p>
-    <div class="card card-body bg-light">
-        <form>
-          <div class="form-group">
-            <label>Please select the calendar to use for scheduling:</label><br>
-            <ElSelect v-model="selectedCalendar" @change="onCalendarSelect">
-              <ElOption v-for="calendar in calendars" :key="calendar.id" :value="calendar.id" :label="calendar.name" />
-            </ElSelect>
-          </div>
-          <br/>
-          <div class="form-group">
-            <label>Or create a new one:</label><br>
-            <ElInput v-model="calendarName" @keypress="onNameInput" placeholder="CVM Calendar" />
-          </div>
-        </form>
+  <Detail title="Calendar" description="Select the calendar you would like to sync with us." :canSave="canSave" :canCancel="canCancel" @save="submitCalendar" @cancel="cancel">
+    <div class="form-group col-sm-12 col-md-6">
+      <label>Currently selected calendar for scheduling:</label><br>
+      <b>{{ buyer.gcalendar.name }}</b>
     </div>
-
-    <div class="modal-footer">
-      <button id="save" type="button" class="btn btn-primary" @click.prevent="submitCalendar">Save</button>
+    <div class="form-group col-sm-12 col-md-6">
+      <label>Select a different calendar:</label><br>
+      <ElSelect v-model="selectedCalendar" @change="onCalendarSelect">
+        <ElOption v-for="calendar in unselectedCalendars" :key="calendar.id" :value="calendar.id" :label="calendar.name" />
+      </ElSelect>
     </div>
-
-  </div>
+    <div class="form-group col-sm-12 col-md-6">
+      <label>Or create a new one:</label><br>
+      <ElInput v-model="calendarName" @keypress="onNameInput" placeholder="CVM Calendar" />
+    </div>
+  </Detail>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
 import {
   Input as ElInput,
+  Notification,
   Option as ElOption,
   Select as ElSelect
 } from 'element-ui';
+import Detail from '@/components/masterDetail/Detail';
 
 export default {
   name: 'set-calendar',
   components: {
+    Detail,
     ElInput,
     ElOption,
-    ElSelect
+    ElSelect,
+    Notification
   },
   data() {
     return {
-      selectedCalendar: this.buyer.gcalendar.name || null,
+      selectedCalendar: null,
       calendarName: null
     };
   },
@@ -52,21 +46,50 @@ export default {
     ...mapGetters({
       buyer: 'buyer',
       calendars: 'calendars'
-    })
+    }),
+    canCancel() {
+      return this.canSave;
+    },
+    canSave() {
+      return !!(this.selectedCalendar || this.calendarName);
+    },
+    unselectedCalendars() {
+      if (!this.calendars) {
+        return [];
+      }
+
+      return this.calendars.filter(c => c.id !== this.buyer.gcalendar.id);
+    }
   },
   methods: {
+    cancel() {
+      this.selectedCalendar = null;
+      this.calendarName = null;
+    },
     onNameInput() {
       this.selectedCalendar = null;
     },
     onCalendarSelect() {
       this.calendarName = null;
     },
-    submitCalendar() {
+    saveCalendarChoice() {
       if (this.selectedCalendar) {
-        this.$store.dispatch('setGCalendar', _.find(this.calendars, { id: this.selectedCalendar }));
-      } else if (this.calendarName && this.calendarName.trim()) {
-        this.$store.dispatch('createGCalendar', this.calendarName);
+        return this.$store.dispatch('setGCalendar', _.find(this.calendars, { id: this.selectedCalendar }));
       }
+
+      return this.$store.dispatch('createGCalendar', this.calendarName.trim());
+    },
+    submitCalendar() {
+      this.saveCalendarChoice()
+        .then(() => {
+          this.cancel();
+          Notification({
+            title: 'Success',
+            message: 'Calendar Updated!',
+            type: 'success',
+            duration: 2000
+          });
+        });
     }
   },
   created: function () {

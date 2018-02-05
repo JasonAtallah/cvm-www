@@ -31,7 +31,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import MasterDetail from '@/components/MasterDetail';
+import MasterDetail from '@/components/masterDetail/MasterDetail';
 import BasePage from '../BasePage';
 import ButtonGenerator from './detail/ButtonGenerator';
 import Calendar from './detail/Calendar';

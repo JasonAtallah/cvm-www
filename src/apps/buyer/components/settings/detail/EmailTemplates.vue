@@ -28,7 +28,7 @@
     </div>
 
     <div class="modal-footer">
-      <button type="button" class="btn btn-lg btn-primary" @click.prevent="updateEmails" :disabled="canNotUpdate">Update Emails</button>
+      <button type="button" class="btn btn-lg btn-primary" @click.prevent="updateEmails" :disabled="canNotUpdate">Save</button>
       <button type="button" class="btn btn-lg btn-default" @click.prevent="cancel">Cancel</button>
     </div>
 

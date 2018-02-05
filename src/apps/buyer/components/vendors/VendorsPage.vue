@@ -35,7 +35,7 @@
 import { mapGetters } from 'vuex';
 import {
   Card as ElCard } from 'element-ui';
-import MasterDetail from '@/components/MasterDetail';
+import MasterDetail from '@/components/masterDetail/MasterDetail';
 import AddVendor from './detail/AddVendor';
 import ApptScheduled from './detail/ApptScheduled';
 import BasePage from '../BasePage';

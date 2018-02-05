@@ -31,8 +31,8 @@
 import { mapGetters } from 'vuex';
 import {
   Card as ElCard } from 'element-ui';
-import MonthView from '@/components/Calendar/MonthView';
-import MasterDetail from '@/components/MasterDetail';
+import MonthView from '@/components/calendar/MonthView';
+import MasterDetail from '@/components/masterDetail/MasterDetail';
 import AddCalendarEvent from './detail/AddCalendarEvent';
 import BasePage from '../BasePage';
 import Buttons from './master/headers/Buttons';

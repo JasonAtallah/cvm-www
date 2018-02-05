@@ -67,7 +67,7 @@
     </div>
 
     <div class="modal-footer">
-      <button type="button" class="btn btn-lg btn-primary" @click="updateProfile" :disabled="canNotUpdate">Update Profile</button>
+      <button type="button" class="btn btn-lg btn-primary" @click="updateProfile" :disabled="canNotUpdate">Save</button>
       <button type="button" class="btn btn-lg btn-default" @click="cancel">Cancel</button>
     </div>
 
