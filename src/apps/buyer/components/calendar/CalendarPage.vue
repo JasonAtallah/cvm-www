@@ -20,9 +20,7 @@
         </div>
         <div slot="detail" class="calendar-detail">
           <DayDetail v-if="showDay" :events="events" :date="curDate" />
-          <ElCard v-else>
-            <AddCalendarEvent v-if="addEvent" :curDate="curDate" />
-          </ElCard>
+          <AddCalendarEvent v-if="showAddEvent" :curDate="curDate" />
         </div>
       </MasterDetail>
     </div>
@@ -60,7 +58,7 @@ export default {
       overridingDetail: 'overridingDetail',
       events: 'events'
     }),
-    addEvent() {
+    showAddEvent() {
       return !!(this.overridingDetail && this.overridingDetail.type === 'addCalendarEvent');
     },
     showDay() {
