@@ -2,60 +2,55 @@
 div.preview {
   background-color: #FFFFFF;
   padding: 2rem;
-  text-align: center;
-}
-a.markdown-link {
-  border-left: 1px solid #CCCCCC;
-  padding-left: 15px;
-  margin-left: 15px;
 }
 
-a.markdown-link:hover {
-  text-decoration: none;
+span.divider {
+  margin: 0 1rem;
+  font-size: 1.5rem;
+  color: #CCC;
 }
 </style>
 
 <template>
-  <div>
-    <h3>Questionnaire</h3>
-    <p class="lead">
-      Customize your questionnaire.
-    </p>
-    <div class="card card-body bg-light">
-      <ElTabs value="introduction" @tab-click="switchTab">
-        <ElTabPane v-for="page in markdownPages" :label="page.label"
-        :key="page.value" :name="page.value">
-          <div class="form-group" :model="newQuestionnaire[page.value]">
-            <div class="row">
-              <div class="col-sm-12">
-                <ElSwitch v-model="previewMode"
-                active-text="Preview"
-                inactive-text="Edit"/>
-                <ElButton type="text"><a class="markdown-link" href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">Learn how to use markdown</a></ElButton>
-                <div v-if="previewMode" v-html="markdownHtml" class="preview" />
-                <div v-else>
+  <Detail title="Questionnaire" description="Customize your questionnaire."
+    :canSave="canSave" :canCancel="canSave"
+    @save="save" @cancel="cancel">
+
+    <ElTabs value="introduction" @tab-click="switchTab">
+      <ElTabPane v-for="page in markdownPages" :key="page.value"
+        :name="page.value"
+        :label="page.label">
+
+        <div class="form-group" :model="newQuestionnaire[page.value]">
+          <div class="row">
+            <div class="col-sm-12">
+              <ElSwitch v-model="previewMode" active-text="Preview" inactive-text="Edit"/>
+              <span class="divider">|</span>
+              <ElButton type="text" @click="gotoMarkdownDocs">Learn how to use markdown</ElButton>
+
+              <div v-if="previewMode" v-html="markdownHtml" class="preview" />
+              <div v-else>
                 <label class="settings-input-label"></label>
                 <ElInput :id="page.value" v-model="newQuestionnaire[page.value]" placeholder="Enter text using markdown"
                 type="textarea" :rows="15"/>
-                </div>
               </div>
             </div>
           </div>
-        </ElTabPane>
-        <ElTabPane v-for="page in inputPages" :label="page.label"
-        :key="page.value" :name="page.value">
-          <div v-for="option in getOptions(page)" :key="option.value">
-            {{ option }}
-          </div>
-        </ElTabPane>
-      </ElTabs>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-lg btn-primary" @click="updateQuestionnaire" :disabled="canNotUpdate">Save</button>
-      <button type="button" class="btn btn-lg btn-default" @click="cancel">Cancel</button>
-    </div>
+        </div>
 
-  </div>
+      </ElTabPane>
+
+      <ElTabPane v-for="page in inputPages" :key="page.value"
+        :label="page.label"
+        :name="page.value">
+
+        <div v-for="option in getOptions(page)" :key="option.value">
+          {{ option }}
+        </div>
+      </ElTabPane>
+    </ElTabs>
+
+  </Detail>
 </template>
 
 <script>
@@ -69,9 +64,11 @@ import {
   Tabs as ElTabs,
   TabPane as ElTabPane,
   Notification } from 'element-ui';
+import Detail from '@/components/masterDetail/Detail';
 
 export default {
   components: {
+    Detail,
     ElButton,
     ElCheckbox,
     ElCheckboxGroup,
@@ -95,8 +92,9 @@ export default {
   },
   props: ['buyer', 'buyerSettings', 'questionnaire'],
   computed: {
-    canNotUpdate() {
-      return _.isEqual(this.questionnaire.introduction, this.newQuestionnaire.introduction) && _.isEqual(this.questionnaire.completion, this.newQuestionnaire.completion);
+    canSave() {
+      return !_.isEqual(this.questionnaire.introduction, this.newQuestionnaire.introduction) ||
+        !_.isEqual(this.questionnaire.completion, this.newQuestionnaire.completion);
     },
     inputPages() {
       return _.filter(this.questionnairePages, { markdown: false });
@@ -131,17 +129,26 @@ export default {
       });
       return options;
     },
+    gotoMarkdownDocs() {
+      window.open('https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet', '_blank');
+    },
     switchTab(tab) {
       this.curTab = tab.name;
     },
-    updateQuestionnaire() {
-      const page = { [this.curTab]: this.newQuestionnaire[this.curTab] };
-      this.$store.dispatch('updateQuestionnaire', page);
-      Notification({
-        message: `${this.curTab} Page Updated!`,
-        type: 'Success',
-        duration: 2000
-      });
+    save() {
+      const page = {
+        [this.curTab]: this.newQuestionnaire[this.curTab]
+      };
+
+      this.$store.dispatch('updateQuestionnaire', page)
+        .then(() => {
+          Notification({
+            title: 'Success',
+            message: `${this.curTab} Page Updated!`,
+            type: 'success',
+            duration: 2000
+          });
+        });
     }
   }
 };
