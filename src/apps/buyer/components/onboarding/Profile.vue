@@ -40,7 +40,7 @@
     </div>
 
     <div class="modal-footer">
-      <button type="button" class="btn btn-lg btn-primary" @click="updateProfile" :disabled="canNotUpdate">Update Profile</button>
+      <button type="button" class="btn btn-lg btn-primary" @click="updateProfile">Save</button>
     </div>
 
   </div>
@@ -48,8 +48,6 @@
 
 <script>
 import {
-  Button as ElButton,
-  Col as ElCol,
   Form as ElForm,
   FormItem as ElFormItem,
   Input as ElInput,
@@ -58,8 +56,6 @@ import rules from '../../metadata/formRules/onboardingProfile';
 
 export default {
   components: {
-    ElButton,
-    ElCol,
     ElForm,
     ElFormItem,
     ElInput,
