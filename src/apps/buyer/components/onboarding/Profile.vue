@@ -1,49 +1,40 @@
 
 
 <template>
-  <div>
-    <h3>Profile</h3>
-    <p class="lead">
-      Update your personal and company information.
-    </p>
-    <div class="card card-body bg-light">
-      <ElForm :model="values" :rules="rules" ref="profileForm">
-        <div class="row">
-          <div class="col-12">
-            <ElFormItem label="First Name" prop="firstName">
-              <ElInput v-model="values.firstName" placeholder="First Name" />
-            </ElFormItem>
-          </div>
+  <Detail title="Profile" description="Update your personal and company information."
+    :canSave="true" :showCancel="false"
+    @save="updateProfile">
+    <ElForm :model="values" :rules="rules" ref="profileForm">
+      <div class="row">
+        <div class="col-12">
+          <ElFormItem label="First Name" prop="firstName">
+            <ElInput v-model="values.firstName" placeholder="First Name" />
+          </ElFormItem>
         </div>
-        <div class="row">
-          <div class="col-12">
-            <ElFormItem label="Email" prop="email">
-              <ElInput v-model="values.email" placeholder="Email" />
-            </ElFormItem>
-          </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <ElFormItem label="Email" prop="email">
+            <ElInput v-model="values.email" placeholder="Email" />
+          </ElFormItem>
         </div>
-        <div class="row">
-          <div class="col-12">
-            <ElFormItem label="Company Name" prop="name">
-              <ElInput v-model="values.name" placeholder="Name" />
-            </ElFormItem>
-          </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <ElFormItem label="Company Name" prop="name">
+            <ElInput v-model="values.name" placeholder="Name" />
+          </ElFormItem>
         </div>
-        <div class="row">
-          <div class="col-12">
-            <ElFormItem label="Company City" prop="city">
-              <ElInput v-model="values.city" placeholder="City" />
-            </ElFormItem>
-          </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <ElFormItem label="Company City" prop="city">
+            <ElInput v-model="values.city" placeholder="City" />
+          </ElFormItem>
         </div>
-      </ElForm>
-    </div>
-
-    <div class="modal-footer">
-      <button type="button" class="btn btn-lg btn-primary" @click="updateProfile">Save</button>
-    </div>
-
-  </div>
+      </div>
+    </ElForm>
+  </Detail>
 </template>
 
 <script>
@@ -52,10 +43,12 @@ import {
   FormItem as ElFormItem,
   Input as ElInput,
   Notification } from 'element-ui';
+import Detail from '@/components/masterDetail/Detail';
 import rules from '../../metadata/formRules/onboardingProfile';
 
 export default {
   components: {
+    Detail,
     ElForm,
     ElFormItem,
     ElInput,
