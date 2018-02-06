@@ -24,7 +24,7 @@
                 <h6>{{ formatTime(time) }}</h6>
               </div>
             </div>
-            <hr>
+            <hr v-if="suggestedTimes.length > 1">
           </div>
         </div>
         <div v-if="rejectedTimes.length > 0" class="col-sm-6">
@@ -48,7 +48,7 @@
                 <h6>{{ formatTime(time) }}</h6>
               </div>
             </div>
-            <hr>
+            <hr v-if="rejectedTimes.length > 1">
           </div>
         </div>
       </div>
@@ -59,13 +59,8 @@
 <script>
 import { mapGetters } from 'vuex';
 import moment from 'moment';
-import {
-  Card as ElCard } from 'element-ui';
 
 export default {
-  components: {
-    ElCard
-  },
   props: ['params'],
   computed: {
     ...mapGetters({

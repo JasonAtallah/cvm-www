@@ -2,6 +2,7 @@
 div.preview {
   background-color: #FFFFFF;
   padding: 2rem;
+  text-align: center;
 }
 
 span.divider {
@@ -13,13 +14,14 @@ span.divider {
 
 <template>
   <Detail title="Questionnaire" description="Customize your questionnaire."
-    :canSave="canSave" :canCancel="canSave"
-    @save="save" @cancel="cancel">
+    :canSave="canSave" :showCancel="false"
+    @save="save">
 
     <ElTabs value="introduction" @tab-click="switchTab">
       <ElTabPane v-for="page in markdownPages" :key="page.value"
         :name="page.value"
         :label="page.label">
+
         <div class="form-group" :model="newQuestionnaire[page.value]">
           <div class="row">
             <div class="col-sm-12">
@@ -35,16 +37,6 @@ span.divider {
               </div>
             </div>
           </div>
-        </div>
-
-      </ElTabPane>
-
-      <ElTabPane v-for="page in inputPages" :key="page.value"
-        :label="page.label"
-        :name="page.value">
-
-        <div v-for="option in getOptions(page)" :key="option.value">
-          {{ option }}
         </div>
       </ElTabPane>
     </ElTabs>
@@ -74,22 +66,17 @@ export default {
     return {
       curTab: 'introduction',
       markdown: new showdown.Converter(),
-      mode: 'Preview',
       newQuestionnaire: {
         introduction: this.questionnaire.introduction || null,
         completion: this.questionnaire.completion || null,
       },
-      previewMode: false
+      previewMode: true
     };
   },
   props: ['buyer', 'buyerSettings', 'questionnaire'],
   computed: {
     canSave() {
-      return !_.isEqual(this.questionnaire.introduction, this.newQuestionnaire.introduction) ||
-        !_.isEqual(this.questionnaire.completion, this.newQuestionnaire.completion);
-    },
-    inputPages() {
-      return _.filter(this.questionnairePages, { markdown: false });
+      return !!(this.newQuestionnaire.introduction && this.newQuestionnaire.completion);
     },
     markdownHtml() {
       return this.markdown.makeHtml(this.newQuestionnaire[this.curTab]);
@@ -102,25 +89,6 @@ export default {
     },
   },
   methods: {
-    cancel() {
-      this.newQuestionnaire[this.curTab] = _.cloneDeep(this.questionnaire[this.curTab]);
-    },
-    getOptions(page) {
-      const pageQuestions = _.find(this.questionnaire.pages, { id: page.value }).questions;
-      const options = [];
-      pageQuestions.forEach((option) => {
-        if (page.options.includes(option.id)) {
-          options.push({
-            value: option.id,
-            label: option.name.split(/(?=[A-Z])/).join(' '),
-            enabled: option.enabled,
-            required: option.required,
-            default: option.default
-          });
-        }
-      });
-      return options;
-    },
     gotoMarkdownDocs() {
       window.open('https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet', '_blank');
     },
@@ -128,17 +96,24 @@ export default {
       this.curTab = tab.name;
     },
     save() {
-      const page = {
-        [this.curTab]: this.newQuestionnaire[this.curTab]
-      };
-
-      this.$store.dispatch('updateQuestionnaire', page)
-        .then(() => {
-          this.$store.dispatch('successNotification', `${_.find(this.markdownPages, { value: this.curTab }).label} Page Updated`);
-        })
-        .catch(() => {
-          this.$store.dispatch('errorNotification');
-        });
+      Promise.all([
+        this.saveIntroduction(),
+        this.saveCompletion()
+      ]).then(() => {
+        this.$emit('updated');
+      });
+    },
+    saveCompletion() {
+      if (this.newQuestionnaire.completion !== this.questionnaire.completion) {
+        return this.$store.dispatch('updateQuestionnaire', { completion: this.newQuestionnaire.completion });
+      }
+      return Promise.resolve();
+    },
+    saveIntroduction() {
+      if (this.newQuestionnaire.introduction !== this.questionnaire.introduction) {
+        return this.$store.dispatch('updateQuestionnaire', { introduction: this.newQuestionnaire.introduction });
+      }
+      return Promise.resolve();
     }
   }
 };

@@ -4,7 +4,7 @@
 <div>
   <button class="btn btn-primary" @click="submitQuestionnaire">Submit</button>
   <div class="row">
-    <div class="col-xs-12 col-sm-12 col-sm-6">
+    <div class="col-xs-12 col-sm-12 col-md-6">
       <div :response="response.company" :questions="companyQuestions">
         <h3>Company</h3>
         {{ response.company.name }}<br/>
@@ -19,7 +19,7 @@
         {{ response.company.partOfCollective }}
       </div>
     </div>
-    <div class="col-xs-12 col-sm-12 col-sm-6">
+    <div class="col-xs-12 col-sm-12 col-md-6">
       <div :response="response.contact" :questions="contactQuestions">
         <h3>Contact</h3>
         {{ response.contact.firstName }}<br/>
@@ -31,19 +31,19 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-12 col-sm-12 col-sm-4" >
+    <div class="col-xs-12 col-sm-12 col-md-4" >
       <h3>Flowers</h3>
       <div v-for="product in response.flowers.products" :key="product.name" :product="product" :def="flowerDef">
         {{ product.name }}
       </div>
     </div>
-    <div class="col-xs-12 col-sm-12 col-sm-4">
+    <div class="col-xs-12 col-sm-12 col-md-4">
       <h3>Edibles & Topicals</h3>
       <div v-for="product in response.edibles.products" :key="product.name" :product="product" :def="edibleDef">
         {{ product.name }}
       </div>
     </div>
-    <div class="col-xs-12 col-sm-12 col-sm-4">
+    <div class="col-xs-12 col-sm-12 col-md-4">
       <h3>Concentrates</h3>
       <div v-for="product in response.concentrates.products" :key="product.name" :product="product" :def="concentrateDef">
         {{ product.name }}

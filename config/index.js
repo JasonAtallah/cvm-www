@@ -10,7 +10,8 @@ const config = module.exports = {
         host: process.env.APP_HOST,
         name: process.env.JS_APP_NAME,
         port: process.env.PORT,
-        buyerCallback: `${process.env.APP_HOST}/buyer/callback`
+        buyerCallback: `${process.env.APP_HOST}/buyer/callback`,
+        vendorAppUrl: process.env.VENDOR_APP_URL
       },
       assetsRoot: path.resolve(__dirname, '../dist'),
       assetsSubDirectory: 'static',

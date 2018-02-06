@@ -35,7 +35,6 @@ span.vendor-name {
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 import {
   Tabs as ElTabs,
   TabPane as ElTabPane

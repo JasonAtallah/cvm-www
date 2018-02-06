@@ -33,23 +33,18 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 import {
-  Button as ElButton,
   Input as ElInput,
   Tabs as ElTabs,
-  TabPane as ElTabPane,
-  Notification } from 'element-ui';
+  TabPane as ElTabPane } from 'element-ui';
 import Detail from '@/components/masterDetail/Detail';
 
 export default {
   components: {
     Detail,
-    ElButton,
     ElInput,
     ElTabs,
-    ElTabPane,
-    Notification
+    ElTabPane
   },
   data() {
     return {
@@ -94,12 +89,10 @@ export default {
 
       this.$store.dispatch('updateBuyerEmailTemplate', email)
         .then(() => {
-          Notification({
-            title: 'Success',
-            message: 'Email Template Updated!',
-            type: 'success',
-            duration: 2000
-          });
+          this.$store.dispatch('successNotification', `${_.find(this.emailTypes, { value: this.curTab }).label} Email Updated`);
+        })
+        .catch(() => {
+          this.$store.dispatch('errorNotification');
         });
     }
   }

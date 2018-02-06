@@ -52,17 +52,9 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 import moment from 'moment';
-import {
-  Button as ElButton,
-  Card as ElCard } from 'element-ui';
 
 export default {
-  components: {
-    ElButton,
-    ElCard
-  },
   props: ['params'],
   computed: {
     endTime() {
