@@ -72,14 +72,11 @@
 </template>
 
 <script>
-import {
-  Input as ElInput,
-  Notification } from 'element-ui';
+import { Input as ElInput } from 'element-ui';
 
 export default {
   components: {
-    ElInput,
-    Notification
+    ElInput
   },
   data() {
     return {

@@ -3,7 +3,7 @@
 <template>
   <Detail title="Profile" description="Update your personal and company information."
     :canSave="canSave" :canCancel="canCancel"
-    @save="save">
+    @save="save" @cancel="cancel">
     <ElForm :model="profile.contact" :rules="rules.contact" ref="profile.contact">
       <div class="row">
         <div class="col-sm-6">
@@ -66,11 +66,9 @@
 
 <script>
 import {
-  Col as ElCol,
   Form as ElForm,
   FormItem as ElFormItem,
-  Input as ElInput,
-  Notification } from 'element-ui';
+  Input as ElInput } from 'element-ui';
 import Detail from '@/components/masterDetail/Detail';
 import companyFormRules from '../../../metadata/formRules/profile.company';
 import contactFormRules from '../../../metadata/formRules/profile.contact';
@@ -78,11 +76,9 @@ import contactFormRules from '../../../metadata/formRules/profile.contact';
 export default {
   components: {
     Detail,
-    ElCol,
     ElForm,
     ElFormItem,
-    ElInput,
-    Notification
+    ElInput
   },
   data() {
     return {

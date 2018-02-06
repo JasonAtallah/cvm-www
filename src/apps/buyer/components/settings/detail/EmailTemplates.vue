@@ -36,8 +36,7 @@
 import {
   Input as ElInput,
   Tabs as ElTabs,
-  TabPane as ElTabPane,
-  Notification } from 'element-ui';
+  TabPane as ElTabPane } from 'element-ui';
 import Detail from '@/components/masterDetail/Detail';
 
 export default {
@@ -45,8 +44,7 @@ export default {
     Detail,
     ElInput,
     ElTabs,
-    ElTabPane,
-    Notification
+    ElTabPane
   },
   data() {
     return {

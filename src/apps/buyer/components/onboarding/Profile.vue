@@ -41,8 +41,7 @@
 import {
   Form as ElForm,
   FormItem as ElFormItem,
-  Input as ElInput,
-  Notification } from 'element-ui';
+  Input as ElInput } from 'element-ui';
 import Detail from '@/components/masterDetail/Detail';
 import rules from '../../metadata/formRules/onboardingProfile';
 
@@ -51,8 +50,7 @@ export default {
     Detail,
     ElForm,
     ElFormItem,
-    ElInput,
-    Notification
+    ElInput
   },
   data() {
     return {
