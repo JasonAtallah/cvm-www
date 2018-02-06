@@ -54,11 +54,8 @@ span.divider {
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 import {
   Button as ElButton,
-  Checkbox as ElCheckbox,
-  CheckboxGroup as ElCheckboxGroup,
   Input as ElInput,
   Switch as ElSwitch,
   Tabs as ElTabs,
@@ -70,8 +67,6 @@ export default {
   components: {
     Detail,
     ElButton,
-    ElCheckbox,
-    ElCheckboxGroup,
     ElInput,
     ElSwitch,
     ElTabs,

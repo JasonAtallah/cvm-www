@@ -33,8 +33,6 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import {
-  Card as ElCard } from 'element-ui';
 import MasterDetail from '@/components/masterDetail/MasterDetail';
 import AddVendor from './detail/AddVendor';
 import ApptScheduled from './detail/ApptScheduled';
@@ -50,7 +48,6 @@ export default {
     AddVendor,
     ApptScheduled,
     BasePage,
-    ElCard,
     MasterDetail,
     ReviewTimesSent,
     SendTimes,

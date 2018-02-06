@@ -45,7 +45,6 @@ span.divider {
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 import {
   Button as ElButton,
   Input as ElInput,

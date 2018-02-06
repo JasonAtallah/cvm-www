@@ -103,7 +103,6 @@
 <script>
 import { mapGetters } from 'vuex';
 import {
-  Button as ElButton,
   Dropdown as ElDropdown,
   DropdownMenu as ElDropdownMenu,
   DropdownItem as ElDropdownItem,
@@ -119,7 +118,6 @@ export default {
     DropdownForm,
     MenuSelect,
     SingleSelect,
-    ElButton,
     ElDropdown,
     ElDropdownMenu,
     ElDropdownItem,

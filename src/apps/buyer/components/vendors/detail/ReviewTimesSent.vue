@@ -59,13 +59,8 @@
 <script>
 import { mapGetters } from 'vuex';
 import moment from 'moment';
-import {
-  Card as ElCard } from 'element-ui';
 
 export default {
-  components: {
-    ElCard
-  },
   props: ['params'],
   computed: {
     ...mapGetters({

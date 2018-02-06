@@ -108,7 +108,6 @@ i.el-icon-close {
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 import {
   Card as ElCard } from 'element-ui';
 

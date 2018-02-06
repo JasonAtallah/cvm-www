@@ -33,9 +33,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 import {
-  Button as ElButton,
   Input as ElInput,
   Tabs as ElTabs,
   TabPane as ElTabPane,
@@ -45,7 +43,6 @@ import Detail from '@/components/masterDetail/Detail';
 export default {
   components: {
     Detail,
-    ElButton,
     ElInput,
     ElTabs,
     ElTabPane,

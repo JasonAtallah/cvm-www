@@ -47,7 +47,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 import ProductFiles from './ProductFiles';
 
 export default {

@@ -76,7 +76,6 @@
 
 <script>
 import {
-  Button as ElButton,
   Col as ElCol,
   Form as ElForm,
   FormItem as ElFormItem,
@@ -85,7 +84,6 @@ import {
 
 export default {
   components: {
-    ElButton,
     ElCol,
     ElForm,
     ElFormItem,

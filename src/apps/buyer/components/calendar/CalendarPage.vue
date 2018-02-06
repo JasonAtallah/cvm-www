@@ -29,8 +29,6 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import {
-  Card as ElCard } from 'element-ui';
 import MonthView from '@/components/calendar/MonthView';
 import MasterDetail from '@/components/masterDetail/MasterDetail';
 import AddCalendarEvent from './detail/AddCalendarEvent';
@@ -44,7 +42,6 @@ export default {
     BasePage,
     Buttons,
     DayDetail,
-    ElCard,
     MasterDetail,
     MonthView
   },
