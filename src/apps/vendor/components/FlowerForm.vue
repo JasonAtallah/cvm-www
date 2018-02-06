@@ -10,7 +10,7 @@
 
     <div class="form-group col-lg-6" v-if="showField('budSize')">
       <label for="budSize">Bud Size:</label>
-      <input type="text" class="form-control" id="budSize" v-model="product.budSize">
+      <input type="number" class="form-control" id="budSize" v-model="product.budSize">
     </div>
   </div>
 

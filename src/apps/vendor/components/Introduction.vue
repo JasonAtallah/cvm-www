@@ -25,7 +25,7 @@
       </div>
 
       <div class="row">
-        <div class="intro col-sm-8 offset-sm-2" v-if="questionnaire" v-html="introHtml">
+        <div class="intro text-center col-sm-8 offset-sm-2" v-if="questionnaire" v-html="introHtml">
         </div>
       </div>
 

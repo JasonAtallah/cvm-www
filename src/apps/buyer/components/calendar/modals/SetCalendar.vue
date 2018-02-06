@@ -10,7 +10,7 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label for="exampleFormControlSelect1">Please select the calendar to use for scheduling:</label>
+            <label for="selCalendar">Please select the calendar to use for scheduling:</label>
             <select class="form-control" id="selCalendar"
               v-model="selectedCalendar"
               @change="onCalendarSelect">
