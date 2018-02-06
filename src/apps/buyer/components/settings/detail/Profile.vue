@@ -157,12 +157,7 @@ export default {
         this.$refs['profile.company'].validate((valid) => {
           if (valid) {
             this.$store.dispatch('updateBuyerProfile', _.cloneDeep(this.profile));
-            Notification({
-              title: 'Success',
-              message: 'Profile Updated!',
-              type: 'success',
-              duration: 2000
-            });
+            this.$store.dispatch('successNotification', 'Profile update');
           } else {
             Notification({
               title: 'Uh oh',

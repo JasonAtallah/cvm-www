@@ -91,12 +91,10 @@ export default {
 
       this.$store.dispatch('updateBuyerEmailTemplate', email)
         .then(() => {
-          Notification({
-            title: 'Success',
-            message: 'Email Template Updated!',
-            type: 'success',
-            duration: 2000
-          });
+          this.$store.dispatch('successNotification', `${_.find(this.emailTypes, { value: this.curTab }).label} Email Updated`);
+        })
+        .catch(() => {
+          this.$store.dispatch('errorNotification');
         });
     }
   }

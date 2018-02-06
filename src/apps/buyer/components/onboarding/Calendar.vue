@@ -21,7 +21,6 @@
 import { mapGetters } from 'vuex';
 import {
   Input as ElInput,
-  Notification,
   Option as ElOption,
   Select as ElSelect
 } from 'element-ui';
@@ -33,8 +32,7 @@ export default {
     Detail,
     ElInput,
     ElOption,
-    ElSelect,
-    Notification
+    ElSelect
   },
   data() {
     return {

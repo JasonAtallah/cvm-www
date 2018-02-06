@@ -106,12 +106,7 @@ export default {
     },
     save() {
       this.$store.dispatch('createVendor', this.vendor);
-      Notification({
-        title: 'Success',
-        message: 'Vendor Added',
-        type: 'success',
-        duration: 2000
-      });
+      this.$store.dispatch('successNotification', 'Vendor Added');
     }
   }
 };

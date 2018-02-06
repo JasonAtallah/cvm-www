@@ -1,3 +1,4 @@
+import { Notification } from 'element-ui';
 import api from './api';
 import { genVendorUrl } from '../../../lib/data';
 
@@ -54,6 +55,15 @@ export const createVendor = ({ dispatch, commit }, values) => {
       commit('cancelPendingAction');
       dispatch('selVendor', vendor);
     });
+};
+
+export const errorNotification = ({ dispatch }) => {
+  Notification({
+    title: 'Uh oh',
+    message: 'Something Went Wrong',
+    type: 'error',
+    duration: 2000
+  });
 };
 
 export const init = ({ dispatch }) => {
@@ -174,6 +184,15 @@ export const setGCalendar = ({ rootState, commit, dispatch }, values) => {
       commit('gCalendar', calendar);
       dispatch('loadEvents');
     });
+};
+
+export const successNotification = ({ commit }, message) => {
+  Notification({
+    title: 'Success',
+    message: message,
+    type: 'success',
+    duration: 2000
+  });
 };
 
 export const updateBuyerProfile = ({ rootState, commit }, profile) => {

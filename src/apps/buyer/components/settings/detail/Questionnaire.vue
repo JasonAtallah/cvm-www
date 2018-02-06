@@ -20,7 +20,6 @@ span.divider {
       <ElTabPane v-for="page in markdownPages" :key="page.value"
         :name="page.value"
         :label="page.label">
-
         <div class="form-group" :model="newQuestionnaire[page.value]">
           <div class="row">
             <div class="col-sm-12">
@@ -137,12 +136,10 @@ export default {
 
       this.$store.dispatch('updateQuestionnaire', page)
         .then(() => {
-          Notification({
-            title: 'Success',
-            message: `${this.curTab} Page Updated!`,
-            type: 'success',
-            duration: 2000
-          });
+          this.$store.dispatch('successNotification', `${_.find(this.markdownPages, { value: this.curTab }).label} Page Updated`);
+        })
+        .catch(() => {
+          this.$store.dispatch('errorNotification');
         });
     }
   }

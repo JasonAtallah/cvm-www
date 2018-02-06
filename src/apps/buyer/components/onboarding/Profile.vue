@@ -86,12 +86,7 @@ export default {
               this.$emit('updated');
             });
         } else {
-          Notification({
-            title: 'Uh oh',
-            message: 'Something Went Wrong',
-            type: 'error',
-            duration: 2000
-          });
+          this.dispatch('errorNotification');
         }
       });
     }

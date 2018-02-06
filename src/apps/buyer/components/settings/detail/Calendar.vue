@@ -83,12 +83,10 @@ export default {
       this.saveCalendarChoice()
         .then(() => {
           this.cancel();
-          Notification({
-            title: 'Success',
-            message: 'Calendar Updated!',
-            type: 'success',
-            duration: 2000
-          });
+          this.$store.dispatch('successNotification', 'Calendar Updated');
+        })
+        .catch(() => {
+          this.$store.dispatch('errorNotification');
         });
     }
   },
