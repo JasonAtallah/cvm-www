@@ -17,6 +17,14 @@ module.exports = function (app) {
     auth.loginBuyer
   );
 
+  app.get('/settings',
+    function(req, res, next) {
+      res.status(200).send({
+        vendorAppUrl: config.app.vendorAppUrl
+      });
+    }
+  );
+
   app.get('/buyer/callback',
     auth.convertCodeToToken,
     responses.redirectToHomePage);

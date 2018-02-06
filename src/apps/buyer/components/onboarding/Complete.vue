@@ -3,22 +3,14 @@
 :canSave="true" :showCancel="false" @save="complete" actionButtonLabel="Finish" >
 <div class="text-center">
   <div class="row">
-    <div class="col-12 form-group">
+    <div class="form-group col-12">
       <span class="lead">Don't worry if you think you filled out something incorrectly, all those fields and more can be found in the settings.</span>
     </div>
   </div>
   <hr>
   <div class="row">
-    <div class="col-12 col-sm-4 col-md-5 form-group">
-      <span class="lead">Check out your questionnaire here.</span>
-    </div>
-    <div class="col-12 col-sm-8 col-md-7 form-group">
-      <button type="button" style="border-radius:12px; background-color:#00e64d; width:200px; height:75px; font-size:30px"><a href="http://localhost:8082/?qid=5a68041f219e50703eb76361#/" target="_blank" style="color:#f2f2f2; text-decoration:none;">Apply</a></button>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12 form-group">
-      <span class="lead">Go to your settings to customize your questionnaire more and generate the button HTML for your own site.</span>
+    <div class="form-group col-12">
+      <span class="lead">Check out your questionnaire <a :href="questionnaireUrl" target="_blank">here</a></span>
     </div>
   </div>
 </div>
@@ -26,11 +18,21 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import Detail from '@/components/masterDetail/Detail';
 
 export default {
   components: {
     Detail
+  },
+  computed: {
+    ...mapGetters({
+      questionnaire: 'questionnaire',
+      settings: 'settings'
+    }),
+    questionnaireUrl() {
+      return `${this.settings.vendorAppUrl}?qid=${this.questionnaire._id}`;
+    }
   },
   methods: {
     complete() {

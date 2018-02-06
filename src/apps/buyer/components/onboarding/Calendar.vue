@@ -1,13 +1,9 @@
 <template>
   <Detail title="Calendar" description="Select the calendar you would like to sync with us." :canSave="canSave" :showCancel="false" @save="submitCalendar">
     <div class="form-group col-12">
-      <label>Currently selected calendar for scheduling:</label><br>
-      <b>{{ buyer.gcalendar.name }}</b>
-    </div>
-    <div class="form-group col-12">
-      <label>Select a different calendar:</label><br>
+      <label>Select a calendar:</label><br>
       <ElSelect v-model="selectedCalendar" @change="onCalendarSelect">
-        <ElOption v-for="calendar in unselectedCalendars" :key="calendar.id" :value="calendar.id" :label="calendar.name" />
+        <ElOption v-for="calendar in calendars" :key="calendar.id" :value="calendar.id" :label="calendar.name" />
       </ElSelect>
     </div>
     <div class="form-group col-12 col-sm-6 col-md-6">
@@ -27,7 +23,6 @@ import {
 import Detail from '@/components/masterDetail/Detail';
 
 export default {
-  name: 'set-calendar',
   components: {
     Detail,
     ElInput,
@@ -46,14 +41,7 @@ export default {
       calendars: 'calendars'
     }),
     canSave() {
-      return !!(this.selectedCalendar || this.calendarName || this.buyer.gcalendar.name);
-    },
-    unselectedCalendars() {
-      if (!this.calendars) {
-        return [];
-      }
-
-      return this.calendars.filter(c => c.id !== this.buyer.gcalendar.id);
+      return !!(this.selectedCalendar || this.calendarName);
     }
   },
   methods: {
@@ -70,14 +58,10 @@ export default {
       return this.$store.dispatch('createGCalendar', this.calendarName.trim());
     },
     submitCalendar() {
-      if (!this.selectedCalendar && !this.calendarName && this.buyer.gcalendar.name) {
-        this.$emit('updated');
-      } else {
-        this.saveCalendarChoice()
-          .then(() => {
-            this.$emit('updated');
-          });
-      }
+      this.saveCalendarChoice()
+        .then(() => {
+          this.$emit('updated');
+        });
     }
   },
   created: function () {

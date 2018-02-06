@@ -89,6 +89,10 @@ export const setSchedule = (state, value) => {
   state.setSchedule = value;
 };
 
+export const settings = (state, settings) => {
+  state.settings = settings;
+};
+
 export const statusFilter = (state, value) => {
   state.vendorFilter.status = value;
 };

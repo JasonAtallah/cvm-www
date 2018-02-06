@@ -41,6 +41,10 @@ export default {
     return http.get('/buyer/v1/questionnaire');
   },
 
+  getSettings() {
+    return http.get('/settings');
+  },
+
   getVendor(vendor) {
     return http.get(`/buyer/v1/vendors/${vendor._id}`);
   },

@@ -18,6 +18,7 @@ export const schedule = state => state.buyer.schedule;
 export const selVendor = state => state.selVendor;
 export const selVendorState = state => state.selVendorState;
 export const setSchedule = state => state.setSchedule;
+export const settings = state => state.settings;
 export const sortedVendors = (state) => {
   let vendors = [...state.vendorList];
 

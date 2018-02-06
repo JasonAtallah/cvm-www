@@ -70,7 +70,8 @@ export const init = ({ dispatch }) => {
   return Promise.all([
     dispatch('loadBuyer'),
     dispatch('loadVendors'),
-    dispatch('loadQuestionnaire')
+    dispatch('loadQuestionnaire'),
+    dispatch('loadSettings')
   ]);
 };
 
@@ -104,6 +105,13 @@ export const loadQuestionnaire = ({ rootstate, commit }) => {
   return api.getQuestionnaire()
     .then((questionnaire) => {
       commit('questionnaire', questionnaire);
+    });
+};
+
+export const loadSettings = ({ commit }) => {
+  return api.getSettings()
+    .then((settings) => {
+      commit('settings', settings);
     });
 };
 
