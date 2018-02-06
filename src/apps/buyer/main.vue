@@ -25,7 +25,6 @@ html, body {
     <router-view/>
     <AddLocation />
     <ConfirmCancelMeeting />
-    <SetCalendar />
     <SetSchedule />
   </div>
 </template>
@@ -33,7 +32,6 @@ html, body {
 <script>
 import AddLocation from './components/vendors/modals/AddLocation';
 import ConfirmCancelMeeting from './components/vendors/modals/ConfirmCancelMeeting';
-import SetCalendar from './components/calendar/modals/SetCalendar';
 import SetSchedule from './components/calendar/modals/SetSchedule';
 
 export default {
@@ -41,7 +39,6 @@ export default {
   components: {
     AddLocation,
     ConfirmCancelMeeting,
-    SetCalendar,
     SetSchedule
   },
   beforeMount() {
