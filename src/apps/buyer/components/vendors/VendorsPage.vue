@@ -19,12 +19,13 @@
         </div>
         <div slot="detail" class="vendors-detail">
           <VendorDetail v-if="showVendorDetail" :vendor="vendor" />
-
-          <AddVendor v-if="showAddVendor" :params="overridingDetail" />
-          <ApptScheduled v-if="showScheduledMeeting" :params="overridingDetail" />
-          <ReviewTimesSent v-if="showTimesSent" :params="overridingDetail" />
-          <SendTimes v-if="showSendTimes" :params="overridingDetail" />
-          <SendVendorStatusEmail v-if="showSendStatusEmail" :params="overridingDetail" />
+          <ElCard v-if="!showVendorDetail && overridingDetail">
+            <AddVendor v-if="showAddVendor" :params="overridingDetail" />
+            <ApptScheduled v-if="showScheduledMeeting" :params="overridingDetail" />
+            <ReviewTimesSent v-if="showTimesSent" :params="overridingDetail" />
+            <SendTimes v-if="showSendTimes" :params="overridingDetail" />
+            <SendVendorStatusEmail v-if="showSendStatusEmail" :params="overridingDetail" />
+          </ElCard>
         </div>
       </MasterDetail>
     </div>
@@ -34,6 +35,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import MasterDetail from '@/components/masterDetail/MasterDetail';
+import { Card as ElCard } from 'element-ui';
 import AddVendor from './detail/AddVendor';
 import ApptScheduled from './detail/ApptScheduled';
 import BasePage from '../BasePage';
@@ -48,6 +50,7 @@ export default {
     AddVendor,
     ApptScheduled,
     BasePage,
+    ElCard,
     MasterDetail,
     ReviewTimesSent,
     SendTimes,
