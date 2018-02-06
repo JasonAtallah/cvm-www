@@ -1,99 +1,104 @@
-<style scoped>
-.modal-dialog {
-  text-align: left;
-  display: block;
-  max-width: 1024px;
-}
-</style>
-
 <template>
-<div>
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-
-      <div class="modal-header">
-        <h2 class="modal-title">Company Information</h2>
+<Detail title="Company Information" :showSave="false" :showCancel="false">
+  <ElForm :model="response" :rules="company" ref="response.company">
+    <div class="row">
+      <div class="col-sm-12 col-md-6" v-if="showField('Name')">
+        <ElFormItem label="Name" prop="name">
+          <ElInput v-model="response.name" placeholder="Name" />
+        </ElFormItem>
       </div>
-
-      <div class="modal-body">
-        <form>
-
-          <div class="row">
-            <div class="form-group col-sm-12 col-md-6" v-if="showField('Name')">
-              <label for="name">Name:</label>
-              <input type="text" class="form-control" id="name" v-model="response.name">
-            </div>
-            <div class="form-group col-sm-12 col-md-6" v-if="showField('Website')">
-              <label for="website">Website:</label>
-              <input type="text" class="form-control" id="website" v-model="response.website">
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="form-group col-sm-12" v-if="showField('Address')">
-              <label for="address">Address:</label>
-              <input type="text" class="form-control" id="address" v-model="response.address">
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="form-group col-sm-12 col-md-6" v-if="showField('City')">
-              <label for="city">City:</label>
-              <input type="text" class="form-control" id="city" v-model="response.city">
-            </div>
-
-            <div class="form-group col-sm-6 col-md-3" v-if="showField('State')">
-              <label for="state">State:</label>
-              <input type="text" class="form-control" id="state" v-model="response.state">
-            </div>
-
-            <div class="form-group col-sm-6 col-md-3" v-if="showField('Zip')">
-              <label for="zip">Zip:</label>
-              <input type="number" class="form-control" id="zip" v-model="response.zip">
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="form-group col-sm-12 col-md-6" v-if="showField('SREA')">
-              <label for="srea">SREA#:</label>
-              <input type="text" class="form-control" id="srea" v-model="response.srea">
-            </div>
-            <div class="form-group col-sm-12 col-md-2" v-if="showField('HaveTaxId')">
-              <label for="exampleFormControlSelect1">Have Tax ID:</label><br/>
-              <select id="haveTaxId" v-model="response.haveTaxId">
-                <option value="" />
-                <option :value="false">No</option>
-                <option :value="true">Yes</option>
-              </select>
-            </div>
-            <div class="form-group col-sm-12 col-md-2" v-if="showField('HaveSellerPermit')">
-              <label for="haveSellerPermit">Have Seller Permit:</label><br/>
-              <select id="haveSellerPermit" v-model="response.haveSellerPermit">
-                <option value="" />
-                <option :value="false">No</option>
-                <option :value="true">Yes</option>
-              </select>
-            </div>
-            <div class="form-group col-sm-12 col-md-2" v-if="showField('PartOfCollective')">
-              <label for="exampleFormControlSelect1">Part of Collective:</label><br/>
-              <select id="partOfCollective" v-model="response.partOfCollective">
-                <option value="" />
-                <option :value="false">No</option>
-                <option :value="true">Yes</option>
-              </select>
-            </div>
-
-          </div>
-        </form>
+      <div class="col-sm-12 col-md-6" v-if="showField('Website')">
+        <ElFormItem label="Website" prop="website">
+          <ElInput v-model="response.website" placeholder="Website" />
+        </ElFormItem>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12" v-if="showField('Address')">
+        <ElFormItem label="Address" prop="address">
+          <ElInput v-model="response.address" placeholder="Address" />
+        </ElFormItem>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-6" v-if="showField('City')">
+        <ElFormItem label="City" prop="city">
+          <ElInput v-model="response.city" placeholder="City" />
+        </ElFormItem>
+      </div>
+      <div class="col-sm-6 col-md-3" v-if="showField('State')">
+        <ElFormItem label="State" prop="state">
+          <ElInput v-model="response.state" placeholder="State" />
+        </ElFormItem>
+      </div>
+      <div class="col-sm-6 col-md-3" v-if="showField('Zip')">
+        <ElFormItem label="Zip" prop="zip">
+          <ElInput v-model="response.zip" placeholder="Zip" />
+        </ElFormItem>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-6" v-if="showField('SREA')">
+        <ElFormItem label="SREA#" prop="srea">
+          <ElInput v-model="response.srea" placeholder="SREA" />
+        </ElFormItem>
+      </div>
+      <div class="col-sm-12 col-md-2" v-if="showField('HaveTaxId')">
+        <ElFormItem label="Have Tax ID" prop="selection">
+          <ElSelect v-model="response.haveTaxId" placeholder="Select">
+            <ElOption value="false" label="No" />
+            <ElOption value="true" label="Yes" />
+          </ElSelect>
+        </ElFormItem>
+      </div>
+      <div class="form-group col-sm-12 col-md-2" v-if="showField('HaveSellerPermit')">
+        <ElFormItem label="Have Seller Permit" prop="selection">
+          <ElSelect v-model="response.haveSellerPermit" placeholder="Select">
+            <ElOption value="false" label="No" />
+            <ElOption value="true" label="Yes" />
+          </ElSelect>
+        </ElFormItem>
+      </div>
+      <div class="form-group col-sm-12 col-md-2" v-if="showField('PartOfCollective')">
+        <ElFormItem label="Part of Collective" prop="selection">
+          <ElSelect v-model="response.partOfCollective" placeholder="Select">
+            <ElOption value="false" label="No" />
+            <ElOption value="true" label="Yes" />
+          </ElSelect>
+        </ElFormItem>
       </div>
 
     </div>
-  </div>
-</div>
+  </ElForm>
+</Detail>
 </template>
 
 <script>
+import Detail from '@/components/masterDetail/Detail';
+import {
+  Form as ElForm,
+  FormItem as ElFormItem,
+  Input as ElInput,
+  InputNumber as ElInputNumber,
+  Option as ElOption,
+  Select as ElSelect } from 'element-ui';
+import companyFormRules from '../metadata/formRules/response.company';
+
 export default {
+  components: {
+    Detail,
+    ElForm,
+    ElFormItem,
+    ElInput,
+    ElInputNumber,
+    ElOption,
+    ElSelect
+  },
+  data() {
+    return {
+      company: companyFormRules
+    };
+  },
   props: ['questions', 'response'],
   methods: {
     getField(fieldName) {

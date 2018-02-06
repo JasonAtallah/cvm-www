@@ -1,6 +1,7 @@
 import Vue from 'vue';
 
 import 'bootstrap/scss/bootstrap.scss';
+import 'element-ui/lib/theme-chalk/index.css';
 
 import VendorApp from '@/components/vendor/Main';
 import VendorRouter from './router';

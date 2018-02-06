@@ -20,7 +20,9 @@
         </div>
         <div slot="detail" class="calendar-detail">
           <DayDetail v-if="showDay" :events="events" :date="curDate" />
-          <AddCalendarEvent v-if="showAddEvent" :curDate="curDate" />
+          <ElCard v-if="!showDay && this.overridingDetail">
+            <AddCalendarEvent v-if="showAddEvent" :curDate="curDate" />
+          </ElCard>
         </div>
       </MasterDetail>
     </div>
@@ -29,6 +31,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import { Card as ElCard } from 'element-ui';
 import MonthView from '@/components/calendar/MonthView';
 import MasterDetail from '@/components/masterDetail/MasterDetail';
 import AddCalendarEvent from './detail/AddCalendarEvent';
@@ -42,6 +45,7 @@ export default {
     BasePage,
     Buttons,
     DayDetail,
+    ElCard,
     MasterDetail,
     MonthView
   },
