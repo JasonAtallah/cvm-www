@@ -5,7 +5,7 @@
 <template>
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-6 offset-md-1 offset-lg-3">
+    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-7 col-xl-6 offset-md-1 offset-lg-3">
       <ElCard>
         <Profile v-if="curTab === 0" :buyer="buyer" @updated="next" />
         <Calendar v-if="curTab === 1" :buyer="buyer" @updated="next" />
