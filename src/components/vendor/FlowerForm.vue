@@ -1,52 +1,55 @@
 
 
 <template>
-<div id="flowerForm">
+<ElForm :model="product" label-position="top">
   <div class="row">
-    <div class="form-group col-lg-6" v-if="showField('name')">
-      <label for="name">Product Name:</label>
-      <input type="text" class="form-control" id="name" v-model="product.name">
+    <div class="col-12" v-if="showField('name')">
+      <ElFormItem label="Product Name">
+        <ElInput v-model="product.name" placeholder="Product Name" />
+      </ElFormItem>
     </div>
-
-    <div class="form-group col-lg-6" v-if="showField('budSize')">
-      <label for="budSize">Bud Size:</label>
-      <input type="number" class="form-control" id="budSize" v-model="product.budSize">
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-6" v-if="showField('budSize')">
+      <ElFormItem label="Bud Size">
+        <ElInputNumber v-model="product.budSize" :min="0" controls-position="right" />
+      </ElFormItem>
+    </div>
+    <div class="col-12 col-md-6" v-if="showField('weightAvailable')">
+      <ElFormItem label="Weight Available">
+        <ElInputNumber v-model="product.weightAvailable" :min="0" controls-position="right" />
+      </ElFormItem>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-6" v-if="showField('thc')">
+      <ElFormItem label="THC (%)">
+        <ElInputNumber v-model="product.thc" :min="0" controls-position="right" />
+      </ElFormItem>
+    </div>
+    <div class="col-12 col-md-6" v-if="showField('cbd')">
+      <ElFormItem label="CBD (%)">
+        <ElInputNumber v-model="product.cbd" :min="0" controls-position="right" />
+      </ElFormItem>
     </div>
   </div>
 
   <div class="row">
-    <div class="form-group col-lg-4" v-if="showField('weightAvailable')">
-      <label for="weightAvailable">Weight Available (lbs):</label>
-      <input type="number" class="form-control" id="weightAvailable" v-model="product.weightAvailable">
+    <div class="col-12 col-md-6" v-if="showField('growStyle')">
+      <ElFormItem label="Grow Style">
+        <ElSelect v-model="product.growStyle" placeHolder="Select">
+          <ElOption value="indoor" label="Indoor" />
+          <ElOption value="Outdoor" label="Outdoor" />
+        </ElSelect>
+      </ElFormItem>
     </div>
-
-    <div class="form-group col-lg-4" v-if="showField('thc')">
-      <label for="thc">THC (mg):</label>
-      <input type="number" class="form-control" id="thc" v-model="product.thc">
-    </div>
-
-    <div class="form-group col-lg-4" v-if="showField('cbd')">
-      <label for="cbd">CBD (mg):</label>
-      <input type="number" class="form-control" id="cbd" v-model="product.cbd">
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="form-group col-lg-6" v-if="showField('growStyle')">
-      <label for="growStyle">Grow Style:</label>
-      <select id="growStyle" v-model="product.growStyle">
-        <option value="" v-if="!reqField('growStyle')" />
-        <option value="indoor">Indoor</option>
-        <option value="outdoor">Outdoor</option>
-      </select>
-    </div>
-    <div class="form-group col-lg-6" v-if="showField('shelfReady')">
-      <label for="shelfReady">Shelf Ready:</label>
-      <select id="shelfReady" v-model="product.shelfReady">
-        <option value="" v-if="!reqField('shelfReady')" />
-        <option value="false">No</option>
-        <option value="true">Yes</option>
-      </select>
+    <div class="col-12 col-md-6" v-if="showField('shelfReady')">
+      <ElFormItem label="Shelf Ready">
+        <ElSelect v-model="product.shelfReady" placeHolder="Select">
+          <ElOption :value="false" label="No" />
+          <ElOption :value="true" label="Yes" />
+        </ElSelect>
+      </ElFormItem>
     </div>
   </div>
 
@@ -78,13 +81,28 @@
       </ul>
     </div>
   </div>
-</div>
+</ElForm>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
+import {
+  Form as ElForm,
+  FormItem as ElFormItem,
+  Input as ElInput,
+  InputNumber as ElInputNumber,
+  Option as ElOption,
+  Select as ElSelect } from 'element-ui';
 
 export default {
+  components: {
+    ElForm,
+    ElFormItem,
+    ElInput,
+    ElInputNumber,
+    ElOption,
+    ElSelect
+  },
   props: ['def', 'product'],
   methods: {
     getField(fieldName) {

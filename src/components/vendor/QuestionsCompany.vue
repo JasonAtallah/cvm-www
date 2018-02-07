@@ -46,24 +46,24 @@
       <div class="col-sm-12 col-md-2" v-if="showField('HaveTaxId')">
         <ElFormItem label="Have Tax ID" prop="selection">
           <ElSelect v-model="response.haveTaxId" placeholder="Select">
-            <ElOption value="false" label="No" />
-            <ElOption value="true" label="Yes" />
+            <ElOption :value="false" label="No" />
+            <ElOption :value="true" label="Yes" />
           </ElSelect>
         </ElFormItem>
       </div>
       <div class="form-group col-sm-12 col-md-2" v-if="showField('HaveSellerPermit')">
         <ElFormItem label="Have Seller Permit" prop="selection">
           <ElSelect v-model="response.haveSellerPermit" placeholder="Select">
-            <ElOption value="false" label="No" />
-            <ElOption value="true" label="Yes" />
+            <ElOption :value="false" label="No" />
+            <ElOption :value="true" label="Yes" />
           </ElSelect>
         </ElFormItem>
       </div>
       <div class="form-group col-sm-12 col-md-2" v-if="showField('PartOfCollective')">
         <ElFormItem label="Part of Collective" prop="selection">
           <ElSelect v-model="response.partOfCollective" placeholder="Select">
-            <ElOption value="false" label="No" />
-            <ElOption value="true" label="Yes" />
+            <ElOption :value="false" label="No" />
+            <ElOption :value="true" label="Yes" />
           </ElSelect>
         </ElFormItem>
       </div>

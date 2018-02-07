@@ -6,7 +6,7 @@
       <slot></slot>
     </div>
     <div class="modal-footer">
-      <button id="save" type="button" class="btn btn-lg btn-primary" @click="save" v-if="showSave" :disabled="canSave === false">{{ actionButtonLabel || 'Save' }}</button>
+      <button id="save" type="button" class="btn btn-lg btn-primary" @click="save" v-if="showSave !== false" :disabled="canSave === false">{{ actionButtonLabel || 'Save' }}</button>
       <button id="cancel" type="button" class="btn btn-lg btn-default" @click="cancel" v-if="showCancel !== false" :disabled="canCancel === false">Cancel</button>
     </div>
   </div>

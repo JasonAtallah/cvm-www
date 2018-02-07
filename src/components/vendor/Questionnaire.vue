@@ -8,7 +8,7 @@
 <template>
 <BasePage pageName="Questionnaire">
   <div slot="content" id="Questionnaire">
-    <Wizard v-if="questionnaire" :enabledPages="enabledPages">
+    <Wizard v-if="questionnaire" :enabledPages="enabledPages" class="col-lg-10 col-xl-8 offset-lg-1 offset-xl-2">
       <div slot="page1">
         <QuestionsCompany :questions="questionsFor('company')" :response="response.company" />
       </div>

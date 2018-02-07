@@ -1,54 +1,54 @@
 
 
 <template>
-<div id="concentrateForm">
+<ElForm :model="product" label-position="top">
   <div class="row">
-    <div class="form-group col-lg-6" v-if="showField('name')">
-      <label for="name">Product Name:</label>
-      <input type="text" class="form-control" id="name" v-model="product.name">
+    <div class="col-12 col-md-6" v-if="showField('name')">
+      <ElFormItem label="Product Name">
+        <ElInput v-model="product.name" placeholder="Product Name" />
+      </ElFormItem>
     </div>
-
-    <div class="form-group col-lg-6" v-if="showField('unitsAvailable')">
-      <label for="unitsAvailable">Units Available (lbs):</label>
-      <input type="number" class="form-control" id="unitsAvailable" v-model="product.unitsAvailable">
+    <div class="col-12 col-md-6" v-if="showField('type')">
+      <ElFormItem label="Product Type">
+        <ElSelect v-model="product.type" placeholder="Select">
+          <ElOption value="coldWaterHash" label="Cold Water Hash" />
+          <ElOption value="solventConcentrates" label="Solvent Concentrates" />
+        </ElSelect>
+      </ElFormItem>
     </div>
   </div>
 
   <div class="row">
-
-    <div class="form-group col-lg-6" v-if="showField('thc')">
-      <label for="thc">THC (mg):</label>
-      <input type="number" class="form-control" id="thc" v-model="product.thc">
+    <div class="col-12 col-md-6" v-if="showField('unitsAvailable')">
+      <ElFormItem label="Units Available">
+        <ElInputNumber v-model="product.unitsAvailable" :min="0" controls-position="right" />
+      </ElFormItem>
     </div>
-
-    <div class="form-group col-lg-6" v-if="showField('cbd')">
-      <label for="cbd">CBD (mg):</label>
-      <input type="number" class="form-control" id="cbd" v-model="product.cbd">
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="form-group col-lg-6" v-if="showField('shelfReady')">
-      <label for="shelfReady">Shelf Ready:</label>
-      <select id="shelfReady" v-model="product.shelfReady">
-        <option value="" v-if="!reqField('shelfReady')" />
-        <option value="false">No</option>
-        <option value="true">Yes</option>
-      </select>
-    </div>
-
-    <div class="form-group col-lg-6" v-if="showField('type')">
-      <label for="type">Type:</label>
-      <select id="type" v-model="product.type">
-        <option value="" v-if="!reqField('type')" />
-        <option value="coldWaterHash">Cold Water Hash</option>
-        <option value="solventConcentrates">Solvent Concentrates</option>
-      </select>
+    <div class="col-12 col-md-6" v-if="showField('shelfReady')">
+      <ElFormItem label="Shelf Ready">
+        <ElSelect v-model="product.shelfReady" placeholder="Select">
+          <ElOption :value="false" label="No" />
+          <ElOption :value="true" label="Yes" />
+        </ElSelect>
+      </ElFormItem>
     </div>
   </div>
 
   <div class="row">
-    <div class="form-group col-lg-6" v-if="showField('photos')">
+    <div class="col-12 col-md-6" v-if="showField('thc')">
+      <ElFormItem label="THC (%)">
+        <ElInputNumber v-model="product.thc" :min="0" controls-position="right" />
+      </ElFormItem>
+    </div>
+    <div class="col-12 col-md-6" v-if="showField('cbd')">
+      <ElFormItem label="CBD (%)">
+        <ElInputNumber v-model="product.cbd" :min="0" controls-position="right" />
+      </ElFormItem>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-lg-6" v-if="showField('photos')">
       <label for="photos">Photo:</label>
       <input type="file" id="photos" name="photos"
         ref="photos"
@@ -61,7 +61,7 @@
         </li>
       </ul>
     </div>
-    <div class="form-group col-lg-6" v-if="showField('testResults')">
+    <div class="col-12 col-lg-6" v-if="showField('testResults')">
       <label for="testResults">Test Results:</label>
       <input type="file" id="testResults" name="testResults"
         ref="testResults"
@@ -75,13 +75,28 @@
       </ul>
     </div>
   </div>
-</div>
+</ElForm>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
+import {
+  Form as ElForm,
+  FormItem as ElFormItem,
+  Input as ElInput,
+  InputNumber as ElInputNumber,
+  Option as ElOption,
+  Select as ElSelect } from 'element-ui';
 
 export default {
+  components: {
+    ElForm,
+    ElFormItem,
+    ElInput,
+    ElInputNumber,
+    ElOption,
+    ElSelect
+  },
   props: ['def', 'product'],
   methods: {
     getField(fieldName) {

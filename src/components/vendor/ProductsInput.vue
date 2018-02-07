@@ -1,9 +1,4 @@
 <style scoped>
-.modal-dialog {
-  text-align: left;
-  display: block;
-  max-width: 1024px;
-}
 ul#products {
   list-style: none;
   padding: 0;
@@ -11,44 +6,37 @@ ul#products {
 </style>
 
 <template>
-<div>
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-
-      <div class="modal-header">
-        <h2 class="modal-title">{{ def.name }}</h2>
-      </div>
-
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-sm-3">
-            <h4>Products</h4>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="container col-sm-3">
-            <ul id="products">
-              <li v-for="product in products" :key="product.id">
-                <a href="#" @click.prevent="selectProduct(product)">{{ product.name }}</a>
-              </li>
-            </ul>
-
-            <button class="btn btn-success" @click="addProduct">Add Product</button>
-          </div>
-
-          <div class="container col-sm-9">
-            <ProductForm v-if="product" :def="productDef" :product="product"/>
-          </div>
-        </div>
-      </div>
+<Detail :title="def.name" :showSave="false" :showCancel="false">
+  <div class="row">
+    <div class="col-sm-3 products-master">
+      <h4>Products</h4>
     </div>
   </div>
-</div>
+
+  <div class="row">
+    <div class="container col-sm-3 products-master">
+      <ul id="products">
+        <li v-for="product in products" :key="product.id">
+          <a href="#" @click.prevent="selectProduct(product)">{{ product.name }}</a>
+        </li>
+      </ul>
+      <button class="btn btn-success" @click="addProduct">Add Product</button>
+    </div>
+
+    <div class="container col-sm-9 products-detail">
+      <ProductForm v-if="product" :def="productDef" :product="product"/>
+    </div>
+  </div>
+</Detail>
 </template>
 
 <script>
+import Detail from '@/components/masterDetail/Detail';
+
 export default {
+  components: {
+    Detail
+  },
   data() {
     return {
       product: null
