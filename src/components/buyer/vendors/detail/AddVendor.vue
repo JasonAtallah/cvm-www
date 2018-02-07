@@ -1,81 +1,85 @@
 <template>
-  <div>
-    <h3>Add A New Vendor</h3>
-    <p class="lead">
-      Add your already existing vendors.
-    </p>
-    <div class="card card-body bg-light">
+  <Detail title="Add A New Vendor" description="Add your already existing vendors."
+    :canSave="true" :canCancel="true" @save="save" @cancel="cancel">
+    <ElForm :model="vendor.company" :rules="rules.company" ref="profile.company">
       <div class="row">
         <div class="col-sm-12">
           <h3>Company</h3>
         </div>
       </div>
       <div class="row">
-        <div class="form-group col-sm-12">
-          <label for="exampleFormControlSelect1">Name:</label>
-          <ElInput placeholder="Name" v-model="vendor.company.name" />
+        <div class="col-12 col-sm-6">
+          <ElFormItem label="Name" prop="name">
+            <ElInput v-model="vendor.company.name" placeholder="Name" />
+          </ElFormItem>
+        </div>
+        <div class="col-12 col-sm-6">
+          <ElFormItem label="Address" prop="address">
+            <ElInput v-model="vendor.company.address" placeholder="Address" />
+          </ElFormItem>
         </div>
       </div>
       <div class="row">
-        <div class="form-group col-sm-12">
-          <label for="exampleFormControlSelect1">Address:</label>
-          <ElInput placeholder="Address" v-model="vendor.company.address" />
+        <div class="col-12 col-sm-6">
+          <ElFormItem label="City" prop="city">
+            <ElInput v-model="vendor.company.city" placeholder="City" />
+          </ElFormItem>
+        </div>
+        <div class="col-12 col-sm-2">
+          <ElFormItem label="State" prop="state">
+            <ElInput v-model="vendor.company.state" placeholder="State" />
+          </ElFormItem>
+        </div>
+        <div class="col-12 col-sm-3">
+          <ElFormItem label="Zip" prop="zip">
+            <ElInput v-model="vendor.company.zip" placeholder="Zip Code" />
+          </ElFormItem>
+        </div>
+      </div>
+    </ElForm>
+    <ElForm :model="vendor.contact" :rules="rules.contact" ref="profile.contact">
+      <div class="row">
+        <div class="col-12 col-sm-6">
+          <ElFormItem label="First Name" prop="firstName">
+            <ElInput v-model="vendor.contact.firstName" placeholder="First Name" />
+          </ElFormItem>
+        </div>
+        <div class="col-12 col-sm-6">
+          <ElFormItem label="Last Name" prop="lastName">
+            <ElInput v-model="vendor.contact.lastName" placeholder="Last Name" />
+          </ElFormItem>
         </div>
       </div>
       <div class="row">
-        <div class="form-group col-sm-6">
-          <label for="exampleFormControlSelect1">City:</label>
-          <ElInput placeholder="City" v-model="vendor.company.city" />
+        <div class="col-12 col-sm-6">
+          <ElFormItem label="Phone" prop="phone">
+            <ElInput v-model="vendor.contact.phone" placeholder="Phone" />
+          </ElFormItem>
         </div>
-        <div class="form-group col-sm-3">
-          <label for="exampleFormControlSelect1">State:</label>
-          <ElInput placeholder="State" v-model="vendor.company.state" />
-        </div>
-        <div class="form-group col-sm-3">
-          <label for="exampleFormControlSelect1">Zip:</label>
-          <ElInput placeholder="Zip" v-model="vendor.company.zip" />
+        <div class="col-12 col-sm-6">
+          <ElFormItem label="Email" prop="email">
+            <ElInput v-model="vendor.contact.email" placeholder="Email" />
+          </ElFormItem>
         </div>
       </div>
-      <div class="row">
-        <div class="col-sm-12">
-          <h3>Contact</h3>
-        </div>
-      </div>
-      <div class="row">
-        <div class="form-group col-sm-6">
-          <label for="exampleFormControlSelect1">First:</label>
-            <ElInput placeholder="First Name" v-model="vendor.contact.firstName" />
-        </div>
-        <div class="form-group col-sm-6">
-          <label for="exampleFormControlSelect1">Last:</label>
-            <ElInput placeholder="Last Name" v-model="vendor.contact.lastName" />
-        </div>
-      </div>
-      <div class="row">
-        <div class="form-group col-sm-6">
-          <label for="exampleFormControlSelect1">Phone:</label>
-            <ElInput placeholder="Phone" v-model="vendor.contact.phone" />
-        </div>
-        <div class="form-group col-sm-6">
-          <label for="exampleFormControlSelect1">Email:</label>
-            <ElInput placeholder="Email" v-model="vendor.contact.email" />
-        </div>
-      </div>
-    </div>
-
-    <div class="modal-footer">
-      <button id="save" type="button" class="btn btn-primary" @click="save">Save</button>
-      <button id="cancel" type="button" class="btn btn-default" @click="cancel">Cancel</button>
-    </div>
-
-  </div>
+    </ElForm>
+  </Detail>
 </template>
 
 <script>
-import { Input as ElInput } from 'element-ui';
+import Detail from '@/components/masterDetail/Detail';
+import {
+  Form as ElForm,
+  FormItem as ElFormItem,
+  Input as ElInput } from 'element-ui';
+import companyFormRules from '../../../metadata/formRules/profile.company';
+import contactFormRules from '../../../metadata/formRules/profile.contact';
 
 export default {
   components: {
+    Detail,
+    ElForm,
+    ElFormItem,
     ElInput
   },
   data() {
@@ -94,6 +98,10 @@ export default {
           phone: null,
           email: null
         }
+      },
+      rules: {
+        company: companyFormRules,
+        contact: contactFormRules
       }
     };
   },
@@ -102,9 +110,20 @@ export default {
       this.$store.commit('cancelDetailOverride');
     },
     save() {
-      this.$store.dispatch('createVendor', this.vendor);
-      this.$store.dispatch('successNotification', 'Vendor Added');
-    }
+      this.validateForm('vendor.contact')
+        .then(() => {
+          return this.validateForm('vendor.company');
+        })
+        .then(() => {
+          return this.$store.dispatch('createVendor', _.cloneDeep(this.vendor));
+        })
+        .then(() => {
+          this.$store.dispatch('successNotification', 'Vendor Added');
+        })
+        .catch(() => {
+          this.$store.dispacth('errorNotification');
+        });
+    },
   }
 };
 </script>
