@@ -5,9 +5,7 @@
 </style>
 
 <template>
-  <div>
-  <h3>Scheduled appointment with {{ vendor.name }}</h3>
-  <div class="card card-body bg-light">
+  <Detail :title="genTitle" @save="confirmCancel" @cancel="cancel" actionButtonLabel="Cancel Meeting">
     <div class="appt-card">
       <div class="row">
         <div class="col-sm-2">
@@ -43,22 +41,25 @@
           </div>
         </div>
       </div>
-      <div class="modal-footer">
-        <button id="cancel-meeting" type="button" class="btn btn-danger" @click="confirmCancel">Cancel Meeting</button>
-      </div>
     </div>
-  </div>
-  </div>
+  </Detail>
 </template>
 
 <script>
 import moment from 'moment';
+import Detail from '@/components/masterDetail/Detail';
 
 export default {
+  components: {
+    Detail
+  },
   props: ['params'],
   computed: {
     endTime() {
       return moment(this.vendor.state.selectedTime.startDate).add(this.vendor.state.selectedTime.duration, 'minutes').format('hh:mm A');
+    },
+    genTitle() {
+      return `Scheduled appointment with ${this.vendor.name}`;
     },
     location() {
       return this.vendor.state.selectedTime.location;
@@ -74,6 +75,9 @@ export default {
     }
   },
   methods: {
+    cancel() {
+      this.$store.commit('cancelDetailOverride');
+    },
     confirmCancel() {
       this.$store.commit('takeAction', {
         type: 'cancelMeeting'
