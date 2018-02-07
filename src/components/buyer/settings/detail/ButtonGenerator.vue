@@ -9,74 +9,70 @@ span#code-paste-text {
 </style>
 
 <template>
-<div>
-  <h3>Button Generator</h3>
-  <p class="lead">
-    Customize your button and add it to your site to route vendors to your questionnaire.
-  </p>
-  <div class="card card-body bg-light">
-    <div class="row">
-      <div class="col-sm-8">
-        <div class="row btn-gen-field">
-          <div class="col-sm-6">
-            <label for="width">Width</label><br>
-            <ElSlider name="width" v-model="button.width" :min="10" :max="520" />
-          </div>
-          <div class="col-sm-6 btn-gen-field">
-            <label for="height">Height</label><br>
-            <ElSlider name="height" v-model="button.height" :min="10" :max="520"/>
-          </div>
+<Detail title="Button Generator" description="Customize your button and add it to your site to route vendors to your questionnaire."
+  :showSave="false" :showCancel="false">
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="row btn-gen-field">
+        <div class="col-sm-6">
+          <label for="width">Width</label><br>
+          <ElSlider name="width" v-model="button.width" :min="10" :max="520" />
         </div>
-        <div class="row btn-gen-field">
-          <div class="col-sm-6">
-            <label for="borderRadius">Border Radius</label><br>
-            <ElSlider name="borderRadius" v-model="button.borderRadius" :min="0" :max="280"/>
-          </div>
-          <div class="col-sm-6">
-            <label for="fontSize">Font Size</label><br>
-            <ElSlider name="fontSize" v-model="button.text.fontSize" :min="2" :max="120"/>
-          </div>
-        </div>
-        <div class="row btn-gen-field">
-          <div class="col-sm-3">
-            <label for="backgroundColor">Background Color</label><br>
-            <ElColorPicker name="backgroundColor" v-model="button.backgroundColor" />
-          </div>
-          <div class="col-sm-3">
-            <label for="color">Text Color</label><br>
-            <ElColorPicker name="color" v-model="button.text.color" />
-          </div>
-          <div class="col-sm-6">
-            <label for="text">Text</label>
-            <ElInput name="text" v-model="button.text.text" />
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-12">
-            <ElButton type="danger" class="pull-right" @click="reset">Reset</ElButton>
-          </div>
+        <div class="col-sm-6 btn-gen-field">
+          <label for="height">Height</label><br>
+          <ElSlider name="height" v-model="button.height" :min="10" :max="520"/>
         </div>
       </div>
-
-      <div class="col-sm-4">
-        <div v-html="generateButtonCode()"></div>
+      <div class="row btn-gen-field">
+        <div class="col-sm-6">
+          <label for="borderRadius">Border Radius</label><br>
+          <ElSlider name="borderRadius" v-model="button.borderRadius" :min="0" :max="280"/>
+        </div>
+        <div class="col-sm-6">
+          <label for="fontSize">Font Size</label><br>
+          <ElSlider name="fontSize" v-model="button.text.fontSize" :min="2" :max="120"/>
+        </div>
       </div>
-
+      <div class="row btn-gen-field">
+        <div class="col-sm-3">
+          <label for="backgroundColor">Background Color</label><br>
+          <ElColorPicker name="backgroundColor" v-model="button.backgroundColor" />
+        </div>
+        <div class="col-sm-3">
+          <label for="color">Text Color</label><br>
+          <ElColorPicker name="color" v-model="button.text.color" />
+        </div>
+        <div class="col-sm-6">
+          <label for="text">Text</label>
+          <ElInput name="text" v-model="button.text.text" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <ElButton type="danger" class="pull-right" @click="reset">Reset</ElButton>
+        </div>
+      </div>
     </div>
-    <br>
-    <div class="row">
-      <div class="col-sm-12">
-        <span id="code-paste-text">Paste the code below on your site to generate this button.</span>
-        <ElCard>
-          {{ generateButtonCode() }}
-        </ElCard>
-      </div>
+
+    <div class="col-sm-4">
+      <div v-html="generateButtonCode()"></div>
+    </div>
+
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-sm-12">
+      <span id="code-paste-text">Paste the code below on your site to generate this button.</span>
+      <ElCard>
+        {{ generateButtonCode() }}
+      </ElCard>
     </div>
   </div>
-</div>
+</Detail>
 </template>
 
 <script>
+import Detail from '@/components/masterDetail/Detail';
 import {
   Button as ElButton,
   Card as ElCard,
@@ -86,6 +82,7 @@ import {
 
 export default {
   components: {
+    Detail,
     ElButton,
     ElCard,
     ElColorPicker,
