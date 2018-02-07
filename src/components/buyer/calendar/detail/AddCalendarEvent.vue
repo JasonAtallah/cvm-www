@@ -5,65 +5,68 @@ div.field-rows {
 </style>
 
 <template>
-  <div>
-    <h3>Add An Event</h3>
-    <p class="lead">
-      Add a new event to your calendar.
-    </p>
-    <div class="card card-body bg-light">
+  <Detail title="Add An Event" description="Add a new event to your calendar"
+    @save="save" @cancel="cancel">
+    <ElForm :model="calendarEvent" :rules="rules.event" ref="event">
       <div class="row field-rows">
         <div class="col-sm-12">
-          <label for="eventName">Name:</label>
-          <ElInput name="eventName" placeholder="Event Name" v-model="calendarEvent.name" />
+          <ElFormItem label="Name" prop="name">
+            <ElInput name="eventName" placeholder="Event Name" v-model="calendarEvent.name" />
+          </ElFormItem>
         </div>
       </div>
       <div class="row field-rows">
         <div class="col-sm-4">
-          <label for="date">Date:</label>
-          <ElDatePicker name="date" placeholder="Pick a day" v-model="calendarEvent.date" />
+          <ElFormItem label="Date" prop="date">
+            <ElDatePicker name="date" placeholder="Pick a day" v-model="calendarEvent.date" />
+          </ElFormItem>
         </div>
         <div class="col-sm-4">
-          <label for="time">Time:</label>
-          <ElTimeSelect name="time" v-model="calendarEvent.time"
-          :picker-options="{
-            start: '06:00',
-            step: '00:15',
-            end: '23:45'
-          }"/>
+          <ElFormItem label="Time" prop="time">
+            <ElTimeSelect name="time" v-model="calendarEvent.time"
+            :picker-options="{
+              start: '06:00',
+              step: '00:15',
+              end: '23:45'
+            }"/>
+          </ElFormItem>
         </div>
         <div class="col-sm-4">
-          <label for="duration">Duration (mins):</label>
-          <ElInputNumber name="duration" v-model="calendarEvent.duration"
-          controls-position="right" :min="1" />
+          <ElFormItem label="Duration" prop="duration">
+            <ElInputNumber name="duration" v-model="calendarEvent.duration"
+            controls-position="right" :min="1" />
+          </ElFormItem>
         </div>
       </div>
       <div class="row field-rows">
         <div class="col-sm-12">
-          <label for="location">Location:</label>
-          <ElInput name="location" placeholder="Location" v-model="calendarEvent.location" />
+          <ElFormItem label="Location" prop="location">
+            <ElInput name="location" placeholder="Location" v-model="calendarEvent.location" />
+          </ElFormItem>
         </div>
       </div>
-    </div>
-
-    <div class="modal-footer">
-      <button id="save" type="button" class="btn btn-primary" @click="save">Save</button>
-      <button id="cancel" type="button" class="btn btn-default" @click="cancel">Cancel</button>
-    </div>
-
-  </div>
+    </ElForm>
+  </Detail>
 </template>
 
 <script>
+import Detail from '@/components/masterDetail/Detail';
 import moment from 'moment';
 import {
   DatePicker as ElDatePicker,
+  Form as ElForm,
+  FormItem as ElFormItem,
   Input as ElInput,
   InputNumber as ElInputNumber,
   TimeSelect as ElTimeSelect } from 'element-ui';
+import eventFormRules from '../../../metadata/formRules/event';
 
 export default {
   components: {
+    Detail,
     ElDatePicker,
+    ElForm,
+    ElFormItem,
     ElInput,
     ElInputNumber,
     ElTimeSelect
@@ -76,6 +79,9 @@ export default {
         time: null,
         duration: 30,
         location: null
+      },
+      rules: {
+        event: eventFormRules
       }
     };
   },
@@ -97,10 +103,27 @@ export default {
         location: this.calendarEvent.location
       };
 
-      this.$store.dispatch('createCalendarEvent', calendarEvent)
+      this.validateForm('event')
+        .then(() => {
+          this.$store.dispatch('createCalendarEvent', calendarEvent);
+        })
+        .then(() => {
+          this.$store.dispatch('successNotification', 'Event Added to Calendar');
+        })
         .then(() => {
           this.cancel();
         });
+    },
+    validateForm(formRef) {
+      return new Promise((res, rej) => {
+        this.$refs[formRef].validate((valid) => {
+          if (valid) {
+            res();
+          } else {
+            rej();
+          }
+        });
+      });
     }
   }
 };

@@ -124,6 +124,17 @@ export default {
           this.$store.dispacth('errorNotification');
         });
     },
+    validateForm(formRef) {
+      return new Promise((res, rej) => {
+        this.$refs[formRef].validate((valid) => {
+          if (valid) {
+            res();
+          } else {
+            rej();
+          }
+        });
+      });
+    }
   }
 };
 </script>
