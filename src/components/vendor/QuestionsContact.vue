@@ -35,7 +35,7 @@ import {
   Form as ElForm,
   FormItem as ElFormItem,
   Input as ElInput } from 'element-ui';
-import contactFormRules from '../metadata/formRules/response.contact';
+import contactFormRules from '../../apps/vendor/metadata/formRules/response.contact';
 
 export default {
   components: {

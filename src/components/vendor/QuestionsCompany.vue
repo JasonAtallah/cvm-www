@@ -82,7 +82,7 @@ import {
   InputNumber as ElInputNumber,
   Option as ElOption,
   Select as ElSelect } from 'element-ui';
-import companyFormRules from '../metadata/formRules/response.company';
+import companyFormRules from '../../apps/vendor/metadata/formRules/response.company';
 
 export default {
   components: {

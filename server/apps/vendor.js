@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const config = require('../../config');
-const mw = require('./mw');
+const mw = require('../mw');
 
 module.exports = function (app) {
   app.get('/favicon.ico',
