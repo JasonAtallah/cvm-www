@@ -59,7 +59,7 @@ import {
   Input as ElInput,
   InputNumber as ElInputNumber,
   TimeSelect as ElTimeSelect } from 'element-ui';
-import eventFormRules from '../../../metadata/formRules/event';
+import eventFormRules from '../../../../apps/buyer/metadata/formRules/event';
 
 export default {
   components: {

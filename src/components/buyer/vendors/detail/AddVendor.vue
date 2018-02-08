@@ -72,8 +72,8 @@ import {
   Form as ElForm,
   FormItem as ElFormItem,
   Input as ElInput } from 'element-ui';
-import companyFormRules from '../../../metadata/formRules/profile.company';
-import contactFormRules from '../../../metadata/formRules/profile.contact';
+import companyFormRules from '../../../../apps/buyer/metadata/formRules/profile.company';
+import contactFormRules from '../../../../apps/buyer/metadata/formRules/profile.contact';
 
 export default {
   components: {
