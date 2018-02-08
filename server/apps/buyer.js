@@ -1,20 +1,17 @@
 const express = require('express');
 const path = require('path');
 const config = require('../../config');
-const auth = require('./auth');
-const parse = require('./parse');
-const proxy = require('./proxy');
-const responses = require('./responses');
+const mw = require('../mw');
 
 module.exports = function (app) {
   app.get('/favicon.ico', express.static(path.resolve(config.staticDir, 'img')));
 
   app.use(config.staticPath,
-    auth.isBuyerLoggedIn,
+    mw.auth.isBuyerLoggedIn,
     express.static(config.staticDir));
 
   app.get('/login',
-    auth.loginBuyer
+    mw.auth.loginBuyer
   );
 
   app.get('/settings',
@@ -26,21 +23,21 @@ module.exports = function (app) {
   );
 
   app.get('/buyer/callback',
-    auth.convertCodeToToken,
-    responses.redirectToHomePage);
+    mw.auth.convertCodeToToken,
+    mw.responses.redirectToHomePage);
 
   app.use('/buyer',
-    auth.isBuyerLoggedIn,
-    proxy.api);
+    mw.auth.isBuyerLoggedIn,
+    mw.proxy.api);
 
   if (process.env.NODE_ENV === 'development') {
     const devMW = require('../lib/devServer')(app);
     app.use(
-      auth.isBuyerLoggedIn,
+      mw.auth.isBuyerLoggedIn,
       ...devMW);
   } else {
     app.get('/',
-      auth.isBuyerLoggedIn,
+      mw.auth.isBuyerLoggedIn,
       (req, res, next) => {
         res.sendFile(config.index);
       });

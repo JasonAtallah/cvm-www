@@ -23,7 +23,7 @@ const config = module.exports = {
         productionGzip: false,
         productionGzipExtensions: ['js', 'css']
       },
-      entryFilePath: `./src/start-${process.env.JS_APP_NAME}`,
+      entryFilePath: `./src/apps/${process.env.JS_APP_NAME}/start`,
       index: path.resolve(__dirname, '../dist/index.html'),
       mgmtApi: {
         host: process.env.MGMT_API_HOST

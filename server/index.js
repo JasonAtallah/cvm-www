@@ -34,7 +34,7 @@ app.use(session({
   })
 }));
 
-require(`./mw/${config.app.name}-routes`)(app);
+require(`./apps/${config.app.name}`)(app);
 
 var server = app.listen(config.app.port, function () {
   console.log(`App is running ${config.app.name} app on port ${config.app.port}`);

@@ -2,9 +2,9 @@ import Vue from 'vue';
 
 import 'bootstrap/scss/bootstrap.scss';
 
-import VendorApp from './apps/vendor/main';
-import VendorRouter from './apps/vendor/router';
-import VendorStore from './apps/vendor/store';
+import VendorApp from '@/components/vendor/Main';
+import VendorRouter from './router';
+import VendorStore from './store';
 
 Vue.config.productionTip = false;
 

@@ -1,11 +1,11 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import VendorsPage from '@/components/buyer/vendors/VendorsPage';
+import CalendarPage from '@/components/buyer/calendar/CalendarPage';
+import SettingsPage from '@/components/buyer/settings/SettingsPage';
+import OnboardingPage from '@/components/buyer/onboarding/OnboardingPage';
+import check from '@/lib/check';
 import store from './store';
-import VendorsPage from './components/vendors/VendorsPage';
-import CalendarPage from './components/calendar/CalendarPage';
-import SettingsPage from './components/settings/SettingsPage';
-import OnboardingPage from './components/onboarding/OnboardingPage';
-import check from '../../lib/check';
 
 Vue.use(Router);
 

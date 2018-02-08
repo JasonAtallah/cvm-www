@@ -43,7 +43,7 @@ import {
   FormItem as ElFormItem,
   Input as ElInput } from 'element-ui';
 import Detail from '@/components/masterDetail/Detail';
-import rules from '../../metadata/formRules/onboardingProfile';
+import rules from '@/apps/buyer/metadata/formRules/onboardingProfile';
 
 export default {
   components: {

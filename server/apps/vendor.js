@@ -1,19 +1,17 @@
 const express = require('express');
 const path = require('path');
 const config = require('../../config');
-const auth = require('./auth');
-const parse = require('./parse');
-const proxy = require('./proxy');
-const responses = require('./responses');
+const mw = require('./mw');
 
 module.exports = function (app) {
-  app.get('/favicon.ico', express.static(path.resolve(config.staticDir, 'img')));
+  app.get('/favicon.ico',
+    express.static(path.resolve(config.staticDir, 'img')));
 
   app.use(config.staticPath,
     express.static(config.staticDir));
 
   app.use('/vendor',
-    proxy.api);
+    mw.proxy.api);
 
   if (process.env.NODE_ENV === 'development') {
     const devMW = require('../lib/devServer')(app);

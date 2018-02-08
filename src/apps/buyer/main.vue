@@ -30,9 +30,9 @@ html, body {
 </template>
 
 <script>
-import AddLocation from './components/vendors/modals/AddLocation';
-import ConfirmCancelMeeting from './components/vendors/modals/ConfirmCancelMeeting';
-import SetSchedule from './components/calendar/modals/SetSchedule';
+import AddLocation from '@/components/buyer/vendors/modals/AddLocation';
+import ConfirmCancelMeeting from '@/components/buyer/vendors/modals/ConfirmCancelMeeting';
+import SetSchedule from '@/components/buyer/calendar/modals/SetSchedule';
 
 export default {
   name: 'app',

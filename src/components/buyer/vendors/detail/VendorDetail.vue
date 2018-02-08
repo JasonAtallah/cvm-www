@@ -39,9 +39,9 @@ import {
   Tabs as ElTabs,
   TabPane as ElTabPane
 } from 'element-ui';
+import { FlowersProductTable, EdiblesProductTable, ConcentratesProductTable } from '@/apps/buyer/metadata/productTables';
 import Information from './detailTabs/Information';
 import ProductTable from './detailTabs/ProductTable';
-import { FlowersProductTable, EdiblesProductTable, ConcentratesProductTable } from '../../../metadata/productTables';
 import StateBadge from '../master/StateBadge';
 import WatchVendorBadge from '../master/WatchVendorBadge';
 
