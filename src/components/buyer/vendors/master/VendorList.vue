@@ -36,7 +36,7 @@
     padding-top: 5px;
 }
 
-span.vendor-name {
+.vendor-name {
   vertical-align: middle;
   font-size: 1.5rem;
 }
@@ -49,7 +49,7 @@ span.vendor-name {
       @click="onVendorClick($event, vendor)">
       <div class="row vendor-list-item">
         <div class="col-sm-8 item-main">
-          <span class="vendor-name">{{ vendor.name }}</span>
+          <div class="vendor-name">{{ vendor.name }}</div>
           <StateBadge :vendor="vendor" />
           <!-- <WatchVendorBadge :vendor="vendor" /> -->
         </div>

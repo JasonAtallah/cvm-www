@@ -1,5 +1,9 @@
-<style>
-
+<style scoped>
+.action-button {
+  position: relative;
+  top: 1rem;
+  right: 1rem;
+}
 </style>
 
 <template>

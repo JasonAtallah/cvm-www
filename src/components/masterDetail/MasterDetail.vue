@@ -3,7 +3,7 @@
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: 450px 1fr;
+  grid-template-columns: 350px 1fr;
   grid-template-rows: 100%;
   grid-template-areas: "master  detail";
 }
