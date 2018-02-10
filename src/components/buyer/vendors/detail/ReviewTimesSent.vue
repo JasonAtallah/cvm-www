@@ -1,5 +1,5 @@
 <template>
-  <Detail :title="genTitle" :showSave="false" @cancel="cancel">
+  <Detail :title="genTitle" :showCancel="false" @save="cancel" saveLabel="Close">
     <div class="row">
       <div class="col-sm-6">
         <h3>Suggested Times</h3>

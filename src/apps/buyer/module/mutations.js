@@ -73,6 +73,10 @@ export const scheduleRemove = (state, value) => {
   }
 };
 
+export const selCalendarDate = (state, value) => {
+  state.selCalendarDate = value;
+};
+
 export const selSettingTab = (state, settingTab) => {
   state.buyerSettings.activeTab = settingTab;
 };

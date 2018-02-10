@@ -1,7 +1,12 @@
 <style scoped>
-.information-content th {
+.information-content {
+  font-size: 1.2rem;
+}
+
+.information-content label {
+  display: block;
   text-align: right;
-  width: 150px;
+  font-weight: bold;
 }
 
 i.el-icon-check {
@@ -15,95 +20,98 @@ i.el-icon-close {
 
 <template>
   <div class="information-content">
+    <h3>Company</h3>
+
     <div class="row">
-      <div class="col-sm-6">
-        <ElCard class="box-card">
-          <div slot="header"><h3>Company</h3></div>
-          <div class="row">
-            <div class="col-sm-1">
-              <i class="fa fa-building" />
-            </div>
-            <div class="col-sm-10">
-              <h4>{{ vendor.company.name}}</h4>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-1">
-              <i class="fa fa-map-marker" />
-            </div>
-            <div class="col-sm-10">
-              <h5 class="field-display">{{ vendor.company.address}} {{ vendor.company.city }}, {{ vendor.company.state }} {{ vendor.company.zip }}</h5>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-1" v-show="vendor.company.website">
-              <i class="fa fa-window-maximize" />
-            </div>
-            <div class="col-sm-10">
-              <h5 class="field-display"><a :href="vendor.company.website" target="_blank">{{ vendor.company.website }}</a></h5>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-12">
-              <span class="field-display" v-if="vendor.company.srea">SREA#: {{ vendor.company.srea }}</span>
-            </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-sm-4">
-              <span class="property-icon">
-                <i v-if="vendor.company.haveTaxId" class="el-icon-check"></i>
-                <i v-else class="el-icon-close"></i>
-              </span>
-              <span class="field-display">Tax ID</span>
-            </div>
-            <div class="col-sm-4">
-              <span class="property-icon">
-                <i v-if="vendor.company.partOfCollective" class="el-icon-check"></i>
-                <i v-else class="el-icon-close"></i>
-              </span>
-              <span class="field-display">Part of Collective</span>
-              </div>
-            <div class="col-sm-4">
-              <span class="property-icon">
-                <i v-if="vendor.company.haveSellerPermit" class="el-icon-check"></i>
-                <i v-else class="el-icon-close"></i>
-              </span>
-              <span class="field-display">Seller Permit</span>
-            </div>
-          </div>
-        </ElCard>
+      <div class="col-sm-3">
+        <label>Name</label>
       </div>
-      <div class="col-sm-6">
-        <ElCard class="box-card">
-          <div slot="header"><h3>Contact</h3></div>
-          <div class="row">
-            <div class="col-sm-1">
-              <i class="fa fa-user" />
-            </div>
-            <div class="col-sm-10">
-              <h4 class="field-display">{{ vendor.contact.firstName }} {{ vendor.contact.lastName }}</h4>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-1">
-              <i class="fa fa-phone" />
-            </div>
-            <div class="col-sm-10">
-              <h5 class="field-display">{{ vendor.contact.phone }}</h5>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-1">
-              <i class="fa fa-envelope" />
-            </div>
-            <div class="col-sm-10">
-              <h5 class="field-display">{{ vendor.contact.email }}</h5>
-            </div>
-          </div>
-        </ElCard>
+      <div class="col-sm-9">
+        {{ vendor.company.name}}
       </div>
     </div>
+
+    <div class="row">
+      <div class="col-sm-3">
+        <label>Address</label>
+      </div>
+      <div class="col-sm-9">
+        {{ vendor.company.address}} {{ vendor.company.city }}, {{ vendor.company.state }} {{ vendor.company.zip }}
+      </div>
+    </div>
+
+    <div class="row" v-if="vendor.company.website">
+      <div class="col-sm-3">
+        <label>Website</label>
+      </div>
+      <div class="col-sm-9">
+        <a :href="vendor.company.website" target="_blank">{{ vendor.company.website }}</a>
+      </div>
+    </div>
+
+    <div class="row" v-if="vendor.company.srea">
+      <div class="col-sm-3">
+        <label>SREA #</label>
+      </div>
+      <div class="col-sm-9">
+        {{ vendor.company.srea }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-3">
+        <label>Tax ID</label>
+      </div>
+      <div class="col-sm-9">
+        {{ vendor.company.haveTaxId ? 'Yes' : 'No' }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-3">
+        <label>Part of Collective</label>
+      </div>
+      <div class="col-sm-9">
+        {{ vendor.company.partOfCollective ? 'Yes' : 'No' }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-3">
+        <label>Seller Permit</label>
+      </div>
+      <div class="col-sm-9">
+        {{ vendor.company.haveSellerPermit ? 'Yes' : 'No' }}
+      </div>
+    </div>
+
+    <h3>Contact</h3>
+
+    <div class="row">
+      <div class="col-sm-3">
+        <label>Name</label>
+      </div>
+      <div class="col-sm-9">
+        {{ vendor.contact.firstName }} {{ vendor.contact.lastName }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-3">
+        <label>Phone</label>
+      </div>
+      <div class="col-sm-9">
+        {{ vendor.contact.phone }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-3">
+        <label>Email</label>
+      </div>
+      <div class="col-sm-9">
+        {{ vendor.contact.email }}
+      </div>
+    </div>
+
   </div>
 </template>
 

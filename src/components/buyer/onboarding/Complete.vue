@@ -1,6 +1,6 @@
 <template>
 <Detail title="Complete" description="Thanks for filling that out, you're ready to go!"
-:canSave="true" :showCancel="false" @save="complete" actionButtonLabel="Finish" >
+:canSave="true" :showCancel="false" @save="complete" saveLabel="Finish" >
 <div class="text-center">
   <div class="row">
     <div class="form-group col-12">

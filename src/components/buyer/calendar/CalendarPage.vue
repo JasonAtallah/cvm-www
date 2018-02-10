@@ -6,7 +6,7 @@
 .calendar-master {
   height: 100%;
   width: 100%;
-  border-right: 1px solid $section-border-color;
+  border-right: 1px solid #CCC;
 }
 </style>
 
@@ -15,14 +15,11 @@
     <div slot="content" class="calendar-page">
       <MasterDetail>
         <div slot="master" class="calendar-master">
-          <Buttons />
-          <MonthView :events="events" @dayClick="onDayClicked" />
+          <Master />
         </div>
         <div slot="detail" class="calendar-detail">
-          <DayDetail v-if="showDay" :events="events" :date="curDate" />
-          <ElCard v-if="!showDay && this.overridingDetail">
-            <AddCalendarEvent v-if="showAddEvent" :curDate="curDate" />
-          </ElCard>
+          <DayDetail v-if="showDay" :events="events" :date="selCalendarDate" />
+          <AddCalendarEvent v-if="showAddEvent" :curDate="selCalendarDate" />
         </div>
       </MasterDetail>
     </div>
@@ -31,44 +28,31 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import { Card as ElCard } from 'element-ui';
-import MonthView from '@/components/calendar/MonthView';
 import MasterDetail from '@/components/masterDetail/MasterDetail';
 import AddCalendarEvent from './detail/AddCalendarEvent';
 import BasePage from '../BasePage';
-import Buttons from './master/headers/Buttons';
 import DayDetail from './detail/DayDetail';
+import Master from './master/Master';
 
 export default {
   components: {
     AddCalendarEvent,
     BasePage,
-    Buttons,
     DayDetail,
-    ElCard,
-    MasterDetail,
-    MonthView
-  },
-  data() {
-    return {
-      curDate: null
-    };
+    Master,
+    MasterDetail
   },
   computed: {
     ...mapGetters({
       overridingDetail: 'overridingDetail',
-      events: 'events'
+      events: 'events',
+      selCalendarDate: 'selCalendarDate'
     }),
     showAddEvent() {
       return !!(this.overridingDetail && this.overridingDetail.type === 'addCalendarEvent');
     },
     showDay() {
-      return !!(!this.overridingDetail && this.curDate);
-    }
-  },
-  methods: {
-    onDayClicked(date) {
-      this.curDate = date;
+      return !!(!this.overridingDetail && this.selCalendarDate);
     }
   },
   beforeRouteEnter(to, from, next) {

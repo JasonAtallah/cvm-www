@@ -11,7 +11,7 @@
   border-right: 1px solid #CCC;
   border-top: 1px solid #CCC;
   min-height: 45px;
-
+  background-color: #FFF;
 }
 
 .event-list li:last-of-type {
@@ -35,9 +35,9 @@
 </style>
 
 <template>
-<div>
-  <h3>{{ formatDate(this.date) }}</h3>
-  <br/>
+<Detail :title="formatDate(this.date)" description=""
+  :showSave="false" :showCancel="false">
+
   <ul class="event-list">
     <li v-for="hour in day" :key="hour">
       <label>{{ formatHour(hour) }}</label>
@@ -76,7 +76,7 @@
       </div>
     </li>
   </ul>
-</div>
+</Detail>
 </template>
 
 <script>
@@ -84,9 +84,11 @@ import moment from 'moment';
 import {
   Popover as ElPopover,
   Tooltip as ElTooltip } from 'element-ui';
+import Detail from '@/components/masterDetail/Detail';
 
 export default {
   components: {
+    Detail,
     ElPopover,
     ElTooltip
   },

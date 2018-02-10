@@ -20,6 +20,7 @@ export default {
     type: null
   },
   questionnaire: null,
+  selCalendarDate: null,
   selVendor: null,
   selVendorState: null,
   setSchedule: false,

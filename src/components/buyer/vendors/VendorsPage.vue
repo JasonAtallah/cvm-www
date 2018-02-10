@@ -19,13 +19,11 @@
         </div>
         <div slot="detail" class="vendors-detail">
           <VendorDetail v-if="showVendorDetail" :vendor="vendor" />
-          <ElCard v-if="!showVendorDetail && overridingDetail">
-            <AddVendor v-if="showAddVendor" :params="overridingDetail" />
-            <ApptScheduled v-if="showScheduledMeeting" :params="overridingDetail" />
-            <ReviewTimesSent v-if="showTimesSent" :params="overridingDetail" />
-            <SendTimes v-if="showSendTimes" :params="overridingDetail" />
-            <SendVendorStatusEmail v-if="showSendStatusEmail" :params="overridingDetail" />
-          </ElCard>
+          <AddVendor v-if="showAddVendor" :params="overridingDetail" />
+          <ApptScheduled v-if="showScheduledMeeting" :params="overridingDetail" />
+          <ReviewTimesSent v-if="showTimesSent" :params="overridingDetail" />
+          <SendTimes v-if="showSendTimes" :params="overridingDetail" />
+          <SendVendorStatusEmail v-if="showSendStatusEmail" :params="overridingDetail" />
         </div>
       </MasterDetail>
     </div>
@@ -34,15 +32,15 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import MasterDetail from '@/components/masterDetail/MasterDetail';
 import { Card as ElCard } from 'element-ui';
+import MasterDetail from '@/components/masterDetail/MasterDetail';
 import AddVendor from './detail/AddVendor';
 import ApptScheduled from './detail/ApptScheduled';
 import BasePage from '../BasePage';
+import Master from './master/Master';
 import ReviewTimesSent from './detail/ReviewTimesSent';
 import SendTimes from './detail/SendTimes';
 import SendVendorStatusEmail from './detail/SendVendorStatusEmail';
-import Master from './master/Master';
 import VendorDetail from './detail/VendorDetail';
 
 export default {

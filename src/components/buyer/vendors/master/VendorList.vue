@@ -80,7 +80,7 @@ export default {
     onVendorClick(event, vendor) {
       if (event !== this.ignoredVendorClick) {
         this.$store.commit('selVendorState', vendor);
-        this.$emit('vendorClick', vendor);
+        this.$store.dispatch('selVendor', vendor);
       }
     },
     ignoreVendorClick(event) {

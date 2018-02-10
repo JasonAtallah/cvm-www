@@ -5,7 +5,7 @@
 </style>
 
 <template>
-  <Detail :title="genTitle" @save="confirmCancel" @cancel="cancel" actionButtonLabel="Cancel Meeting">
+  <Detail :title="genTitle" @save="confirmCancel" @cancel="cancel" saveLabel="Cancel Meeting">
     <div class="appt-card">
       <div class="row">
         <div class="col-sm-2">

@@ -64,7 +64,7 @@
       </div>
     </div>
     <div class="vendor-list-master3">
-      <Master3 @vendorClick="onVendorClick" />
+      <Master3 />
     </div>
   </div>
 </template>
@@ -81,11 +81,6 @@ export default {
     Master2Dot1,
     Master2Dot2,
     Master3
-  },
-  methods: {
-    onVendorClick(vendor) {
-      this.$store.dispatch('selVendor', vendor);
-    }
   }
 };
 </script>
