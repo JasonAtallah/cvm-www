@@ -2,9 +2,10 @@
 .calendar-buttons {
   margin: 0;
   padding: .7rem 1rem;
-  height: $vendor-list-filter-height;
-  width: 100%;
+  height: $vendors-master-row-height;
+  color: $vendors-master-color;
   border-bottom: 1px solid $section-border-color;
+  width: 100%;
 }
 </style>
 

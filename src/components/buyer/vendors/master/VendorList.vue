@@ -1,18 +1,17 @@
 <style lang="scss" scoped>
 .vendor-list {
   height: 100%;
-  margin: 15px 0px 0px 0px;
+  margin: 0;
   overflow-x: hidden;
   overflow-y: scroll;
-  background-color: #DEDEDE;
+  background-color: $vendor-list-background-color;
 }
 
 .vendor-list li {
   position: relative;
   cursor: pointer;
   border-bottom: 1px solid $section-border-color;
-  background-color: #EEE;
-  border-right: 1px solid #EEE;
+  background-color: $vendor-list-item-background-color;
 }
 
 .vendor-list li:hover {
@@ -20,7 +19,7 @@
 }
 
 .vendor-list li.selected {
-  background-color: #FFF;
+  background-color: $vendor-list-item-selected-background-color;
   border-right: 1px solid #FFF;
 }
 

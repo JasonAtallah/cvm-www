@@ -54,7 +54,7 @@ import { mapGetters } from 'vuex';
 export default {
   data() {
     return {
-      logoUrl: '/static/logo.png'
+      logoUrl: '/static/logo_white.png'
     };
   },
   props: {

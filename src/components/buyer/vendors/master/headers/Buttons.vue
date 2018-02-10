@@ -2,7 +2,7 @@
 .vendor-list-buttons {
   margin: 0;
   padding: .7rem 1rem;
-  height: $vendor-list-filter-height;
+  height: $vendors-master-row-height;
   width: 100%;
   border-bottom: 1px solid $section-border-color;
 }
@@ -10,7 +10,7 @@
 
 <template>
 <div class="vendor-list-buttons">
-  <button id="addVendor" class="btn btn-sm btn-primary" @click="addVendor">Add Vendor</button>
+  <button id="addVendor" class="btn btn-sm btn-primary pull-right" @click="addVendor">+</button>
 </div>
 </template>
 

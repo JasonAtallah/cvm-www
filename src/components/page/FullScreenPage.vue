@@ -12,6 +12,7 @@
 }
 
 .page .header {
+  display: none;
   height: $header-height;
   width: 100%;
   padding: 0 2rem;
@@ -20,7 +21,7 @@
 
 .page .content {
   position: absolute;
-  top: #{$menu-height + $header-height};
+  top: #{$menu-height};// + $header-height
   bottom: 0;
   left: 0;
   right: 0;

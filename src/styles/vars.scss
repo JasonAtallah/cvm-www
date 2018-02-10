@@ -1,9 +1,15 @@
 $chip-color: #ccf;
 $font-stack: 'Avenir', Helvetica, Arial, sans-serif;
 $footer-height: 50px;
-$header-footer-color: #83DB93;
+$header-footer-color: #3CC47C;
 $header-height: 70px;
 $menu-height: 50px;
 $modal-md: 600px;
-$section-border-color: rgba(0, 0, 0, .125) !default;
+$section-border-color: #FFF !default;
 $vendor-list-filter-height: 40px;
+$vendors-master-row-height: 64px;
+$vendors-master-color: #FFF;
+$vendor-list-master-background-color: #3CC47C; // #007CAD;
+$vendor-list-item-background-color: #EAEAEA;
+$vendor-list-item-selected-background-color: #FFF;
+$vendor-list-background-color: #CDCDCD;

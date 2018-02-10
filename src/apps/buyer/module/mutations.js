@@ -94,7 +94,11 @@ export const settings = (state, settings) => {
 };
 
 export const statusFilter = (state, value) => {
-  state.vendorFilter.status = value;
+  if (value) {
+    state.vendorFilter.status = [value];
+  } else {
+    state.vendorFilter.status = [];
+  }
 };
 
 export const takeAction = (state, action) => {
