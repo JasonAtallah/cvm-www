@@ -7,6 +7,11 @@
     <ElForm :model="profile.contact" :rules="rules.contact" ref="profile.contact">
       <div class="row">
         <div class="col-sm-6">
+          <h3>Contact</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
           <ElFormItem label="First Name" prop="firstName">
             <ElInput v-model="profile.contact.firstName" placeholder="First Name" />
           </ElFormItem>
@@ -31,6 +36,11 @@
       </div>
     </ElForm>
     <ElForm :model="profile.company" :rules="rules.company" ref="profile.company">
+      <div class="row">
+        <div class="col-sm-6">
+          <h3>Company</h3>
+        </div>
+      </div>
       <div class="row">
         <div class="col-sm-6">
           <ElFormItem label="Name" prop="name">

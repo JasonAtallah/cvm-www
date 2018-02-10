@@ -1,17 +1,14 @@
 <style scoped>
-#settingsBtn {
-  padding: 0%;
-  color: #4f5154;
+.el-dropdown-link {
+  cursor: pointer;
+  color: #FFF;
+  font-weight: bold;
 }
 
-  .el-dropdown-link {
-    cursor: pointer;
-    color: #409EFF;
-  }
-  .el-icon-arrow-down {
-    font-size: 12px;
-  }
-
+.el-icon-arrow-down {
+  font-size: 1rem;
+  font-weight: bold;
+}
 </style>
 
 <template>

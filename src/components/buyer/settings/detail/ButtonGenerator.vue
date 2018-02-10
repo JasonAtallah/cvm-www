@@ -2,17 +2,14 @@
 div.btn-gen-field {
   margin-bottom: 1rem;
 }
-
-span#code-paste-text {
-  margin-left: 10px;
-}
 </style>
 
 <template>
-<Detail title="Button Generator" description="Customize your button and add it to your site to route vendors to your questionnaire."
+<Detail title="Button Generator"
+  description="Customize your button and add it to your site to route vendors to your questionnaire."
   :showSave="false" :showCancel="false">
   <div class="row">
-    <div class="col-sm-8">
+    <div class="col-sm-12">
       <div class="row btn-gen-field">
         <div class="col-sm-6">
           <label for="width">Width</label><br>
@@ -53,16 +50,19 @@ span#code-paste-text {
         </div>
       </div>
     </div>
-
-    <div class="col-sm-4">
-      <div v-html="generateButtonCode()"></div>
-    </div>
-
   </div>
-  <br>
+
   <div class="row">
     <div class="col-sm-12">
-      <span id="code-paste-text">Paste the code below on your site to generate this button.</span>
+      <br />
+      <div v-html="generateButtonCode()"></div>
+      <br />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <label>Paste the code below on your site to generate this button.</label>
       <ElCard>
         {{ generateButtonCode() }}
       </ElCard>
@@ -93,24 +93,24 @@ export default {
     return {
       button: {
         borderRadius: 12,
-        backgroundColor: '#00e64d',
+        backgroundColor: '#CCC',
         width: 200,
         height: 75,
         text: {
           fontSize: 30,
           text: 'Apply',
-          color: '#f2f2f2'
+          color: '#000'
         }
       },
       defaultButton: {
         borderRadius: 12,
-        backgroundColor: '#00e64d',
+        backgroundColor: '#CCC',
         width: 200,
         height: 75,
         text: {
           fontSize: 30,
           text: 'Apply',
-          color: '#f2f2f2'
+          color: '#000'
         }
       }
     };
@@ -131,4 +131,3 @@ export default {
   }
 };
 </script>
-

@@ -1,31 +1,50 @@
-<style scoped>
+<style lang="scss" scoped>
 .page-menu {
   position: relative;
   height: 50px;
+  padding: 10px;
 }
 
 .page-menu img.logo {
-  position: absolute;
-  left: 0;
-  top: 10px;
+  display: inline-block;
   height: 30px;
 }
 
-.page-menu .pageMenuItem {
-  position: absolute;
+.page-menu .page-menu-items {
   display: inline-block;
-  margin-right: 3rem;
-  top: 15px;
+  margin: 2px 0 0 20px;
+}
+
+.page-menu .pageMenuItem {
+  display: inline-block;
+  margin: 0 20px;
+  padding: 0 15px;
   font-size: 1.5rem;
+  font-weight: bold;
+  background-color: $header-footer-color;
+  border-radius: 10px;
+}
+
+.page-menu .pageMenuItem:hover {
+  background-color: #FFFFEE;
+}
+
+.page-menu .pageMenuItem.selected {
+  background-color: #FFF;
 }
 
 .page-menu .pageMenuItem a {
   color: #FFF;
-  font-weight: 500;
+  font-weight: bold;
+  text-decoration: none;
 }
 
-.page-menu .pageMenuItem .selected {
-  font-weight: bold;
+.page-menu .pageMenuItem:hover a {
+  color: #50A679;
+}
+
+.page-menu .pageMenuItem.selected a {
+  color: #50A679;
 }
 
 .page-menu .user {
@@ -33,14 +52,21 @@
   right: 15px;
   top: 15px;
   text-align: right;
+  color: #FFF;
 }
 </style>
 
 <template>
 <div class="page-menu">
   <img class="logo" :src="logoUrl" />
-  <div v-for="(item,index) in pageMenu" :key="index" class="pageMenuItem" :class="{ [item.name.toLowerCase() + '-page']: true }" :style="getPageMenuStyle(index)">
-    <router-link :to="item.href" :class="{ selected: item.selected }">{{ item.name }}</router-link>
+  <div class="page-menu-items">
+    <div v-for="(item,index) in pageMenu" :key="index"
+      class="pageMenuItem"
+      :class="{ [item.name.toLowerCase() + '-page']: true, selected: item.selected }"
+      :style="getPageMenuStyle(index)">
+
+      <router-link :to="item.href">{{ item.name }}</router-link>
+    </div>
   </div>
   <div class="user">
     <slot name="menu-right"></slot>

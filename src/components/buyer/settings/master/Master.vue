@@ -1,36 +1,37 @@
-<style>
+<style lang="scss">
 .settings-list {
   height: 100%;
   margin: 0;
   overflow-x: hidden;
   overflow-y: scroll;
-  background-color: #DEDEDE;
+  background-color: $vendor-list-background-color;
+  background-image: $vendor-list-background-image;
 }
 
 .settings-list li {
   position: relative;
   cursor: pointer;
-  border-bottom: 1px solid $section-border-color;
-  background-color: #EEE;
-  border-right: 1px solid #EEE;
+  background-color: #FFF;
+  border: 1px solid #a0ac92;
+  margin: 10px 10px;
+  padding: 10px;
 }
 
 .settings-list li:hover {
-  background-color: #FFF;
+  background-color: $vendor-list-item-hover-background-color;
 }
 
 .settings-list li.selected {
-  background-color: #FFF;
-  border-right: 1px solid #FFF;
+  margin: 10px 0 10px 20px;
+  padding: 10px 0 10px 10px;
+  border-right: none;
+  background-color: $vendor-list-item-selected-background-color;
 }
 
-.settings-list .settings-list-item {
-  margin: 0;
-  padding: 15px;
-}
-
-label.settings-input-label {
-  margin-left: 0.5rem;
+.settings-list li label {
+  font-size: 1.6rem;
+  position: relative;
+  top: .2rem;
 }
 </style>
 
@@ -39,9 +40,7 @@ label.settings-input-label {
     <li v-for="setting in settings.settingsTabs" :key="setting.value"
     :class="{selected: isSelected(setting)}"
     @click="switchTab(setting)">
-      <div class="row settings-list-item">
-        <h3>{{ setting.label }}</h3>
-      </div>
+      <label>{{ setting.label }}</label>
     </li>
   </ul>
 </template>
@@ -66,4 +65,3 @@ export default {
   }
 };
 </script>
-
