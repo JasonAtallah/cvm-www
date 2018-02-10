@@ -14,9 +14,9 @@
 
 .vendor-list-search .title {
   display: block;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: bold;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
 }
 
 .vendor-list-search .el-input__inner::placeholder {

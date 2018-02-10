@@ -1,11 +1,3 @@
-<style scoped>
-.action-button {
-  position: relative;
-  top: 1rem;
-  right: 1rem;
-}
-</style>
-
 <template>
   <div class="action-button">
     <DropdownButton v-if="currentAction" class="actionMenu text-right" buttonClassName="btn-link"
