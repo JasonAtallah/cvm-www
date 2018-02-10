@@ -115,8 +115,8 @@ export const loadSettings = ({ commit }) => {
     });
 };
 
-export const loadVendors = ({ rootState, commit }) => {
-  return api.getVendors()
+export const loadVendors = ({ rootState, commit }, { query } = {}) => {
+  return api.getVendors(query)
     .then((vendorList) => {
       commit('vendorList', vendorList);
     });

@@ -40,8 +40,8 @@ export default {
     ElInput
   },
   methods: {
-    updateSearch(event) {
-      this.$store.commit('vendorSearch', event);
+    updateSearch(query) {
+      this.$store.dispatch('loadVendors', { query });
     }
   }
 };
