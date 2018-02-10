@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import traverse from 'traverse';
 import { getUrlParameter } from '../../../lib/url';
 import api from './api';
@@ -71,9 +72,17 @@ export const saveFile = ({ dispatch, commit, state }, params) => {
 };
 
 export const submitResponse = ({ dispatch, commit, state }, response) => {
-  return api.saveResponse(getUrlParameter('qid'), response)
-    .then((newResp) => {
-      response._id = newResp._id;
+  const responseCopy = _.cloneDeep(response);
+
+  traverse(responseCopy).forEach(function (elem) {
+    if (elem && elem.length && elem[0].formData) {
+      this.update([], true);
+    }
+  });
+
+  return api.saveResponse(getUrlParameter('qid'), responseCopy)
+    .then((savedResponse) => {
+      response._id = savedResponse._id;
       return dispatch('submitResponseFileFields', response);
     })
     .then((response) => {
