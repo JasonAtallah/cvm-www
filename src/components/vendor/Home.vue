@@ -24,9 +24,9 @@
 <script>
 import { mapGetters } from 'vuex';
 import BasePage from './BasePage';
-import ApptScheduled from './VendorHomePage/ApptScheduled';
-import NoVendorAction from './VendorHomePage/NoVendorAction';
-import VendorNeedsToReviewTimes from './VendorHomePage/VendorNeedsToReviewTimes';
+import ApptScheduled from './homePage/ApptScheduled';
+import NoVendorAction from './homePage/NoVendorAction';
+import VendorNeedsToReviewTimes from './homePage/VendorNeedsToReviewTimes';
 
 export default {
   components: {

@@ -10,22 +10,22 @@
   <div slot="content" id="Questionnaire">
     <Wizard v-if="questionnaire" :enabledPages="enabledPages" class="col-lg-10 col-xl-8 offset-lg-1 offset-xl-2" @complete="submit">
       <div slot="page1">
-        <QuestionsCompany :questions="questionsFor('company')" :response="response.company" />
+        <Company :questions="questionsFor('company')" :response="response.company" />
       </div>
       <div slot="page2">
-        <QuestionsContact :questions="questionsFor('contact')" :response="response.contact" />
+        <Contact :questions="questionsFor('contact')" :response="response.contact" />
       </div>
       <div slot="page3">
-        <QuestionsFlowers :def="questionsFor('flowers')[0]" :products="productsFor('flowers', 0)" />
+        <Flowers :def="questionsFor('flowers')[0]" :products="productsFor('flowers', 0)" />
       </div>
       <div slot="page4">
-        <QuestionsEdibles :def="questionsFor('edibles')[0]" :products="productsFor('edibles', 0)" />
+        <Edibles :def="questionsFor('edibles')[0]" :products="productsFor('edibles', 0)" />
       </div>
       <div slot="page5">
-        <QuestionsConcentrates :def="questionsFor('concentrates')[0]" :products="productsFor('concentrates', 0)" />
+        <Concentrates :def="questionsFor('concentrates')[0]" :products="productsFor('concentrates', 0)" />
       </div>
       <div slot="page6">
-        <SubmitQuestionnaire :response="response" />
+        <Submit :response="response" />
       </div>
     </Wizard>
   </div>
@@ -34,41 +34,41 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import Wizard from '@/components/wizard/Wizard';
-import BasePage from './BasePage';
-import QuestionsCompany from './QuestionsCompany';
-import QuestionsContact from './QuestionsContact';
-import SubmitQuestionnaire from './SubmitQuestionnaire';
-import FlowerForm from './FlowerForm';
-import EdibleForm from './EdibleForm';
-import ConcentrateForm from './ConcentrateForm';
-import ProductsInput from './ProductsInput';
+import Wizard from '../../wizard/Wizard';
+import BasePage from '../BasePage';
+import Company from './Company';
+import Contact from './Contact';
+import Submit from './Submit';
+import Products from './Products';
+import FlowerForm from './products/FlowerForm';
+import EdibleForm from './products/EdibleForm';
+import ConcentrateForm from './products/ConcentrateForm';
 
 export default {
   components: {
     BasePage,
     Wizard,
-    QuestionsCompany,
-    QuestionsContact,
-    QuestionsFlowers: {
-      extends: ProductsInput,
+    Company,
+    Contact,
+    Flowers: {
+      extends: Products,
       components: {
         ProductForm: FlowerForm
       }
     },
-    QuestionsEdibles: {
-      extends: ProductsInput,
+    Edibles: {
+      extends: Products,
       components: {
         ProductForm: EdibleForm
       }
     },
-    QuestionsConcentrates: {
-      extends: ProductsInput,
+    Concentrates: {
+      extends: Products,
       components: {
         ProductForm: ConcentrateForm
       }
     },
-    SubmitQuestionnaire
+    Submit
   },
   computed: {
     ...mapGetters({

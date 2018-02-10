@@ -74,7 +74,6 @@
 </template>
 
 <script>
-import Detail from '@/components/masterDetail/Detail';
 import {
   Form as ElForm,
   FormItem as ElFormItem,
@@ -82,7 +81,8 @@ import {
   InputNumber as ElInputNumber,
   Option as ElOption,
   Select as ElSelect } from 'element-ui';
-import companyFormRules from '../../apps/vendor/metadata/formRules/response.company';
+import Detail from '../../masterDetail/Detail';
+import companyFormRules from '../../../apps/vendor/metadata/formRules/response.company';
 
 export default {
   components: {

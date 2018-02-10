@@ -30,12 +30,13 @@
 </template>
 
 <script>
-import Detail from '@/components/masterDetail/Detail';
 import {
   Form as ElForm,
   FormItem as ElFormItem,
   Input as ElInput } from 'element-ui';
-import contactFormRules from '../../apps/vendor/metadata/formRules/response.contact';
+
+import Detail from '../../masterDetail/Detail';
+import contactFormRules from '../../../apps/vendor/metadata/formRules/response.contact';
 
 export default {
   components: {

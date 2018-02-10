@@ -54,13 +54,10 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import QuestionsCompany from './QuestionsCompany';
-import QuestionsContact from './QuestionsContact';
 
 export default {
   components: {
-    QuestionsCompany,
-    QuestionsContact
+
   },
   props: ['response'],
   computed: {

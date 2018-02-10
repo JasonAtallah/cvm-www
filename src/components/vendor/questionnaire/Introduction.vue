@@ -41,7 +41,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import BasePage from './BasePage';
+import BasePage from '../BasePage';
 
 export default {
   components: {

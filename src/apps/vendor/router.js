@@ -1,10 +1,10 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Complete from '@/components/vendor/Complete';
+import Complete from '@/components/vendor/questionnaire/Complete';
 import Home from '@/components/vendor/Home';
-import Introduction from '@/components/vendor/Introduction';
+import Introduction from '@/components/vendor/questionnaire/Introduction';
 import Loading from '@/components/vendor/Loading';
-import Questionnaire from '@/components/vendor/Questionnaire';
+import Questionnaire from '@/components/vendor/questionnaire/Questionnaire';
 
 Vue.use(Router);
 
