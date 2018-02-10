@@ -17,7 +17,7 @@
   </div>
   <div class="buttons text-center">
     <button class="back btn btn-light" @click="goBack" v-bind:disabled="isBackDisabled">Back</button>
-    <button class="next btn btn-primary" @click="goNext" v-bind:disabled="isNextDisabled">Next</button>
+    <button class="next btn btn-primary" @click="goNext" v-bind:disabled="isNextDisabled">{{ nextBtnLabel }}</button>
   </div>
 </div>
 </template>
@@ -31,20 +31,23 @@ export default {
   },
   props: ['enabledPages'],
   computed: {
-    maxPage() {
-      let curPage = 1;
-      while (this.$slots[`page${curPage}`] !== undefined) {
-        curPage++;
-      }
-      return curPage;
-    },
     isBackDisabled() {
       if (this.curPage === 1) return true;
       return !_.some(this.enabledPages.slice(0, this.curPage - 1), pageEnabled => pageEnabled);
     },
     isNextDisabled() {
-      if (this.curPage === this.maxPage) return true;
+      if (this.curPage === this.maxPage) return false;
       return !_.some(this.enabledPages.slice(this.curPage), pageEnabled => pageEnabled);
+    },
+    maxPage() {
+      return parseInt(Object.keys(this.$slots).pop().replace('page', ''), 10);
+    },
+    nextBtnLabel() {
+      if (this.curPage < this.maxPage) {
+        return 'Next';
+      }
+
+      return 'Submit';
     }
   },
   methods: {
@@ -65,12 +68,16 @@ export default {
       }
     },
     goNext() {
-      let page = this.curPage;
-      while (page < this.maxPage) {
-        page += 1;
-        if (this.isPageEnabled(page)) {
-          this.curPage = page;
-          break;
+      if (this.curPage === this.maxPage) {
+        this.$emit('complete');
+      } else {
+        let page = this.curPage;
+        while (page < this.maxPage) {
+          page += 1;
+          if (this.isPageEnabled(page)) {
+            this.curPage = page;
+            break;
+          }
         }
       }
     },

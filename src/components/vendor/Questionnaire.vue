@@ -8,7 +8,7 @@
 <template>
 <BasePage pageName="Questionnaire">
   <div slot="content" id="Questionnaire">
-    <Wizard v-if="questionnaire" :enabledPages="enabledPages" class="col-lg-10 col-xl-8 offset-lg-1 offset-xl-2">
+    <Wizard v-if="questionnaire" :enabledPages="enabledPages" class="col-lg-10 col-xl-8 offset-lg-1 offset-xl-2" @complete="submit">
       <div slot="page1">
         <QuestionsCompany :questions="questionsFor('company')" :response="response.company" />
       </div>
@@ -87,13 +87,19 @@ export default {
     getPage(pageId) {
       return _.find(this.questionnaire.pages, { id: pageId });
     },
-    questionsFor(pageId) {
-      return this.getPage(pageId).questions;
-    },
     productsFor(pageId, questionIndex) {
       const page = this.getPage(pageId);
       const questionId = page.questions[questionIndex].id;
       return this.response[pageId][questionId];
+    },
+    questionsFor(pageId) {
+      return this.getPage(pageId).questions;
+    },
+    submit() {
+      this.$store.dispatch('submitResponse', this.response)
+        .then(() => {
+          this.$router.push({ name: 'Complete' });
+        });
     }
   }
 };

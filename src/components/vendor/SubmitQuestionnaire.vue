@@ -2,7 +2,6 @@
 
 <template>
 <div>
-  <button class="btn btn-primary" @click="submitQuestionnaire">Submit</button>
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-6">
       <div :response="response.company" :questions="companyQuestions">
@@ -82,14 +81,6 @@ export default {
     },
     concentrateDef() {
       return this.questionnaire.pages[4].questions[0].items;
-    }
-  },
-  methods: {
-    submitQuestionnaire() {
-      this.$store.dispatch('submitResponse', this.response)
-        .then(() => {
-          this.$router.push({ name: 'Complete' });
-        });
     }
   }
 };
