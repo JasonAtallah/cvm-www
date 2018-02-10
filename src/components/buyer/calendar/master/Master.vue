@@ -5,7 +5,7 @@
   display: grid;
   background-color: $vendor-list-master-background-color;
   grid-template-columns: 100%;
-  grid-template-rows: 320px 50px calc(100% - 50px);
+  grid-template-rows: 320px 40px calc(100% - 50px);
   grid-template-areas:
     "master1"
     "master2"

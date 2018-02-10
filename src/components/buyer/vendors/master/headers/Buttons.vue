@@ -1,21 +1,21 @@
-<style lang="scss" scoped>
-.vendor-list-buttons {
-  margin: 0;
-  padding: .7rem 1rem;
-  height: $vendors-master-row-height;
-  width: 100%;
-  border-bottom: 1px solid $section-border-color;
-}
-</style>
+
 
 <template>
-<div class="vendor-list-buttons">
-  <button id="addVendor" class="btn btn-sm btn-primary pull-right" @click="addVendor">+</button>
-</div>
+  <ElButtonGroup>
+    <ElButton type="primary" icon="el-icon-plus" @click="addVendor">Add Vendor</ElButton>
+  </ElButtonGroup>
 </template>
 
 <script>
+import {
+  Button as ElButton,
+  ButtonGroup as ElButtonGroup } from 'element-ui';
+
 export default {
+  components: {
+    ElButton,
+    ElButtonGroup
+  },
   methods: {
     addVendor() {
       this.$store.commit('overrideDetail', {
