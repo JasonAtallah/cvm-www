@@ -32,8 +32,6 @@ import { FlowersProductTable, EdiblesProductTable, ConcentratesProductTable } fr
 import Detail from '@/components/masterDetail/Detail';
 import Information from './detailTabs/Information';
 import ProductTable from './detailTabs/ProductTable';
-import StateBadge from '../master/StateBadge';
-import WatchVendorBadge from '../master/WatchVendorBadge';
 
 export default {
   components: {
@@ -41,9 +39,7 @@ export default {
     ElTabs,
     ElTabPane,
     Information,
-    ProductTable,
-    StateBadge,
-    WatchVendorBadge
+    ProductTable
   },
   data() {
     return {

@@ -42,6 +42,7 @@
       <div class="row vendor-list-item">
         <div class="col-sm-8 item-main">
           <div class="vendor-name">{{ vendor.name }}</div>
+          <StateBadge :vendor="vendor" />
         </div>
         <div class="col-sm-4 item-btns">
           <div @click="ignoreVendorClick($event)">
@@ -57,11 +58,13 @@
 import { mapGetters } from 'vuex';
 import {
   Tooltip as ElTooltip } from 'element-ui';
+import StateBadge from './StateBadge';
 import VendorActionButton from './VendorActionButton';
 
 export default {
   components: {
     ElTooltip,
+    StateBadge,
     VendorActionButton
   },
   computed: {

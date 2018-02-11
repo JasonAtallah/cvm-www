@@ -1,6 +1,6 @@
 <template>
   <div class="action-button">
-    <DropdownButton v-if="currentAction" class="actionMenu text-right" buttonClassName="btn-link"
+    <DropdownButton v-if="currentAction" class="actionMenu pull-right" buttonClassName="btn-link"
       :option="currentAction"
       :options="currentAction.options"
       @selection="onActionSelect($event)" />
