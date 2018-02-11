@@ -60,7 +60,7 @@ export default {
       return this.settings.activeTab === setting.value;
     },
     switchTab(setting) {
-      this.$store.commit('selSettingTab', setting.value);
+      this.$router.push(`/settings/${setting.value}`);
     }
   }
 };

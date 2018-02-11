@@ -45,6 +45,11 @@ const router = new Router({
       path: '/settings',
       name: 'Settings',
       component: SettingsPage
+    },
+    {
+      path: '/settings/:settingName',
+      name: 'Settings_setting',
+      component: SettingsPage
     }
   ]
 });

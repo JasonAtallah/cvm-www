@@ -14,7 +14,8 @@ span.divider {
 <template>
   <Detail title="Questionnaire" description="Customize your questionnaire."
     :canSave="canSave" :canCancel="canSave"
-    @save="save" @cancel="cancel">
+    @save="save" @cancel="cancel"
+    v-if="!!questionnaire">
 
     <ElTabs value="introduction" @tab-click="switchTab">
       <ElTabPane v-for="page in markdownPages" :key="page.value"
@@ -75,10 +76,7 @@ export default {
       curTab: 'introduction',
       markdown: new showdown.Converter(),
       mode: 'Preview',
-      newQuestionnaire: {
-        introduction: this.questionnaire.introduction || null,
-        completion: this.questionnaire.completion || null,
-      },
+      newQuestionnaire: null,
       previewMode: false
     };
   },
@@ -99,7 +97,7 @@ export default {
     },
     questionnairePages() {
       return _.find(this.buyerSettings.settingsTabs, { value: 'questionnaire' }).options;
-    },
+    }
   },
   methods: {
     cancel() {
@@ -124,6 +122,14 @@ export default {
     gotoMarkdownDocs() {
       window.open('https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet', '_blank');
     },
+    reset() {
+      if (this.questionnaire) {
+        this.newQuestionnaire = {
+          introduction: this.questionnaire.introduction,
+          completion: this.questionnaire.completion
+        };
+      }
+    },
     switchTab(tab) {
       this.curTab = tab.name;
     },
@@ -139,6 +145,14 @@ export default {
         .catch(() => {
           this.$store.dispatch('errorNotification');
         });
+    }
+  },
+  created() {
+    this.reset();
+  },
+  watch: {
+    questionnaire(newVal) {
+      this.reset();
     }
   }
 };

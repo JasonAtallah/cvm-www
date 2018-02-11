@@ -61,6 +61,8 @@ module.exports = {
     'no-underscore-dangle': 0,
     'no-useless-escape': 0,
     'no-mixed-operators': 0,
-    'object-shorthand': 0
+    'object-shorthand': 0,
+    'prefer-arrow-callback': 0,
+    'prefer-rest-params': 0
   }
 };

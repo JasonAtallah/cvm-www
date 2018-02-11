@@ -60,6 +60,19 @@ export default {
     activeTab() {
       return this.buyerSettings.activeTab;
     }
+  },
+  beforeRouteEnter(to, from, next) {
+    next((component) => {
+      if (to.params.settingName) {
+        component.$store.commit('selSettingTab', to.params.settingName);
+      }
+    });
+  },
+  beforeRouteUpdate(to, from, next) {
+    if (to.params.settingName) {
+      this.$store.commit('selSettingTab', to.params.settingName);
+    }
+    next();
   }
 };
 </script>

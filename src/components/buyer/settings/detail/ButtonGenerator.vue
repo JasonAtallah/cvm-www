@@ -123,7 +123,10 @@ export default {
       style="color:${this.button.text.color}; text-decoration:none;">${this.button.text.text}</a></button>`;
     },
     generateUrl() {
-      return `http://localhost:8082/?qid=${this.questionnaire._id}#/`;
+      if (this.questionnaire) {
+        return `http://localhost:8082/?qid=${this.questionnaire._id}#/`;
+      }
+      return 'Unable to generate URL, please refresh the page.';
     },
     reset() {
       this.button = _.cloneDeep(this.defaultButton);

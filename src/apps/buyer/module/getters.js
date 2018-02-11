@@ -24,7 +24,6 @@ export const sortedVendors = (state) => {
   let vendors = [...state.vendorList];
 
   if (state.vendorFilter.status && state.vendorFilter.status.length) {
-    console.dir(state.vendorFilter.status);
     vendors = vendors.filter((vendor) => {
       return _.some(state.vendorFilter.status, s => vendor.state.name === s.value);
     });

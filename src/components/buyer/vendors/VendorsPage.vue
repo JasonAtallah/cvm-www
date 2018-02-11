@@ -18,6 +18,7 @@
           <Master />
         </div>
         <div slot="detail" class="vendors-detail">
+          <NewUser v-if="showNewUser" />
           <VendorDetail v-if="showVendorDetail" :vendor="vendor" />
           <AddVendor v-if="showAddVendor" :params="overridingDetail" />
           <ApptScheduled v-if="showScheduledMeeting" :params="overridingDetail" />
@@ -38,6 +39,7 @@ import AddVendor from './detail/AddVendor';
 import ApptScheduled from './detail/ApptScheduled';
 import BasePage from '../BasePage';
 import Master from './master/Master';
+import NewUser from './detail/NewUser';
 import ReviewTimesSent from './detail/ReviewTimesSent';
 import SendTimes from './detail/SendTimes';
 import SendVendorStatusEmail from './detail/SendVendorStatusEmail';
@@ -50,6 +52,7 @@ export default {
     BasePage,
     ElCard,
     MasterDetail,
+    NewUser,
     ReviewTimesSent,
     SendTimes,
     SendVendorStatusEmail,
@@ -65,10 +68,14 @@ export default {
     ...mapGetters({
       buyer: 'buyer',
       overridingDetail: 'overridingDetail',
-      vendor: 'selVendor'
+      vendor: 'selVendor',
+      vendors: 'vendorList'
     }),
     showAddVendor() {
       return !!(this.overridingDetail && this.overridingDetail.type === 'addVendor');
+    },
+    showNewUser() {
+      return !!(!this.overridingDetail && (this.vendors.length === 0 || !this.vendor));
     },
     showScheduledMeeting() {
       return !!(this.overridingDetail && this.overridingDetail.type === 'cancelMeeting');

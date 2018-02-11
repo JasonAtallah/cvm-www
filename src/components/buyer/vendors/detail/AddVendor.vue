@@ -110,9 +110,9 @@ export default {
       this.$store.commit('cancelDetailOverride');
     },
     save() {
-      this.validateForm('vendor.contact')
+      this.validateForm('profile.contact')
         .then(() => {
-          return this.validateForm('vendor.company');
+          return this.validateForm('profile.company');
         })
         .then(() => {
           return this.$store.dispatch('createVendor', _.cloneDeep(this.vendor));
@@ -126,7 +126,7 @@ export default {
     },
     validateForm(formRef) {
       return new Promise((res, rej) => {
-        this.$refs[formRef].validate((valid) => {
+        this.$refs[formRef].validate(function (valid) {
           if (valid) {
             res();
           } else {
