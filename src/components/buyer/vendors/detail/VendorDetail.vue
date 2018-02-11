@@ -52,7 +52,6 @@ export default {
   props: ['vendor'],
   methods: {
     close() {
-      console.log('hi');
       this.$store.commit('selVendor', null);
     }
   }
