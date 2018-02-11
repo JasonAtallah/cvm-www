@@ -13,23 +13,13 @@ const router = new Router({
   routes: [
     {
       path: '/',
+      name: 'Home',
+      redirect: '/vendors'
+    },
+    {
+      path: '/vendors/:vendorId?',
       name: 'Vendors',
-      component: VendorsPage,
-      beforeEnter: (to, from, next) => {
-        store.dispatch('init')
-          .then(() => {
-            const buyer = store.state.buyer;
-            if (!check.profileComplete(buyer) || !check.calendarSelected(buyer)) {
-              next({
-                path: '/onboarding',
-                name: 'Onboarding',
-                component: OnboardingPage
-              });
-            } else {
-              next();
-            }
-          });
-      }
+      component: VendorsPage
     },
     {
       path: '/calendar',
@@ -52,6 +42,26 @@ const router = new Router({
       component: SettingsPage
     }
   ]
+});
+
+router.beforeEach((to, from, next) => {
+  if (store.getters.initP === null) {
+    store.dispatch('init')
+      .then(() => {
+        const buyer = store.state.buyer;
+        if (!check.profileComplete(buyer) || !check.calendarSelected(buyer)) {
+          next({
+            path: '/onboarding',
+            name: 'Onboarding',
+            component: OnboardingPage
+          });
+        } else {
+          next();
+        }
+      });
+  } else {
+    next();
+  }
 });
 
 export default router;

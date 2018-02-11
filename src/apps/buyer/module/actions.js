@@ -66,13 +66,15 @@ export const errorNotification = ({ dispatch }) => {
   });
 };
 
-export const init = ({ dispatch }) => {
-  return Promise.all([
+export const init = ({ commit, dispatch }) => {
+  const initP = Promise.all([
     dispatch('loadBuyer'),
     dispatch('loadVendors'),
     dispatch('loadQuestionnaire'),
     dispatch('loadSettings')
   ]);
+  commit('initP', initP);
+  return initP;
 };
 
 export const loadBuyer = ({ commit, state }) => {

@@ -40,9 +40,6 @@ export default {
     AddLocation,
     ConfirmCancelMeeting,
     SetSchedule
-  },
-  beforeMount() {
-    this.$store.dispatch('init');
   }
 };
 </script>

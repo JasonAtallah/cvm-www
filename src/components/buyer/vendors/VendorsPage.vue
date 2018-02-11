@@ -95,8 +95,23 @@ export default {
   },
   beforeRouteEnter(to, from, next) {
     next((component) => {
-      component.$store.dispatch('loadVendors');
+      component.$store.getters.initP
+        .then(() => {
+          return component.$store.dispatch('loadVendors');
+        })
+        .then(() => {
+          if (to.params.vendorId) {
+            component.$store.dispatch('selVendor', _.find(component.$store.getters.vendorList, { _id: to.params.vendorId }));
+          }
+          next();
+        });
     });
+  },
+  beforeRouteUpdate(to, from, next) {
+    if (to.params.vendorId) {
+      this.$store.dispatch('selVendor', _.find(this.$store.getters.vendorList, { _id: to.params.vendorId }));
+    }
+    next();
   }
 };
 </script>

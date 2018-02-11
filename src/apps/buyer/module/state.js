@@ -14,6 +14,7 @@ export default {
   },
   calendars: null,
   events: [],
+  initP: null,
   overridingDetail: null,
   pageMenuItems: pages,
   pendingAction: {
@@ -22,7 +23,6 @@ export default {
   questionnaire: null,
   selCalendarDate: null,
   selVendor: null,
-  selVendorState: null,
   setSchedule: false,
   settings: null,
   timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,

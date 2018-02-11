@@ -42,8 +42,6 @@
       <div class="row vendor-list-item">
         <div class="col-sm-8 item-main">
           <div class="vendor-name">{{ vendor.name }}</div>
-          <StateBadge :vendor="vendor" />
-          <!-- <WatchVendorBadge :vendor="vendor" /> -->
         </div>
         <div class="col-sm-4 item-btns">
           <div @click="ignoreVendorClick($event)">
@@ -59,16 +57,12 @@
 import { mapGetters } from 'vuex';
 import {
   Tooltip as ElTooltip } from 'element-ui';
-import StateBadge from './StateBadge';
 import VendorActionButton from './VendorActionButton';
-import WatchVendorBadge from './WatchVendorBadge';
 
 export default {
   components: {
     ElTooltip,
-    StateBadge,
-    VendorActionButton,
-    WatchVendorBadge
+    VendorActionButton
   },
   computed: {
     ...mapGetters({
@@ -79,8 +73,7 @@ export default {
   methods: {
     onVendorClick(event, vendor) {
       if (event !== this.ignoredVendorClick) {
-        this.$store.commit('selVendorState', vendor);
-        this.$store.dispatch('selVendor', vendor);
+        this.$router.push(`/vendors/${vendor._id}`);
       }
     },
     ignoreVendorClick(event) {

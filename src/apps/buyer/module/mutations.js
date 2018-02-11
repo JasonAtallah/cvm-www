@@ -48,6 +48,10 @@ export const gCalendar = (state, gcalendar) => {
   state.buyer = Object.assign({}, state.buyer, { gcalendar });
 };
 
+export const initP = (state, initP) => {
+  state.initP = initP;
+};
+
 export const overrideDetail = (state, value) => {
   state.overridingDetail = value;
 };
@@ -83,10 +87,6 @@ export const selSettingTab = (state, settingTab) => {
 
 export const selVendor = (state, vendor) => {
   state.selVendor = vendor;
-};
-
-export const selVendorState = (state, vendor) => {
-  state.selVendorState = vendor;
 };
 
 export const setSchedule = (state, value) => {

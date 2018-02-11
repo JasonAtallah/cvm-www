@@ -5,6 +5,7 @@ export const buyer = state => state.buyer;
 export const buyerSettings = state => state.buyerSettings;
 export const calendars = state => state.calendars;
 export const events = state => state.events;
+export const initP = state => state.initP;
 export const locations = (state) => {
   const locations = [...state.buyer.locations];
   locations.unshift(state.buyer.profile.company);
@@ -17,7 +18,6 @@ export const questionnaire = state => state.questionnaire;
 export const schedule = state => state.buyer.schedule;
 export const selCalendarDate = state => state.selCalendarDate;
 export const selVendor = state => state.selVendor;
-export const selVendorState = state => state.selVendorState;
 export const setSchedule = state => state.setSchedule;
 export const settings = state => state.settings;
 export const sortedVendors = (state) => {
