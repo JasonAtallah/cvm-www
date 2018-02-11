@@ -6,7 +6,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import MonthView from '@/components/calendar/MonthView';
+import MonthView from '../../../../calendar/MonthView';
 
 export default {
   components: {

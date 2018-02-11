@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import sinon from 'sinon';
-import CalendarButtons from '@/apps/buyer/components/calendarPage/CalendarButtons';
+import CalendarButtons from '@/components/buyer/calendar/master/headers/Buttons';
+
 
 describe('CalendarButtons.vue', () => {
   it('should render correct contents', () => {
