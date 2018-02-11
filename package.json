@@ -29,6 +29,7 @@
     "lodash": "^4.17.4",
     "moment": "^2.20.1",
     "moment-timezone": "^0.5.14",
+    "morgan": "^1.9.0",
     "request": "^2.83.0",
     "request-promise-native": "^1.0.5",
     "require-directory": "^2.1.1",

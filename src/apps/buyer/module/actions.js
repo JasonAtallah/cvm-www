@@ -1,5 +1,6 @@
 import { Notification } from 'element-ui';
 import api from './api';
+import router from '../router';
 import { genVendorUrl } from '../../../lib/data';
 
 export const approveVendor = ({ commit }, { vendor, email }) => {
@@ -125,7 +126,10 @@ export const loadVendors = ({ rootState, commit }, { query } = {}) => {
 };
 
 export const logout = () => {
-  return api.logout();
+  return api.logout()
+    .then(() => {
+      window.location.reload();
+    });
 };
 
 export const overrideDetail = ({ commit, dispatch }, value) => {

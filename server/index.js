@@ -3,6 +3,7 @@
 const dotenv = require('dotenv');
 const express = require('express');
 const session = require('express-session');
+const morgan = require('morgan');
 const MongoDBStore = require('connect-mongodb-session')(session);
 const config = require('../config');
 
@@ -18,6 +19,7 @@ const readyPromise = new Promise((resolve, reject) => {
 
 const app = express();
 
+app.use(morgan('combined'));
 app.use(session({
   cookie: {
     // secure: true,

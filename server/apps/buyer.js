@@ -14,6 +14,12 @@ module.exports = function (app) {
     mw.auth.loginBuyer
   );
 
+  app.get('/logout',
+    mw.auth.isBuyerLoggedIn,
+    mw.auth.clearSession,
+    mw.responses.sendOk
+  );
+
   app.get('/settings',
     function(req, res, next) {
       res.status(200).send({

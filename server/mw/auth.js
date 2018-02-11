@@ -3,6 +3,12 @@ const config = require('../../config');
 
 module.exports = new class AuthMiddleware {
 
+  clearSession(req, res, next) {
+    req.session.destroy(() => {
+      next();
+    });
+  }
+
   convertCodeToToken(req, res, next) {
     const options = {
       method: 'GET',

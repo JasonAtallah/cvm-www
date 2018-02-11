@@ -58,7 +58,7 @@ export default {
   },
 
   logout() {
-    // console.log('logging out');
+    return http.get('/logout');
   },
 
   rejectVendor(vendor, email) {
