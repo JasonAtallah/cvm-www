@@ -39,7 +39,7 @@
       <ElFormItem label="Grow Style">
         <ElSelect v-model="product.growStyle" placeHolder="Select">
           <ElOption value="indoor" label="Indoor" />
-          <ElOption value="Outdoor" label="Outdoor" />
+          <ElOption value="outdoor" label="Outdoor" />
         </ElSelect>
       </ElFormItem>
     </div>

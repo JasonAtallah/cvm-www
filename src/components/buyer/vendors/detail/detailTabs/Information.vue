@@ -57,7 +57,6 @@ i.el-icon-close {
         {{ vendor.company.srea }}
       </div>
     </div>
-
     <div class="row">
       <div class="col-sm-3">
         <label>Tax ID</label>
@@ -84,7 +83,7 @@ i.el-icon-close {
         {{ vendor.company.haveSellerPermit ? 'Yes' : 'No' }}
       </div>
     </div>
-
+    <br>
     <h3>Contact</h3>
 
     <div class="row">
