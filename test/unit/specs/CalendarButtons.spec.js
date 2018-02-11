@@ -16,7 +16,7 @@ describe('CalendarButtons.vue', () => {
     // stubbing
     const addEventStub = sinon.stub(vm, 'getCalendars', () => {
       return [];
-    })
+    });
 
     expect(addEventBtn.textContent).to.equal('Add Event');
     addEventBtn.click();

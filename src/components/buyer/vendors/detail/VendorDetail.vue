@@ -5,7 +5,8 @@ span.vendor-name {
 </style>
 
 <template>
-<Detail :title="vendor.company.name" :showSave="false" :showCancel="false">
+<Detail :title="vendor.company.name" :showCancel="false"
+  @save="close" saveLabel="Close">
   <ElTabs value="information">
     <ElTabPane label="Information" name="information">
       <Information :vendor="vendor" />
@@ -48,6 +49,12 @@ export default {
       ConcentratesProductTable
     };
   },
-  props: ['vendor']
+  props: ['vendor'],
+  methods: {
+    close() {
+      console.log('hi');
+      this.$store.commit('selVendor', null);
+    }
+  }
 };
 </script>
