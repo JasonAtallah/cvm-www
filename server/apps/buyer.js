@@ -11,10 +11,15 @@ module.exports = function (app) {
     express.static(config.staticDir));
 
   app.get('/login',
+    (req, res, next) => {
+      res.sendFile(path.join(config.assetsRoot, 'static', 'html', 'login.html'));
+    });
+
+  app.get('/doLogin',
     mw.auth.loginBuyer
   );
 
-  app.get('/logout',
+  app.get('/doLogout',
     mw.auth.isBuyerLoggedIn,
     mw.auth.clearSession,
     mw.responses.sendOk
@@ -45,7 +50,7 @@ module.exports = function (app) {
     app.get('/',
       mw.auth.isBuyerLoggedIn,
       (req, res, next) => {
-        res.sendFile(config.index);
+        res.sendFile(config.app.index);
       });
   }
 

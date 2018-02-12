@@ -18,7 +18,7 @@ module.exports = function (app) {
     app.use(...devMW);
   } else {
     app.get('/', (req, res, next) => {
-      res.sendFile(config.index);
+      res.sendFile(config.app.index);
     });
   }
 

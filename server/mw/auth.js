@@ -32,7 +32,7 @@ module.exports = new class AuthMiddleware {
     if (req.session && req.session.token) {
       next();
     } else {
-      res.redirect(`${config.mgmtApi.host}/buyer/login?callback=${config.app.buyerCallback}`);
+      res.redirect(`/login#`);
     }
   }
 

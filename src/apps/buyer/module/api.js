@@ -58,7 +58,7 @@ export default {
   },
 
   logout() {
-    return http.get('/logout');
+    return http.get('/doLogout');
   },
 
   rejectVendor(vendor, email) {

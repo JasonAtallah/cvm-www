@@ -8,6 +8,7 @@ const config = module.exports = {
     _.extend(config, {
       app: {
         host: process.env.APP_HOST,
+        index: path.resolve(__dirname, '../dist/index.html'),
         name: process.env.JS_APP_NAME,
         port: process.env.PORT,
         buyerCallback: `${process.env.APP_HOST}/buyer/callback`,
@@ -24,7 +25,6 @@ const config = module.exports = {
         productionGzipExtensions: ['js', 'css']
       },
       entryFilePath: `./src/apps/${process.env.JS_APP_NAME}/start`,
-      index: path.resolve(__dirname, '../dist/index.html'),
       mgmtApi: {
         host: process.env.MGMT_API_HOST
       },
