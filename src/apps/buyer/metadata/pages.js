@@ -3,7 +3,7 @@
 export default [
   {
     name: 'Vendors',
-    href: '/'
+    href: '/vendors'
   },
   {
     name: 'Calendar',
