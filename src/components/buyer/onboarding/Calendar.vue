@@ -1,5 +1,6 @@
 <template>
-  <Detail title="Calendar" description="Select the calendar you would like to sync with us." :canSave="canSave" :showCancel="false" @save="submitCalendar">
+  <Detail title="GCalendar Sync" description="Any appointments you make in CVM actually get saved in a Google Calendar of your choosing."
+    :canSave="canSave" :showCancel="false" @save="submitCalendar">
     <div class="form-group col-12">
       <label>Select a calendar:</label><br>
       <ElSelect v-model="selectedCalendar" @change="onCalendarSelect">

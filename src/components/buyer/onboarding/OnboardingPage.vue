@@ -9,8 +9,7 @@
       <ElCard>
         <Profile v-if="curTab === 0" :buyer="buyer" @updated="next" />
         <Calendar v-if="curTab === 1" :buyer="buyer" @updated="next" />
-        <Questionnaire v-if="curTab === 2" :buyer="buyer" :buyerSettings="buyerSettings" :questionnaire="questionnaire" @updated="next" />
-        <Complete v-if="curTab === 3" :buyer="buyer" @completed="complete" />
+        <Complete v-if="curTab === 2" :buyer="buyer" @completed="complete" />
       </ElCard>
     </div>
   </div>
@@ -23,15 +22,13 @@ import { Card as ElCard } from 'element-ui';
 import Calendar from './Calendar';
 import Complete from './Complete';
 import Profile from './Profile';
-import Questionnaire from './Questionnaire';
 
 export default {
   components: {
     Calendar,
     Complete,
     ElCard,
-    Profile,
-    Questionnaire
+    Profile
   },
   data() {
     return {
@@ -42,7 +39,6 @@ export default {
     ...mapGetters({
       buyer: 'buyer',
       buyerSettings: 'buyerSettings',
-      questionnaire: 'questionnaire'
     })
   },
   methods: {

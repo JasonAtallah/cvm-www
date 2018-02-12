@@ -1,5 +1,5 @@
 <template>
-<Detail title="Complete" description="Thanks for filling that out, you're ready to go!"
+<Detail title="Congrats!" description="Thanks for filling that out, you're account is ready to go."
 :canSave="true" :showCancel="false" @save="complete" saveLabel="Finish" >
 <div class="text-center">
   <div class="row">
@@ -10,7 +10,7 @@
   <hr>
   <div class="row">
     <div class="form-group col-12">
-      <span class="lead">Check out your questionnaire <a :href="questionnaireUrl" target="_blank">here</a></span>
+      <span class="lead">Click finish to go to your dashboard.</span>
     </div>
   </div>
 </div>
