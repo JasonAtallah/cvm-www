@@ -9,6 +9,12 @@ span.divider {
   font-size: 1.5rem;
   color: #CCC;
 }
+
+label.field-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
 </style>
 
 <template>
@@ -32,7 +38,7 @@ span.divider {
 
               <div v-if="previewMode" v-html="markdownHtml" class="preview" />
               <div v-else>
-                <label class="settings-input-label"></label>
+                <label class="settings-input-label" />
                 <ElInput :id="tab.questionnairePageId" v-model="newQuestionnaire[tab.questionnairePageId]" placeholder="Enter text using markdown"
                 type="textarea" :rows="15"/>
               </div>
@@ -45,10 +51,14 @@ span.divider {
         :label="tab.label"
         :name="tab.questionnairePageId">
 
-        <div v-for="field in getProfileFields(tab)" :key="field.id">
-          <span>{{ field.label }}</span>
-          <ElCheckbox label="Enabled" v-model="field.enabled" @change="field.onEnabledChange" />
-          <ElCheckbox label="Required" v-model="field.required" @change="field.onRequiredChange" />
+        <div v-for="field in getFields(tab)" :key="field.id" class="row">
+          <div class="col-sm-3 text-right">
+            <label class="field-name">{{ field.label }}</label>
+          </div>
+          <div class="col-sm-9">
+            <ElCheckbox label="Enabled" v-model="field.enabled" @change="field.onEnabledChange" />
+            <ElCheckbox label="Required" v-model="field.required" @change="field.onRequiredChange" />
+          </div>
         </div>
       </ElTabPane>
 
@@ -56,10 +66,14 @@ span.divider {
         :label="tab.label"
         :name="tab.questionnairePageId">
 
-        <div v-for="field in getProductFields(tab)" :key="field.id">
-          <span>{{ field.label }}</span>
-          <ElCheckbox label="Enabled" v-model="field.enabled" @change="field.onEnabledChange" />
-          <ElCheckbox label="Required" v-model="field.required" @change="field.onRequiredChange" />
+        <div v-for="field in getFields(tab)" :key="field.id" class="row">
+          <div class="col-sm-3 text-right">
+            <label class="field-name">{{ field.label }}</label>
+          </div>
+          <div class="col-sm-9">
+            <ElCheckbox label="Enabled" v-model="field.enabled" @change="field.onEnabledChange" />
+            <ElCheckbox label="Required" v-model="field.required" @change="field.onRequiredChange" />
+          </div>
         </div>
       </ElTabPane>
     </ElTabs>
@@ -123,66 +137,50 @@ export default {
     cancel() {
       this.reset();
     },
-    getProductFields(tab) {
+    getFields(tab) {
       const self = this;
-      const questions = this.getQuestionnairePage(tab.questionnairePageId).questions;
-      const items = [];
-      Object.keys(questions[0].items).forEach((key) => {
-        items.push(questions[0].items[key]);
-      });
-      return items
-        .filter((q) => {
-          return tab.fields.includes(q.id);
-        })
-        .map((q) => {
-          const field = {
-            id: q.id,
-            label: q.name,
-            enabled: q.enabled,
-            required: q.required,
-            default: q.default,
-            onEnabledChange: function (val) {
-              q.enabled = val;
-              field.enabled = val;
-            },
-            onRequiredChange: function (val) {
-              q.required = val;
-              field.required = val;
-            }
-          };
+      const questions = this.getQuestionsByTabType(tab);
+      if (questions) {
+        return questions
+          .filter((q) => {
+            return tab.fields.includes(q.id);
+          })
+          .map((q) => {
+            const field = {
+              id: q.id,
+              label: q.name,
+              enabled: q.enabled,
+              required: q.required,
+              default: q.default,
+              onEnabledChange: function (val) {
+                q.enabled = val;
+                field.enabled = val;
+              },
+              onRequiredChange: function (val) {
+                q.required = val;
+                field.required = val;
+              }
+            };
 
-          return field;
-        });
-    },
-    getProfileFields(tab) {
-      const self = this;
-      const questions = this.getQuestionnairePage(tab.questionnairePageId).questions;
-      return questions
-        .filter((q) => {
-          return tab.fields.includes(q.id);
-        })
-        .map((q) => {
-          const field = {
-            id: q.id,
-            label: q.name,
-            enabled: q.enabled,
-            required: q.required,
-            default: q.default,
-            onEnabledChange: function (val) {
-              q.enabled = val;
-              field.enabled = val;
-            },
-            onRequiredChange: function (val) {
-              q.required = val;
-              field.required = val;
-            }
-          };
-
-          return field;
-        });
+            return field;
+          });
+      }
+      return false;
     },
     getQuestionnairePage(id) {
       return _.find(this.newQuestionnaire.pages, { id: id });
+    },
+    getQuestionsByTabType(tab) {
+      if (tab.type === 'profile') {
+        return this.getQuestionnairePage(tab.questionnairePageId).questions;
+      } else if (tab.type === 'products') {
+        const questions = [];
+        Object.keys(this.getQuestionnairePage(tab.questionnairePageId).questions[0].items).forEach((key) => {
+          questions.push(this.getQuestionnairePage(tab.questionnairePageId).questions[0].items[key]);
+        });
+        return questions;
+      }
+      return false;
     },
     gotoMarkdownDocs() {
       window.open('https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet', '_blank');
