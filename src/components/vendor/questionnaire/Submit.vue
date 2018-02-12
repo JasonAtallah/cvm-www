@@ -7,14 +7,20 @@
 <template>
 <Detail :showSave="false" :showCancel="false">
   <Information :vendor="response" />
-  <div class="row" v-for="productType in productTables"
+  <div v-for="productType in productTables"
     v-if="response[productType.vendorField].products.length > 0"
     :key="productType.vendorField">
-    <h3>{{ productType.label }}</h3>
-    <div class="col-12" >
-      <ElTable :data="response[productType.vendorField].products">
-        <ElTableColumn v-for="field in productType.columns" :key="field.field" :prop="field.field" :label="field.header" />
-      </ElTable>
+    <div class="row">
+      <div class="col-12">
+        <h3>{{ productType.label }}</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12" >
+        <ElTable :data="response[productType.vendorField].products">
+          <ElTableColumn v-for="field in productType.columns" :key="field.field" :prop="field.field" :label="field.header" />
+        </ElTable>
+      </div>
     </div>
   </div>
 </Detail>
