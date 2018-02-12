@@ -12,46 +12,40 @@ export default [
   {
     label: 'Questionnaire',
     value: 'questionnaire',
-    options: [
+    settingsTabs: [
       {
-        value: 'introduction',
+        questionnairePageId: 'introduction',
         label: 'Introduction',
-        dispatch: 'updateQuestionnaire',
-        markdown: true
+        type: 'markdown'
       },
       {
-        value: 'completion',
+        questionnairePageId: 'completion',
         label: 'Completion',
-        dispatch: 'updateQuestionnaire',
-        markdown: true
+        type: 'markdown'
       },
       {
-        value: 'company',
+        questionnairePageId: 'company',
         label: 'Company',
-        dispatch: 'updateQuestionnaire',
-        options: ['srea', 'haveTaxId', 'partOfCollective', 'haveSellerPermit'],
-        markdown: false
+        fields: ['srea', 'haveTaxId', 'partOfCollective', 'haveSellerPermit'],
+        type: 'profile'
       },
       {
-        value: 'flowers',
+        questionnairePageId: 'flowers',
         label: 'Flowers',
-        dispatch: 'updateQuestionnaire',
-        options: ['budSize', 'weightAvailable', 'thc', 'cbd', 'growStyle', 'shelfReady', 'photos', 'testResults'],
-        markdown: false
+        fields: ['budSize', 'weightAvailable', 'thc', 'cbd', 'growStyle', 'shelfReady', 'photos', 'testResults'],
+        type: 'products'
       },
       {
-        value: 'edibles',
+        questionnairePageId: 'edibles',
         label: 'Edibles',
-        dispatch: 'updateQuestionnaire',
-        options: ['unitsAvailable', 'thc', 'cbd', 'shelfReady', 'photo', 'testResults'],
-        markdown: false
+        fields: ['unitsAvailable', 'thc', 'cbd', 'shelfReady', 'photo', 'testResults'],
+        type: 'products'
       },
       {
-        value: 'concentrates',
+        questionnairePageId: 'concentrates',
         label: 'Concentrates',
-        dispatch: 'updateQuestionnaire',
-        options: ['unitsAvailable', 'thc', 'cbd', 'shelfReady', 'type', 'photo', 'testResults'],
-        markdown: false
+        fields: ['unitsAvailable', 'thc', 'cbd', 'shelfReady', 'type', 'photo', 'testResults'],
+        type: 'products'
       }
     ]
   },
