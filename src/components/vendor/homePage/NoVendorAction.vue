@@ -1,6 +1,12 @@
+<style scoped>
+span {
+  font-size: 2rem;
+}
+</style>
+
 <template>
   <div class="container">
-    <h3>{{ message() }}</h3>
+    <span>{{ message() }}</span>
   </div>
 </template>
 
