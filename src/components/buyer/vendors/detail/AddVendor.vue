@@ -1,7 +1,7 @@
 <template>
   <Detail title="Add A New Vendor" description="Add your already existing vendors."
     :canSave="true" :canCancel="true" @save="save" @cancel="cancel">
-    <ElForm :model="vendor.company" :rules="rules.company" ref="profile.company">
+    <ElForm :model="vendor.company" :rules="companyFormRules" ref="profile.company">
       <div class="row">
         <div class="col-sm-12">
           <h3>Company</h3>
@@ -67,12 +67,12 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import Detail from '@/components/masterDetail/Detail';
 import {
   Form as ElForm,
   FormItem as ElFormItem,
   Input as ElInput } from 'element-ui';
-import companyFormRules from '../../../../apps/buyer/metadata/formRules/profile.company';
 import contactFormRules from '../../../../apps/buyer/metadata/formRules/profile.contact';
 
 export default {
@@ -100,10 +100,17 @@ export default {
         }
       },
       rules: {
-        company: companyFormRules,
         contact: contactFormRules
       }
     };
+  },
+  computed: {
+    ...mapGetters({
+      settings: 'settings'
+    }),
+    companyFormRules() {
+      return this.settings.rules['buyer-company'];
+    }
   },
   methods: {
     cancel() {

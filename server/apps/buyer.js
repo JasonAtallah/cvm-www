@@ -26,10 +26,12 @@ module.exports = function (app) {
   );
 
   app.get('/settings',
+    mw.settings.genRules,
     function(req, res, next) {
-      res.status(200).send({
-        vendorAppUrl: config.app.vendorAppUrl
-      });
+      const settings = {};
+      settings.vendorAppUrl = config.app.vendorAppUrl;
+      settings.rules = req.rules;
+      res.status(200).send(settings);
     }
   );
 
