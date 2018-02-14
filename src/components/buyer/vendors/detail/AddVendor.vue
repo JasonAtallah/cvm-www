@@ -1,7 +1,7 @@
 <template>
   <Detail title="Add A New Vendor" description="Add your already existing vendors."
     :canSave="true" :canCancel="true" @save="save" @cancel="cancel">
-    <ElForm :model="vendor.company" :rules="companyFormRules" ref="profile.company">
+    <ElForm :model="vendor.company" :rules="companyFormRules" ref="vendor.company">
       <div class="row">
         <div class="col-sm-12">
           <h3>Company</h3>
@@ -37,7 +37,7 @@
         </div>
       </div>
     </ElForm>
-    <ElForm :model="vendor.contact" :rules="rules.contact" ref="profile.contact">
+    <ElForm :model="vendor.contact" :rules="contactFormRules" ref="vendor.contact">
       <div class="row">
         <div class="col-12 col-sm-6">
           <ElFormItem label="First Name" prop="firstName">
@@ -73,7 +73,6 @@ import {
   Form as ElForm,
   FormItem as ElFormItem,
   Input as ElInput } from 'element-ui';
-import contactFormRules from '../../../../apps/buyer/metadata/formRules/profile.contact';
 
 export default {
   components: {
@@ -98,9 +97,6 @@ export default {
           phone: null,
           email: null
         }
-      },
-      rules: {
-        contact: contactFormRules
       }
     };
   },
@@ -110,6 +106,9 @@ export default {
     }),
     companyFormRules() {
       return this.settings.rules['buyer-company'];
+    },
+    contactFormRules() {
+      return this.settings.rules['buyer-contact'];
     }
   },
   methods: {
@@ -117,18 +116,12 @@ export default {
       this.$store.commit('cancelDetailOverride');
     },
     save() {
-      this.validateForm('profile.contact')
+      this.validateForm('vendor.contact')
         .then(() => {
-          return this.validateForm('profile.company');
+          return this.validateForm('vendor.company');
         })
         .then(() => {
           return this.$store.dispatch('createVendor', _.cloneDeep(this.vendor));
-        })
-        .then(() => {
-          this.$store.dispatch('successNotification', 'Vendor Added');
-        })
-        .catch(() => {
-          this.$store.dispacth('errorNotification');
         });
     },
     validateForm(formRef) {

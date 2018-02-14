@@ -55,6 +55,12 @@ export const createVendor = ({ dispatch, commit }, values) => {
       commit('addVendorToList', vendor);
       commit('cancelPendingAction');
       dispatch('selVendor', vendor);
+    })
+    .then(() => {
+      dispatch('successNotification', 'Vendor Added!');
+    })
+    .catch(() => {
+      this.$store.dispacth('errorNotification');
     });
 };
 
