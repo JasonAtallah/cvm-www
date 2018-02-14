@@ -38,11 +38,15 @@ module.exports = new class SettingsMiddleware {
                     message: `${schema.title} must be at least ${schema.minLength} characters.`,
                     trigger: 'blur'
                   };
+                  rules.push(rule);
+                }
 
-                  if (schema.maxLength) {
-                    rule.max = schema.maxLength
+                if (schema.maxLength) {
+                  let rule = {
+                    max: schema.maxLength,
+                    message: `${schema.title} cannot be greater than ${schema.maxLength} characters.`,
+                    trigger: 'blur'
                   };
-
                   rules.push(rule);
                 }
 

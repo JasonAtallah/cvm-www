@@ -7,7 +7,7 @@ div.field-rows {
 <template>
   <Detail title="Add An Event" description="Add a new event to your calendar"
     @save="save" @cancel="cancel">
-    <ElForm :model="calendarEvent" :rules="rules.event" ref="event">
+    <ElForm :model="calendarEvent" :rules="eventFormRules" ref="event">
       <div class="row field-rows">
         <div class="col-sm-12">
           <ElFormItem label="Name" prop="name">
@@ -50,6 +50,7 @@ div.field-rows {
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import Detail from '@/components/masterDetail/Detail';
 import moment from 'moment';
 import {
@@ -59,7 +60,6 @@ import {
   Input as ElInput,
   InputNumber as ElInputNumber,
   TimeSelect as ElTimeSelect } from 'element-ui';
-import eventFormRules from '../../../../apps/buyer/metadata/formRules/event';
 
 export default {
   components: {
@@ -79,13 +79,18 @@ export default {
         time: null,
         duration: 30,
         location: null
-      },
-      rules: {
-        event: eventFormRules
       }
     };
   },
   props: ['curDate'],
+  computed: {
+    ...mapGetters({
+      settings: 'settings'
+    }),
+    eventFormRules() {
+      return this.settings.rules['new-event'];
+    }
+  },
   methods: {
     cancel() {
       this.$store.commit('cancelDetailOverride');
@@ -106,12 +111,6 @@ export default {
       this.validateForm('event')
         .then(() => {
           this.$store.dispatch('createCalendarEvent', calendarEvent);
-        })
-        .then(() => {
-          this.$store.dispatch('successNotification', 'Event Added to Calendar');
-        })
-        .then(() => {
-          this.cancel();
         });
     },
     validateForm(formRef) {

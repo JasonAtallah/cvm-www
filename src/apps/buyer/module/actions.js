@@ -25,6 +25,12 @@ export const createCalendarEvent = ({ rootState, dispatch, commit }, values) => 
     .then((calendarEvent) => {
       commit('addCalendarEventToList', calendarEvent);
       commit('cancelPendingAction');
+    })
+    .then(() => {
+      this.$store.dispatch('successNotification', 'Event Added to Calendar!');
+    })
+    .catch(() => {
+      this.$store.dispatch('errorNotification');
     });
 };
 
