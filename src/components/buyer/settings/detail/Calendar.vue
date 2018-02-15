@@ -1,12 +1,12 @@
 <template>
-  <Detail title="Calendar" description="Select the calendar you would like to sync with us." :canSave="canSave" :canCancel="canCancel" @save="submitCalendar" @cancel="cancel">
+  <Detail title="Calendar" description="Select the calendar you would like to sync with us." :canSave="canSave" :canCancel="canCancel" @save="save" @cancel="cancel">
     <div class="form-group col-sm-12 col-md-6">
       <label>Currently selected calendar for scheduling:</label><br>
       <b>{{ buyer.gcalendar.name }}</b>
     </div>
     <div class="form-group col-sm-12 col-md-6">
       <label>Select a different calendar:</label><br>
-      <ElSelect v-model="selectedCalendar" @change="onCalendarSelect">
+      <ElSelect v-model="selectedCalendar" @change="onCalendarSelect" clearable>
         <ElOption v-for="calendar in unselectedCalendars" :key="calendar.id" :value="calendar.id" :label="calendar.name" />
       </ElSelect>
     </div>
@@ -70,22 +70,12 @@ export default {
     onCalendarSelect() {
       this.calendarName = null;
     },
-    saveCalendarChoice() {
+    save() {
       if (this.selectedCalendar) {
         return this.$store.dispatch('setGCalendar', _.find(this.calendars, { id: this.selectedCalendar }));
       }
 
       return this.$store.dispatch('createGCalendar', this.calendarName.trim());
-    },
-    submitCalendar() {
-      this.saveCalendarChoice()
-        .then(() => {
-          this.cancel();
-          this.$store.dispatch('successNotification', 'Calendar Updated');
-        })
-        .catch(() => {
-          this.$store.dispatch('errorNotification');
-        });
     }
   },
   created: function () {

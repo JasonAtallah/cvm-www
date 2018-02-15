@@ -58,6 +58,12 @@ export const createGCalendar = ({ rootState, commit, dispatch }, name) => {
     .then((calendar) => {
       commit('gCalendar', calendar);
       dispatch('loadEvents');
+    })
+    .then(() => {
+      dispatch('successNotification', 'Calendar Created!');
+    })
+    .catch(() => {
+      dispatch('errorNotification');
     });
 };
 
@@ -215,11 +221,17 @@ export const selVendor = ({ rootState, commit }, vendor) => {
     });
 };
 
-export const sendTimes = ({ commit }, { vendor, suggestedTimes }) => {
+export const sendTimes = ({ commit, dispatch }, { vendor, suggestedTimes }) => {
   return api.sendTimes(vendor, suggestedTimes, genVendorUrl(vendor))
     .then((vendorItem) => {
       commit('updateVendorItem', vendorItem);
       commit('cancelDetailOverride');
+    })
+    .then(() => {
+      dispatch('successNotification', 'Suggested Times Sent!');
+    })
+    .catch(() => {
+      dispatch('errorNotification');
     });
 };
 
@@ -228,6 +240,12 @@ export const setGCalendar = ({ rootState, commit, dispatch }, values) => {
     .then((calendar) => {
       commit('gCalendar', calendar);
       dispatch('loadEvents');
+    })
+    .then(() => {
+      dispatch('successNotification', 'Calendar Updated!');
+    })
+    .catch(() => {
+      dispatch('errorNotification');
     });
 };
 
