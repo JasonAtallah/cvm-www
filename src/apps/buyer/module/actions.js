@@ -17,10 +17,18 @@ export const approveVendor = ({ commit, dispatch }, { vendor, email }) => {
     });
 };
 
-export const cancelMeeting = ({ commit }, { vendor }) => {
+export const cancelMeeting = ({ commit, dispatch }, { vendor }) => {
   return api.cancelMeeting(vendor)
-    .then(() => {
+    .then((vendorItem) => {
+      commit('updateVendorItem', vendorItem);
       commit('cancelPendingAction');
+      commit('cancelDetailOverride');
+    })
+    .then(() => {
+      dispatch('successNotification', 'Meeting Canceled!');
+    })
+    .catch(() => {
+      dispatch('errorNotification');
     });
 };
 
