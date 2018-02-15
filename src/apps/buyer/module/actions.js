@@ -24,13 +24,13 @@ export const createCalendarEvent = ({ rootState, dispatch, commit }, values) => 
   return api.createCalendarEvent(values)
     .then((calendarEvent) => {
       commit('addCalendarEventToList', calendarEvent);
-      commit('cancelPendingAction');
+      commit('cancelDetailOverride');
     })
     .then(() => {
-      this.$store.dispatch('successNotification', 'Event Added to Calendar!');
+      dispatch('successNotification', 'Event Added to Calendar!');
     })
     .catch(() => {
-      this.$store.dispatch('errorNotification');
+      dispatch('errorNotification');
     });
 };
 
@@ -59,14 +59,13 @@ export const createVendor = ({ dispatch, commit }, values) => {
   return api.createVendor(values)
     .then((vendor) => {
       commit('addVendorToList', vendor);
-      commit('cancelPendingAction');
       dispatch('selVendor', vendor);
     })
     .then(() => {
       dispatch('successNotification', 'Vendor Added!');
     })
     .catch(() => {
-      this.$store.dispacth('errorNotification');
+      dispatch('errorNotification');
     });
 };
 

@@ -111,6 +111,7 @@ export default {
       this.validateForm('event')
         .then(() => {
           this.$store.dispatch('createCalendarEvent', calendarEvent);
+          this.cancel();
         });
     },
     validateForm(formRef) {
