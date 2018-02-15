@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-sm-6">
         <h3>Suggested Times</h3>
-        <EventsList :eventsList='suggestedTimes' :showAddress="true" :breakupDateTime="true" :unstyled="true" />
+        <EventsList :eventsList='suggestedTimes' :breakupDateTime="true" :unstyled="true" />
       </div>
       <div v-if="rejectedTimes.length > 0" class="col-sm-6">
         <h3>Rejected Times</h3>

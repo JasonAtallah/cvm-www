@@ -40,7 +40,7 @@ div.event-detail {
             <div class="col-sm-10 event-detail">
               <span>{{ getLocation(time) }}</span>
               <br>
-              <span v-if="showAddress">{{ time.location.address }} {{ time.location.city }}, {{ time.location.state }}</span>
+              <a v-if="showAddress" :href="mapLink(time.location)" target="_blank">{{ getAddress(time.location) }}</a>
             </div>
           </div>
           <div class="row" v-if="canRemove === true">
@@ -81,6 +81,12 @@ export default {
         return time.location.name;
       }
       return time.location;
+    },
+    getAddress(location) {
+      return `${location.address} ${location.city}, ${location.state} ${location.zip}`;
+    },
+    mapLink(location) {
+      return `https://www.google.com/maps/place/${location.address},+${location.city},+${location.state}+${location.zip}`;
     },
     removeTime(index) {
       this.$emit('removeTime', index);
