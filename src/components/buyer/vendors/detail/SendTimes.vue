@@ -81,26 +81,26 @@ i.fa-exclamation-triangle {
       </div>
       <div class="col-sm-6">
         <span class="lead conflicting-times" v-if="timeWarning.length > 0"><i class="fa fa-exclamation-triangle" /> You have other events scheduled for that time:</span>
-          <div class="row">
-            <div class="col-sm-12">
-              <ul class="suggestedTimes">
-                <li v-for="(time, index) in timeWarning" :key="index">
-                  <div class="row">
-                    <div class="col-sm-12">
-                      <i class="el-icon-time"></i>
-                      <span>{{ formatDate(time.startDate) }} to {{ formatTime(time.endDate) }}</span>
-                    </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <ul class="suggestedTimes">
+              <li v-for="(time, index) in timeWarning" :key="index">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <i class="el-icon-time"></i>
+                    <span>{{ formatDate(time.startDate) }} to {{ formatTime(time.endDate) }}</span>
                   </div>
-                  <div class="row">
-                    <div class="col-sm-12">
-                      <i class="el-icon-location-outline"></i>
-                      <span>{{ time.location }}</span>
-                    </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <i class="el-icon-location-outline"></i>
+                    <span>{{ time.location }}</span>
                   </div>
-                </li>
-              </ul>
-            </div>
+                </div>
+              </li>
+            </ul>
           </div>
+        </div>
       </div>
     </div>
 
@@ -131,7 +131,7 @@ i.fa-exclamation-triangle {
             <div class="row">
               <div class="col-sm-12">
                 <i class="el-icon-time"></i>
-                <span>{{ formatDate(time.startDate) }} to {{ formatTime(time.endDate) }}</span>
+                <span>{{ formatDate(time.startDate) }} to {{ formatTime(getEndDate(time)) }}</span>
               </div>
             </div>
             <div class="row">
