@@ -45,7 +45,7 @@
         <ElPopover ref="eventPopOver" :title="event.title" trigger="click">
           <hr>
           <div class="popoverContent">
-            <EventsList :eventsList="[event]" :unstyled="true" />
+            <EventsList :eventsList="[event]" :unstyled="true" :breakupDateTime="true" />
           </div>
           <span slot="reference"><strong>{{ event.title }}</strong></span>
         </ElPopover>

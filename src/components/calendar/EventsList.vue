@@ -13,6 +13,10 @@ ul.timesList li {
 ul.timesList button {
   padding: 0;
 }
+
+div.event-detail {
+  padding-left: 5px;
+}
 </style>
 <template>
   <div class="row">
@@ -20,23 +24,34 @@ ul.timesList button {
       <ul class="list-unstyled" :class="{ 'timesList': !unstyled}">
         <li v-for="(time, index) in eventsList" :key="index">
           <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-1">
               <i class="el-icon-time"></i>
-              <span>{{ genDateTimeDisplay(time) }}</span>
+            </div>
+            <div class="col-sm-10 event-detail">
+              <span>{{ formatDate(time.startDate) }}</span>
+              <br v-if="breakupDateTime">
+              <span>{{ formatTime(time.startDate) }} to {{ formatTime(getEndDate(time)) }}</span>
             </div>
           </div>
           <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-1">
               <i class="el-icon-location-outline"></i>
+            </div>
+            <div class="col-sm-10 event-detail">
               <span>{{ getLocation(time) }}</span>
+              <br>
+              <span v-if="showAddress">{{ time.location.address }} {{ time.location.city }}, {{ time.location.state }}</span>
             </div>
           </div>
           <div class="row" v-if="canRemove === true">
-            <div class="col-sm-2">
+            <div class="col-sm-1">
               <i class="el-icon-delete"></i>
+            </div>
+            <div class="col-sm-10 event-detail">
               <button type="button" class="btn btn-link" @click.prevent="removeTime(index)">Remove</button>
             </div>
           </div>
+          <hr v-if="breakupDateTime && eventsList.length > 1">
         </li>
       </ul>
     </div>
@@ -47,16 +62,13 @@ ul.timesList button {
 import moment from 'moment';
 
 export default {
-  props: ['eventsList', 'canRemove', 'unstyled'],
+  props: ['eventsList', 'canRemove', 'unstyled', 'showAddress', 'breakupDateTime'],
   methods: {
-    formatDate(date) {
-      return moment(date).format('LLL');
+    formatDate(startDate) {
+      return moment(startDate).format('MMMM DD, YYYY');
     },
-    formatTime(date) {
-      return moment(date).format('h:mm A');
-    },
-    genDateTimeDisplay(time) {
-      return `${this.formatDate(time.startDate)} to ${this.formatTime(this.getEndDate(time))}`;
+    formatTime(time) {
+      return moment(time).format('h:mm A');
     },
     getEndDate(time) {
       if (time.endDate) {
