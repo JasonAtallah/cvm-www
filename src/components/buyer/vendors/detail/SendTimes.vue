@@ -15,63 +15,95 @@ ul.suggestedTimes li {
 ul.suggestedTimes button {
   padding: 0;
 }
+
+i.fa-exclamation-triangle {
+  color: #C80000;
+}
 </style>
 
 <template>
   <Detail :title="genTitle" :description="genDescription" :canSave="canSave" @save="send" @cancel="cancel">
     <div class="row">
       <div class="col-sm-6">
-        <div class="form-group row">
-          <label for="location" class="col-sm-4 col-form-label">Location:</label>
-          <div class="col-sm-6">
-            <ElSelect v-model="location" clearable @change="onLocationChange" placeholder="Choose a location">
-              <ElOption v-for="(location, index) in locations" :key="index" :label="location.name" :value="index" />
-              <ElOption key="-1" label="Add Location" value="-1">
-                <ElButton type="text" size="medium" style="padding: 0">Add Location</ElButton>
-              </ElOption>
-            </ElSelect>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group row">
+              <label for="location" class="col-sm-4 col-form-label">Location:</label>
+              <div class="col-sm-6">
+                <ElSelect v-model="location" clearable @change="onLocationChange" placeholder="Choose a location">
+                  <ElOption v-for="(location, index) in locations" :key="index" :label="location.name" :value="index" />
+                  <ElOption key="-1" label="Add Location" value="-1">
+                    <ElButton type="text" size="medium" style="padding: 0">Add Location</ElButton>
+                  </ElOption>
+                </ElSelect>
+              </div>
+            </div>
           </div>
         </div>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group row">
+              <label for="startDate" class="col-sm-4 col-form-label">Date:</label>
+              <div class="col-sm-8">
+                <ElDatePicker
+                  v-model="startDate"
+                  :format="datePicker.format"
+                  :type="datePicker.type" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group row">
+              <label for="startTime" class="col-sm-4 col-form-label">Time:</label>
+              <div class="col-sm-8">
+                <ElTimeSelect
+                  v-model="startTime"
+                  :picker-options="timePicker" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group row">
+              <label for="duration" class="col-sm-4 col-form-label">Duration (mins):</label>
+              <div class="col-sm-3">
+                <ElInputNumber v-model="duration" controlsPosition="right" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <span class="lead conflicting-times" v-if="timeWarning.length > 0"><i class="fa fa-exclamation-triangle" /> You have other events scheduled for that time:</span>
+          <div class="row">
+            <div class="col-sm-12">
+              <ul class="suggestedTimes">
+                <li v-for="(time, index) in timeWarning" :key="index">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <i class="el-icon-time"></i>
+                      <span>{{ formatDate(time.startDate) }} to {{ formatTime(time.endDate) }}</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <i class="el-icon-location-outline"></i>
+                      <span>{{ time.location }}</span>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="form-group row">
-          <label for="startDate" class="col-sm-4 col-form-label">Date:</label>
-          <div class="col-sm-8">
-            <ElDatePicker
-              v-model="startDate"
-              :format="datePicker.format"
-              :type="datePicker.type" />
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="form-group row">
-          <label for="startTime" class="col-sm-4 col-form-label">Time:</label>
-          <div class="col-sm-8">
-            <ElTimeSelect
-              v-model="startTime"
-              :picker-options="timePicker" />
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="form-group row">
-          <label for="duration" class="col-sm-4 col-form-label">Duration (mins):</label>
-          <div class="col-sm-3">
-            <ElInputNumber v-model="duration" controlsPosition="right" />
-          </div>
-        </div>
-      </div>
-    </div>
     <br>
     <div class="row">
       <div class="col-sm-6">
@@ -99,11 +131,11 @@ ul.suggestedTimes button {
             <div class="row">
               <div class="col-sm-12">
                 <i class="el-icon-time"></i>
-                <span>{{ formatDate(time.startDate) }} to {{ formatTime(getEndDate(time)) }}</span>
+                <span>{{ formatDate(time.startDate) }} to {{ formatTime(time.endDate) }}</span>
               </div>
             </div>
             <div class="row">
-              <div class="col-sm-2">
+              <div class="col-sm-12">
                 <i class="el-icon-location-outline"></i>
                 <span>{{ time.location.name }}</span>
               </div>
@@ -181,7 +213,23 @@ export default {
       return `Propose Times to meet with ${this.vendor.name}`;
     },
     timeWarning() {
-      return '';
+      const conflictingTimes = [];
+      if (this.startDate && this.startTime) {
+        let s1 = moment(this.startDate).set({
+          hour: this.startTime.split(':')[0],
+          minute: this.startTime.split(':')[1]
+        });
+        const e1 = _.cloneDeep(s1).add(this.duration, 'minutes').format('YYYY-MM-DDTHH:mm:ssZ');
+        s1 = s1.format('YYYY-MM-DDTHH:mm:ssZ');
+        this.events.forEach((event) => {
+          const s2 = event.startDate;
+          const e2 = event.endDate;
+          if (s1 <= e2 && s2 <= e1) {
+            conflictingTimes.push(event);
+          }
+        });
+      }
+      return conflictingTimes;
     },
     vendor() {
       return this.params.vendor;
