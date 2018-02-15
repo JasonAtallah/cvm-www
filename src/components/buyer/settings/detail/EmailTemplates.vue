@@ -87,13 +87,7 @@ export default {
         templateId: this.curTab
       };
 
-      this.$store.dispatch('updateBuyerEmailTemplate', email)
-        .then(() => {
-          this.$store.dispatch('successNotification', `${_.find(this.emailTypes, { value: this.curTab }).label} Email Updated`);
-        })
-        .catch(() => {
-          this.$store.dispatch('errorNotification');
-        });
+      this.$store.dispatch('updateBuyerEmailTemplate', email);
     }
   }
 };

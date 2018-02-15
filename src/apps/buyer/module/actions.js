@@ -72,6 +72,12 @@ export const createLocation = ({ dispatch, commit }, values) => {
     .then((location) => {
       commit('addLocationToList', location);
       commit('cancelPendingAction');
+    })
+    .then(() => {
+      dispatch('successNotification', 'Location Added!');
+    })
+    .catch(() => {
+      dispatch('errorNotification');
     });
 };
 
@@ -258,17 +264,29 @@ export const successNotification = ({ commit }, message) => {
   });
 };
 
-export const updateBuyerProfile = ({ rootState, commit }, profile) => {
+export const updateBuyerProfile = ({ rootState, commit, dispatch }, profile) => {
   return api.updateBuyerProfile(profile)
-    .then(() => {
+    .then((profile) => {
       commit('buyerProfile', profile);
+    })
+    .then(() => {
+      dispatch('successNotification', 'Profile Updated');
+    })
+    .catch(() => {
+      dispatch('errorNotification');
     });
 };
 
-export const updateBuyerEmailTemplate = ({ rootState, commit }, { templateId, email }) => {
+export const updateBuyerEmailTemplate = ({ rootState, commit, dispatch }, { templateId, email }) => {
   return api.updateBuyerEmailTemplate(templateId, email)
     .then((emails) => {
       commit('buyerEmails', emails);
+    })
+    .then(() => {
+      dispatch('successNotification', 'Default Email Updated!');
+    })
+    .catch(() => {
+      dispatch('errorNotification');
     });
 };
 

@@ -4,7 +4,7 @@
   <Detail title="Profile" description="Update your personal and company information."
     :canSave="canSave" :canCancel="canCancel"
     @save="save" @cancel="cancel">
-    <ElForm :model="profile.contact" :rules="rules.contact" ref="profile.contact">
+    <ElForm :model="profile.contact" :rules="contactFormRules" ref="profile.contact">
       <div class="row">
         <div class="col-sm-6">
           <h3>Contact</h3>
@@ -35,7 +35,7 @@
         </div>
       </div>
     </ElForm>
-    <ElForm :model="profile.company" :rules="rules.company" ref="profile.company">
+    <ElForm :model="profile.company" :rules="companyFormRules" ref="profile.company">
       <div class="row">
         <div class="col-sm-6">
           <h3>Company</h3>
@@ -75,13 +75,12 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import {
   Form as ElForm,
   FormItem as ElFormItem,
   Input as ElInput } from 'element-ui';
 import Detail from '@/components/masterDetail/Detail';
-import companyFormRules from '@/apps/buyer/metadata/formRules/profile.company';
-import contactFormRules from '@/apps/buyer/metadata/formRules/profile.contact';
 
 export default {
   components: {
@@ -106,20 +105,25 @@ export default {
           phone: this.buyer.profile.contact.phone || null,
           email: this.buyer.profile.contact.email || null
         }
-      },
-      rules: {
-        company: companyFormRules,
-        contact: contactFormRules
       }
     };
   },
   props: ['buyer'],
   computed: {
+    ...mapGetters({
+      settings: 'settings'
+    }),
     canCancel() {
       return this.canSave;
     },
     canSave() {
       return _.isEqual(this.buyer.profile, this.profile) === false;
+    },
+    companyFormRules() {
+      return this.settings.rules['buyer-company'];
+    },
+    contactFormRules() {
+      return this.settings.rules['buyer-contact'];
     }
   },
   methods: {
@@ -133,12 +137,6 @@ export default {
         })
         .then(() => {
           return this.$store.dispatch('updateBuyerProfile', _.cloneDeep(this.profile));
-        })
-        .then(() => {
-          this.$store.dispatch('successNotification', 'Profile Updated');
-        })
-        .catch(() => {
-          this.$store.dispacth('errorNotification');
         });
     },
     validateForm(formRef) {
