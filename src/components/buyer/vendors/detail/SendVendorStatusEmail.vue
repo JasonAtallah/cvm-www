@@ -1,23 +1,37 @@
 <template>
-  <Detail title="Email" :description="genDescription" :canSave="canSend" @save="send" @cancel="cancel">
-    <div class="row">
-      <div class="col-sm-12">
-        <label for="subject">Subject</label>
-        <ElInput placeholder="Subject" v-model="email.subject" />
-        <label for="body">Body</label>
-        <ElInput type="textarea" :rows="15" placeholder="Body" v-model="email.body" />
+  <Detail title="Email" :description="genDescription" :canSave="canSend"
+    saveLabel="Send" @save="send" @cancel="cancel">
+    <ElForm>
+      <div class="row">
+        <div class="col-sm-12">
+          <ElFormItem label="Subject">
+            <ElInput placeholder="Subject" v-model="email.subject" />
+          </ElFormItem>
+        </div>
       </div>
-    </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <ElFormItem label="Body">
+            <ElInput type="textarea" :rows="15" placeholder="Body" v-model="email.body" />
+          </ElFormItem>
+        </div>
+      </div>
+    </ElForm>
   </Detail>
 </template>
 
 <script>
 import Detail from '@/components/masterDetail/Detail';
-import { Input as ElInput } from 'element-ui';
+import {
+  Form as ElForm,
+  FormItem as ElFormItem,
+  Input as ElInput } from 'element-ui';
 
 export default {
   components: {
     Detail,
+    ElForm,
+    ElFormItem,
     ElInput
   },
   props: ['params'],
@@ -40,10 +54,7 @@ export default {
       return this.$store.dispatch(this.params.type, {
         vendor: this.params.vendor,
         email: this.email
-      })
-        .then(() => {
-          this.$store.dispatch('successNotification', 'Email Sent');
-        });
+      });
     }
   }
 };

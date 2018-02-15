@@ -3,11 +3,17 @@ import api from './api';
 import router from '../router';
 import { genVendorUrl } from '../../../lib/data';
 
-export const approveVendor = ({ commit }, { vendor, email }) => {
+export const approveVendor = ({ commit, dispatch }, { vendor, email }) => {
   return api.approveVendor(vendor, email, genVendorUrl(vendor))
     .then((vendorItem) => {
       commit('updateVendorItem', vendorItem);
       commit('cancelDetailOverride');
+    })
+    .then(() => {
+      dispatch('successNotification', 'Vendor Approved!');
+    })
+    .catch(() => {
+      dispatch('errorNotification');
     });
 };
 
@@ -154,11 +160,17 @@ export const overrideDetail = ({ commit, dispatch }, value) => {
   }
 };
 
-export const rejectVendor = ({ commit }, { vendor, email }) => {
+export const rejectVendor = ({ commit, dispatch }, { vendor, email }) => {
   return api.rejectVendor(vendor, email)
     .then((vendorItem) => {
       commit('updateVendorItem', vendorItem);
       commit('cancelDetailOverride');
+    })
+    .then(() => {
+      dispatch('successNotification', 'Vendor Rejected');
+    })
+    .catch(() => {
+      dispatch('errorNotification');
     });
 };
 
