@@ -79,29 +79,12 @@ i.fa-exclamation-triangle {
           </div>
         </div>
       </div>
+
       <div class="col-sm-6">
         <span class="lead conflicting-times" v-if="timeWarning.length > 0"><i class="fa fa-exclamation-triangle" /> You have other events scheduled for that time:</span>
-        <div class="row">
-          <div class="col-sm-12">
-            <ul class="suggestedTimes">
-              <li v-for="(time, index) in timeWarning" :key="index">
-                <div class="row">
-                  <div class="col-sm-12">
-                    <i class="el-icon-time"></i>
-                    <span>{{ formatDate(time.startDate) }} to {{ formatTime(time.endDate) }}</span>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-12">
-                    <i class="el-icon-location-outline"></i>
-                    <span>{{ time.location }}</span>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
+        <EventsList :eventsList="timeWarning" :canRemove="false" />
       </div>
+
     </div>
 
     <br>
@@ -126,28 +109,7 @@ i.fa-exclamation-triangle {
         <div v-if="suggestedTimes.length === 0">
           No times added yet
         </div>
-        <ul class="suggestedTimes">
-          <li v-for="(time, index) in suggestedTimes" :key="index">
-            <div class="row">
-              <div class="col-sm-12">
-                <i class="el-icon-time"></i>
-                <span>{{ formatDate(time.startDate) }} to {{ formatTime(getEndDate(time)) }}</span>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-12">
-                <i class="el-icon-location-outline"></i>
-                <span>{{ time.location.name }}</span>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-2">
-                <i class="el-icon-delete"></i>
-                <button type="button" class="btn btn-link" @click.prevent="removeTime(index)">Remove</button>
-              </div>
-            </div>
-          </li>
-        </ul>
+        <EventsList :eventsList="suggestedTimes" :canRemove="true" @removeTime="removeTime(index)" />
       </div>
     </div>
   </Detail>
@@ -164,6 +126,7 @@ import {
   Option as ElOption,
   Select as ElSelect,
   TimeSelect as ElTimeSelect } from 'element-ui';
+import EventsList from '../../../calendar/EventsList';
 
 export default {
   components: {
@@ -173,7 +136,8 @@ export default {
     ElInputNumber,
     ElOption,
     ElSelect,
-    ElTimeSelect
+    ElTimeSelect,
+    EventsList
   },
   data() {
     return {

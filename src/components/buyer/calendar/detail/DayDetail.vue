@@ -42,34 +42,10 @@
     <li v-for="hour in day" :key="hour">
       <label>{{ formatHour(hour) }}</label>
       <div class="event" v-for="event in eventsOfHour(hour)" :key="event.id">
-        <ElPopover ref="eventPopOver" :title="event.title" width="200" trigger="click">
+        <ElPopover ref="eventPopOver" :title="event.title" trigger="click">
           <hr>
           <div class="popoverContent">
-            <div class="row">
-              <div class="col-sm-2">
-                <i class="el-icon-time"></i>
-              </div>
-              <div class="col-sm-10">
-                <h5>{{ formatDate(date) }}</h5>
-                <h6>{{ formatEventTimes(event) }}</h6>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-2">
-                <i class="el-icon-location-outline"></i>
-              </div>
-              <div class="col-sm-10">
-                <h5>{{ event.location }}</h5>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-2">
-                <i class="el-icon-date"></i>
-              </div>
-              <div class="col-sm-10">
-                <h5>{{ buyerCalendar() }}</h5>
-              </div>
-            </div>
+            <EventsList :eventsList="[event]" :unstyled="true" />
           </div>
           <span slot="reference"><strong>{{ event.title }}</strong></span>
         </ElPopover>
@@ -85,12 +61,14 @@ import {
   Popover as ElPopover,
   Tooltip as ElTooltip } from 'element-ui';
 import Detail from '@/components/masterDetail/Detail';
+import EventsList from '../../../calendar/EventsList';
 
 export default {
   components: {
     Detail,
     ElPopover,
-    ElTooltip
+    ElTooltip,
+    EventsList
   },
   props: ['date', 'events'],
   computed: {
@@ -101,9 +79,6 @@ export default {
   methods: {
     buyerCalendar() {
       return this.$store.getters.buyer.gcalendar.name;
-    },
-    eventInfo(event) {
-      return event;
     },
     eventsOfHour(hour) {
       return _.chain(this.events)
@@ -119,9 +94,6 @@ export default {
     },
     formatDate(date) {
       return moment(date).format('LL');
-    },
-    formatEventTimes(event) {
-      return `${moment(event.startDate).format('h:mm A')} - ${moment(event.endDate).format('h:mm A')}`;
     },
     formatHour(hour) {
       return moment(hour, 'H').format('h:mm A');

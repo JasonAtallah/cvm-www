@@ -109,7 +109,8 @@ export const init = ({ commit, dispatch }) => {
     dispatch('loadBuyer'),
     dispatch('loadVendors'),
     dispatch('loadQuestionnaire'),
-    dispatch('loadSettings')
+    dispatch('loadSettings'),
+    dispatch('loadEvents')
   ]);
   commit('initP', initP);
   return initP;
