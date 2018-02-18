@@ -51,7 +51,7 @@ div.event-detail {
               <button type="button" class="btn btn-link" @click.prevent="removeTime(index)">Remove</button>
             </div>
           </div>
-          <hr v-if="breakupDateTime && eventsList.length > 1">
+          <hr v-if="unstyled && eventsList.length > 1">
         </li>
       </ul>
     </div>

@@ -1,29 +1,7 @@
 <template>
   <div class="container">
-    <h2>You have the following meeting scheduled with {{ buyer.name }}</h2>
-    <table class="table">
-      <tr>
-        {{ buyer }}
-        <th>Name</th>
-        <td>{{ buyer.state.selectedTime.name }}</td>
-      </tr>
-      <tr>
-        <th>Location</th>
-        <td>{{ buyer.state.selectedTime.location }}</td>
-      </tr>
-      <tr>
-        <th>Date</th>
-        <td>{{ buyer.state.selectedTime.startDate }}</td>
-      </tr>
-      <tr>
-        <th>Time</th>
-        <td>{{ buyer.state.selectedTime.startTime }}</td>
-      </tr>
-      <tr>
-        <th>Duration</th>
-        <td>{{ buyer.state.selectedTime.duration }}</td>
-      </tr>
-    </table>
+    <h3>You have the following meeting scheduled with {{ buyer.name }}</h3>
+    <EventsList :eventsList="[buyer.state.selectedTime]" :unstyled="true" :breakupDateTime="true" :showAddress="true" />
     <button v-if="!cancelling" type="button" class="btn btn-danger btn-block" @click.prevent="cancelAppt">Cancel Appointment</button>
     <div v-if="cancelling">
       <span>Are you sure you want to cancel your appointment?</span>
@@ -36,8 +14,12 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import EventsList from '../../calendar/EventsList';
 
 export default {
+  components: {
+    EventsList
+  },
   data() {
     return {
       cancelling: false
