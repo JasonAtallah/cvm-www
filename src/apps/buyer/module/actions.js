@@ -23,12 +23,6 @@ export const cancelMeeting = ({ commit, dispatch }, { vendor }) => {
       commit('updateVendorItem', vendorItem);
       commit('cancelPendingAction');
       commit('cancelDetailOverride');
-    })
-    .then(() => {
-      dispatch('successNotification', 'Meeting Canceled!');
-    })
-    .catch(() => {
-      dispatch('errorNotification');
     });
 };
 

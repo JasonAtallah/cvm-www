@@ -1,7 +1,5 @@
 <template>
-  <div>
-    {{ notificationInfo }}
-  </div>
+  <div>{{ displayNotification }}</div>
 </template>
 
 <script>
@@ -17,12 +15,9 @@ export default {
       notificationInfo: 'notificationInfo'
     }),
     displayNotification() {
-      if (this.notificationInfo !== null) {
-        Notification(this.notificationInfo);
-        this.$store.commit('notificationInfo', null);
-        return true;
-      }
-      return false;
+      Notification(this.notificationInfo);
+      this.$store.commit('notificationInfo', null);
+      return '';
     }
   }
 };

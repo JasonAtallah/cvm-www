@@ -16,10 +16,13 @@ export const notifyError = (message) => {
   return (location) => {
     const notificationInfo = {
       title: 'Error',
-      message,
+      message: 'Something Went Wrong',
       type: 'error',
       duration: 2000
     };
+    if (message) {
+      notificationInfo.message = message;
+    }
     store.commit('notificationInfo', notificationInfo);
   };
 };

@@ -10,6 +10,7 @@ import { mapGetters } from 'vuex';
 import {
   Button as ElButton,
   Dialog as ElDialog } from 'element-ui';
+import { notifySuccess, notifyError } from '@/lib/followups';
 
 export default {
   components: {
@@ -42,7 +43,9 @@ export default {
       this.$store.dispatch('cancelMeeting', {
         vendor: this.vendor,
         action: this.action
-      });
+      })
+        .then(notifySuccess('Meeting Canceled!'))
+        .catch(notifyError());
     }
   }
 };

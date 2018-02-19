@@ -25,7 +25,7 @@ html, body {
     <router-view/>
     <AddLocation />
     <ConfirmCancelMeeting />
-    <DisplayNotification />
+    <DisplayNotification v-if="displayNotification" />
     <SetSchedule />
   </div>
 </template>
@@ -43,6 +43,14 @@ export default {
     ConfirmCancelMeeting,
     DisplayNotification,
     SetSchedule
+  },
+  computed: {
+    displayNotification() {
+      if (this.$store.getters.notificationInfo !== null) {
+        return true;
+      }
+      return false;
+    }
   }
 };
 </script>
