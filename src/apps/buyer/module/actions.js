@@ -72,12 +72,6 @@ export const createLocation = ({ dispatch, commit }, values) => {
     .then((location) => {
       commit('addLocationToList', location);
       commit('cancelPendingAction');
-    })
-    .then(() => {
-      dispatch('successNotification', 'Location Added!');
-    })
-    .catch(() => {
-      dispatch('errorNotification');
     });
 };
 

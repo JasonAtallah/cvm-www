@@ -62,6 +62,8 @@ label {
 </template>
 
 <script>
+import { notifySuccess, notifyError } from '@/lib/followups';
+
 export default {
   data() {
     return {
@@ -87,7 +89,9 @@ export default {
       this.validate(this.location)
         .then(() => {
           this.$store.dispatch('createLocation', this.location);
-        });
+        })
+        .then(notifySuccess('Location Added'))
+        .catch(notifyError('Location Not Added'));
     },
     validate(location) {
       return new Promise((resolve, reject) => {

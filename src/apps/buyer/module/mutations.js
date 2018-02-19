@@ -52,6 +52,10 @@ export const initP = (state, initP) => {
   state.initP = initP;
 };
 
+export const notificationInfo = (state, notificationInfo) => {
+  state.notificationInfo = notificationInfo;
+};
+
 export const overrideDetail = (state, value) => {
   state.overridingDetail = value;
 };

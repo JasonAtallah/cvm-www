@@ -15,6 +15,7 @@ export default {
   calendars: null,
   events: [],
   initP: null,
+  notificationInfo: null,
   overridingDetail: null,
   pageMenuItems: pages,
   pendingAction: {

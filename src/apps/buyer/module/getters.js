@@ -11,6 +11,7 @@ export const locations = (state) => {
   locations.unshift(state.buyer.profile.company);
   return locations;
 };
+export const notificationInfo = state => state.notificationInfo;
 export const overridingDetail = state => state.overridingDetail;
 export const pageMenuItems = state => state.pageMenuItems;
 export const pendingAction = state => state.pendingAction;
