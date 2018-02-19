@@ -38,6 +38,7 @@ import {
   Tabs as ElTabs,
   TabPane as ElTabPane } from 'element-ui';
 import Detail from '@/components/masterDetail/Detail';
+import { notifySuccess, notifyError } from '@/lib/followups';
 
 export default {
   components: {
@@ -87,7 +88,9 @@ export default {
         templateId: this.curTab
       };
 
-      this.$store.dispatch('updateBuyerEmailTemplate', email);
+      this.$store.dispatch('updateBuyerEmailTemplate', email)
+        .then(notifySuccess('Default Email Updated!'))
+        .catch(notifyError());
     }
   }
 };

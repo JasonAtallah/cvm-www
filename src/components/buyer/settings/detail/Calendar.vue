@@ -25,6 +25,7 @@ import {
   Select as ElSelect
 } from 'element-ui';
 import Detail from '@/components/masterDetail/Detail';
+import { notifySuccess, notifyError } from '@/lib/followups';
 
 export default {
   name: 'set-calendar',
@@ -72,10 +73,14 @@ export default {
     },
     save() {
       if (this.selectedCalendar) {
-        return this.$store.dispatch('setGCalendar', _.find(this.calendars, { id: this.selectedCalendar }));
+        this.$store.dispatch('setGCalendar', _.find(this.calendars, { id: this.selectedCalendar }))
+          .then(notifySuccess('Calendar Updated!'))
+          .catch(notifyError());
       }
 
-      return this.$store.dispatch('createGCalendar', this.calendarName.trim());
+      this.$store.dispatch('createGCalendar', this.calendarName.trim())
+        .then(notifySuccess('Calendar Created!'))
+        .catch(notifyError());
     }
   },
   created: function () {

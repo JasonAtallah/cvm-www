@@ -8,12 +8,6 @@ export const approveVendor = ({ commit, dispatch }, { vendor, email }) => {
     .then((vendorItem) => {
       commit('updateVendorItem', vendorItem);
       commit('cancelDetailOverride');
-    })
-    .then(() => {
-      dispatch('successNotification', 'Vendor Approved!');
-    })
-    .catch(() => {
-      dispatch('errorNotification');
     });
 };
 
@@ -33,12 +27,6 @@ export const createCalendarEvent = ({ rootState, dispatch, commit }, values) => 
     .then((calendarEvent) => {
       commit('addCalendarEventToList', calendarEvent);
       commit('cancelDetailOverride');
-    })
-    .then(() => {
-      dispatch('successNotification', 'Event Added to Calendar!');
-    })
-    .catch(() => {
-      dispatch('errorNotification');
     });
 };
 
@@ -52,12 +40,6 @@ export const createGCalendar = ({ rootState, commit, dispatch }, name) => {
     .then((calendar) => {
       commit('gCalendar', calendar);
       dispatch('loadEvents');
-    })
-    .then(() => {
-      dispatch('successNotification', 'Calendar Created!');
-    })
-    .catch(() => {
-      dispatch('errorNotification');
     });
 };
 
@@ -74,22 +56,7 @@ export const createVendor = ({ dispatch, commit }, values) => {
     .then((vendor) => {
       commit('addVendorToList', vendor);
       dispatch('selVendor', vendor);
-    })
-    .then(() => {
-      dispatch('successNotification', 'Vendor Added!');
-    })
-    .catch(() => {
-      dispatch('errorNotification');
     });
-};
-
-export const errorNotification = ({ dispatch }) => {
-  Notification({
-    title: 'Uh oh',
-    message: 'Something Went Wrong',
-    type: 'error',
-    duration: 2000
-  });
 };
 
 export const init = ({ commit, dispatch }) => {
@@ -174,12 +141,6 @@ export const rejectVendor = ({ commit, dispatch }, { vendor, email }) => {
     .then((vendorItem) => {
       commit('updateVendorItem', vendorItem);
       commit('cancelDetailOverride');
-    })
-    .then(() => {
-      dispatch('successNotification', 'Vendor Rejected');
-    })
-    .catch(() => {
-      dispatch('errorNotification');
     });
 };
 
@@ -221,12 +182,6 @@ export const sendTimes = ({ commit, dispatch }, { vendor, suggestedTimes }) => {
     .then((vendorItem) => {
       commit('updateVendorItem', vendorItem);
       commit('cancelDetailOverride');
-    })
-    .then(() => {
-      dispatch('successNotification', 'Suggested Times Sent!');
-    })
-    .catch(() => {
-      dispatch('errorNotification');
     });
 };
 
@@ -235,34 +190,13 @@ export const setGCalendar = ({ rootState, commit, dispatch }, values) => {
     .then((calendar) => {
       commit('gCalendar', calendar);
       dispatch('loadEvents');
-    })
-    .then(() => {
-      dispatch('successNotification', 'Calendar Updated!');
-    })
-    .catch(() => {
-      dispatch('errorNotification');
     });
-};
-
-export const successNotification = ({ commit }, message) => {
-  Notification({
-    title: 'Success',
-    message: message,
-    type: 'success',
-    duration: 2000
-  });
 };
 
 export const updateBuyerProfile = ({ rootState, commit, dispatch }, profile) => {
   return api.updateBuyerProfile(profile)
     .then((profile) => {
       commit('buyerProfile', profile);
-    })
-    .then(() => {
-      dispatch('successNotification', 'Profile Updated');
-    })
-    .catch(() => {
-      dispatch('errorNotification');
     });
 };
 
@@ -270,12 +204,6 @@ export const updateBuyerEmailTemplate = ({ rootState, commit, dispatch }, { temp
   return api.updateBuyerEmailTemplate(templateId, email)
     .then((emails) => {
       commit('buyerEmails', emails);
-    })
-    .then(() => {
-      dispatch('successNotification', 'Default Email Updated!');
-    })
-    .catch(() => {
-      dispatch('errorNotification');
     });
 };
 

@@ -126,6 +126,7 @@ import {
   Option as ElOption,
   Select as ElSelect,
   TimeSelect as ElTimeSelect } from 'element-ui';
+import { notifySuccess, notifyError } from '@/lib/followups';
 import EventsList from '../../../calendar/EventsList';
 
 export default {
@@ -246,7 +247,9 @@ export default {
         this.$store.dispatch('sendTimes', {
           vendor: this.vendor,
           suggestedTimes: this.suggestedTimes
-        });
+        })
+          .then(notifySuccess('Suggested Times Sent!'))
+          .catch(notifyError());
       }
     }
   }

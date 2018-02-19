@@ -26,6 +26,7 @@ import {
   Form as ElForm,
   FormItem as ElFormItem,
   Input as ElInput } from 'element-ui';
+import { notifySuccess, notifyError } from '@/lib/followups';
 
 export default {
   components: {
@@ -54,7 +55,9 @@ export default {
       return this.$store.dispatch(this.params.type, {
         vendor: this.params.vendor,
         email: this.email
-      });
+      })
+        .then(notifySuccess('Email Sent!'))
+        .catch(notifyError());
     }
   }
 };

@@ -1,5 +1,5 @@
 <template>
-  <div>{{ displayNotification }}</div>
+  <div></div>
 </template>
 
 <script>
@@ -13,16 +13,15 @@ export default {
   computed: {
     ...mapGetters({
       notificationInfo: 'notificationInfo'
-    }),
-    displayNotification() {
-      Notification(this.notificationInfo);
-      this.$store.commit('notificationInfo', null);
-      return '';
+    })
+  },
+  watch: {
+    notificationInfo(newVal) {
+      if (newVal) {
+        Notification(newVal);
+        this.$store.commit('notificationInfo', null);
+      }
     }
   }
 };
 </script>
-
-<style>
-
-</style>

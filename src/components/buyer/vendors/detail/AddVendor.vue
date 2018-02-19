@@ -73,6 +73,7 @@ import {
   Form as ElForm,
   FormItem as ElFormItem,
   Input as ElInput } from 'element-ui';
+import { notifySuccess, notifyError } from '@/lib/followups';
 
 export default {
   components: {
@@ -122,7 +123,9 @@ export default {
         })
         .then(() => {
           return this.$store.dispatch('createVendor', _.cloneDeep(this.vendor));
-        });
+        })
+        .then(notifySuccess('Vendor Created!'))
+        .catch(notifyError());
     },
     validateForm(formRef) {
       return new Promise((res, rej) => {

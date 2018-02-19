@@ -81,6 +81,7 @@ import {
   FormItem as ElFormItem,
   Input as ElInput } from 'element-ui';
 import Detail from '@/components/masterDetail/Detail';
+import { notifySuccess, notifyError } from '@/lib/followups';
 
 export default {
   components: {
@@ -137,7 +138,9 @@ export default {
         })
         .then(() => {
           return this.$store.dispatch('updateBuyerProfile', _.cloneDeep(this.profile));
-        });
+        })
+        .then(notifySuccess('Profile Updated!'))
+        .catch(notifyError());
     },
     validateForm(formRef) {
       return new Promise((res, rej) => {

@@ -60,6 +60,7 @@ import {
   Input as ElInput,
   InputNumber as ElInputNumber,
   TimeSelect as ElTimeSelect } from 'element-ui';
+import { notifySuccess, notifyError } from '@/lib/followups';
 
 export default {
   components: {
@@ -112,7 +113,9 @@ export default {
         .then(() => {
           this.$store.dispatch('createCalendarEvent', calendarEvent);
           this.cancel();
-        });
+        })
+        .then(notifySuccess('Event Added to Calendar!'))
+        .catch(notifyError());
     },
     validateForm(formRef) {
       return new Promise((res, rej) => {
