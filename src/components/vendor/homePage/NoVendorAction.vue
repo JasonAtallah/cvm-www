@@ -5,21 +5,27 @@ span {
 </style>
 
 <template>
-  <div class="container">
+  <Detail :title="detailHeader.title" :description="detailHeader.description"
+    :showSave="false" :showCancel="false">
     <span>{{ message() }}</span>
-  </div>
+  </Detail>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
+import Detail from '../../masterDetail/Detail';
 
 export default {
+  components: {
+    Detail
+  },
   computed: {
     ...mapGetters({
       buyer: 'buyer',
-      messages: 'vendorStateMessages'
+      messages: 'vendorStateMessages',
     })
   },
+  props: ['detailHeader'],
   methods: {
     message() {
       const message = _.find(this.messages, message => message.state === this.buyer.state.name);
