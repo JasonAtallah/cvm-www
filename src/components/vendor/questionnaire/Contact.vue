@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-sm-12 col-md-6" v-for="field in questions" :key="field.id" v-if="showField(field.id)">
         <ElFormItem :label="field.name" :prop="field.id">
-          <ElInput v-model="response[field.name]" :placeholder="field.name" />
+          <ElInput v-model="response[field.id]" :placeholder="field.name" />
         </ElFormItem>
       </div>
     </div>
