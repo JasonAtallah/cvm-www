@@ -23,7 +23,6 @@ describe('CalendarButtons.vue', () => {
 
     expect(addEventStub.callCount).to.equal(0);
     expect(addEventStub.args[0]).to.equal('setGCalendar');
-    expect(addEventStub.args[1]).to.deep.equal({ name: valueWeSet });
 
     addEventStub.restore();
   });
