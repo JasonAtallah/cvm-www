@@ -19,6 +19,7 @@ export default {
   },
   methods: {
     onDayClicked(date) {
+      this.$store.commit('cancelDetailOverride');
       this.$store.commit('selCalendarDate', date);
     }
   }
