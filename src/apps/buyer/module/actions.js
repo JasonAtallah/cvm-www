@@ -1,4 +1,3 @@
-import { Notification } from 'element-ui';
 import api from './api';
 import router from '../router';
 import { genVendorUrl } from '../../../lib/data';
