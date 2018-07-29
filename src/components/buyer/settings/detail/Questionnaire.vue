@@ -156,6 +156,9 @@ export default {
               onEnabledChange: function (val) {
                 q.enabled = val;
                 field.enabled = val;
+                if (!val) {
+                  field.onRequiredChange(val);
+                }
               },
               onRequiredChange: function (val) {
                 q.required = val;
