@@ -91,6 +91,7 @@ import {
   Tabs as ElTabs,
   TabPane as ElTabPane } from 'element-ui';
 import Detail from '@/components/masterDetail/Detail';
+import { notifySuccess, notifyError } from '@/lib/followups';
 
 export default {
   components: {
@@ -195,13 +196,8 @@ export default {
     },
     save() {
       this.$store.dispatch('updateQuestionnaire', this.newQuestionnaire)
-        .then(() => {
-          this.reset();
-          this.$store.dispatch('successNotification', 'Questionnaire Settings Updated');
-        })
-        .catch(() => {
-          this.$store.dispatch('errorNotification');
-        });
+        .then(notifySuccess('Questionnaire Settings Updated!'))
+        .catch(notifyError());
     }
   },
   created() {
