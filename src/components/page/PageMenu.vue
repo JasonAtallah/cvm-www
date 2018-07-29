@@ -8,6 +8,7 @@
 .page-menu img.logo {
   display: inline-block;
   height: 30px;
+  cursor: pointer;
 }
 
 .page-menu .page-menu-items {
@@ -58,7 +59,7 @@
 
 <template>
 <div class="page-menu">
-  <img class="logo" :src="logoUrl" />
+  <img @click="goHome()" class="logo" :src="logoUrl" />
   <div class="page-menu-items">
     <div v-for="(item,index) in pageMenu" :key="index"
       class="pageMenuItem"
@@ -112,6 +113,9 @@ export default {
       return {
         left: `${100 + (index * 110)}px`
       };
+    },
+    goHome() {
+      this.$router.push('/vendors');
     }
   }
 };
